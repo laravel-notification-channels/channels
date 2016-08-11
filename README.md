@@ -98,6 +98,10 @@ class InvoicePaid extends Notification
 }
 ```
 
+Here's a screenshot preview of the above notification on Telegram Messenger:
+
+![Laravel Telegram Notification Example](https://cloud.githubusercontent.com/assets/1915268/17590374/2e05e872-5ff7-11e6-992f-63d5f3df2db3.png)
+
 You can also override the recipient for this notification by passing a chat id to the method `to($chatId)` in your `toTelegram()` method above.
 
 Here's an example of that:
