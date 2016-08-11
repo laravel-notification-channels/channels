@@ -115,7 +115,7 @@ class Telegram
      * @var int        $params ['reply_to_message_id']
      * @var string     $params ['reply_markup']
      *
-     * @return
+     * @return mixed
      */
     public function sendMessage($params)
     {

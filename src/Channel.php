@@ -28,10 +28,11 @@ class Channel
     /**
      * Send the given notification.
      *
-     * @param  mixed                                  $notifiable
-     * @param  \Illuminate\Notifications\Notification $notification
+     * @param mixed        $notifiable
+     * @param Notification $notification
      *
-     * @return void
+     * @return bool|void
+     * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
