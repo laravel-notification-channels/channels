@@ -21,7 +21,6 @@ class Pushover {
      */
     protected $http;
 
-
     /**
      * Pushover App Token.
      *

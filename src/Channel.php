@@ -48,7 +48,6 @@ class Channel
 
         $this->pushover->send([
             'user' => $pushoverKey,
-            'device' => null, // in routeNotificationFor, possibility for ['key'=>'', 'device'=>'']
             'message' => $message->content,
             'title' => $message->title,
             'timestamp' => $message->timestamp,
