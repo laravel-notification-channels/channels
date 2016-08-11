@@ -4,6 +4,7 @@ namespace NotificationChannels\Telegram;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
+use NotificationChannels\Telegram\Exceptions\CouldNotSendNotification;
 
 class Telegram
 {
@@ -159,8 +160,8 @@ class Telegram
     {
         $token = $this->getToken();
 
-        if ($token === null) {
-//            throw new TelegramChannelException('You must provide your telegram bot token to make any API requests.');
+        if (!$token) {
+            throw CouldNotSendNotification::telegramBotTokenNotProvided('You must provide your telegram bot token to make any API requests.');
         }
     }
 }

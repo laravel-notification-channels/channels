@@ -10,4 +10,9 @@ class CouldNotSendNotification extends \Exception
 
         return new static($response->description, $response->error_code);
     }
+
+    public static function telegramBotTokenNotProvided($message)
+    {
+        return new static($message);
+    }
 }
