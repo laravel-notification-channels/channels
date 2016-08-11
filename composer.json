@@ -18,11 +18,17 @@
         "illuminate/events": "^5.3@dev"
     },
     "require-dev": {
+        "mockery/mockery": "^0.9.5",
         "phpunit/phpunit": "5.*"
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\CHANNEL_NAMESPACE\\": "src"
+            "NotificationChannels\\:channel_namespace\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
         }
     },
     "config": {

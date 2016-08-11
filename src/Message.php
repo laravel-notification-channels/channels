@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\CHANNEL_NAMESPACE;
+namespace NotificationChannels\:channel_namespace;
 
 use Illuminate\Support\Arr;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\CHANNEL_NAMESPACE\Exceptions;
+namespace NotificationChannels\:channel_namespace\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {
-    public static function serviceRespondedWithAnError(array $response)
+    public static function serviceRespondedWithAnError($response)
     {
         return new static("Descriptive error message.");
     }

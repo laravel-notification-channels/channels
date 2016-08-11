@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\CHANNEL_NAMESPACE;
+namespace NotificationChannels\:channel_namespace;
 
-use NotificationChannels\CHANNEL_NAMESPACE\Exceptions\CouldNotSendNotification;
-use NotificationChannels\CHANNEL_NAMESPACE\Events\MessageWasSent;
-use NotificationChannels\CHANNEL_NAMESPACE\Events\SendingMessage;
+use NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification;
+use NotificationChannels\:channel_namespace\Events\MessageWasSent;
+use NotificationChannels\:channel_namespace\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class Channel
@@ -20,8 +20,7 @@ class Channel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @return void
-     * @throws \NotificationChannels\CHANNEL_NAMESPACE\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
@@ -31,7 +30,9 @@ class Channel
             return;
         }
 
-//        if (error) {
+        //$response = [a call to the api of your notification send]
+
+//        if ($response->error) { // replace this by the code need to check for errors
 //            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
 //        }
 

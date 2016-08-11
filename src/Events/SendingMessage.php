@@ -1,19 +1,15 @@
 <?php
 
-namespace NotificationChannels\CHANNEL_NAMESPACE\Events;
+namespace NotificationChannels\:channel_namespace\Events;
 
 use Illuminate\Notifications\Notification;
 
 class SendingMessage
 {
-    /**
-     * @var
-     */
+
     protected $notifiable;
 
-    /**
-     * @var \Illuminate\Notifications\Notification
-     */
+    /** @var \Illuminate\Notifications\Notification */
     protected $notification;
 
     /**
