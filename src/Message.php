@@ -3,7 +3,7 @@
 namespace NotificationChannels\PushoverNotifications;
 
 use Carbon\Carbon;
-use NotificationChannels\PushoverNotifications\Exceptions\PushoverEmergencyException;
+use NotificationChannels\PushoverNotifications\Exceptions\EmergencyNotificationRequiresRetryAndExpire;
 
 class Message
 {
@@ -240,12 +240,12 @@ class Message
      * @param  int  $priority
      * @param  int  $retry
      * @param  int  $expire
-     * @throws PushoverEmergencyException
+     * @throws EmergencyNotificationRequiresRetryAndExpire
      */
     protected function noEmergencyWithoutRetryOrExpire($priority, $retry, $expire)
     {
         if ($priority == self::EMERGENCY_PRIORITY && (!isset($retry) || !isset($expire))) {
-            throw new PushoverEmergencyException();
+            throw new EmergencyNotificationRequiresRetryAndExpire();
         }
     }
 

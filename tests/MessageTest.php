@@ -3,7 +3,7 @@
 namespace NotificationChannels\PusherPushNotifications\Test;
 
 use Carbon\Carbon;
-use NotificationChannels\PushoverNotifications\Exceptions\PushoverEmergencyException;
+use NotificationChannels\PushoverNotifications\Exceptions\EmergencyNotificationRequiresRetryAndExpire;
 use NotificationChannels\PushoverNotifications\Message;
 use PHPUnit_Framework_TestCase;
 
@@ -106,7 +106,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_cannot_set_priority_to_emergency_when_not_providing_a_retry_and_expiry_time()
     {
-        $this->expectException(PushoverEmergencyException::class);
+        $this->expectException(EmergencyNotificationRequiresRetryAndExpire::class);
 
         $this->message->priority(Message::EMERGENCY_PRIORITY);
     }
