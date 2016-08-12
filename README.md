@@ -11,6 +11,22 @@ This package makes it easy to send notifications using [xxxxx](link to service) 
 **Note:** Replace ```:channel_namespace``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
 This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
 
+
+
+## Contents
+
+- [Installation](#installation)
+	- [Setting up the xxxx service](#setting-up-the-xxxx-service)
+- [Usage](#usage)
+	- [Available Message methods](#available-message-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
+
+
 ## Installation
 
 Please also include the steps for any third-party service setup that's required for this package.
