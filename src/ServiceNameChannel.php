@@ -7,7 +7,7 @@ use NotificationChannels\:channel_namespace\Events\MessageWasSent;
 use NotificationChannels\:channel_namespace\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
-class Channel
+class :service_nameChannel
 {
     public function __construct()
     {

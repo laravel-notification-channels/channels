@@ -4,7 +4,7 @@ namespace NotificationChannels\:channel_namespace;
 
 use Illuminate\Support\Arr;
 
-class Message
+class :service_nameMessage
 {
     // Message structure here
 }
