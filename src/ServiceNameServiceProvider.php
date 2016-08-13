@@ -4,7 +4,7 @@ namespace NotificationChannels\:channel_namespace;
 
 use Illuminate\Support\ServiceProvider;
 
-class :service_nameProvider extends ServiceProvider
+class :service_nameServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
