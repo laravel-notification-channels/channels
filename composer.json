@@ -1,13 +1,13 @@
 {
-    "name": "laravel-notification-channels/skeleton",
-    "description": "A boilerplate for contributions.",
-    "homepage": "https://github.com/laravel-notification-channels/skeleton",
+    "name": "laravel-notification-channels/:package_name",
+    "description": ":package_description",
+    "homepage": "https://github.com/laravel-notification-channels/:package_name",
     "license": "MIT",
     "authors": [
         {
             "name": ":author_name",
             "email": ":author_email",
-            "homepage": ":author_url",
+            "homepage": ":author_website",
             "role": "Developer"
         }
     ],
