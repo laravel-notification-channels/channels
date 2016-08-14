@@ -1,7 +1,9 @@
 # Changelog
 
-All notable changes to `:package_name` will be documented in this file
+All notable changes to `laravel-notification-channels/clickatell` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 1.0.0 - 2016-08-14
 
-- initial release
+### Changes
+
+- Initial implementation of the Clickatell Http client for laravel notification project

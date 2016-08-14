@@ -1,6 +1,6 @@
 {
     "name": "laravel-notification-channels/clickatell",
-    "description": ":package_description",
+    "description": "Clickatell notifications driver",
     "keywords": ["laravel", "notifications", "clickatell", "sms"],
     "homepage": "https://github.com/laravel-notification-channels/clickatell",
     "license": "MIT",
