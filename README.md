@@ -97,7 +97,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 
 - [etiennemarais](https://github.com/etiennemarais)
-- [arcturial](https://github.com/arcturial) - For the Clickatell Client implementation
+- [arcturial](https://github.com/arcturial)
+    - For the [Clickatell Client implementation](https://github.com/arcturial/clickatell) which I leverage on for this wrapper
 
 ## License
 
