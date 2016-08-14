@@ -1,26 +1,13 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
+# Clickatell notifications channel for Laravel 5.3
 
-Here's the latest documentation on Laravel 5.3 Notifications System: 
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
-
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.3.
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
+This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.3.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+    - [Setting up the Clickatell service](#setting-up-the-clickatell-service)
 - [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
+    - [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Security](#security)
@@ -31,33 +18,77 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
 
-### Setting up the :service_name service
+```bash
+composer require laravel-notification-channels/clickatell
+```
 
-Optionally include a few steps how users can set up the service.
+You must install the service provider:
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\Clickatell\ClickatellServiceProvider::class,
+],
+```
+
+### Setting up the clickatell service
+
+Add your Clickatell user, password and api identifier  to your `config/services.php`:
+
+```php
+// config/services.php
+...
+'clickatell' => [
+    'user'  => env('CLICKATELL_USER'),
+    'pass' => env('CLICKATELL_PASS'),
+    'api_id' => env('CLICKATELL_API_ID'),
+],
+...
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can use the channel in your `via()` method inside the notification:
+
+```php
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Clickatell\ClickatellMessage;
+use NotificationChannels\Clickatell\ClickatellChannel;
+
+class AccountApproved extends Notification
+{
+    public function via($notifiable)
+    {
+        return [ClickatellChannel::class];
+    }
+
+    public function toClickatell($notifiable)
+    {
+        return (new ClickatellMessage())
+            ->content("Your {$notifiable->service} account was approved!");
+    }
+}
+```
 
 ### Available methods
 
-A list of all available options
+TODO
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
-
+    
 ``` bash
 $ composer test
 ```
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email hello@etiennemarais.co.za instead of using the issue tracker.
 
 ## Contributing
 
@@ -65,8 +96,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+- [etiennemarais](https://github.com/etiennemarais)
+- [arcturial](https://github.com/arcturial) - For the Clickatell Client implementation
 
 ## License
 
