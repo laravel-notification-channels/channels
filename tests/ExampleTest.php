@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\PubNub\Test;
+namespace NotificationChannels\Pubnub\Test;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {

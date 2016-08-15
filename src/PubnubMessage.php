@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\PubNub;
+namespace NotificationChannels\Pubnub;
 
 use Illuminate\Support\Arr;
 
-class PubNubMessage
+class PubnubMessage
 {
     /**
      * Channel the message should be sent to

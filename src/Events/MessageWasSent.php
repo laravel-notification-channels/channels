@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\PubNub\Events;
+namespace NotificationChannels\Pubnub\Events;
 
 use Illuminate\Notifications\Notification;
 

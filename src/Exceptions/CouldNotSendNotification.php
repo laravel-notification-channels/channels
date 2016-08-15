@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\PubNub\Exceptions;
+namespace NotificationChannels\Pubnub\Exceptions;
 
 use Exception;
 use Pubnub\PubnubException;

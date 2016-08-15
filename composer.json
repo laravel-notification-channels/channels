@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\PubNub\\": "src"
+            "NotificationChannels\\Pubnub\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\PubNub\\Test\\": "tests"
+            "NotificationChannels\\Pubnub\\Test\\": "tests"
         }
     },
     "config": {

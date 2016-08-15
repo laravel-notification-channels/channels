@@ -1,15 +1,15 @@
 <?php
 
-namespace NotificationChannels\PubNub;
+namespace NotificationChannels\Pubnub;
 
-use NotificationChannels\PubNub\Exceptions\CouldNotSendNotification;
-use NotificationChannels\PubNub\Events\MessageWasSent;
-use NotificationChannels\PubNub\Events\SendingMessage;
+use NotificationChannels\Pubnub\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Pubnub\Events\MessageWasSent;
+use NotificationChannels\Pubnub\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 use Pubnub\Pubnub;
 use Pubnub\PubnubException;
 
-class PubNubChannel
+class PubnubChannel
 {
     /** @\Pubnub\Pubnub */
     protected $pubnub;
@@ -25,7 +25,7 @@ class PubNubChannel
      * @param   mixed   $notifiable
      * @param   \Illuminate\Notifications\Notification  $notification
      *
-     * @throws  \NotificationChannels\PubNub\Exceptions\CouldNotSendNotification
+     * @throws  \NotificationChannels\Pubnub\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {

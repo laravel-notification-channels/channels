@@ -26,7 +26,7 @@ composer require laravel-notification-channels/pubnub
 // config/app.php
 'providers' => [
     ...
-    NotificationChannels\PubNub\PubNubServiceProvider::class,
+    NotificationChannels\Pubnub\PubnubServiceProvider::class,
 ],
 ```
 

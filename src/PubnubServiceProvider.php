@@ -1,18 +1,18 @@
 <?php
 
-namespace NotificationChannels\PubNub;
+namespace NotificationChannels\Pubnub;
 
 use Illuminate\Support\ServiceProvider;
 use Pubnub\Pubnub;
 
-class PubNubServiceProvider extends ServiceProvider
+class PubnubServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-        $this->app->when(PubNubChannel::class)
+        $this->app->when(PubnubChannel::class)
             ->needs(Pubnub::class)
             ->give(function() {
                 $config = config('services.pubnub');
