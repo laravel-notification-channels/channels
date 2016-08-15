@@ -1,0 +1,44 @@
+{
+    "name": "laravel-notification-channels/hipchat",
+    "description": "A boilerplate for contributions.",
+    "homepage": "https://github.com/laravel-notification-channels/hipchat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Matseykanets",
+            "email": "pmatseykanets@gmail.com",
+            "homepage": "https://github.com/pmatseykanets",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/events": "^5.3@dev",
+        "illuminate/notifications": "^5.3@dev",
+        "illuminate/support": "^5.3@dev"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.11",
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Hipchat\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Hipchat\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "minimum-stability": "dev"
+}
