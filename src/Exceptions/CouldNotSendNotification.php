@@ -2,10 +2,18 @@
 
 namespace NotificationChannels\PubNub\Exceptions;
 
-class CouldNotSendNotification extends \Exception
+use Exception;
+use Pubnub\PubnubException;
+
+class CouldNotSendNotification extends Exception
 {
-    public static function serviceRespondedWithAnError($response)
+    public static function pubnubRespondedWithAnError(PubnubException $exception)
     {
-        return new static("Descriptive error message.");
+        return new static($exception->getMessage());
+    }
+
+    public static function missingChannel()
+    {
+        return new static('Notification not sent. Missing channel');
     }
 }
