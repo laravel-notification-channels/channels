@@ -3,6 +3,7 @@
 namespace NotificationChannels\PubNub;
 
 use Illuminate\Support\ServiceProvider;
+use Pubnub\Pubnub;
 
 class PubNubServiceProvider extends ServiceProvider
 {
@@ -11,30 +12,16 @@ class PubNubServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Bootstrap code here.
+        $this->app->when(PubNubChannel::class)
+            ->needs(Pubnub::class)
+            ->give(function() {
+                $config = config('services.pubnub');
 
-        /**
-         * Here's some example code we use for the pusher package.
-
-        $this->app->when(Channel::class)
-            ->needs(Pusher::class)
-            ->give(function () {
-                $pusherConfig = config('broadcasting.connections.pusher');
-
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
+                return new Pubnub(
+                    $config['publish_key'],
+                    $config['subscribe_key'],
+                    $config['secret_key']
                 );
             });
-         */
-
-    }
-
-    /**
-     * Register the application services.
-     */
-    public function register()
-    {
     }
 }
