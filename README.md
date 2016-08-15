@@ -18,11 +18,34 @@ PubNub Notifications Channel for Laravel 5.3
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+```bash
+composer require laravel-notification-channels/pubnub
+```
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\PubNub\PubNubServiceProvider::class,
+],
+```
 
 ### Setting up the PubNub service
 
-Optionally include a few steps how users can set up the service.
+Add your PubNub Publish Key, Subscribe Key and Secret Key to your `config/services.php`:
+
+```php
+// config/services.php
+...
+
+'pubnub' => [
+    'publish_key'   => env('PUBNUB_PUBLISH_KEY'),
+    'subscribe_key' => env('PUBNUB_SUBSCRIBE_KEY'),
+    'secret_key'    => env('PUBNUB_SECRET_KEY'),
+],
+
+... 
+```
 
 ## Usage
 
