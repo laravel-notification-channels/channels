@@ -21,6 +21,13 @@ class PubnubMessage
     public $content;
 
     /**
+     * If the message should be stored in the Pubnub history
+     *
+     * @var bool
+     */
+    public $storeInHistory = true;
+
+    /**
      * Set the channel the message should be sent to
      *
      * @param   string  $channel
@@ -42,6 +49,19 @@ class PubnubMessage
     public function content($content)
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Set the option to store the current message in the Pubnub history
+     *
+     * @param   bool    $shouldStore
+     * @return  $this
+     */
+    public function storeInHistory($shouldStore = true)
+    {
+        $this->storeInHistory = (bool) $shouldStore;
 
         return $this;
     }
