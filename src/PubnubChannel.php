@@ -34,8 +34,14 @@ class PubnubChannel
 
         $message = $notification->toPubnub($notifiable);
 
+        $channel = ! is_null($message->channel) ? $message->channel : $notifiable->routeNotificationFor('pubnub');
+
+        if (is_null($channel)) {
+            throw CouldNotSendNotification::missingChannel();
+        }
+
         try {
-            $this->pubnub->publish($message->channel, $message->content, $message->storeInHistory);
+            $this->pubnub->publish($channel, $message->content, $message->storeInHistory);
         } catch (PubnubException $exception) {
             CouldNotSendNotification::pubnubRespondedWithAnError($exception);
         }
