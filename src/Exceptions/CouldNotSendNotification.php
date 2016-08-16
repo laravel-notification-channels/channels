@@ -14,6 +14,6 @@ class CouldNotSendNotification extends Exception
 
     public static function missingChannel()
     {
-        return new static('Notification not sent. Missing channel');
+        return new static('Notification not sent. No channel specified');
     }
 }

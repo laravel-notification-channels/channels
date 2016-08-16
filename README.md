@@ -22,6 +22,8 @@ PubNub Notifications Channel for Laravel 5.3
 composer require laravel-notification-channels/pubnub
 ```
 
+Add the service provider to your `config/app.php`
+
 ```php
 // config/app.php
 'providers' => [
@@ -32,7 +34,7 @@ composer require laravel-notification-channels/pubnub
 
 ### Setting up the PubNub service
 
-Add your PubNub Publish Key, Subscribe Key and Secret Key to your `config/services.php`:
+Add your PubNub Publish Key, Subscribe Key and Secret Key to your `config/services.php`
 
 ```php
 // config/services.php
@@ -49,11 +51,49 @@ Add your PubNub Publish Key, Subscribe Key and Secret Key to your `config/servic
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+```php
+use NotificationChannels\Pubnub\PubnubChannel;
+use NotificationChannels\Pubnub\PubnubMessage;
+use Illuminate\Notifications\Notification;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [PubnubChannel::class];
+    }
+
+    public function toPubnub($notifiable)
+    {
+        return (new PubnubMessage())
+            ->channel('my_channel')
+            ->content(['message' => 'You just paid $4.99 to ACME Ltd.']);
+    }
+}
+```
+
+Alternatively you may supply a channel specifically related to your notifiable by implementing the `routeNotificationForPubnub()` method.
+
+```php
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Model
+{
+    use Notifiable;
+    
+    public function routeNotificationForPubnub()
+    {
+        return $this->pubnub_channel;
+    }
+}
+```
 
 ### Available methods
 
-A list of all available options
+`channel()`: Specifies the channel the message should be sent to.
+`content()`: Sets the content of the payload. May be either a string or array (which will later be encoded as json).
+`storeInHistory()`: If the message should be stored in the Pubnub history.
 
 ## Changelog
 
