@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\Pubnub;
 
-use Illuminate\Support\Arr;
-
 class PubnubMessage
 {
     /**
