@@ -1,13 +1,14 @@
 {
     "name": "laravel-notification-channels/gitter",
     "description": "Gitter Notifications channel for Laravel 5.3",
+    "keywords": ["laravel", "notifications", "gitter.im"],
     "homepage": "https://github.com/laravel-notification-channels/gitter",
     "license": "MIT",
     "authors": [
         {
             "name": "JhaoDa",
-            "email": "jhaoda@gmail.com",
-            "role": "Developer"
+            "role": "Developer",
+            "email": "jhaoda@gmail.com"
         }
     ],
     "require": {
