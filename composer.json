@@ -1,0 +1,39 @@
+{
+    "name": "laravel-notification-channels/gitter",
+    "description": "Gitter Notifications channel for Laravel 5.3",
+    "keywords": ["laravel", "notifications", "gitter.im"],
+    "homepage": "https://github.com/laravel-notification-channels/gitter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JhaoDa",
+            "role": "Developer",
+            "email": "jhaoda@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/events": "^5.3@dev",
+        "illuminate/support": "^5.3@dev",
+        "illuminate/notifications": "^5.3@dev"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "~4.8|~5"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Gitter\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Gitter\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
