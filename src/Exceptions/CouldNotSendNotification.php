@@ -8,13 +8,23 @@ use GuzzleHttp\Exception\ClientException;
 class CouldNotSendNotification extends Exception
 {
     /**
-     * Thrown when to (room identifier) is missing.
+     * Thrown when room identifier is missing.
      *
      * @return static
      */
-    public static function missingTo()
+    public static function missingRoom()
     {
         return new static('Notification was not sent. Room identifier is missing.');
+    }
+
+    /**
+     * Thrown when user or app access token is missing.
+     *
+     * @return static
+     */
+    public static function missingFrom()
+    {
+        return new static('Notification was not sent. Access token is missing.');
     }
 
     /**

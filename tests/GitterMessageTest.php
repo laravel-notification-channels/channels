@@ -33,26 +33,30 @@ class GitterMessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_the_room()
     {
-        $message = (new GitterMessage())->room('laravelrus');
+        $message = (new GitterMessage())->room('room');
 
-        $this->assertEquals('laravelrus', $message->room);
+        $this->assertEquals('room', $message->room);
     }
 
     /** @test */
     public function it_can_set_the_from()
     {
-        $message = (new GitterMessage())->from('1a3b4c5d6e7f89');
+        $message = (new GitterMessage())->from('token');
 
-        $this->assertEquals('1a3b4c5d6e7f89', $message->from);
+        $this->assertEquals('token', $message->from);
     }
 
     /** @test */
     public function it_can_convert_self_to_array()
     {
-        $message = (new GitterMessage())->content('hello')->from('John_Doe');
+        $message = GitterMessage::create('hello')->from('token')->room('room');
 
         $params = $message->toArray();
 
-        $this->assertArraySubset($params, ['text' => 'hello']);
+        $this->assertArraySubset($params, [
+            'room' => 'room',
+            'from' => 'token',
+            'text' => 'hello',
+        ]);
     }
 }

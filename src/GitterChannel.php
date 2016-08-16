@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\Gitter;
 
+use Illuminate\Support\Arr;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Notifications\Notification;
@@ -29,18 +30,28 @@ class GitterChannel
         /** @var GitterMessage $message */
         $message = $notification->toGitter($notifiable);
 
-        $to = $notifiable->routeNotificationFor('gitter');
-        $to = $to ?: $message->room;
+        if (empty($message->room)) {
+            $message->room($notifiable->routeNotificationFor('gitter'));
+        };
 
-        if (empty($to)) {
-            throw CouldNotSendNotification::missingTo();
-        }
-
-        $this->sendMessage($to, $message->from, $message->toArray());
+        $this->sendMessage($message->toArray());
     }
 
-    protected function sendMessage($to, $from, $message)
+    /**
+     * @param  array  $message
+     *
+     * @throws CouldNotSendNotification
+     */
+    protected function sendMessage($message)
     {
+        if (empty($room = Arr::pull($message, 'room'))) {
+            throw CouldNotSendNotification::missingRoom();
+        }
+
+        if (empty($from = Arr::pull($message, 'from'))) {
+            throw CouldNotSendNotification::missingFrom();
+        }
+
         $options = [
             'json'    => $message,
             'headers' => [
@@ -49,7 +60,7 @@ class GitterChannel
         ];
 
         try {
-            $this->httpClient->post("{$this->baseUrl}/{$to}/chatMessages", $options);
+            $this->httpClient->post("{$this->baseUrl}/{$room}/chatMessages", $options);
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::gitterRespondedWithAnError($exception);
         } catch (\Exception $exception) {

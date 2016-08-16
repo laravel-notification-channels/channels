@@ -14,7 +14,7 @@ class GitterMessage implements Arrayable
     public $room = '';
 
     /**
-     * A user/app access token.
+     * A user or app access token.
      *
      * @var string
      */
@@ -66,7 +66,7 @@ class GitterMessage implements Arrayable
     }
 
     /**
-     * Set the access token for user the message should be sent from.
+     * Set the sender's access token.
      *
      * @param  string  $from
      *
@@ -95,6 +95,10 @@ class GitterMessage implements Arrayable
 
     public function toArray()
     {
-        return ['text' => $this->content];
+        return [
+            'room' => $this->room,
+            'from' => $this->from,
+            'text' => $this->content,
+        ];
     }
 }

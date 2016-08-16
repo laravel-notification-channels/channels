@@ -55,15 +55,27 @@ class TaskCompleted extends Notification
 
     public function toGitter($notifiable)
     {
-        return (new GitterMessage())
-            ->content("Your {$notifiable->service} account was approved!");
+        return GitterMessage::create("Task #{$notifiable->id} is complete!")
+            ->room('room_id') // optional
+            ->from('user_or_app_access_token');
     }
+}
+```
+
+In order to let your notification know which Gitter room you are targeting, add the `routeNotificationForGitter` method to your Notifiable model:
+
+```php
+public function routeNotificationForGitter()
+{
+    return 'room_id';
 }
 ```
 
 ### Available methods
 
-A list of all available options
+`from()`: Sets the sender's access token.
+`room()`: Specifies the room id to send the notification to (overridden by `routeNotificationForGitter` if empty).
+`content()`: Sets a content of the notification message. Supports Github flavoured markdown.
 
 ## Changelog
 
