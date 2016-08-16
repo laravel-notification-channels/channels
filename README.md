@@ -72,6 +72,23 @@ class InvoicePaid extends Notification
 }
 ```
 
+Alternatively you may supply a channel specifically related to your notifiable by implementing the `routeNotificationForPubnub()` method.
+
+```php
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Model
+{
+    use Notifiable;
+    
+    public function routeNotificationForPubnub()
+    {
+        return $this->pubnub_channel;
+    }
+}
+```
+
 ### Available methods
 
 `channel()`: Specifies the channel the message should be sent to.
