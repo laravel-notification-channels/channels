@@ -43,7 +43,7 @@ class PubnubMessage
     /**
      * Set the content the message should contain
      *
-     * @param   string  $content
+     * @param   string|array  $content
      * @return  $this
      */
     public function content($content)
