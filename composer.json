@@ -1,0 +1,29 @@
+{
+    "name": "laravel-notification-channels/ovh",
+    "description": "OVH SMS driver for Laravel Notifications.",
+    "homepage": "https://github.com/laravel-notification-channels/ovh",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marceau Casals",
+            "email": "marceau@casals.fr",
+            "homepage": "https://marceau.casals.fr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "akibatech/laravel-ovh-sms": "^1",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Ovh\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
