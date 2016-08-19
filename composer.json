@@ -30,6 +30,9 @@
             "NotificationChannels\\:channel_namespace\\Test\\": "tests"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "config": {
         "sort-packages": true
     },
