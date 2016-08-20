@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\Gammu;
+namespace NotificationChannels\Gammu\Models;
 
-use ModelAbstract;
+use NotificationChannels\Gammu\Models\ModelAbstract;
 
 class OutboxMultipart extends ModelAbstract
 {

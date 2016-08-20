@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Gammu;
+namespace NotificationChannels\Gammu\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

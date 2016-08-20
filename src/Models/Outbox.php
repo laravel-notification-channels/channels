@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\Gammu;
+namespace NotificationChannels\Gammu\Models;
 
-use ModelAbstract;
+use NotificationChannels\Gammu\Models\ModelAbstract;
 
 class Outbox extends ModelAbstract
 {
@@ -12,7 +12,7 @@ class Outbox extends ModelAbstract
     
     protected $fillable = [
         'DestinationNumber', 'TextDecoded',
-        'SendingDateTime', 'Coding', 'UDH', 'Class', 'MultiPart', 'SenderID', 
+        'SendingDateTime', 'Coding', 'UDH', 'MultiPart', 'SenderID', 
         'DeliveryReport', 'CreatorID'
     ];
     

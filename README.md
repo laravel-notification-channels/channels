@@ -39,7 +39,7 @@ You must install the service provider:
 // config/app.php
 'providers' => [
     ...
-    NotificationChannels\Twilio\GammuServiceProvider::class,
+    NotificationChannels\Gammu\GammuServiceProvider::class,
 ],
 ```
 
@@ -54,11 +54,11 @@ Then change the database setting to point to Gammu's tables in `config/database.
 ...
 'gammu' => [
     'driver' => 'mysql',
-    'host' => env('DB_HOST', 'localhost'),
-    'port' => env('DB_PORT', '3306'),
-    'database' => env('DB_DATABASE', 'forge'),
-    'username' => env('DB_USERNAME', 'forge'),
-    'password' => env('DB_PASSWORD', ''),
+    'host' => env('DB_GAMMU_HOST', 'localhost'),
+    'port' => env('DB_GAMMU_PORT', '3306'),
+    'database' => env('DB_GAMMU_DATABASE', 'forge'),
+    'username' => env('DB_GAMMU_USERNAME', 'forge'),
+    'password' => env('DB_GAMMU_PASSWORD', ''),
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',

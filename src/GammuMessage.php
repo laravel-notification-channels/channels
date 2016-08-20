@@ -6,6 +6,8 @@ use Illuminate\Support\Arr;
 
 class GammuMessage
 {
+    const VERSION = '1.0';
+    
     /**
      * @var array Params payload.
      */
@@ -29,7 +31,7 @@ class GammuMessage
     public function __construct($content = '')
     {
         $this->content($content);
-        $this->payload['CreatorID'] = 'laravel-notification-channels/gammu';
+        $this->payload['CreatorID'] = class_basename($this).'/'.self::VERSION;
     }
     
     /**
@@ -65,10 +67,30 @@ class GammuMessage
      *
      * @return $this
      */
-    public function sender($phoneId)
+    public function sender($phoneId = null)
     {
         $this->payload['SenderID'] = $phoneId;
         return $this;
+    }
+    
+    /**
+     * Determine if Sender Phone ID is not given.
+     *
+     * @return bool
+     */
+    public function senderNotGiven()
+    {
+        return !isset($this->payload['SenderID']);
+    }
+    
+    /**
+     * Determine if Destination Phone Number is not given.
+     *
+     * @return bool
+     */
+    public function destinationNotGiven()
+    {
+        return !isset($this->payload['DestinationNumber']);
     }
     
     /**

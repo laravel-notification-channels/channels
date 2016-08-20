@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\Gammu;
+namespace NotificationChannels\Gammu\Models;
 
-use ModelAbstract;
+use NotificationChannels\Gammu\Models\ModelAbstract;
 
-class Phone extends Model
+class Phone extends ModelAbstract
 {
     protected $table = 'phones';
     
