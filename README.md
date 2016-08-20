@@ -2,9 +2,9 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/gammu.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/gammu)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/gammu/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/gammu)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
+[![Build Status](https://travis-ci.org/matriphe/laravel-notification-channel-gammu.svg?branch=master)](https://travis-ci.org/matriphe/laravel-notification-channel-gammu)
+[![StyleCI](https://styleci.io/repos/66045563/shield)](https://styleci.io/repos/66045563)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/db7b6ba3-332a-4247-9055-1a8e65f86c8c)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/gammu.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/gammu)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/gammu/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/gammu/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/gammu.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/gammu)
