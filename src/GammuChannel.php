@@ -48,8 +48,8 @@ class GammuChannel
         $payload = $notification->toGammu($notifiable);
 
         if ($payload->senderNotGiven()) {
-            if (!$sender = config('services.gammu.sender')) {
-                if (!$sender = $this->phone->first()->ID) {
+            if (! $sender = config('services.gammu.sender')) {
+                if (! $sender = $this->phone->first()->ID) {
                     throw CouldNotSendNotification::senderNotProvided();
                 }
             }
@@ -58,7 +58,7 @@ class GammuChannel
         }
 
         if ($payload->destinationNotGiven()) {
-            if (!$destination = $notifiable->routeNotificationFor('gammu')) {
+            if (! $destination = $notifiable->routeNotificationFor('gammu')) {
                 throw CouldNotSendNotification::destinationNotProvided();
             }
             $payload->to($destination);
@@ -69,7 +69,7 @@ class GammuChannel
         $outbox = $this->outbox->create($params);
 
         $multiparts = $payload->getMultipartChunks();
-        if (!empty($multiparts) && !empty($outbox->ID)) {
+        if (! empty($multiparts) && ! empty($outbox->ID)) {
             foreach ($multiparts as $chunk) {
                 $chunk['ID'] = $outbox->ID;
                 $this->multipart->create($chunk);
