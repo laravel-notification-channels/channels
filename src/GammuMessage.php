@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class GammuMessage
 {
-    const VERSION = '1.0';
+    const VERSION = '0.0.1';
     
     /**
      * @var array Params payload.
