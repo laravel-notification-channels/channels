@@ -1,0 +1,38 @@
+{
+    "name": "laravel-notification-channels/gammu",
+    "description": "Gammu Notifications Driver",
+    "homepage": "https://github.com/laravel-notification-channels/gammu",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muhammad Zamroni",
+            "email": "halo@matriphe.com",
+            "homepage": "https://matriphe.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3",
+        "illuminate/database": "^5.1|^5.2|^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Gammu\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Gammu\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
