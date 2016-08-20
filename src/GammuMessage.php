@@ -118,7 +118,7 @@ class GammuMessage
      */
     public function senderNotGiven()
     {
-        return !isset($this->payload['SenderID']);
+        return ! isset($this->payload['SenderID']);
     }
 
     /**
@@ -128,7 +128,7 @@ class GammuMessage
      */
     public function destinationNotGiven()
     {
-        return !isset($this->payload['DestinationNumber']);
+        return ! isset($this->payload['DestinationNumber']);
     }
 
     /**
@@ -170,13 +170,13 @@ class GammuMessage
         $octet_3 = '03';
 
         // CSMS reference number, must be same for all the SMS parts in the CSMS
-        $octet_4 = str_pad(dechex($ref), 2,  '0', STR_PAD_LEFT);
+        $octet_4 = str_pad(dechex($ref), 2, '0', STR_PAD_LEFT);
 
         // Total number of parts
-        $octet_5 = str_pad(dechex($total), 2,  '0', STR_PAD_LEFT);
+        $octet_5 = str_pad(dechex($total), 2, '0', STR_PAD_LEFT);
 
         // Part sequence
-        $octet_6 = str_pad(dechex($sequence), 2,  '0', STR_PAD_LEFT);
+        $octet_6 = str_pad(dechex($sequence), 2, '0', STR_PAD_LEFT);
 
         $udh = implode('', [
             $octet_1, $octet_2, $octet_3, $octet_4, $octet_5, $octet_6,
