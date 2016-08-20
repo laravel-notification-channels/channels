@@ -2,19 +2,17 @@
 
 namespace NotificationChannels\Gammu\Models;
 
-use NotificationChannels\Gammu\Models\ModelAbstract;
-
 class Phone extends ModelAbstract
 {
     protected $table = 'phones';
-    
+
     protected $guarded = ['*'];
-    
+
     public $incrementing = false;
-    
+
     public $timestamps = true;
-    
+
     const CREATED_AT = 'InsertIntoDB';
-    
+
     const UPDATED_AT = 'UpdatedInDB';
 }

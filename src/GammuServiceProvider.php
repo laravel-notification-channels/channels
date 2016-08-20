@@ -3,7 +3,6 @@
 namespace NotificationChannels\Gammu;
 
 use Illuminate\Support\ServiceProvider;
-use NotificationChannels\Gammu\Models\Outbox;
 
 class GammuServiceProvider extends ServiceProvider
 {
@@ -12,7 +11,6 @@ class GammuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
     }
 
     /**

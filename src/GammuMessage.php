@@ -2,22 +2,20 @@
 
 namespace NotificationChannels\Gammu;
 
-use Illuminate\Support\Arr;
-
 class GammuMessage
 {
     const VERSION = '0.0.1';
-    
+
     /**
      * @var array Params payload.
      */
     public $payload = [];
-    
+
     /**
      * @var array Multipart chunks.
      */
     public $multiparts = [];
-    
+
     /**
      * @param string $content
      *
@@ -27,11 +25,11 @@ class GammuMessage
     {
         return new static($content);
     }
-        
+
     /**
      * Create a new message instance.
      *
-     * @param  string  $content
+     * @param string $content
      */
     public function __construct($content = '')
     {
@@ -39,7 +37,7 @@ class GammuMessage
         $this->payload['CreatorID'] = class_basename($this).'/'.self::VERSION;
         $this->payload['MultiPart'] = 'false';
     }
-    
+
     /**
      * Destination phone number.
      *
@@ -50,9 +48,10 @@ class GammuMessage
     public function to($phoneNumber)
     {
         $this->payload['DestinationNumber'] = $phoneNumber;
+
         return $this;
     }
-    
+
     /**
      * SMS message.
      *
@@ -69,19 +68,19 @@ class GammuMessage
             $messages = str_split($content, 153);
             $messages = collect($messages);
             $messages_count = $messages->count();
-            
+
             // Get first message
             $firstChunk = $messages->shift();
-            
+
             // Generate UDH
             $ref = mt_rand(0, 255);
             $i = 1;
             $firstUDH = $this->generateUDH($messages_count, $i, $ref);
-            
+
             $this->payload['TextDecoded'] = $firstChunk;
             $this->payload['UDH'] = $firstUDH;
             $this->payload['MultiPart'] = 'true';
-            
+
             $i = 2;
             foreach ($messages as $chunk) {
                 array_push($this->multiparts, [
@@ -89,16 +88,15 @@ class GammuMessage
                     'TextDecoded' => $chunk,
                     'SequencePosition' => $i,
                 ]);
-                $i++;
+                ++$i;
             }
-            
         } else {
             $this->payload['TextDecoded'] = $content;
         }
-        
+
         return $this;
     }
-    
+
     /**
      * Sender Phone ID.
      *
@@ -109,9 +107,10 @@ class GammuMessage
     public function sender($phoneId = null)
     {
         $this->payload['SenderID'] = $phoneId;
+
         return $this;
     }
-    
+
     /**
      * Determine if Sender Phone ID is not given.
      *
@@ -121,7 +120,7 @@ class GammuMessage
     {
         return !isset($this->payload['SenderID']);
     }
-    
+
     /**
      * Determine if Destination Phone Number is not given.
      *
@@ -131,7 +130,7 @@ class GammuMessage
     {
         return !isset($this->payload['DestinationNumber']);
     }
-    
+
     /**
      * Returns params payload.
      *
@@ -141,7 +140,7 @@ class GammuMessage
     {
         return $this->payload;
     }
-    
+
     /**
      * Returns multipart chunks.
      *
@@ -151,38 +150,38 @@ class GammuMessage
     {
         return $this->multiparts;
     }
-    
+
     /**
      * Generate UDH part for long SMS.
      *
      * @link https://en.wikipedia.org/wiki/Concatenated_SMS#Sending_a_concatenated_SMS_using_a_User_Data_Header
+     *
      * @return string
      */
     protected function generateUDH($total = 2, $sequence = 2, $ref = 0)
     {
         // Length of User Data Header, in this case 05
-        $octet_1 = '05'; 
-        
+        $octet_1 = '05';
+
         // Information Element Identifier, equal to 00 (Concatenated short messages, 8-bit reference number)
-        $octet_2 = '00'; 
-        
+        $octet_2 = '00';
+
         // Length of the header, excluding the first two fields; equal to 03
-        $octet_3 = '03'; 
-        
+        $octet_3 = '03';
+
         // CSMS reference number, must be same for all the SMS parts in the CSMS
-        $octet_4 = str_pad(dechex($ref), 2,  '0', STR_PAD_LEFT); 
-        
+        $octet_4 = str_pad(dechex($ref), 2,  '0', STR_PAD_LEFT);
+
         // Total number of parts
-        $octet_5 = str_pad(dechex($total), 2,  '0', STR_PAD_LEFT); 
-        
+        $octet_5 = str_pad(dechex($total), 2,  '0', STR_PAD_LEFT);
+
         // Part sequence
         $octet_6 = str_pad(dechex($sequence), 2,  '0', STR_PAD_LEFT);
-        
+
         $udh = implode('', [
-            $octet_1, $octet_2, $octet_3, $octet_4, $octet_5, $octet_6
+            $octet_1, $octet_2, $octet_3, $octet_4, $octet_5, $octet_6,
         ]);
-        
+
         return strtoupper($udh);
     }
-    
 }

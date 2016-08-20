@@ -13,7 +13,7 @@ class CouldNotSendNotification extends \Exception
     {
         return new static('Sender ID was not provided.');
     }
-    
+
     /**
      * Thrown when there is no destination phone number provided.
      *

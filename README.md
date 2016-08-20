@@ -137,7 +137,7 @@ public function routeNotificationForGammu()
 ### Available methods
 
 * `to($phoneNumber)` : `(string)` Receiver phone number. Using international phone number (+62XXXXXXXXXX) format is highly suggested.
-* `content($content)` : `(string)` SMS content. If content length is more than 140 characters, it will be sent as long SMS automatically.
+* `content($content)` : `(string)` SMS content. If content length is more than 160 characters, it will be sent as long SMS automatically.
 * `sender($phneId)` : `(string)` Phone sender ID set in Gammu's phone table.
 
 ## Changelog
