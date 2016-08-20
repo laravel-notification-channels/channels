@@ -1,33 +1,20 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
+# Gammu Notifications Channel for Laravel 5.3 [WIP]
 
-Here's the latest documentation on Laravel 5.3 Notifications System: 
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/gammu.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/gammu)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/:package_name)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/gammu/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/gammu)
 [![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/gammu.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/gammu)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/gammu/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/gammu/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/gammu.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/gammu)
 
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.3.
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
+This package makes it easy to send notifications using [Gammu](https://wammu.eu/gammu/) with Laravel 5.3.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+	- [Setting up the Gammu service](#setting-up-the-Gammu-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -40,19 +27,99 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
 
-### Setting up the :service_name service
+```bash
+composer require laravel-notification-channels/gammu
+```
 
-Optionally include a few steps how users can set up the service.
+You must install the service provider:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\Twilio\GammuServiceProvider::class,
+],
+```
+
+### Setting up the Gammu service
+
+Make sure your Gammu has properly configured and able to send SMS by inserting data to `outbox` table.
+
+Then change the database setting to point to Gammu's tables in `config/database.php` by adding this settings below.
+
+```php
+// config/database.php
+...
+'gammu' => [
+    'driver' => 'mysql',
+    'host' => env('DB_HOST', 'localhost'),
+    'port' => env('DB_PORT', '3306'),
+    'database' => env('DB_DATABASE', 'forge'),
+    'username' => env('DB_USERNAME', 'forge'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+    'strict' => true,
+    'engine' => null,
+],
+...
+```
+
+For sending, add this settings in `config/services.php`.
+
+```php
+...
+'gammu' => [
+    'sender' => env('GAMMU_SENDER', 'sender'),
+],
+...
+``` 
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can now use the channel in your `via()` method inside the Notification class.
+
+```php
+use NotificationChannels\Gammu\GammuChannel;
+use NotificationChannels\Gammu\GammuMessage;
+use Illuminate\Notifications\Notification;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [GammuChannel::class];
+    }
+
+    public function toGammu($notifiable)
+    {
+        return (new GammuMessage())
+            ->to($this->invoice->toPhoneNumber)
+            ->content("Your {$this->invoice->number} invoice has been paid!");
+    }
+}
+```
+
+If you have multiple senders, you can set the sender by passing `sender` method. If sender is not set, it will use one of sender from `phones` table.
+
+```php
+public function toGammu($notifiable)
+{
+    return (new GammuMessage())
+        ->to($this->invoice->toPhoneNumber)
+        ->sender($this->invoice->sendingUsingThisProvider)
+        ->content("Your {$this->invoice->number} invoice has been paid!");
+}
+```
 
 ### Available methods
 
-A list of all available options
+* `to($phoneNumber)` : `(string)` Receiver phone number. Using international phone number (+62XXXXXXXXXX) format is highly suggested.
+* `content($content)` : `(string)` SMS content. If content length is more than 140 characters, it will be sent as long SMS automatically.
+* `sender($phneId)` : `(string)` Phone sender ID set in Gammu's phone table.
 
 ## Changelog
 
@@ -60,13 +127,13 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email halo@matriphe.com instead of using the issue tracker.
 
 ## Contributing
 
@@ -74,7 +141,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Muhammad Zamroni](https://github.com/matriphe)
 - [All Contributors](../../contributors)
 
 ## License

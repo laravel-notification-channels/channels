@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `:package_name` will be documented in this file
+All notable changes to `gammu` will be documented in this file.
 
-## 1.0.0 - 201X-XX-XX
+## 1.0.0 - 2016-08-20
 
-- initial release
+- Initial release
