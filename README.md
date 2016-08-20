@@ -16,6 +16,7 @@ This package makes it easy to send notifications using [Gammu](https://wammu.eu/
 - [Installation](#installation)
 	- [Setting up the Gammu service](#setting-up-the-Gammu-service)
 - [Usage](#usage)
+    - [Routing a message](#routing-a-message)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
 - [Testing](#testing)
@@ -113,6 +114,24 @@ public function toGammu($notifiable)
         ->sender($this->invoice->sendingUsingThisProvider)
         ->content("Your {$this->invoice->number} invoice has been paid!");
 }
+```
+
+### Routing a message
+
+You can either send the notification by providing with the phone number of the recipient to the `to($phoneNumber)` method like shown in the above example or add a `routeNotificationForGammu()` method in your notifiable model.
+
+```php
+...
+/**
+ * Route notifications for the Gammu channel.
+ *
+ * @return string
+ */
+public function routeNotificationForGammu()
+{
+    return $this->phone;
+}
+...
 ```
 
 ### Available methods

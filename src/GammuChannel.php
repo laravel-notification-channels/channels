@@ -4,6 +4,7 @@ namespace NotificationChannels\Gammu;
 
 use NotificationChannels\Gammu\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Gammu\Models\Outbox;
+use NotificationChannels\Gammu\Models\OutboxMultipart;
 use NotificationChannels\Gammu\Models\Phone;
 use Illuminate\Notifications\Notification;
 
@@ -15,6 +16,11 @@ class GammuChannel
     protected $outbox;
     
     /**
+     * @var OutboxMultipart
+     */
+    protected $multipart;
+    
+    /**
      * @var Phone
      */
     protected $phone;
@@ -24,9 +30,10 @@ class GammuChannel
      *
      * @param Outbox $outbox
      */
-    public function __construct(Outbox $outbox, Phone $phone)
+    public function __construct(Outbox $outbox, OutboxMultipart $multipart, Phone $phone)
     {
         $this->outbox = $outbox;
+        $this->multipart = $multipart;
         $this->phone = $phone;
     }
 
@@ -59,6 +66,14 @@ class GammuChannel
         
         $params = $payload->toArray();
         
-        $this->outbox->create($params);
+        $outbox = $this->outbox->create($params);
+        
+        $multiparts = $payload->getMultipartChunks();
+        if (!empty($multiparts) && !empty($outbox->ID)) {
+            foreach ($multiparts as $chunk) {
+                $chunk['ID'] = $outbox->ID;
+                $this->multipart->create($chunk);
+            }
+        }
     }
 }
