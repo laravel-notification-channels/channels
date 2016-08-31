@@ -52,7 +52,7 @@ Add your Cmsms Product Token and default originator (name or number of sender) t
 ...
 ```
 
-Notice: The originator can contain a maximum of 11 alfa-numeric characters.
+Notice: The originator can contain a maximum of 11 alfanumeric characters.
 
 ## Usage
 
