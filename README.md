@@ -11,11 +11,9 @@ https://laravel.com/docs/master/notifications
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/smsgateway-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/smsgateway-me)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/smsgateway-me/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/smsgateway-me/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/smsgateway-me.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smsgateway-me)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/smsgateway-me.svg?style=flat-square)](https://packagist.org/packages/frdteknikelektro/smsgateway-me)
 
 This package makes it easy to send notifications using [SMSGatewayMe](https://smsgateway.me) with Laravel 5.3.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
 
 
 ## Contents
@@ -34,19 +32,81 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
+
+``` bash
+composer require laravel-notification-channels/smsgateway-me
+```
+
+You must install the service provider:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\SMSGatewayMe\SMSGatewayMeServiceProvider::class,
+],
+```
 
 ### Setting up the SMSGatewayMe service
 
-Optionally include a few steps how users can set up the service.
+Sign up on [SMSGatewayMe](https://smsgateway.me). Setting all needed, then add this to your config:
+
+```php
+// config/services.php
+...
+'smsgateway-me' => [
+    'email' => env('SMSGATEWAYME_EMAIL', 'email@example.com'),
+    'password' => env('SMSGATEWAYME_PASSWORD', 'password'),
+    'device_id' => env('SMSGATEWAYME_DEVICE_ID', '00000')
+],
+...
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can now use the channel in your `via()` method inside the Notification class.
+
+``` php
+use NotificationChannels\SMSGatewayMe\SMSGatewayMeChannel;
+use NotificationChannels\SMSGatewayMe\SMSGatewayMeMessage;
+use Illuminate\Notifications\Notification;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [SMSGatewayMeChannel::class];
+    }
+
+    public function toSmsGatewayMe($notifiable)
+    {
+        return (new SMSGatewayMeMessage)->text('Your invoice has been paid');
+    }
+}
+```
+
+### Routing a message
+
+You should add a `routeNotificationForSmsGatewayMe()` method in your notifiable model:
+
+``` php
+...
+/**
+ * Route notifications for the SMSGatewayMe channel.
+ *
+ * @return int
+ */
+public function routeNotificationForSmsGatewayMe()
+{
+    return $this->phone_number;
+}
+...
+```
 
 ### Available methods
 
-A list of all available options
+- `text($text)`: (string) SMS Text.
 
 ## Changelog
 
@@ -54,9 +114,13 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
+Before running a test please configure `routeNotificationForSmsGatewayMe()` and `sendDataProvider()` on [`test/Test.php`](test/Test.php)
+
 ``` bash
 $ composer test
 ```
+
+This test will send Hello World SMS.
 
 ## Security
 
