@@ -27,19 +27,11 @@ class SMSGatewayMeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(SMSGatewayMeChannel::class, function ($app) {
-            return new SMSGatewayMeChannel(new Client(['base_uri' => 'https://smsgateway.me'],
+            return new SMSGatewayMeChannel(new Client(['base_uri' => 'https://smsgateway.me']),
               $this->app['config']['services.smsgateway-me.email'],
               $this->app['config']['services.smsgateway-me.password'],
-              $this->app['config']['services.smsgateway-me.device_id'],
-            ));
+              $this->app['config']['services.smsgateway-me.device_id']
+            );
         });
-
-        $this->app->alias(
-            SMSGatewayMeChannel::class, DispatcherContract::class
-        );
-
-        $this->app->alias(
-            SMSGatewayMeChannel::class, FactoryContract::class
-        );
     }
 }
