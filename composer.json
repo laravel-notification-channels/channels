@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/smsgateway-me",
+    "description": "SMSGatewayMe Notifications Channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/smsgateway-me",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Farid Inawan",
+            "email": "frdteknikelektro@gmail.com",
+            "homepage": "https://github.com/frdteknikelektro",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/notifications": "^5.3",
+        "illuminate/queue": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "nesbot/carbon": "^1.21"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\SMSGatewayMe\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\SMSGatewayMe\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --bootstrap .\\vendor\\autoload.php .\\tests\\Test"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
