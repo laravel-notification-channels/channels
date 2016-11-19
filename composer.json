@@ -1,5 +1,5 @@
 {
-    "name": "laravel-notification-channels/jet-sms",
+    "name": "laravel-notification-channels/jetsms",
     "description": "Sends SMS using JetSMS API",
     "homepage": "https://github.com/laravel-notification-channels/JetSMS",
     "license": "MIT",
