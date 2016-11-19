@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/jet-sms",
+    "description": "Sends SMS using JetSMS API",
+    "homepage": "https://github.com/laravel-notification-channels/JetSMS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hilmi Erdem KEREN",
+            "email": "erdemkeren@gmail.com",
+            "homepage": "http://www.erdemkeren.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "illuminate/queue": "^5.1|^5.2|^5.3",
+        "nesbot/carbon": "^1.21"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\JetSMS\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\JetSMS\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
