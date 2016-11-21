@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/clicksend",
+    "description": ":package_description",
+    "homepage": "https://github.com/laravel-notification-channels/clicksend",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omar Usman",
+            "email": "omar@clicksend.com",
+            "homepage": "https://clicksend.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "clicksend/clicksend-php": "4.0.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\ClickSend\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\ClickSend\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
