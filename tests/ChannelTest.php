@@ -11,11 +11,9 @@ use NotificationChannels\Chatwork\Chatwork;
 use NotificationChannels\Chatwork\ChatworkChannel;
 use NotificationChannels\Chatwork\ChatworkMessage;
 use NotificationChannels\Chatwork\ChatworkInformation;
-use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
-
     /** @test */
     public function it_can_send_a_notification_message()
     {
@@ -41,7 +39,6 @@ class ChannelTest extends TestCase
 
 class TestNotifiable
 {
-
     use \Illuminate\Notifications\Notifiable;
 
     /**
@@ -55,7 +52,6 @@ class TestNotifiable
 
 class TestNotificationChatworkMessage extends Notification
 {
-
     public function toChatwork($notifiable)
     {
         return ChatworkMessage::create('Message');
@@ -64,7 +60,6 @@ class TestNotificationChatworkMessage extends Notification
 
 class TestNotificationChatworkInformation extends Notification
 {
-
     public function toChatwork($notifiable)
     {
         return ChatworkInformation::create('Title', 'Message');

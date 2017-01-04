@@ -2,12 +2,11 @@
 
 namespace NotificationChannels\Chatwork;
 
-use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class ChatworkChannel
 {
-
     protected $chatwork;
 
     public function __construct(Chatwork $chatwork)
@@ -42,7 +41,7 @@ class ChatworkChannel
             $sendText .= $chatworkMessage->message;
         } else {
             // information message
-            $sendText .= '[info][title]' . $chatworkMessage->informationTitle . '[/title]';
+            $sendText .= '[info][title]'.$chatworkMessage->informationTitle.'[/title]';
             $sendText .= $chatworkMessage->informationMessage;
             $sendText .= '[/info]';
         }
@@ -52,7 +51,7 @@ class ChatworkChannel
         $params['text'] = $sendText;
 
         $result = $this->chatwork->sendMessage($params);
-        if (!$result) {
+        if (! $result) {
             throw CouldNotSendNotification::serviceRespondedWithAnError(null);
         }
     }

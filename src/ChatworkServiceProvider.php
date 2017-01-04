@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ChatworkServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      */
@@ -29,6 +28,5 @@ class ChatworkServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
     }
 }
