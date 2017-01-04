@@ -1,0 +1,42 @@
+{
+    "name": "e2kaneko/laravel-chatwork-notifications",
+    "description": "Chatwork notifications channel for Laravel.",
+    "homepage": "https://github.com/e2kaneko/laravel-chatwork-notification",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "e2kaneko",
+            "email": "kaneko@e2info.com",
+            "homepage": "https://www.e2info.co.jp/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*",
+        "orchestra/testbench": "3.3.x-dev",
+        "orchestra/database": "3.3.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Chatwork\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Chatwork\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
