@@ -4,7 +4,6 @@ namespace NotificationChannels\Chatwork;
 
 class ChatworkInformation
 {
-
     public $roomId;
     public $informationTitle;
     public $informationMessage;
@@ -29,6 +28,7 @@ class ChatworkInformation
     public function roomId($roomId)
     {
         $this->roomId = $roomId;
+
         return $this;
     }
 
@@ -41,6 +41,7 @@ class ChatworkInformation
     public function informationTitle($informationTitle)
     {
         $this->informationTitle = $informationTitle;
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ class ChatworkInformation
     public function informationMessage($informationMessage)
     {
         $this->informationMessage = $informationMessage;
+
         return $this;
     }
 }
