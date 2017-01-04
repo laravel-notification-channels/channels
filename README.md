@@ -175,7 +175,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [e2kaneko](https://github.com/e2kaneko)
+- [Tomohiro Kaneko](https://github.com/e2kaneko)
 - [All Contributors](../../contributors)
 
 ## License
