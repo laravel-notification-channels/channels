@@ -1,0 +1,38 @@
+{
+    "name": "assaqqaf/zendesk-laravel-notification",
+    "description": "Zendesk Notifications driver",
+    "homepage": "https://github.com/assaqqaf/zendesk-laravel-notification",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdullah Mohammed",
+            "email": "abbdullah1@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "5.3.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*",
+        "zendesk/zendesk_api_client_php": "~2.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Zendesk\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Zendesk\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
