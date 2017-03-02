@@ -27,8 +27,8 @@ class WeChatMessage
     /**
      * Magic Call access.
      *
-     * @param  string $method
-     * @param  string|array $args
+     * @param string       $method
+     * @param string|array $args
      *
      * @return $this
      */

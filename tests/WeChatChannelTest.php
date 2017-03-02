@@ -1,4 +1,5 @@
 <?php
+
 namespace NotificationChannels\WeChat\Test;
 
 use NotificationChannels\WeChat\WeChatChannel;
@@ -14,5 +15,4 @@ class WeChatChannelTest extends TestCase
     {
         return new WeChatChannel();
     }
-
 }
