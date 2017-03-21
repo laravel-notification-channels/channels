@@ -42,7 +42,7 @@ class AlidayuMessage
      * @param array  $parameters
      * @param string $signature
      */
-    public function __construct($template, $parameters = [], $signature = '')
+    public function __construct($template = '', $parameters = [], $signature = '')
     {
         $this->template = $template;
 
