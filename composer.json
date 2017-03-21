@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/alidayu",
+    "description": "Alidayu notifications channel for Laravel.",
+    "homepage": "https://github.com/laravel-notification-channels/alidayu",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chino Chang",
+            "email": "me@7in0.me",
+            "homepage": "https://7in0.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "flc/alidayu": "^2.0",
+        "illuminate/notifications": "5.1.*|5.2.*|5.3.*|5.4.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Alidayu\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Alidayu\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
