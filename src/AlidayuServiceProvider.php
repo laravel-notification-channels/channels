@@ -24,6 +24,7 @@ class AlidayuServiceProvider extends ServiceProvider
 
         $this->app->bind(AlidayuService::class, function () {
             $config = $this->app['config']['services.alidayu'];
+
             return new AlidayuService($config['app_key'], $config['app_secret']);
         });
     }

@@ -19,8 +19,8 @@ class Alidayu
     /**
      * Alidayu constructor.
      *
-     * @param AlidayuService  $alidayuService
-     * @param AlidayuConfig   $config
+     * @param AlidayuService $alidayuService
+     * @param AlidayuConfig  $config
      */
     public function __construct(AlidayuConfig $config)
     {
@@ -35,10 +35,12 @@ class Alidayu
     /**
      * Send a AlidayuMessage to a phone number.
      *
-     * @param  AlidayuMessage $message
-     * @param  string         $to
-     * @return mixed
+     * @param AlidayuMessage $message
+     * @param string         $to
+     *
      * @throws CouldNotSendNotification
+     *
+     * @return mixed
      */
     public function send(AlidayuMessage $message, $to)
     {

@@ -44,9 +44,11 @@ class AlidayuMessage
      */
     public function __construct($template, $parameters = [], $signature = '')
     {
-        $this->template   = $template;
+        $this->template = $template;
+
         $this->parameters = $parameters;
-        $this->signature  = $signature;
+
+        $this->signature = $signature;
     }
 
     /**

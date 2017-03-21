@@ -22,12 +22,12 @@ class AlidayuChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
+     * @param mixed                                  $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @return void
-     *
      * @throws \NotificationChannels\Alidayu\Exceptions\CouldNotSendNotification
+     *
+     * @return void
      */
     public function send($notifiable, Notification $notification)
     {
