@@ -14,6 +14,7 @@ https://laravel.com/docs/master/notifications
 [![Quality Score](https://img.shields.io/scrutinizer/g/mdrost/laravel-notification-channels-smsapi.svg?style=flat-square)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/mdrost/laravel-notification-channels-smsapi/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/mdrost/laravel-notification-channels-smsapi.svg?style=flat-square)](https://packagist.org/packages/mdrost/laravel-notification-channels-smsapi)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/mdrost/laravel-notification-channels-smsapi/badge.svg)](https://travis-ci.org/mdrost/laravel-notification-channels-smsapi)
 
 This package makes it easy to send notifications using [Smsapi](https://www.smsapi.pl/) with Laravel 5.3.
 
