@@ -6,14 +6,14 @@ https://laravel.com/docs/master/notifications
 
 # A Boilerplate repo for contributions
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mdrost/laravel-notification-channels-smsapi.svg?style=flat-square)](https://packagist.org/packages/mdrost/laravel-notification-channels-smsapi)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/mdrost/laravel-notification-channels-smsapi/master.svg?style=flat-square)](https://travis-ci.org/mdrost/laravel-notification-channels-smsapi)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mdrost/laravel-notification-channels-smsapi.svg)](https://packagist.org/packages/mdrost/laravel-notification-channels-smsapi)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/mdrost/laravel-notification-channels-smsapi/master.svg)](https://travis-ci.org/mdrost/laravel-notification-channels-smsapi)
 [![StyleCI](https://styleci.io/repos/87848457/shield)](https://styleci.io/repos/87848457)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/mdrost/laravel-notification-channels-smsapi.svg?style=flat-square)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/mdrost/laravel-notification-channels-smsapi/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/mdrost/laravel-notification-channels-smsapi.svg?style=flat-square)](https://packagist.org/packages/mdrost/laravel-notification-channels-smsapi)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
+[![Quality Score](https://img.shields.io/scrutinizer/g/mdrost/laravel-notification-channels-smsapi.svg)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/mdrost/laravel-notification-channels-smsapi/master.svg)](https://scrutinizer-ci.com/g/mdrost/laravel-notification-channels-smsapi/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/mdrost/laravel-notification-channels-smsapi.svg)](https://packagist.org/packages/mdrost/laravel-notification-channels-smsapi)
 [![PHP 7 ready](http://php7ready.timesplinter.ch/mdrost/laravel-notification-channels-smsapi/badge.svg)](https://travis-ci.org/mdrost/laravel-notification-channels-smsapi)
 
 This package makes it easy to send notifications using [Smsapi](https://www.smsapi.pl/) with Laravel 5.3.
