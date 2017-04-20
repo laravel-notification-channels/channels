@@ -18,7 +18,7 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @return array
      */
-    public function provideBool(): array
+    public function provideBool()
     {
         return [
             'true' => [true],

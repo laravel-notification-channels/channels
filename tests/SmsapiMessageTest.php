@@ -17,7 +17,7 @@ abstract class SmsapiMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function provideTo(): array
+    public function provideTo()
     {
         return [
             'one' => ['48100200300'],

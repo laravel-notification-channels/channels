@@ -14,7 +14,7 @@ class SmsapiServiceProvider extends ServiceProvider
     {
         $this->app->when(SmsapiChannel::class)
             ->needs(SmsapiClient::class)
-            ->give(function (): SmsapiClient {
+            ->give(function () {
                 $config = config('smsapi');
                 $auth = $config['auth'];
                 if ($auth['method'] === 'token') {
@@ -38,7 +38,7 @@ class SmsapiServiceProvider extends ServiceProvider
                     ]);
                 }
                 $defaults = array_only($defaults, ['sms', 'mms', 'vms']);
-                $defaults = array_map(function (array $defaults): array {
+                $defaults = array_map(function (array $defaults) {
                     return array_filter($defaults, function($value) {
                         return $value !== null;
                     });

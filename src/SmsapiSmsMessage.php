@@ -18,7 +18,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  string $content
      * @return self
      */
-    public function content($content): self
+    public function content($content)
     {
         $this->data['content'] = $content;
         return $this;
@@ -28,7 +28,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  string $template
      * @return self
      */
-    public function template($template): self
+    public function template($template)
     {
         $this->data['template'] = $template;
         return $this;
@@ -38,7 +38,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  string $from
      * @return self
      */
-    public function from($from): self
+    public function from($from)
     {
         $this->data['from'] = $from;
         return $this;
@@ -48,7 +48,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  bool $fast
      * @return self
      */
-    public function fast($fast): self
+    public function fast($fast)
     {
         $this->data['fast'] = $fast;
         return $this;
@@ -58,7 +58,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  bool $flash
      * @return self
      */
-    public function flash($flash): self
+    public function flash($flash)
     {
         $this->data['flash'] = $flash;
         return $this;
@@ -68,7 +68,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  string $encoding
      * @return self
      */
-    public function encoding($encoding): self
+    public function encoding($encoding)
     {
         $this->data['encoding'] = $encoding;
         return $this;
@@ -78,7 +78,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  bool $normalize
      * @return self
      */
-    public function normalize($normalize): self
+    public function normalize($normalize)
     {
         $this->data['normalize'] = $normalize;
         return $this;
@@ -88,7 +88,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  bool $nounicode
      * @return self
      */
-    public function nounicode($nounicode): self
+    public function nounicode($nounicode)
     {
         $this->data['nounicode'] = $nounicode;
         return $this;
@@ -98,7 +98,7 @@ class SmsapiSmsMessage extends SmsapiMessage
      * @param  bool $single
      * @return self
      */
-    public function single($single): self
+    public function single($single)
     {
         $this->data['single'] = $single;
         return $this;

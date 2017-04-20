@@ -27,7 +27,7 @@ class SmsapiChannel
      * @param  Notification $notification
      * @return StatusResponse
      */
-    public function send($notifiable, Notification $notification): StatusResponse
+    public function send($notifiable, Notification $notification)
     {
         $message = $notification->toSmsapi($notifiable);
         if (is_string($message)) {

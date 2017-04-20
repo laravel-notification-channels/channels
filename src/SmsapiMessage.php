@@ -14,7 +14,7 @@ abstract class SmsapiMessage
      * @param  string|string[] $to
      * @return self
      */
-    public function to($to): self
+    public function to($to)
     {
         $this->data['to'] = $to;
         return $this;
@@ -24,7 +24,7 @@ abstract class SmsapiMessage
      * @param  string $group
      * @return self
      */
-    public function group($group): self
+    public function group($group)
     {
         $this->data['group'] = $group;
         return $this;
@@ -34,7 +34,7 @@ abstract class SmsapiMessage
      * @param  string $date
      * @return self
      */
-    public function date($date): self
+    public function date($date)
     {
         $this->data['date'] = $date;
         return $this;
@@ -44,7 +44,7 @@ abstract class SmsapiMessage
      * @param  string $from
      * @return self
      */
-    public function notifyUrl($notifyUrl): self
+    public function notifyUrl($notifyUrl)
     {
         $this->data['notify_url'] = $notifyUrl;
         return $this;
@@ -54,7 +54,7 @@ abstract class SmsapiMessage
      * @param  string $partner
      * @return self
      */
-    public function partner($partner): self
+    public function partner($partner)
     {
         $this->data['partner'] = $partner;
         return $this;
@@ -64,7 +64,7 @@ abstract class SmsapiMessage
      * @param  bool $test
      * @return self
      */
-    public function test($test): self
+    public function test($test)
     {
         $this->data['test'] = $test;
         return $this;

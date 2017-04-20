@@ -46,7 +46,7 @@ class SmsapiClient
      * @param  SmsapiMessage $message
      * @return Response
      */
-    public function send(SmsapiMessage $message): Response
+    public function send(SmsapiMessage $message)
     {
         if ($message instanceof SmsapiSmsMessage) {
             return $this->sendSms($message);
@@ -61,7 +61,7 @@ class SmsapiClient
      * @param  SmsapiSmsMessage $message
      * @return Response
      */
-    public function sendSms(SmsapiSmsMessage $message): Response
+    public function sendSms(SmsapiSmsMessage $message)
     {
         $data = $message->data + $this->defaults;
         $sms = (new SmsFactory($this->proxy, $this->client))->actionSend();
@@ -117,7 +117,7 @@ class SmsapiClient
      * @param  SmsapiMmsMessage $message
      * @return Response
      */
-    public function sendMms(SmsapiMmsMessage $message): Response
+    public function sendMms(SmsapiMmsMessage $message)
     {
         $data = $message->data + $this->defaults;
         $mms = (new MmsFactory($this->proxy, $this->client))->actionSend();
@@ -148,7 +148,7 @@ class SmsapiClient
      * @param  SmsapiVmsMessage $message
      * @return Response
      */
-    public function sendVms(SmsapiVmsMessage $message): Response
+    public function sendVms(SmsapiVmsMessage $message)
     {
         $data = $message->data + $this->defaults;
         $vms = (new VmsFactory($this->proxy, $this->client))->actionSend();
