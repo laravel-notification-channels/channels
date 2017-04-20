@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Smsapi\Test;
+namespace NotificationChannels\Smsapi\Tests;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {

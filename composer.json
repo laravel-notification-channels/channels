@@ -27,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\Smsapi\\Test\\": "tests"
+            "NotificationChannels\\Smsapi\\Tests\\": "tests"
         }
     },
     "scripts": {

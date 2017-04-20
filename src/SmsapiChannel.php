@@ -2,32 +2,44 @@
 
 namespace NotificationChannels\Smsapi;
 
-use NotificationChannels\Smsapi\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Smsapi\Events\MessageWasSent;
-use NotificationChannels\Smsapi\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
+use SMSApi\Api\Response\StatusResponse;
 
 class SmsapiChannel
 {
-    public function __construct()
+    /**
+     * @var SmsapiClient
+     */
+    protected $client;
+
+    /**
+     * @param SmsapiClient $client
+     */
+    public function __construct(SmsapiClient $client)
     {
-        // Initialisation code here
+        $this->client = $client;
     }
 
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
-     * @throws \NotificationChannels\Smsapi\Exceptions\CouldNotSendNotification
+     * @param  mixed $notifiable
+     * @param  Notification $notification
+     * @return StatusResponse
      */
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification): StatusResponse
     {
-        //$response = [a call to the api of your notification send]
+        $message = $notification->toSmsapi($notifiable);
+        if (is_string($message)) {
+            $message = new SmsapiSmsMessage($message);
+        }
 
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+        if ($to = $notifiable->routeNotificationFor('smsapi')) {
+            $message->to($to);
+        } elseif ($group = $notifiable->routeNotificationFor('smsapi_group')) {
+            $message->group($group);
+        }
+
+        return $this->client->send($message);
     }
 }
