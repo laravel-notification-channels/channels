@@ -4,7 +4,6 @@ namespace NotificationChannels\Smsapi;
 
 use SMSApi\Client;
 use SMSApi\Proxy\Proxy;
-use Illuminate\Notifications\Notification;
 use SMSApi\Api\MmsFactory;
 use SMSApi\Api\SmsFactory;
 use SMSApi\Api\VmsFactory;
