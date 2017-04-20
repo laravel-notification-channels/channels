@@ -17,6 +17,7 @@ abstract class SmsapiMessage
     public function to($to)
     {
         $this->data['to'] = $to;
+
         return $this;
     }
 
@@ -27,6 +28,7 @@ abstract class SmsapiMessage
     public function group($group)
     {
         $this->data['group'] = $group;
+
         return $this;
     }
 
@@ -37,6 +39,7 @@ abstract class SmsapiMessage
     public function date($date)
     {
         $this->data['date'] = $date;
+
         return $this;
     }
 
@@ -47,6 +50,7 @@ abstract class SmsapiMessage
     public function notifyUrl($notifyUrl)
     {
         $this->data['notify_url'] = $notifyUrl;
+
         return $this;
     }
 
@@ -57,6 +61,7 @@ abstract class SmsapiMessage
     public function partner($partner)
     {
         $this->data['partner'] = $partner;
+
         return $this;
     }
 
@@ -67,6 +72,7 @@ abstract class SmsapiMessage
     public function test($test)
     {
         $this->data['test'] = $test;
+
         return $this;
     }
 }

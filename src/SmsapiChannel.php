@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Smsapi;
 
-use Illuminate\Notifications\Notification;
 use SMSApi\Api\Response\StatusResponse;
+use Illuminate\Notifications\Notification;
 
 class SmsapiChannel
 {

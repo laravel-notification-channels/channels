@@ -11,6 +11,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function file($file)
     {
         $this->data['file'] = $file;
+
         return $this;
     }
 
@@ -21,6 +22,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function tts($tts)
     {
         $this->data['tts'] = $tts;
+
         return $this;
     }
 
@@ -31,6 +33,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function ttsLector($ttsLector)
     {
         $this->data['tts_lector'] = $ttsLector;
+
         return $this;
     }
 
@@ -41,6 +44,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function from($from)
     {
         $this->data['from'] = $from;
+
         return $this;
     }
 
@@ -51,6 +55,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function try($try)
     {
         $this->data['try'] = $try;
+
         return $this;
     }
 
@@ -61,6 +66,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function interval($interval)
     {
         $this->data['interval'] = $interval;
+
         return $this;
     }
 
@@ -71,6 +77,7 @@ class SmsapiVmsMessage extends SmsapiMessage
     public function skipGsm($skipGsm)
     {
         $this->data['skip_gsm'] = $skipGsm;
+
         return $this;
     }
 }

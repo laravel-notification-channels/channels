@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Smsapi;
 
-use Illuminate\Support\ServiceProvider;
 use SMSApi\Client;
+use Illuminate\Support\ServiceProvider;
 
 class SmsapiServiceProvider extends ServiceProvider
 {
@@ -24,31 +24,32 @@ class SmsapiServiceProvider extends ServiceProvider
                     $client->setPasswordHash($auth['credentials']['password']);
                 }
                 $defaults = $config['defaults'] + ['sms' => [], 'mms' => [], 'vms' => []];
-                if (!empty($defaults['common'])) {
+                if (! empty($defaults['common'])) {
                     $defaults['common'] = array_only($defaults['common'], [
-                        'notify_url', 'partner', 'test'
+                        'notify_url', 'partner', 'test',
                     ]);
                     $defaults['sms'] = array_only($defaults['sms'] + $defaults['common'], [
-                        'from', 'fast', 'flash', 'encoding', 'normalize', 'nounicode', 'single'
+                        'from', 'fast', 'flash', 'encoding', 'normalize', 'nounicode', 'single',
                     ]);
                     $defaults['mms'] = array_only($defaults['mms'] + $defaults['common'], [
                     ]);
                     $defaults['vms'] = array_only($defaults['vms'] + $defaults['common'], [
-                        'from', 'try', 'interval', 'tts_lector', 'skip_gsm'
+                        'from', 'try', 'interval', 'tts_lector', 'skip_gsm',
                     ]);
                 }
                 $defaults = array_only($defaults, ['sms', 'mms', 'vms']);
                 $defaults = array_map(function (array $defaults) {
-                    return array_filter($defaults, function($value) {
+                    return array_filter($defaults, function ($value) {
                         return $value !== null;
                     });
                 }, $defaults);
+
                 return new SmsapiClient($client, $defaults);
             });
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/smsapi.php' => config_path('smsapi.php'),
+                __DIR__.'/../config/smsapi.php' => config_path('smsapi.php'),
             ], 'config');
         }
     }
@@ -58,6 +59,6 @@ class SmsapiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/smsapi.php', 'smsapi');
+        $this->mergeConfigFrom(__DIR__.'/../config/smsapi.php', 'smsapi');
     }
 }

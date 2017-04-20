@@ -3,11 +3,10 @@
 namespace NotificationChannels\Smsapi\Tests;
 
 use Mockery;
-use NotificationChannels\Smsapi\SmsapiClient;
-use NotificationChannels\Smsapi\SmsapiSmsMessage;
-use SMSApi\Api\Response\StatusResponse;
 use SMSApi\Client;
 use SMSApi\Proxy\Http\AbstractHttp as Proxy;
+use NotificationChannels\Smsapi\SmsapiClient;
+use NotificationChannels\Smsapi\SmsapiSmsMessage;
 
 class SmsapiClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -39,8 +38,7 @@ class SmsapiClientTest extends \PHPUnit_Framework_TestCase
     {
         $message = (new SmsapiSmsMessage('Lorem ipsum'))->to('48100200300');
         $this->proxy->shouldReceive('makeRequest')->andReturn([
-            'output' =>
-                '{'.
+            'output' => '{'.
                 '  "count": 1,'.
                 '  "list": ['.
                 '    {'.

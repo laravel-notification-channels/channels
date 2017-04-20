@@ -2,16 +2,13 @@
 
 namespace NotificationChannels\Smsapi;
 
-use NotificationChannels\Smsapi\Exceptions\CouldNotSendNotification;
-
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Notifications\Notification;
-use SMSApi\Api\MmsFactory;
-use SMSApi\Api\Response\Response;
-use SMSApi\Api\SmsFactory;
-use SMSApi\Api\VmsFactory;
 use SMSApi\Client;
 use SMSApi\Proxy\Proxy;
+use Illuminate\Notifications\Notification;
+use SMSApi\Api\MmsFactory;
+use SMSApi\Api\SmsFactory;
+use SMSApi\Api\VmsFactory;
+use SMSApi\Api\Response\Response;
 
 class SmsapiClient
 {
@@ -110,6 +107,7 @@ class SmsapiClient
         if (isset($data['test'])) {
             $sms->setTest($data['test']);
         }
+
         return $sms->execute();
     }
 
@@ -141,6 +139,7 @@ class SmsapiClient
         if (isset($data['test'])) {
             $mms->setTest($data['test']);
         }
+
         return $mms->execute();
     }
 
@@ -188,6 +187,7 @@ class SmsapiClient
         if (isset($data['test'])) {
             $vms->setTest($data['test']);
         }
+
         return $vms->execute();
     }
 }

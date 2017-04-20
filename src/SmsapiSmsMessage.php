@@ -21,6 +21,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function content($content)
     {
         $this->data['content'] = $content;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function template($template)
     {
         $this->data['template'] = $template;
+
         return $this;
     }
 
@@ -41,6 +43,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function from($from)
     {
         $this->data['from'] = $from;
+
         return $this;
     }
 
@@ -51,6 +54,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function fast($fast)
     {
         $this->data['fast'] = $fast;
+
         return $this;
     }
 
@@ -61,6 +65,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function flash($flash)
     {
         $this->data['flash'] = $flash;
+
         return $this;
     }
 
@@ -71,6 +76,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function encoding($encoding)
     {
         $this->data['encoding'] = $encoding;
+
         return $this;
     }
 
@@ -81,6 +87,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function normalize($normalize)
     {
         $this->data['normalize'] = $normalize;
+
         return $this;
     }
 
@@ -91,6 +98,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function nounicode($nounicode)
     {
         $this->data['nounicode'] = $nounicode;
+
         return $this;
     }
 
@@ -101,6 +109,7 @@ class SmsapiSmsMessage extends SmsapiMessage
     public function single($single)
     {
         $this->data['single'] = $single;
+
         return $this;
     }
 }
