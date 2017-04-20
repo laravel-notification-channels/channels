@@ -57,8 +57,10 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @test
      * @dataProvider provideBool
+     *
+     * @param bool $fast
      */
-    public function set_fast(bool $fast)
+    public function set_fast($fast)
     {
         $this->message->fast($fast);
         $this->assertEquals($fast, $this->message->data['fast']);
@@ -67,8 +69,10 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @test
      * @dataProvider provideBool
+     *
+     * @param bool $flash
      */
-    public function set_flash(bool $flash)
+    public function set_flash($flash)
     {
         $this->message->flash($flash);
         $this->assertEquals($flash, $this->message->data['flash']);
@@ -84,8 +88,10 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @test
      * @dataProvider provideBool
+     *
+     * @param bool $normalize
      */
-    public function set_normalize(bool $normalize)
+    public function set_normalize($normalize)
     {
         $this->message->normalize($normalize);
         $this->assertEquals($normalize, $this->message->data['normalize']);
@@ -94,8 +100,10 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @test
      * @dataProvider provideBool
+     *
+     * @param bool $nounicode
      */
-    public function set_nounicode(bool $nounicode)
+    public function set_nounicode($nounicode)
     {
         $this->message->nounicode($nounicode);
         $this->assertEquals($nounicode, $this->message->data['nounicode']);
@@ -104,8 +112,10 @@ class SmsapiSmsMessageTest extends SmsapiMessageTest
     /**
      * @test
      * @dataProvider provideBool
+     *
+     * @param bool $single
      */
-    public function set_single(bool $single)
+    public function set_single($single)
     {
         $this->message->single($single);
         $this->assertEquals($single, $this->message->data['single']);

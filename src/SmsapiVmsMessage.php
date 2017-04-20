@@ -8,7 +8,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  string $file
      * @return self
      */
-    public function file(string $file): self
+    public function file($file): self
     {
         $this->data['file'] = $file;
         return $this;
@@ -18,7 +18,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  string $tts
      * @return self
      */
-    public function tts(string $tts): self
+    public function tts($tts): self
     {
         $this->data['tts'] = $tts;
         return $this;
@@ -28,7 +28,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  string $ttsLector
      * @return self
      */
-    public function ttsLector(string $ttsLector): self
+    public function ttsLector($ttsLector): self
     {
         $this->data['tts_lector'] = $ttsLector;
         return $this;
@@ -38,7 +38,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  string $from
      * @return self
      */
-    public function from(string $from): self
+    public function from($from): self
     {
         $this->data['from'] = $from;
         return $this;
@@ -48,7 +48,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  int $try
      * @return self
      */
-    public function try(int $try): self
+    public function try($try): self
     {
         $this->data['try'] = $try;
         return $this;
@@ -58,7 +58,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  int $interval
      * @return self
      */
-    public function interval(int $interval): self
+    public function interval($interval): self
     {
         $this->data['interval'] = $interval;
         return $this;
@@ -68,7 +68,7 @@ class SmsapiVmsMessage extends SmsapiMessage
      * @param  bool $skipGsm
      * @return self
      */
-    public function skipGsm(bool $skipGsm): self
+    public function skipGsm($skipGsm): self
     {
         $this->data['skip_gsm'] = $skipGsm;
         return $this;

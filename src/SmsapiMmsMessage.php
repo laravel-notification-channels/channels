@@ -8,7 +8,7 @@ class SmsapiMmsMessage extends SmsapiMessage
      * @param  string $subject
      * @return self
      */
-    public function subject(string $subject): self
+    public function subject($subject): self
     {
         $this->data['subject'] = $subject;
         return $this;
@@ -18,7 +18,7 @@ class SmsapiMmsMessage extends SmsapiMessage
      * @param  string $smil
      * @return self
      */
-    public function smil(string $smil): self
+    public function smil($smil): self
     {
         $this->data['smil'] = $smil;
         return $this;

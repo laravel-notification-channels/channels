@@ -28,6 +28,8 @@ abstract class SmsapiMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider provideTo
+     *
+     * @param string|string[] $fast
      */
     public function set_to($to)
     {

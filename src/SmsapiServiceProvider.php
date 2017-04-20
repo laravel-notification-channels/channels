@@ -39,7 +39,7 @@ class SmsapiServiceProvider extends ServiceProvider
                 }
                 $defaults = array_only($defaults, ['sms', 'mms', 'vms']);
                 $defaults = array_map(function (array $defaults): array {
-                    return array_filter($defaults, function($value): bool {
+                    return array_filter($defaults, function($value) {
                         return $value !== null;
                     });
                 }, $defaults);
