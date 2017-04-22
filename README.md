@@ -85,7 +85,7 @@ Set your credentials and defaults in `config/smsapi.php`:
     ],
     'vms' => [
         // 'from' => env('SMSAPI_FROM'),
-        // 'try' => 2,
+        // 'tries' => 2,
         // 'interval' => 300,
         // 'tts_lector' => 'Agnieszka',
         // 'skip_gsm' => false,

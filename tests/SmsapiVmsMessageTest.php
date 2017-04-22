@@ -55,10 +55,10 @@ class SmsapiVmsMessageTest extends SmsapiMessageTest
     }
 
     /** @test */
-    public function set_try()
+    public function set_tries()
     {
-        $this->message->try(3);
-        $this->assertEquals(3, $this->message->data['try']);
+        $this->message->tries(3);
+        $this->assertEquals(3, $this->message->data['tries']);
     }
 
     /** @test */

@@ -49,12 +49,12 @@ class SmsapiVmsMessage extends SmsapiMessage
     }
 
     /**
-     * @param  int $try
+     * @param  int $tries
      * @return self
      */
-    public function try($try)
+    public function tries($tries)
     {
-        $this->data['try'] = $try;
+        $this->data['tries'] = $tries;
 
         return $this;
     }

@@ -34,7 +34,7 @@ class SmsapiServiceProvider extends ServiceProvider
                     $defaults['mms'] = array_only($defaults['mms'] + $defaults['common'], [
                     ]);
                     $defaults['vms'] = array_only($defaults['vms'] + $defaults['common'], [
-                        'from', 'try', 'interval', 'tts_lector', 'skip_gsm',
+                        'from', 'tries', 'interval', 'tts_lector', 'skip_gsm',
                     ]);
                 }
                 $defaults = array_only($defaults, ['sms', 'mms', 'vms']);

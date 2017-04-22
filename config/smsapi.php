@@ -88,13 +88,13 @@ return [
         | Setting common options here will take precedence
         | over those set in common section.
         |
-        | VMS only supported options: "from", "try", "interval", "tts_lector",
+        | VMS only supported options: "from", "tries", "interval", "tts_lector",
         | "skip_gsm".
         |
         */
         'vms' => [
             // 'from' => env('SMSAPI_FROM'),
-            // 'try' => 2,
+            // 'tries' => 2,
             // 'interval' => 300,
             // 'tts_lector' => 'Agnieszka',
             // 'skip_gsm' => false,

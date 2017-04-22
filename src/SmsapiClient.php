@@ -168,8 +168,8 @@ class SmsapiClient
         if (isset($data['from'])) {
             $vms->setFrom($data['from']);
         }
-        if (isset($data['try'])) {
-            $vms->setTry($data['try']);
+        if (isset($data['tries'])) {
+            $vms->setTry($data['tries']);
         }
         if (isset($data['interval'])) {
             $vms->setInterval($data['interval']);
