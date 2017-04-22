@@ -44,7 +44,7 @@ abstract class SmsapiMessage
     }
 
     /**
-     * @param  string $from
+     * @param  string $notifyUrl
      * @return self
      */
     public function notifyUrl($notifyUrl)
