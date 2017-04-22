@@ -1,5 +1,7 @@
 filter:
-    excluded_paths: [tests/*]
+    excluded_paths:
+        - "config/"
+        - "tests/"
 
 checks:
     php:
