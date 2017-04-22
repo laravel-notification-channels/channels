@@ -175,48 +175,48 @@ public function routeNotificationForSmsapiGroup()
 
 #### SmsapiSmsMessage
 
-- `to()`
-- `group()`
-- `content()`
-- `template()`
-- `from()`
-- `fast()`
-- `flash()`
-- `encoding()`
-- `normalize()`
-- `nounicode()`
-- `single()`
-- `date()`
-- `notifyUrl()`
-- `partner()`
-- `test()`
+- `to(string|string[] $to)`
+- `group(string $group)`
+- `content(string $content)`
+- `template(string $template)`
+- `from(string $from)`
+- `fast(bool $fast)`
+- `flash(bool $flash)`
+- `encoding(string $encoding)`
+- `normalize(bool $normalize)`
+- `nounicode(bool $nounicode)`
+- `single(bool $single)`
+- `date(int|string $date)`
+- `notifyUrl(string $notifyUrl)`
+- `partner(string $partner)`
+- `test(bool $test)`
 
 #### SmsapiMmsMessage
 
-- `to()`
-- `group()`
-- `subject()`
-- `smil()`
-- `date()`
-- `notifyUrl()`
-- `partner()`
-- `test()`
+- `to(string|string[] $to)`
+- `group(string $group)`
+- `subject(string $subject)`
+- `smil(string $smil)`
+- `date(int|string $date)`
+- `notifyUrl(string $notifyUrl)`
+- `partner(string $partner)`
+- `test(bool $test)`
 
 #### SmsapiVmsMessage
 
-- `to()`
-- `group()`
-- `file()`
-- `tts()`
-- `ttsLector()`
-- `from()`
-- `try()`
-- `interval()`
-- `skipGsm()`
-- `date()`
-- `notifyUrl()`
-- `partner()`
-- `test()`
+- `to(string|string[] $to)`
+- `group(string $group)`
+- `file(string $file)`
+- `tts(string $tts)`
+- `ttsLector(string $ttsLector)`
+- `from(string $from)`
+- `tries(int $tries)`
+- `interval(int $interval)`
+- `skipGsm(bool $skipGsm)`
+- `date(int|string $date)`
+- `notifyUrl(string $notifyUrl)`
+- `partner(string $partner)`
+- `test(bool $test)`
 
 ## Changelog
 
