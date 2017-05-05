@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name=":service_name Test Suite">
+        <testsuite name="PagerDuty Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

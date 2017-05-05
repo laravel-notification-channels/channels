@@ -1,18 +1,19 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/pagerduty",
+    "description": "A Laravel notification channel for sending PagerDuty events.",
+    "homepage": "https://github.com/laravel-notification-channels/pagerduty",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Luke Waite",
+            "email": "lwaite@gmail.com",
+            "homepage": "https://lukewaite.ca",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "~6.0",
         "illuminate/notifications": "^5.3",
         "illuminate/support": "^5.1|^5.2|^5.3"
     },
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\PagerDuty\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\PagerDuty\\Test\\": "tests"
         }
     },
     "scripts": {
