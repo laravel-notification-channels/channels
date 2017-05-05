@@ -7,8 +7,9 @@ class CouldNotSendNotification extends \Exception
     public static function serviceBadRequest($response)
     {
         $response = json_decode($response, true);
-        $message = $response['message'];
-        $errors = implode(',', $response['errors']);
+
+        $message = isset($response['message']) ? $response['message'] :'';
+        $errors = isset($response['errors']) ? implode(',', $response['errors']) : '';
 
         return new static("PagerDuty returned 400 Bad Request: $message - $errors");
     }
