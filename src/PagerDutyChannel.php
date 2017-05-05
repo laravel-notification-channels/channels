@@ -38,7 +38,7 @@ class PagerDutyChannel
         $data->routingKey($routing_key);
 
         $response = $this->client->post('https://events.pagerduty.com/v2/enqueue', [
-            'body' => json_encode($data->getPayload())
+            'body' => json_encode($data->toArray())
         ]);
 
         switch ($response->getStatusCode()) {
