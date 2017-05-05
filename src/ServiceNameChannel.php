@@ -3,8 +3,6 @@
 namespace NotificationChannels\:channel_namespace;
 
 use NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification;
-use NotificationChannels\:channel_namespace\Events\MessageWasSent;
-use NotificationChannels\:channel_namespace\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class :service_nameChannel
