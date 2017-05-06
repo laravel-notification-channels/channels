@@ -53,7 +53,7 @@ class SiteProblem extends Notification
         return [PagerDutyChannel::class];
     }
 
-    public function toPushNotification($notifiable)
+    public function toPagerDuty($notifiable)
     {
         return PagerDutyMessage::create()
             ->summary('There was an error with your site in the {$notifiable->service} component.');
