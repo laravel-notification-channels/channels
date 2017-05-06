@@ -43,6 +43,8 @@ class PagerDutyChannel
 
         switch ($response->getStatusCode()) {
             case 200:
+            case 201:
+            case 202:
                 return;
             case 400:
                 throw CouldNotSendNotification::serviceBadRequest($response->getBody());
