@@ -1,10 +1,4 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
-
-Here's the latest documentation on Laravel 5.3 Notifications System:
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
+# PagerDuty Event notifications channel for Laravel 5.3
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pagerduty.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pagerduty)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -16,10 +10,6 @@ https://laravel.com/docs/master/notifications
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pagerduty.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pagerduty)
 
 This package makes it easy to send notification events to [PagerDuty](https://www.pagerduty.com) with Laravel 5.3.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
 
 ## Contents
 
@@ -37,19 +27,73 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
 
-### Setting up the PagerDuty service
+```bash
+composer require laravel-notification-channels/pagerduty
+```
 
-Optionally include a few steps how users can set up the service.
+##### TODO: Validate that the above composer package name is where this ends up.
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+Now you can use the channel in your `via()` method inside the Notification class.
+
+```php
+use NotificationChannels\PagerDuty\PagerDutyChannel;
+use NotificationChannels\PagerDuty\PagerDutyMessage;
+use Illuminate\Notifications\Notification;
+
+class SiteProblem extends Notification
+{
+    public function via($notifiable)
+    {
+        return [PagerDutyChannel::class];
+    }
+
+    public function toPushNotification($notifiable)
+    {
+        return PagerDutyMessage::create()
+            ->summary('There was an error with your site in the {$notifiable->service} component.');
+    }
+}
+```
+
+In order to let your Notification know which Integration should receive the event, add the `routeNotificationForPagerDuty` method to your Notifiable model.
+
+This method needs to return the Integration Key for the service and integration to which you want to send the event.
+
+```php
+public function routeNotificationForPagerDuty()
+{
+    return '99dc10c97a6e43c387bbc4f877c794ef';
+}
+```
+
+### PagerDuty Setup
+On a PagerDuty Service of your choice, create a new Integration using the `Events API v2`.
+
+![Creating a new integration](doc/CreateNewIntegration.png)
+
+The `Integration Key` listed for your new integration is what you need to set in the `routeNotificationForPagerDuty()` method.
+
+![List of Integrations with Keys](doc/ListIntegrations.png)
 
 ### Available methods
 
-A list of all available options
+- `resolve()`: Sets the event type to `resolve` to resolve issues.
+- `dedupKey('')`: Sets the `dedup_key` (required when resolving).
+- `summary('')`: Sets a summary message on the event.
+- `source('')`: Sets the event source; defaults to the `hostname`.
+- `severity('')`: Sets the event severity; defaults to `critical`.
+- `timestamp('')`: Sets the `timestamp` of the event.
+- `component('')`: Sets the `component` of the event.
+- `group('')`: Sets the `group` of the event.
+- `setClass('')`: Sets the `class`.
+- `addCustomDetail('', '')`: Adds a key/value paid to the `custom_detail` of the event.
+
+See the [PagerDuty v2 Events API documentation](https://v2.developer.pagerduty.com/docs/send-an-event-events-api-v2)
+for more information about what these options will do.
 
 ## Changelog
 
