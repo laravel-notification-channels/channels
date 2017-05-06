@@ -102,7 +102,6 @@ class TestNotifiable
     }
 }
 
-
 class TestNotification extends Notification
 {
     public function toPagerDuty($notifiable)
