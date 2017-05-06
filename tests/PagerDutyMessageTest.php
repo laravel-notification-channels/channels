@@ -41,8 +41,8 @@ class PagerDutyMessageTest extends TestCase
                 'payload' => [
                     'source' => 'testSource',
                     'severity' => 'critical',
-                    'summary' => 'This is a test message'
-                ]
+                    'summary' => 'This is a test message',
+                ],
             ], $message->toArray()
         );
     }
@@ -70,9 +70,9 @@ class PagerDutyMessageTest extends TestCase
                     'summary' => 'This is a test message',
                     'timestamp' => 'timestamp',
                     'component' => 'nginx',
-                    'class' => 'ping failure'
+                    'class' => 'ping failure',
                 ],
-                'dedup_key' => 'testMessage01'
+                'dedup_key' => 'testMessage01',
             ], $message->toArray()
         );
     }
@@ -97,9 +97,9 @@ class PagerDutyMessageTest extends TestCase
                     'summary' => 'This is a test message',
                     'custom_details' => [
                         'ping time' => '1500ms',
-                        'load avg' => '0.75'
-                    ]
-                ]
+                        'load avg' => '0.75',
+                    ],
+                ],
             ], $message->toArray()
         );
     }
@@ -121,7 +121,7 @@ class PagerDutyMessageTest extends TestCase
                     'source' => 'testSource',
                     'severity' => 'critical',
                 ],
-                'dedup_key' => 'testMessage01'
+                'dedup_key' => 'testMessage01',
             ], $message->toArray()
         );
     }

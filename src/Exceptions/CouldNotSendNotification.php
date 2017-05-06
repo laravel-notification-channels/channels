@@ -8,13 +8,14 @@ class CouldNotSendNotification extends \Exception
     {
         $response = json_decode($response, true);
 
-        $message = isset($response['message']) ? $response['message'] :'';
+        $message = isset($response['message']) ? $response['message'] : '';
         $errors = isset($response['errors']) ? implode(',', $response['errors']) : '';
 
         return new static("PagerDuty returned 400 Bad Request: $message - $errors");
     }
 
-    public static function rateLimit(){
+    public static function rateLimit()
+    {
         // https://v2.developer.pagerduty.com/docs/errors
         return new static("PagerDuty returned 429 Too Many Requests");
     }

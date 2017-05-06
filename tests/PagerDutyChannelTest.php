@@ -2,14 +2,14 @@
 
 namespace NotificationChannels\PagerDuty\Test;
 
+use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Notifications\Notification;
-use Mockery;
-use NotificationChannels\PagerDuty\Exceptions\CouldNotSendNotification;
-use NotificationChannels\PagerDuty\PagerDutyMessage;
-use NotificationChannels\PagerDuty\PagerDutyChannel;
 use Orchestra\Testbench\TestCase;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\PagerDuty\PagerDutyChannel;
+use NotificationChannels\PagerDuty\PagerDutyMessage;
+use NotificationChannels\PagerDuty\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {

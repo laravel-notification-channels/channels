@@ -78,16 +78,19 @@ class PagerDutyMessage
     protected function setPayload($key, $value)
     {
         Arr::set($this->payload, $key, $value);
+
         return $this;
     }
 
     protected function setMeta($key, $value)
     {
         Arr::set($this->meta, $key, $value);
+
         return $this;
     }
 
-    public function toArray() {
-        return Arr::collapse([$this->meta, ['payload'=>$this->payload]]);
+    public function toArray()
+    {
+        return Arr::collapse([$this->meta, ['payload' => $this->payload]]);
     }
 }

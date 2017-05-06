@@ -3,8 +3,8 @@
 namespace NotificationChannels\PagerDuty;
 
 use GuzzleHttp\Client;
-use NotificationChannels\PagerDuty\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\PagerDuty\Exceptions\CouldNotSendNotification;
 
 class PagerDutyChannel
 {
@@ -29,7 +29,7 @@ class PagerDutyChannel
     public function send($notifiable, Notification $notification)
     {
 
-        if (!$routing_key = $notifiable->routeNotificationFor('PagerDuty')) {
+        if (! $routing_key = $notifiable->routeNotificationFor('PagerDuty')) {
             return;
         }
 
@@ -38,7 +38,7 @@ class PagerDutyChannel
         $data->routingKey($routing_key);
 
         $response = $this->client->post('https://events.pagerduty.com/v2/enqueue', [
-            'body' => json_encode($data->toArray())
+            'body' => json_encode($data->toArray()),
         ]);
 
         switch ($response->getStatusCode()) {
