@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\PagerDuty\Test;
 
-use NotificationChannels\PagerDuty\PagerDutyMessage;
 use Orchestra\Testbench\TestCase;
+use NotificationChannels\PagerDuty\PagerDutyMessage;
 
 class PagerDutyMessageTest extends TestCase
 {

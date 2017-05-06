@@ -28,7 +28,6 @@ class PagerDutyChannel
      */
     public function send($notifiable, Notification $notification)
     {
-
         if (! $routing_key = $notifiable->routeNotificationFor('PagerDuty')) {
             return;
         }

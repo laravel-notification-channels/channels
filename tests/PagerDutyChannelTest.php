@@ -86,7 +86,6 @@ class ChannelTest extends TestCase
             ->andReturn($response);
         $channel = new PagerDutyChannel($client);
         $channel->send(new TestNotifiable(), new TestNotification());
-
     }
 }
 

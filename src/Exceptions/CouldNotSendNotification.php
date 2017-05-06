@@ -17,7 +17,7 @@ class CouldNotSendNotification extends \Exception
     public static function rateLimit()
     {
         // https://v2.developer.pagerduty.com/docs/errors
-        return new static("PagerDuty returned 429 Too Many Requests");
+        return new static('PagerDuty returned 429 Too Many Requests');
     }
 
     public static function unknownError($code)
