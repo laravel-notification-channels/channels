@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/lox24",
+    "description": ":Lox24 Notifications channel for Laravel 5.3",
+    "keywords": ["laravel", "notifications", "lox24"],
+    "homepage": "https://github.com/laravel-notification-channels/lox24",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": ":Stefan Gotre",
+            "email": "gotre@teraone.de",
+            "homepage": "https://teraone.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/queue": "^5.3",
+        "illuminate/notifications": "^5.4",
+        "illuminate/support": "^5.1|^5.2|^5.3|^5.4"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Lox24\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Lox24\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
