@@ -24,7 +24,7 @@ class RealtimeMessage
 
     /** @var string */
     public $iosAttachmentUrl;
-    
+
     /** @var string */
     public $androidMessage;
 
@@ -41,7 +41,7 @@ class RealtimeMessage
     {
         return new static();
     }
-    
+
     public function __construct()
     {
     }
@@ -227,7 +227,7 @@ class RealtimeMessage
         if (count($alert) > 0) {
             $aps['alert'] = $alert;
         }
-        
+
         /*android data*/
         $androidData = [];
 

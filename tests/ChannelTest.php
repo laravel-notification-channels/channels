@@ -8,7 +8,6 @@ use NotificationChannels\RealtimePushNotifications\RealtimeMessage;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {
-
     public function setUp()
     {
         \Config::set('services.realtimepush.applicationKey', 'INSERT_YOUR_REALTIME_APPKEY');
@@ -52,4 +51,3 @@ class TestNotification extends Notification
             ->androidPayload(['foo'=>'bar']);
     }
 }
-
