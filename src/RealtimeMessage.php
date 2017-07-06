@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\RealtimePushNotifications;
 
-use Illuminate\Support\Arr;
-
 class RealtimeMessage
 {
     /** @var string */
@@ -37,18 +35,15 @@ class RealtimeMessage
     public $androidPayload;
 
     /**
-     *
      * @return static
      */
     public static function create()
     {
         return new static();
     }
-
-
+    
     public function __construct()
     {
-        
     }
 
     /**
@@ -135,7 +130,7 @@ class RealtimeMessage
         return $this;
     }
 
-     /**
+    /**
      * Set the iosAttachmentUrl.
      *
      * @param  string  $iosAttachmentUrl
@@ -148,7 +143,6 @@ class RealtimeMessage
 
         return $this;
     }
-
 
     /**
      * Set the androidMessage.
@@ -164,7 +158,6 @@ class RealtimeMessage
         return $this;
     }
 
-
     /**
      * Set the iosPayload.
      *
@@ -178,7 +171,6 @@ class RealtimeMessage
 
         return $this;
     }
-
 
     /**
      * Set the androidPayload.
@@ -235,8 +227,7 @@ class RealtimeMessage
         if (count($alert) > 0) {
             $aps['alert'] = $alert;
         }
-
-
+        
         /*android data*/
         $androidData = [];
 

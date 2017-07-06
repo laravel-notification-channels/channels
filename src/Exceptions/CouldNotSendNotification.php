@@ -6,6 +6,6 @@ class CouldNotSendNotification extends \Exception
 {
     public static function serviceRespondedWithAnError($response)
     {
-        return new static("Realtime responded with an error");
+        return new static('Realtime responded with an error');
     }
 }

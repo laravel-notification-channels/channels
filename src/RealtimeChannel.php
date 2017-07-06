@@ -34,7 +34,6 @@ class RealtimeChannel
         $realtimeConfig = config('services.realtimepush');
 
         $channel = collect($notifiable->routeNotificationFor('RealtimePush'));
-        
         // if there are no valid channels then do not send the notification
         if (! $channel->count() > 0) {
             return;
@@ -43,7 +42,7 @@ class RealtimeChannel
         $message = $notification->toRealtimePushMesssage($notifiable);
 
         $data = $message->toArray();
-        $credencials = array('applicationKey' => $realtimeConfig['applicationKey'], 'privateKey' => $realtimeConfig['privateKey']);
+        $credencials = ['applicationKey' => $realtimeConfig['applicationKey'], 'privateKey' => $realtimeConfig['privateKey']];
         $data = array_merge($credencials, $data);
         $data['channels'] = $channel;
 

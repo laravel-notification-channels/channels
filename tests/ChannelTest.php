@@ -2,22 +2,17 @@
 
 namespace NotificationChannels\RealtimePushNotifications\Test;
 
-use Mockery;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
-use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\RealtimePushNotifications\RealtimeChannel;
 use NotificationChannels\RealtimePushNotifications\RealtimeMessage;
-use NotificationChannels\RealtimePushNotifications\Exceptions\CouldNotSendNotification;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {
 
     public function setUp()
     {
-        \Config::set('services.realtimepush.applicationKey','INSERT_YOUR_REALTIME_APPKEY');
-        \Config::set('services.realtimepush.privateKey','INSERT_YOUR_REALTIME_PRIVATEKEY');
+        \Config::set('services.realtimepush.applicationKey', 'INSERT_YOUR_REALTIME_APPKEY');
+        \Config::set('services.realtimepush.privateKey', 'INSERT_YOUR_REALTIME_PRIVATEKEY');
     }
 
     /** @test */
@@ -54,7 +49,7 @@ class TestNotification extends Notification
             ->iosMutableContent(1)
             ->iosAttachmentUrl('https://framework.realtime.co/blog/img/ios10-video.mp4')
             ->androidMessage('Realtime Custom Push Notifications')
-            ->androidPayload(array('foo'=>'bar'));
+            ->androidPayload(['foo'=>'bar']);
     }
 }
 
