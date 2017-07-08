@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://travis-ci.org/Alymosul/laravel-exponent-push-notifications.svg?branch=master)](https://travis-ci.org/Alymosul/laravel-exponent-push-notifications)
 [![StyleCI](https://styleci.io/repos/96645200/shield?branch=master)](https://styleci.io/repos/96645200)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/afe0ba9a-e35c-4759-a06f-14a081cf452c/big.png)](https://insight.sensiolabs.com/projects/afe0ba9a-e35c-4759-a06f-14a081cf452c)
 [![Quality Score](https://img.shields.io/scrutinizer/g/alymosul/laravel-exponent-push-notifications.svg?style=flat-square)](https://scrutinizer-ci.com/g/alymosul/laravel-exponent-push-notifications)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/alymosul/laravel-exponent-push-notifications/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/alymosul/laravel-exponent-push-notifications/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/alymosul/laravel-exponent-push-notifications.svg?style=flat-square)](https://packagist.org/packages/alymosul/laravel-exponent-push-notifications)
