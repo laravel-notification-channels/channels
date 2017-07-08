@@ -1,0 +1,45 @@
+{
+    "name": "alymosul/exponent-push-notifications",
+    "description": "Exponent push notifications driver for laravel",
+    "homepage": "https://github.com/alymosul/exponent-push-notifications",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aly Suleiman",
+            "email": "alymosul@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "alymosul/exponent-server-sdk-php": "1.0.*",
+        "illuminate/notifications": "5.3 || 5.4.*",
+        "illuminate/support": "5.3 || 5.4.*",
+        "illuminate/events": "5.3 || 5.4.*",
+        "illuminate/queue": "5.3 || 5.4.*",
+        "illuminate/http": "5.3 || 5.4.*",
+        "illuminate/routing": "5.3 || 5.4.*",
+        "illuminate/validation": "5.3 || 5.4.*",
+        "illuminate/auth": "5.3 || 5.4"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\ExpoPushNotifications\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\ExpoPushNotifications\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
