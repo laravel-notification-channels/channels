@@ -106,7 +106,7 @@ class ExpoMessage
     }
 
     /**
-     * Set the time to live of the notification
+     * Set the time to live of the notification.
      *
      * @param int $ttl
      *
@@ -120,7 +120,7 @@ class ExpoMessage
     }
 
     /**
-     * Get an array representation of the message
+     * Get an array representation of the message.
      *
      * @return array
      */

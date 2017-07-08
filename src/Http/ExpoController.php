@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\ExpoPushNotifications\Http;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +27,7 @@ class ExpoController extends Controller
     }
 
     /**
-     * Handles subscription endpoint for an expo token
+     * Handles subscription endpoint for an expo token.
      *
      * @param Request $request
      *
@@ -36,15 +36,15 @@ class ExpoController extends Controller
     public function subscribe(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'expo_token'    =>  'required|string'
+            'expo_token'    =>  'required|string',
         ]);
 
         if ($validator->fails()) {
             return JsonResponse::create([
                 'status' => 'failed',
                 'error' => [
-                    'message' => 'Expo Token is required'
-                ]
+                    'message' => 'Expo Token is required',
+                ],
             ], 422);
         }
 
@@ -58,19 +58,19 @@ class ExpoController extends Controller
             return JsonResponse::create([
                 'status'    => 'failed',
                 'error'     =>  [
-                    'message' => $e->getMessage()
-                ]
+                    'message' => $e->getMessage(),
+                ],
             ], 500);
         }
 
         return JsonResponse::create([
             'status'    =>  'succeeded',
-            'expo_token' => $token
+            'expo_token' => $token,
         ], 200);
     }
 
     /**
-     * Handles removing subscription endpoint for the authenticated interest
+     * Handles removing subscription endpoint for the authenticated interest.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -84,8 +84,8 @@ class ExpoController extends Controller
             return JsonResponse::create([
                 'status'    => 'failed',
                 'error'     =>  [
-                    'message' => $e->getMessage()
-                ]
+                    'message' => $e->getMessage(),
+                ],
             ], 500);
         }
 

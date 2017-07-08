@@ -5,8 +5,8 @@ namespace NotificationChannels\ExpoPushNotifications;
 use ExponentPhpSDK\Expo;
 use ExponentPhpSDK\ExpoRegistrar;
 use ExponentPhpSDK\ExpoRepository;
-use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use Illuminate\Support\ServiceProvider;
+use ExponentPhpSDK\Repositories\ExpoFileDriver;
 
 class ExpoPushNotificationsServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
             });
 
         //Load routes
-        $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
     }
 
     /**
