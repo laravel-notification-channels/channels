@@ -49,7 +49,7 @@ class ExpoChannel
             ?: $this->interestName($notifiable);
 
         try {
-            $response = $this->expo->notify(
+            $this->expo->notify(
                 $interest,
                 $notification->toExpoPush($notifiable)->toArray(),
                 true
