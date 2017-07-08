@@ -2,16 +2,16 @@
 
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
-use ExponentPhpSDK\Exceptions\ExpoException;
+use Mockery;
 use ExponentPhpSDK\Expo;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Mockery;
+use ExponentPhpSDK\Exceptions\ExpoException;
+use Illuminate\Notifications\Events\NotificationFailed;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\ExpoMessage;
-use PHPUnit\Framework\TestCase;
 
 class ChannelTest extends TestCase
 {

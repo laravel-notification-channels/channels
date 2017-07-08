@@ -3,16 +3,14 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
-use ExponentPhpSDK\ExpoRegistrar;
-use ExponentPhpSDK\Repositories\ExpoFileDriver;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\TestCase;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Validation\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Factory;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
-use PHPUnit\Framework\TestCase;
 
 class ExpoControllerTest extends TestCase
 {
@@ -134,7 +132,7 @@ class ExpoControllerTest extends TestCase
     }
 
     /**
-     * Mocks a request for the ExpoController
+     * Mocks a request for the ExpoController.
      *
      * @param $data
      *
@@ -163,6 +161,7 @@ class ExpoControllerTest extends TestCase
         $validator->shouldReceive('fails')->once()->andReturn($fails);
 
         Validator::swap($validation);
+
         return $validator;
     }
 }

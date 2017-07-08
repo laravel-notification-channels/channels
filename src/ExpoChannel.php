@@ -2,12 +2,12 @@
 
 namespace NotificationChannels\ExpoPushNotifications;
 
-use ExponentPhpSDK\Exceptions\ExpoException;
 use ExponentPhpSDK\Expo;
 use Illuminate\Events\Dispatcher;
+use Illuminate\Notifications\Notification;
+use ExponentPhpSDK\Exceptions\ExpoException;
 use Illuminate\Notifications\Events\NotificationFailed;
 use NotificationChannels\ExpoPushNotifications\Exceptions\CouldNotSendNotification;
-use Illuminate\Notifications\Notification;
 
 class ExpoChannel
 {
@@ -34,7 +34,7 @@ class ExpoChannel
     }
 
     /**
-     * Send the given notification
+     * Send the given notification.
      *
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
