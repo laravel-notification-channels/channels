@@ -1,7 +1,7 @@
 {
-    "name": "alymosul/exponent-push-notifications",
+    "name": "alymosul/laravel-exponent-push-notifications",
     "description": "Exponent push notifications driver for laravel",
-    "homepage": "https://github.com/alymosul/exponent-push-notifications",
+    "homepage": "https://github.com/alymosul/laravel-exponent-push-notifications",
     "license": "MIT",
     "authors": [
         {
