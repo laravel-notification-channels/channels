@@ -25,7 +25,7 @@
 ## Installation
 You can install the package via composer:
 ```bash
-composer require alymosul/exponent-push-notifications
+composer require alymosul/laravel-exponent-push-notifications
 ```
 You must install the service provider:
 
