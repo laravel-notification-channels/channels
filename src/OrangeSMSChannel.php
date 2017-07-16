@@ -71,6 +71,6 @@ class OrangeSMSChannel
     public static function createDriver($driver)
     {
         return static::canHandleNotification($driver)
-            ? new OrangeSMSChannel(App::make('orange-sms')) : null;
+            ? new static(App::make('orange-sms')) : null;
     }
 }

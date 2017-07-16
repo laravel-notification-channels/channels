@@ -58,7 +58,7 @@ class OrangeMessage
      */
     public function __get($property)
     {
-        if (property_exists($this, $property) && in_array($property, ['to','from','text'])) {
+        if (property_exists($this, $property) && in_array($property, ['to', 'from', 'text'])) {
             return $this->{$property};
         }
     }
