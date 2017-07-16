@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/orange",
+    "description": "Orange sms notifications channel",
+    "homepage": "https://github.com/laravel-notification-channels/orange",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Isaac Esso",
+            "email": "daprod2009@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "mediumart/orange": "~0.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.7",
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Orange\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Orange\\Test\\": "tests"
+        }
+    },
+    "suggest": {
+        "mediumart/notifier": "Allows custom hooks names for custom laravel 5.3+ notifications channels"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
