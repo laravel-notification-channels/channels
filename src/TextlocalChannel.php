@@ -2,10 +2,8 @@
 
 namespace NotificationChannels\Textlocal;
 
-use NotificationChannels\Textlocal\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Textlocal\Events\MessageWasSent;
-use NotificationChannels\Textlocal\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Textlocal\Exceptions\CouldNotSendNotification;
 
 class TextlocalChannel
 {
@@ -15,8 +13,8 @@ class TextlocalChannel
     public function __construct(Textlocal $client)
     {
         // Initialisation code here
-        $this->client   = $client;
-        $this->sender   = config('services.sms.textlocal.sender');
+        $this->client = $client;
+        $this->sender = config('services.sms.textlocal.sender');
     }
 
     /**
@@ -36,8 +34,8 @@ class TextlocalChannel
             return;
         }
 
-        if (!is_array($numbers) ) {
-            $numbers = array($numbers);
+        if (!is_array($numbers)) {
+            $numbers = [$numbers];
         }
 
         // Get the message from the notification class
@@ -49,8 +47,8 @@ class TextlocalChannel
 
         try {
             $response = $this->client->sendSms($numbers, $message, $this->sender);
-            return json_decode(json_encode($response), true);
 
+            return json_decode(json_encode($response), true);
         } catch (\Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }

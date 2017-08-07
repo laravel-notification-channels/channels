@@ -6,6 +6,6 @@ class CouldNotSendNotification extends \Exception
 {
     public static function serviceRespondedWithAnError($exception)
     {
-        return new static("Could Not Send SMS to TEXTLOCAL ." . $exception->getMessage());
+        return new static('Could Not Send SMS to TEXTLOCAL .'.$exception->getMessage());
     }
 }
