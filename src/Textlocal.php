@@ -2,6 +2,8 @@
 
 namespace NotificationChannels\Textlocal;
 
+use \Exception;
+
 /**
  * Textlocal API2 Wrapper Class.
  *
