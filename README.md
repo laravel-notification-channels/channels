@@ -87,9 +87,10 @@ public function routeNotificationForTurboSms()
 
 ### Available methods
 
-`from()`: Sets the sender's name or phone number.
-
-`content()`: Sets a content of the notification message.
+`content()`: sets a content of the notification message.
+`getContent()`: gets a content of the notification message.
+`sender()`: sets the sender's name or phone number.
+`getSender()`: gets the sender's name or phone number.
 
 ## Changelog
 

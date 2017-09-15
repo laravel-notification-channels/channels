@@ -42,7 +42,7 @@ class TurboSmsChannel
 			$message = new TurboSmsMessage( $message );
 		}
 		
-		$this->client->send( $to, $message->getContent() );
+		$this->client->send( $to, $message->getContent(), $message->getSender() );
 	}
 	
 }

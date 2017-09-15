@@ -15,7 +15,7 @@ class TurboSmsServiceProvider extends ServiceProvider
 		$this->app->when( TurboSmsChannel::class )->needs( TurboSmsClient::class )->give( function () {
 			$config = config( 'services.turbosms' );
 			
-			return new TurboSmsClient( $config[ 'login' ], $config[ 'password' ], $config[ 'sender' ] );
+			return new TurboSmsClient( $config[ 'login' ], $config[ 'password' ] );
 		} );
 	}
 	

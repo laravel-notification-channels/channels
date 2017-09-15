@@ -22,9 +22,6 @@ class TurboSmsClient
 	/** @var string */
 	protected $password;
 	
-	/** @var string */
-	protected $sender;
-	
 	const AUTH_SUCCESSFUL                  = 'Вы успешно авторизировались';
 	const AUTH_ERROR_NEED_MORE_PARAMS      = 'Не достаточно параметров для выполнения функции';
 	const AUTH_ERROR_WRONG_CREDENTIALS     = 'Неверный логин или пароль';
@@ -42,11 +39,10 @@ class TurboSmsClient
 	 * @param string $password
 	 * @param string $sender
 	 */
-	public function __construct ( string $login, string $password, string $sender )
+	public function __construct ( string $login, string $password )
 	{
 		$this->login    = $login;
 		$this->password = $password;
-		$this->sender   = $sender;
 		$this->client   = new SoapClient( self::$host );
 	}
 	
@@ -58,7 +54,7 @@ class TurboSmsClient
 	 * @throws BalanceException
 	 * @throws CouldNotSendNotification
 	 */
-	public function send ( array $to, string $message )
+	public function send ( array $to, string $message, string $sender)
 	{
 		$authResponse = $this->client->Auth( [
 			'login'    => $this->login,
@@ -96,7 +92,7 @@ class TurboSmsClient
 		//$to = collect( $to )->toArray();
 		
 		$response = $this->client->SendSMS( [
-			'sender'      => $this->sender,
+			'sender'      => $sender,
 			'destination' => implode( ',', $to ),
 			'text'        => $message,
 		] );
