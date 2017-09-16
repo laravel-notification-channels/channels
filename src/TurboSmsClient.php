@@ -69,18 +69,14 @@ class TurboSmsClient
                 // accepted format \+\d{12} only
                 return '+'.$value;
             }
-
-            return NULL;
         }, $to );
 
         $message = trim( $message );
         $sender  = trim( $sender );
 
-
         // basic versifying and connecting
 
         $this->verify( $to, $message, $sender )->connect()->checkBalance( count( $to ) );
-
 
         // sending notification and response handle
 
