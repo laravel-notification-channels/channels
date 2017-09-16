@@ -67,7 +67,7 @@ class TurboSmsClient
             $value = preg_replace( '/\D/', '', $value );
             if ( strlen( $value ) === 12 ) {
                 // accepted format \+\d{12} only
-                return '+' . $value;
+                return '+'.$value;
             }
 
             return NULL;
@@ -117,7 +117,7 @@ class TurboSmsClient
     }
 
     /**
-     * Connecting to the Service
+     * Connecting to the Service.
      *
      * @return TurboSmsClient
      * @throws AuthException
@@ -169,7 +169,7 @@ class TurboSmsClient
             throw BalanceException::UnAuthorised();
         }
 
-        $balanceResponse = (int)$balanceResponse;
+        $balanceResponse = (int) $balanceResponse;
         if ( $balanceResponse < $credits ) {
             throw BalanceException::InsufficientBalance( $balanceResponse );
         }
