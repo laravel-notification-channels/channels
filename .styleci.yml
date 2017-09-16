@@ -4,7 +4,6 @@ linting: true
 
 disabled:
   - no_spaces_after_function_name
-  - no_spaces_inside_parenthesis
   - no_spaces_inside_offset
   - no_spaces_inside_parenthesis
   - no_spaces_outside_offset
