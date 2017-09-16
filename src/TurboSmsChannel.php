@@ -11,7 +11,7 @@ class TurboSmsChannel
 {
     /** @var TurboSmsClient */
     protected $client;
-    
+
     /**
      * @param TurboSmsClient $client
      */
@@ -19,7 +19,7 @@ class TurboSmsChannel
     {
         $this->client = $client;
     }
-    
+
     /**
      * Send the given notification.
      *
@@ -35,17 +35,17 @@ class TurboSmsChannel
         if ( !$to = $notifiable->routeNotificationFor( 'turbosms' ) ) {
             return;
         }
-        
+
         if ( is_string( $to ) ) {
             $to = explode( ',', $to );
         }
-        
+
         $message = $notification->toTurboSms( $notifiable );
-        
+
         if ( is_string( $message ) ) {
             $message = new TurboSmsMessage( $message );
         }
-        
+
         $this->client->send( $to, $message->getContent(), $message->getSender() );
     }
 }

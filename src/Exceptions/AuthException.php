@@ -13,7 +13,7 @@ class AuthException extends \Exception
     {
         return new static( 'Bad Request: "{$message}"', 400 );
     }
-    
+
     /**
      * @param string $message
      *
@@ -23,7 +23,7 @@ class AuthException extends \Exception
     {
         return new static( 'Unauthorized: "{$message}"', 401 );
     }
-    
+
     /**
      * @param string $message
      *
@@ -33,7 +33,7 @@ class AuthException extends \Exception
     {
         return new static( 'Account error: "{$message}"', 403 );
     }
-    
+
     /**
      * @param string $message
      *

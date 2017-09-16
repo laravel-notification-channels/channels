@@ -13,7 +13,7 @@ class CouldNotSendNotification extends \Exception
     {
         return new static( 'TurboSMS responded with an error "{$message}"', 424 );
     }
-    
+
     /**
      * @return static
      */
@@ -21,7 +21,7 @@ class CouldNotSendNotification extends \Exception
     {
         return new static( 'Notification was not sent. Sender must be defined.', 400 );
     }
-    
+
     /**
      * @return static
      */
@@ -29,7 +29,7 @@ class CouldNotSendNotification extends \Exception
     {
         return new static( 'Notification was not sent. Recipient must be defined.', 400 );
     }
-    
+
     /**
      * @return static
      */

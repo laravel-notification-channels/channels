@@ -11,7 +11,7 @@ class BalanceException extends \Exception
     {
         return new static( 'Unauthorized.', 401 );
     }
-    
+
     /**
      * @param int $balance
      *

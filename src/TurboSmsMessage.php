@@ -6,10 +6,10 @@ class TurboSmsMessage
 {
     /** @var string */
     public $content;
-    
+
     /** @var string */
     public $sender;
-    
+
     /**
      * @param string $content
      *
@@ -19,7 +19,7 @@ class TurboSmsMessage
     {
         return new static( $content );
     }
-    
+
     /**
      * @param string $content
      */
@@ -27,7 +27,7 @@ class TurboSmsMessage
     {
         $this->content = $content;
     }
-    
+
     /**
      * @param string $content
      *
@@ -36,10 +36,10 @@ class TurboSmsMessage
     public function content(string $content) : self
     {
         $this->content = $content;
-        
+
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -47,7 +47,7 @@ class TurboSmsMessage
     {
         return $this->content;
     }
-    
+
     /**
      * @param string $sender
      *
@@ -56,10 +56,10 @@ class TurboSmsMessage
     public function sender(string $sender) : self
     {
         $this->sender = $sender;
-        
+
         return $this;
     }
-    
+
     /**
      * @return string
      */
