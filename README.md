@@ -1,5 +1,10 @@
 # TurboSMS notifications channel for Laravel 5.5
 
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/turbosms/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/turbosms)
+[![StyleCI](https://styleci.io/repos/103665228/shield)](https://styleci.io/repos/103665228)
+
+
 This package makes it easy to send notifications using [turbosms.ua](https://turbosms.ua/) with Laravel 5.5.
 
 ## Contents
@@ -48,7 +53,7 @@ Add your TurboSMS user, password and sender to your `config/services.php`:
 'turbosms' => [
     'login'  => env('TURBOSMS_LOGIN'),
     'password' => env('TURBOSMS_PASSWORD'),
-    'sender' => env('TURBOSMS_SENDER'),
+    'sender' => env('TURBOSMS_SENDER'), // optional
 ],
 ...
 ```
@@ -59,24 +64,27 @@ You can use the channel in your `via()` method inside the notification:
 
 ```php
 use Illuminate\Notifications\Notification;
-use NotificationChannels\TurboSms\TurboSmsMessage;
-use NotificationChannels\TurboSms\TurboSmsChannel;
+use NotificationChannels\TurboSms\{
+    TurboSmsMessage, TurboSmsChannel
+};
 
 class AccountApproved extends Notification
 {
-    public function via($notifiable)
+    public function via( $notifiable ) : array
     {
-        return [TurboSmsChannel::class];
+        return [ TurboSmsChannel::class ];
     }
 
-    public function toTurboSms($notifiable)
+    public function toTurboSms( $notifiable ) : TurboSmsMessage
     {
-        return (new TurboSmsMessage())
-            ->content("Your {$notifiable->service} account was approved!");
+        return ( new TurboSmsMessage() )
+            ->content( 'Your {$notifiable->service} account was approved!' )
+            ->sender( 'Sender' )
+            ;
     }
 }
 ```
-In your notifiable model, make sure to include a routeNotificationForTurboSms() method, which return the phone number.
+In your notifiable model, make sure to include a routeNotificationForTurboSms() method, which return the phone number or array of phone numbers.
 
 ```php
 public function routeNotificationForTurboSms()
@@ -87,10 +95,17 @@ public function routeNotificationForTurboSms()
 
 ### Available methods
 
+#### TurboSmsClient
+`getLastResults()`: get array of notification's GUID styled ID.
+
+#### TurboSmsMessage
 `content()`: sets a content of the notification message.
+
 `getContent()`: gets a content of the notification message.
-`sender()`: sets the sender's name or phone number.
-`getSender()`: gets the sender's name or phone number.
+
+`sender()`: sets the sender's name (or phone number as name).
+
+`getSender()`: gets the sender's name.
 
 ## Changelog
 
