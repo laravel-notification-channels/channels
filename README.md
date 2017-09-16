@@ -84,7 +84,7 @@ class AccountApproved extends Notification
     }
 }
 ```
-In your notifiable model, make sure to include a routeNotificationForTurboSms() method, which return the phone number or array of phone numbers.
+In your notifiable model, make sure to include a `routeNotificationForTurboSms()` method, which return the phone number or array of phone numbers.
 
 ```php
 public function routeNotificationForTurboSms()
