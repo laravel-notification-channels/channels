@@ -8,4 +8,3 @@ disabled:
   - no_spaces_inside_parenthesis
   - no_tab_indentation
   - not_operator_with_successor_space
-  - class_keyword_remove
