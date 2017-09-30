@@ -29,14 +29,9 @@ You can install the package via composer:
 composer require laravel-notification-channels/turbosms
 ```
 
-You must install the service provider:
-```php
-// config/app.php
-'providers' => [
-    ...
-    NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
-],
-```
+Thanks to [Package Auto-Discovery In Laravel 5.5](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518) 
+you don't need to install the service provider manually.
+
 
 ### Setting up the TurboSMS service
 
