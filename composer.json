@@ -41,5 +41,15 @@
 	},
 	"scripts"      : {
 		"test" : "vendor/bin/phpunit"
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"NotificationChannels\\TurboSms\\TurboSmsServiceProvider"
+			],
+			"aliases": {
+				"TurboSms": "NotificationChannels\\TurboSms\\TurboSmsServiceProvider"
+			}
+		}
 	}
 }
