@@ -113,7 +113,7 @@ class CouldNotSendNotification extends \Exception
 
         return new static(
             sprintf(
-                'redsms.ru responded with an error "%s"', $errorCode == $message ? $errorCode : $errorCode . ': ' . $message
+                'redsms.ru responded with an error "%s"', $errorCode == $message ? $errorCode : $errorCode.': '.$message
             )
         );
     }

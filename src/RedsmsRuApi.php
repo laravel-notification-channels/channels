@@ -34,7 +34,7 @@ class RedsmsRuApi
         $this->httpClient = new HttpClient([
             'timeout' => 5,
             'connect_timeout' => 5,
-            'base_uri' => self::BASE_URI
+            'base_uri' => self::BASE_URI,
         ]);
     }
 
@@ -51,7 +51,7 @@ class RedsmsRuApi
             'phone'     => $phone,
             'login'     => $this->login,
             'sender'    => $this->sender,
-            'timestamp' => $this->getTimestamp()
+            'timestamp' => $this->getTimestamp(),
         ];
 
         $params['signature'] = $this->getSignature($params);
@@ -105,6 +105,6 @@ class RedsmsRuApi
         ksort($params);
         reset($params);
 
-        return md5( implode( $params ) . $this->secret );
+        return md5(implode($params).$this->secret);
     }
 }
