@@ -50,7 +50,7 @@ class RedsmsRuChannelTest extends \PHPUnit_Framework_TestCase
                 [
                     'phone' => '1234567890',
                     'text' => 'hello',
-                    'sender' => 'John_Doe'
+                    'sender' => 'John_Doe',
                 ]
             );
 
