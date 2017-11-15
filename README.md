@@ -27,6 +27,12 @@ You can install the package via composer:
 ```bash
 composer require alymosul/laravel-exponent-push-notifications
 ```
+
+If you use Laravel <= 5.4, please use release v1.0:
+```bash
+composer require alymosul/laravel-exponent-push-notifications dev-master#v1.0
+```
+
 You must install the service provider:
 
 ```php
