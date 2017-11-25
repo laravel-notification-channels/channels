@@ -37,7 +37,7 @@ This package makes it easy to send notifications using [textlocal](https://www.t
 
 Create an account in textlocal then create an API key or hash(password).
 
-`composer require laravel-notification-channels/textlocal`
+`composer require msonowal/laravel-notification-channel-textlocal`
 
 ### Setting up the textlocal service
 
