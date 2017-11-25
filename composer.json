@@ -1,6 +1,6 @@
 {
-    "name": "laravel-notification-channels/textlocal",
-    "description": "This package helps to send SMS via Textlocal API in laravel way",
+    "name": "msonowal/laravel-notification-channel-textlocal",
+    "description": "This Driver for textlocal sms to send SMS via Textlocal API through laravel notification",
     "homepage": "https://github.com/laravel-notification-channels/textlocal",
     "license": "MIT",
     "authors": [
@@ -13,8 +13,8 @@
     ],
     "require": {
         "php": ">=5.6.4",
-        "illuminate/notifications": "^5.3|^5.4",
-        "illuminate/support": "^5.1|^5.2|^5.3|^5.4"
+        "illuminate/notifications": "^5.3|^5.4|^5.5",
+        "illuminate/support": "^5.1|^5.2|^5.3|^5.4|^5.5"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
