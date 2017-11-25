@@ -6,14 +6,9 @@ https://laravel.com/docs/5.4/notifications
 
 # Found any bugs or improvement open an issue or send me a PR
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/textlocal.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/textlocal)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/textlocal/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/textlocal)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/textlocal.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/textlocal)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/textlocal/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/textlocal/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/textlocal.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/textlocal)
+[![Latest Stable Version](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/v/stable)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
+[![License](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/license)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
+[![Total Downloads](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/downloads)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
 
 This package makes it easy to send notifications using [textlocal](https://www.textlocal.in/) with Laravel 5.3.+
 
@@ -44,10 +39,11 @@ Create an account in textlocal then create an API key or hash(password).
 put the followings and to your config/services
 ```
 'sms' => [
-	'textlocal' => [
-		'username'  => env('TEXTLOCAL_USERNAME'),
-		'hash'      => env('TEXTLOCAL_HASH'),
-		'sender'    => env('TEXTLOCAL_SENDER'),
+     'textlocal' => [
+	 'username'  => env('TEXTLOCAL_USERNAME'),
+	 'hash'      => env('TEXTLOCAL_HASH'),
+	 'sender'    => env('TEXTLOCAL_SENDER'),
+     ]
 ]
 ```
 
