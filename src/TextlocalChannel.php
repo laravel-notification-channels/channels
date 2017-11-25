@@ -37,6 +37,10 @@ class TextlocalChannel
         if (!is_array($numbers)) {
             $numbers = [$numbers];
         }
+        
+        if (! array_filter($numbers, 'is_int')) {
+            return;
+        }
 
         // Get the message from the notification class
         $message = (string) $notification->toSms($notifiable);
