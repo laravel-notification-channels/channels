@@ -38,9 +38,7 @@ class TextlocalChannel
             $numbers = [$numbers];
         }
         
-        if (! array_filter($numbers, 'is_int')) {
-            return;
-        }
+        //TODO check if numbers are correct
 
         // Get the message from the notification class
         $message = (string) $notification->toSms($notifiable);
