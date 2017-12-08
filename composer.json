@@ -5,9 +5,9 @@
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Jarno Antikainen / Wysiwyg Oy",
+            "email": "jarno.antikainen@wysiwyg.fi",
+            "homepage": "https://www.wysiwyg.fi",
             "role": "Developer"
         }
     ],

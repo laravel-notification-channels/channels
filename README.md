@@ -66,7 +66,7 @@ $ composer test
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email info@wysiwyg.fi instead of using the issue tracker.
 
 ## Contributing
 
@@ -74,7 +74,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- Jarno Antikainen (https://github.com/jarnoan)
 - [All Contributors](../../contributors)
 
 ## License
