@@ -4,7 +4,7 @@ namespace NotificationChannels\ZonerSmsGateway;
 
 use Illuminate\Support\Arr;
 
-class :service_nameMessage
+class ZonerSmsGatewayMessage
 {
     // Message structure here
 }

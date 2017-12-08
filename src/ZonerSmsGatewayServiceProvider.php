@@ -4,7 +4,7 @@ namespace NotificationChannels\ZonerSmsGateway;
 
 use Illuminate\Support\ServiceProvider;
 
-class :service_nameServiceProvider extends ServiceProvider
+class ZonerSmsGatewayServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

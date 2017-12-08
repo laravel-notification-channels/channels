@@ -7,7 +7,7 @@ use NotificationChannels\ZonerSmsGateway\Events\MessageWasSent;
 use NotificationChannels\ZonerSmsGateway\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
-class :service_nameChannel
+class ZonerSmsGatewayChannel
 {
     public function __construct()
     {
