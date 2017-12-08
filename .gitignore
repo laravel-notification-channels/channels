@@ -2,3 +2,8 @@
 build
 composer.phar
 composer.lock
+
+# PhpStorm
+/.idea/**/workspace.xml
+/.idea/**/tasks.xml
+/.idea/dictionaries
