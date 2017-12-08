@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace\Test;
+namespace NotificationChannels\ZonerSmsGateway\Test;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {

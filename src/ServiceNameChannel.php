@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace;
+namespace NotificationChannels\ZonerSmsGateway;
 
-use NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification;
-use NotificationChannels\:channel_namespace\Events\MessageWasSent;
-use NotificationChannels\:channel_namespace\Events\SendingMessage;
+use NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification;
+use NotificationChannels\ZonerSmsGateway\Events\MessageWasSent;
+use NotificationChannels\ZonerSmsGateway\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class :service_nameChannel
@@ -20,7 +20,7 @@ class :service_nameChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @throws \NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {

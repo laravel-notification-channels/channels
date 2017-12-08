@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace;
+namespace NotificationChannels\ZonerSmsGateway;
 
 use Illuminate\Support\ServiceProvider;
 
