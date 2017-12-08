@@ -1,7 +1,7 @@
 {
-    "name": "laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/zoner-sms-gateway",
     "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "homepage": "https://github.com/laravel-notification-channels/zoner-sms-gateway",
     "license": "MIT",
     "authors": [
         {
