@@ -1,6 +1,6 @@
 {
     "name": "laravel-notification-channels/zoner-sms-gateway",
-    "description": ":package_description",
+    "description": "Laravel notification channel for Zoner SMS-Gateway.",
     "homepage": "https://github.com/laravel-notification-channels/zoner-sms-gateway",
     "license": "MIT",
     "authors": [
