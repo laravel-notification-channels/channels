@@ -1,3 +1,4 @@
+.env
 /vendor
 build
 composer.phar

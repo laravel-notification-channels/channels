@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\ZonerSmsGateway;
 
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;
 
 class ZonerSmsGatewayServiceProvider extends ServiceProvider
@@ -11,24 +12,17 @@ class ZonerSmsGatewayServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Bootstrap code here.
-
-        /**
-         * Here's some example code we use for the pusher package.
-
-        $this->app->when(Channel::class)
-            ->needs(Pusher::class)
+        $this->app->when(ZonerSmsGatewayChannel::class)
+            ->needs(ZonerSmsGateway::class)
             ->give(function () {
-                $pusherConfig = config('broadcasting.connections.pusher');
+                $zonerSmsGatewayConfig = config('services.zoner-sms-gateway');
 
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
+                return new ZonerSmsGateway(
+                    $zonerSmsGatewayConfig['username'],
+                    $zonerSmsGatewayConfig['password'],
+                    new HttpClient()
                 );
             });
-         */
-
     }
 
     /**

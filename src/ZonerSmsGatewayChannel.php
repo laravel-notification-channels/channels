@@ -3,31 +3,41 @@
 namespace NotificationChannels\ZonerSmsGateway;
 
 use NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification;
-use NotificationChannels\ZonerSmsGateway\Events\MessageWasSent;
-use NotificationChannels\ZonerSmsGateway\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class ZonerSmsGatewayChannel
 {
-    public function __construct()
+    /**
+     * @var ZonerSmsGateway
+     */
+    protected $gateway;
+
+    public function __construct(ZonerSmsGateway $gateway)
     {
-        // Initialisation code here
+        $this->gateway = $gateway;
     }
 
     /**
      * Send the given notification.
      *
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param Notification $notification
      *
-     * @throws \NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification
+     * @return tracking number
+     * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
+        if (! $to = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
+            return;
+        }
 
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+        $message = $notification->toZonerSmsGateway($notifiable);
+
+        if (is_string($message)) {
+            $message = new ZonerSmsGatewayMessage($message);
+        }
+
+        return $this->gateway->sendMessage($to, $message->from, trim($message->content));
     }
 }
