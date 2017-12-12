@@ -28,6 +28,7 @@ class ZonerSmsGateway
 
         $this->http = $httpClient;
     }
+
     /**
      * Gets the HttpClient.
      *
@@ -50,7 +51,8 @@ class ZonerSmsGateway
      *
      * @throws CouldNotSendNotification if sending failed.
      */
-    public function sendMessage($numberTo, $numberFrom, $message) {
+    public function sendMessage($numberTo, $numberFrom, $message)
+    {
         if (empty($this->username)) {
             throw CouldNotSendNotification::usernameNotProvided();
         }
@@ -68,13 +70,13 @@ class ZonerSmsGateway
         }
         $endPointUrl = 'https://sms.zoner.fi/sms.php';
 
-        $params = array(
+        $params = [
             'username' => $this->username,
             'password' => $this->password,
             'numberto' => $numberTo,
             'numberfrom' => $numberFrom,
-            'message' => utf8_decode($message)
-        );
+            'message' => utf8_decode($message),
+        ];
 
         $response = $this->httpClient()->post($endPointUrl, [
             'form_params' => $params,
@@ -84,7 +86,7 @@ class ZonerSmsGateway
             $statusAndCode = explode(' ', $body, 2);
             if ($statusAndCode[0] === 'OK') {
                 return $statusAndCode[1];
-            } else if ($statusAndCode[0] === 'ERR') {
+            } elseif ($statusAndCode[0] === 'ERR') {
                 throw CouldNotSendNotification::serviceRespondedWithAnError($statusAndCode[1]);
             }
         } else {

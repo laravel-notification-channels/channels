@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\ZonerSmsGateway;
 
-use NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification;
 
 class ZonerSmsGatewayChannel
 {

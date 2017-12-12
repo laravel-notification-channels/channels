@@ -3,20 +3,20 @@
  * Created by PhpStorm.
  * User: jarno
  * Date: 12.12.2017
- * Time: 11.04
+ * Time: 11.04.
  */
 
 namespace NotificationChannels\ZonerSmsGateway\IntegrationTest;
 
 use GuzzleHttp\Client;
-use NotificationChannels\ZonerSmsGateway\ZonerSmsGateway;
 use PHPUnit\Framework\TestCase;
+use NotificationChannels\ZonerSmsGateway\ZonerSmsGateway;
 
 class ZonerSmsGatewayTest extends TestCase
 {
-    /** @var  ZonerSmsGateway */
+    /** @var ZonerSmsGateway */
     protected $gateway;
-    /** @var  string */
+    /** @var string */
     protected $numberTo;
 
     protected function setUp()

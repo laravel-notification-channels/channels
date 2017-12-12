@@ -3,36 +3,36 @@
  * Created by PhpStorm.
  * User: jarno
  * Date: 12.12.2017
- * Time: 9.38
+ * Time: 9.38.
  */
 
 namespace NotificationChannels\ZonerSmsGateway\Test;
 
-use GuzzleHttp\Client as HttpClient;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\ZonerSmsGateway\Exceptions\CouldNotSendNotification;
 use NotificationChannels\ZonerSmsGateway\ZonerSmsGateway;
 use NotificationChannels\ZonerSmsGateway\ZonerSmsGatewayChannel;
 use NotificationChannels\ZonerSmsGateway\ZonerSmsGatewayMessage;
-use PHPUnit\Framework\TestCase;
 
 class ZonerSmsGatewayChannelTest extends TestCase
 {
     /** @var array */
     protected $transactions = [];
-    /** @var  ZonerSmsGatewayChannel */
+    /** @var ZonerSmsGatewayChannel */
     protected $channel;
-    /** @var  Notifiable */
+    /** @var Notifiable */
     protected $notifiable;
-    /** @var  Notification */
+    /** @var Notification */
     protected $notification;
 
-    private function setUpWithResponses($responses) {
+    private function setUpWithResponses($responses)
+    {
         // Create mock handler for GuzzleHttp:
         $mockHttpHandler = new MockHandler($responses);
         $handler = HandlerStack::create($mockHttpHandler);
@@ -55,7 +55,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function sendsCorrectParametersInRequest()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $this->channel->send($this->notifiable, $this->notification);
@@ -78,7 +78,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function returnsTrackingCodeOnSuccessfulSend()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $trackingCode = $this->channel->send($this->notifiable, $this->notification);
@@ -94,7 +94,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function throwsExceptionOnErrorCodeResponse()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'ERR -123')
+            new Response(200, [], 'ERR -123'),
         ]);
 
         $this->channel->send($this->notifiable, $this->notification);
@@ -108,7 +108,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function throwsExceptionOnHttpError()
     {
         $this->setUpWithResponses([
-            new Response(500, [])
+            new Response(500, []),
         ]);
 
         $this->channel->send($this->notifiable, $this->notification);
