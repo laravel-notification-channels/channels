@@ -19,6 +19,13 @@ class ZonerSmsGatewayMessage
     public $from;
 
     /**
+     * The phone number the message should be sent to.
+     *
+     * @var string
+     */
+    public $to;
+
+    /**
      * Create a new message instance.
      *
      * @param  string  $content
@@ -50,6 +57,20 @@ class ZonerSmsGatewayMessage
     public function from($from)
     {
         $this->from = $from;
+
+        return $this;
+    }
+
+    /**
+     * Set the phone number the message should be sent to.
+     *
+     * @param  string  $to
+     *
+     * @return $this
+     */
+    public function to($to)
+    {
+        $this->to = $to;
 
         return $this;
     }

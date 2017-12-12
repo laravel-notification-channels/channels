@@ -28,14 +28,16 @@ class ZonerSmsGatewayChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
-            return;
-        }
-
         $message = $notification->toZonerSmsGateway($notifiable);
 
         if (is_string($message)) {
             $message = new ZonerSmsGatewayMessage($message);
+        }
+
+        if (empty($message->to)) {
+            if (! $to = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
+                throw CouldNotSendNotification::numberToNotProvided();
+            }
         }
 
         return $this->gateway->sendMessage($to, $message->from, trim($message->content));
