@@ -16,16 +16,21 @@ class ZonerSmsGateway
     /** @var string|null Zoner SMS-API password. */
     protected $password = null;
 
+    /** @var string|null Default sender number or text. */
+    protected $from = null;
+
     /**
      * @param string|null $username
      * @param string|null $password
+     * @param string|null $from sender number or name
      * @param HttpClient|null $httpClient
      */
-    public function __construct($username, $password, HttpClient $httpClient = null)
+    public function __construct($username, $password, $from = null, HttpClient $httpClient = null)
     {
         $this->username = $username;
         $this->password = $password;
 
+        $this->from = $from;
         $this->http = $httpClient;
     }
 
@@ -43,15 +48,15 @@ class ZonerSmsGateway
      * Sends a message via the gateway.
      *
      * @param string $numberTo phone number where to send (for example "35840123456")
-     * @param string $numberFrom sender phone number (for example "35840123456")
-     * or string (max 11 chars, a-ZA-Z0-9)
      * @param string $message message to send (UTF-8, but this function converts it to ISO-8859-15)
+     * @param string|null $numberFrom sender phone number (for example "35840123456")
+     * or string (max 11 chars, a-ZA-Z0-9)
      *
      * @return tracking number
      *
      * @throws CouldNotSendNotification if sending failed.
      */
-    public function sendMessage($numberTo, $numberFrom, $message)
+    public function sendMessage($numberTo, $message, $numberFrom = null)
     {
         if (empty($this->username)) {
             throw CouldNotSendNotification::usernameNotProvided();
@@ -62,7 +67,11 @@ class ZonerSmsGateway
         }
 
         if (empty($numberFrom)) {
-            throw CouldNotSendNotification::numberFromNotProvided();
+            if ($this->from) {
+                $numberFrom = $this->from;
+            } else {
+                throw CouldNotSendNotification::numberFromNotProvided();
+            }
         }
 
         if (empty($message)) {

@@ -40,6 +40,6 @@ class ZonerSmsGatewayChannel
             }
         }
 
-        return $this->gateway->sendMessage($to, $message->from, trim($message->content));
+        return $this->gateway->sendMessage($to, trim($message->content), $message->from);
     }
 }

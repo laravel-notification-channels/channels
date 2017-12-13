@@ -42,10 +42,10 @@ class ZonerSmsGatewayChannelTest extends TestCase
         $handler->push($history);
 
         $this->notifiable = new TestNotifiable();
-        $this->notification = new TestNotification();
+        $this->notification = new TestNotification('zonertest');
 
         $httpClient = new HttpClient(['handler' => $handler]);
-        $gateway = new ZonerSmsGateway('myuser', 'mypass', $httpClient);
+        $gateway = new ZonerSmsGateway('myuser', 'mypass', 'mysender', $httpClient);
         $this->channel = new ZonerSmsGatewayChannel($gateway);
     }
 
@@ -70,6 +70,24 @@ class ZonerSmsGatewayChannelTest extends TestCase
         $this->assertRegExp('/numberfrom=zonertest/', (string) $request->getBody());
         $this->assertRegExp('/numberto=112233445566/', (string) $request->getBody());
         $this->assertRegExp('/message=hello\+zoner/', (string) $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function usesDefaultSenderIfNotSetInMessage()
+    {
+        $this->setUpWithResponses([
+            new Response(200, [], 'OK 1231234')
+        ]);
+
+        $notification = new TestNotification(null);
+        $this->channel->send($this->notifiable, $notification);
+
+        $transaction = $this->transactions[0];
+        $request = $transaction['request'];
+
+        $this->assertRegExp('/numberfrom=mysender/', (string) $request->getBody());
     }
 
     /**
@@ -130,10 +148,16 @@ class TestNotifiable
 
 class TestNotification extends Notification
 {
+    private $from;
+
+    public function __construct($from) {
+        $this->from = $from;
+    }
+
     public function toZonerSmsGateway($notifiable)
     {
         return (new ZonerSmsGatewayMessage())
             ->content('hello zoner')
-            ->from('zonertest');
+            ->from($this->from);
     }
 }
