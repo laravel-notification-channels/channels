@@ -90,7 +90,7 @@ class InvoicePaid extends Notification
 
     public function toZonerSmsGateway($notifiable)
     {
-        return ZonerSmsGatewayMessage::create('One of your invoices has been paid!');
+        return new ZonerSmsGatewayMessage('One of your invoices has been paid!');
     }
 }
 ```
@@ -104,7 +104,7 @@ You can define a receiver of the message in different ways (listed in order of p
     ```php
         public function toZonerSmsGateway($notifiable)
         {
-            return ZonerSmsGatewayMessage::create('One of your invoices has been paid!')
+            return new ZonerSmsGatewayMessage('One of your invoices has been paid!')
                 ->receiver('3580123456789');
         }
     ```
