@@ -75,7 +75,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function sendsMessageParameterInRequest()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $this->channel->send($this->notifiable, $this->notification);
@@ -92,7 +92,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function usesSenderFromMessageWhenSet()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $notification = new NotificationThatDefinesSenderInMessage();
@@ -110,7 +110,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function usesDefaultSenderIfNotSetInMessage()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $notification = new NotificationThatDoesNotDefineSenderInMessage();
@@ -128,7 +128,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function usesReceiverFromMessageWhenSet()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $notification = new NotificationThatDefinesReceiverInMessage();
@@ -146,7 +146,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function usesReceiverFromNotifiableRoutingWhenNotSetInMessage()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $notifiable = new NotifiableWithRouting();
@@ -164,7 +164,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     public function usesReceiverFromNotifiablePhoneNumberWhenRoutingNotDefined()
     {
         $this->setUpWithResponses([
-            new Response(200, [], 'OK 1231234')
+            new Response(200, [], 'OK 1231234'),
         ]);
 
         $notifiable = new NotifiableWithPhoneNumber();
@@ -219,7 +219,8 @@ class ZonerSmsGatewayChannelTest extends TestCase
     }
 }
 
-class NotifiableWithRouting {
+class NotifiableWithRouting
+{
     use Notifiable;
 
     /**
@@ -231,7 +232,8 @@ class NotifiableWithRouting {
     }
 }
 
-class NotifiableWithPhoneNumber {
+class NotifiableWithPhoneNumber
+{
     use Notifiable;
 
     public $phone_number = 'receiver-from-notifiable-phone-number'; // Should be a phone number in reality

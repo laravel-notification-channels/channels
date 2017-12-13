@@ -31,7 +31,7 @@ class ZonerSmsGateway
         $this->password = $password;
 
         $this->sender = $sender;
-        $this->http   = $httpClient;
+        $this->http = $httpClient;
     }
 
     /**
@@ -84,7 +84,7 @@ class ZonerSmsGateway
             'password' => $this->password,
             'numberto' => $receiver,
             'numberfrom' => $sender,
-            'message' => utf8_decode($message)
+            'message' => utf8_decode($message),
         ];
 
         $response = $this->httpClient()->post($endPointUrl, [

@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\ZonerSmsGateway;
 
-use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;
 
 class ZonerSmsGatewayServiceProvider extends ServiceProvider
