@@ -17,21 +17,21 @@ class ZonerSmsGateway
     protected $password = null;
 
     /** @var string|null Default sender number or text. */
-    protected $from = null;
+    protected $sender = null;
 
     /**
      * @param string|null $username
      * @param string|null $password
-     * @param string|null $from sender number or name
+     * @param string|null $sender sender number or name
      * @param HttpClient|null $httpClient
      */
-    public function __construct($username, $password, $from = null, HttpClient $httpClient = null)
+    public function __construct($username, $password, $sender = null, HttpClient $httpClient = null)
     {
         $this->username = $username;
         $this->password = $password;
 
-        $this->from = $from;
-        $this->http = $httpClient;
+        $this->sender = $sender;
+        $this->http   = $httpClient;
     }
 
     /**
@@ -47,28 +47,28 @@ class ZonerSmsGateway
     /**
      * Sends a message via the gateway.
      *
-     * @param string $numberTo phone number where to send (for example "35840123456")
+     * @param string $receiver phone number where to send (for example "35840123456")
      * @param string $message message to send (UTF-8, but this function converts it to ISO-8859-15)
-     * @param string|null $numberFrom sender phone number (for example "35840123456")
+     * @param string|null $sender sender phone number (for example "35840123456")
      * or string (max 11 chars, a-ZA-Z0-9)
      *
      * @return tracking number
      *
      * @throws CouldNotSendNotification if sending failed.
      */
-    public function sendMessage($numberTo, $message, $numberFrom = null)
+    public function sendMessage($receiver, $message, $sender = null)
     {
         if (empty($this->username)) {
             throw CouldNotSendNotification::usernameNotProvided();
         }
 
-        if (empty($numberTo)) {
+        if (empty($receiver)) {
             throw CouldNotSendNotification::numberToNotProvided();
         }
 
-        if (empty($numberFrom)) {
-            if ($this->from) {
-                $numberFrom = $this->from;
+        if (empty($sender)) {
+            if ($this->sender) {
+                $sender = $this->sender;
             } else {
                 throw CouldNotSendNotification::numberFromNotProvided();
             }
@@ -82,9 +82,9 @@ class ZonerSmsGateway
         $params = [
             'username' => $this->username,
             'password' => $this->password,
-            'numberto' => $numberTo,
-            'numberfrom' => $numberFrom,
-            'message' => utf8_decode($message),
+            'numberto' => $receiver,
+            'numberfrom' => $sender,
+            'message' => utf8_decode($message)
         ];
 
         $response = $this->httpClient()->post($endPointUrl, [

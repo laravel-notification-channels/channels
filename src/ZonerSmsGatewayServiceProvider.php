@@ -20,7 +20,7 @@ class ZonerSmsGatewayServiceProvider extends ServiceProvider
                 return new ZonerSmsGateway(
                     $zonerSmsGatewayConfig['username'],
                     $zonerSmsGatewayConfig['password'],
-                    $zonerSmsGatewayConfig['from']
+                    $zonerSmsGatewayConfig['sender']
                 );
             });
     }

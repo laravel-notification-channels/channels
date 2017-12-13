@@ -34,12 +34,13 @@ class ZonerSmsGatewayChannel
             $message = new ZonerSmsGatewayMessage($message);
         }
 
-        if (empty($message->to)) {
-            if (! $to = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
-                throw CouldNotSendNotification::numberToNotProvided();
+        $receiver = $message->receiver;
+        if (empty($receiver)) {
+            if (! $receiver = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
+                throw CouldNotSendNotification::receiverNotProvided();
             }
         }
 
-        return $this->gateway->sendMessage($to, trim($message->content), $message->from);
+        return $this->gateway->sendMessage($receiver, trim($message->content), $message->sender);
     }
 }

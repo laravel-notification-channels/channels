@@ -19,12 +19,12 @@ class CouldNotSendNotification extends \Exception
         return new static('You must provide your Zoner SMS-Gateway username to make any API requests.');
     }
 
-    public static function numberToNotProvided()
+    public static function receiverNotProvided()
     {
         return new static('Receiver number not defined.');
     }
 
-    public static function numberFromNotProvided()
+    public static function senderNotProvided()
     {
         return new static('Sender number not defined.');
     }
