@@ -1,4 +1,4 @@
-# Zoner SMS Gateway Notifications Channel for Laravel 5.3
+# Zoner SMS Gateway Notifications Channel for Laravel 5.4
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/zoner-sms-gateway.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/zoner-sms-gateway)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -10,7 +10,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/zoner-sms-gateway.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/zoner-sms-gateway)
 
 This package makes it easy to send notifications using [Zoner SMS-Gateway](https://www.zoner.fi/sovelluspalvelut/sms-gateway/) 
-with Laravel 5.3. Zoner SMS-Gateway is mainly targeted for Finnish customers.
+with Laravel 5.4. Zoner SMS-Gateway is mainly targeted for Finnish customers.
 
 This is an unofficial package and not developed or endorsed by Zoner.
 
