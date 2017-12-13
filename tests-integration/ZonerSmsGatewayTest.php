@@ -26,7 +26,7 @@ class ZonerSmsGatewayTest extends TestCase
 
         $username = getenv('ZONER_USERNAME');
         $password = getenv('ZONER_PASSWORD');
-        $this->numberTo = getenv('ZONER_TEST_NUMBER_TO');
+        $this->numberTo = getenv('ZONER_TEST_RECEIVER');
 
         $httpClient = new Client();
 
