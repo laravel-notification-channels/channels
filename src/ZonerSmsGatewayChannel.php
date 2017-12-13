@@ -34,11 +34,21 @@ class ZonerSmsGatewayChannel
             $message = new ZonerSmsGatewayMessage($message);
         }
 
+        // Use the receiver from message, if defined:
         $receiver = $message->receiver;
+
+        // Otherwise use the receiver given by notifiable:
         if (empty($receiver)) {
-            if (! $receiver = $notifiable->routeNotificationFor('zoner-sms-gateway')) {
-                throw CouldNotSendNotification::receiverNotProvided();
-            }
+            $receiver = $notifiable->routeNotificationFor('zoner-sms-gateway');
+        }
+
+        // As the last resort, try to get the phone_number attribute from notifiable:
+        if (empty($receiver)) {
+            $receiver = $notifiable->phone_number;
+        }
+
+        if (empty($receiver)) {
+            throw CouldNotSendNotification::receiverNotProvided();
         }
 
         return $this->gateway->sendMessage($receiver, trim($message->content), $message->sender);

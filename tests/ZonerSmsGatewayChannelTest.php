@@ -41,8 +41,8 @@ class ZonerSmsGatewayChannelTest extends TestCase
         $history = Middleware::history($this->transactions);
         $handler->push($history);
 
-        $this->notifiable = new TestNotifiable();
-        $this->notification = new TestNotification('sender-from-message');
+        $this->notifiable = new NotifiableWithRouting();
+        $this->notification = new NotificationThatDoesNotDefineReceiverInMessage();
 
         $httpClient = new HttpClient(['handler' => $handler]);
         $gateway = new ZonerSmsGateway('myuser', 'mypass', 'default-sender', $httpClient);
@@ -95,7 +95,8 @@ class ZonerSmsGatewayChannelTest extends TestCase
             new Response(200, [], 'OK 1231234')
         ]);
 
-        $this->channel->send($this->notifiable, $this->notification);
+        $notification = new NotificationThatDefinesSenderInMessage();
+        $this->channel->send($this->notifiable, $notification);
 
         $transaction = $this->transactions[0];
         $request = $transaction['request'];
@@ -112,13 +113,67 @@ class ZonerSmsGatewayChannelTest extends TestCase
             new Response(200, [], 'OK 1231234')
         ]);
 
-        $notification = new TestNotification(null);
+        $notification = new NotificationThatDoesNotDefineSenderInMessage();
         $this->channel->send($this->notifiable, $notification);
 
         $transaction = $this->transactions[0];
         $request = $transaction['request'];
 
         $this->assertRegExp('/numberfrom=default-sender/', (string) $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function usesReceiverFromMessageWhenSet()
+    {
+        $this->setUpWithResponses([
+            new Response(200, [], 'OK 1231234')
+        ]);
+
+        $notification = new NotificationThatDefinesReceiverInMessage();
+        $this->channel->send($this->notifiable, $notification);
+
+        $transaction = $this->transactions[0];
+        $request = $transaction['request'];
+
+        $this->assertRegExp('/numberto=receiver-from-message/', (string) $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function usesReceiverFromNotifiableRoutingWhenNotSetInMessage()
+    {
+        $this->setUpWithResponses([
+            new Response(200, [], 'OK 1231234')
+        ]);
+
+        $notifiable = new NotifiableWithRouting();
+        $this->channel->send($notifiable, $this->notification);
+
+        $transaction = $this->transactions[0];
+        $request = $transaction['request'];
+
+        $this->assertRegExp('/numberto=receiver-from-notifiable-routing/', (string) $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function usesReceiverFromNotifiablePhoneNumberWhenRoutingNotDefined()
+    {
+        $this->setUpWithResponses([
+            new Response(200, [], 'OK 1231234')
+        ]);
+
+        $notifiable = new NotifiableWithPhoneNumber();
+        $this->channel->send($notifiable, $this->notification);
+
+        $transaction = $this->transactions[0];
+        $request = $transaction['request'];
+
+        $this->assertRegExp('/numberto=receiver-from-notifiable-phone-number/', (string) $request->getBody());
     }
 
     /**
@@ -164,8 +219,7 @@ class ZonerSmsGatewayChannelTest extends TestCase
     }
 }
 
-class TestNotifiable
-{
+class NotifiableWithRouting {
     use Notifiable;
 
     /**
@@ -173,22 +227,52 @@ class TestNotifiable
      */
     public function routeNotificationForZonerSmsGateway()
     {
-        return '112233445566';
+        return 'receiver-from-notifiable-routing'; // Should be a phone number in reality
     }
 }
 
-class TestNotification extends Notification
+class NotifiableWithPhoneNumber {
+    use Notifiable;
+
+    public $phone_number = 'receiver-from-notifiable-phone-number'; // Should be a phone number in reality
+}
+
+class NotificationThatDefinesSenderInMessage extends Notification
 {
-    private $sender;
-
-    public function __construct($sender) {
-        $this->sender = $sender;
-    }
-
     public function toZonerSmsGateway($notifiable)
     {
         return (new ZonerSmsGatewayMessage())
             ->content('hello zoner')
-            ->sender($this->sender);
+            ->sender('sender-from-message');
+    }
+}
+
+class NotificationThatDoesNotDefineSenderInMessage extends Notification
+{
+    public function toZonerSmsGateway($notifiable)
+    {
+        return (new ZonerSmsGatewayMessage())
+            ->content('hello zoner');
+    }
+}
+
+class NotificationThatDefinesReceiverInMessage extends Notification
+{
+    public function toZonerSmsGateway($notifiable)
+    {
+        return (new ZonerSmsGatewayMessage())
+            ->content('hello zoner')
+            ->receiver('receiver-from-message');
+    }
+}
+
+class NotificationThatDoesNotDefineReceiverInMessage extends Notification
+{
+    private $sender;
+
+    public function toZonerSmsGateway($notifiable)
+    {
+        return (new ZonerSmsGatewayMessage())
+            ->content('hello zoner');
     }
 }
