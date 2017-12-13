@@ -21,9 +21,13 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/fideloper/proxy" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/filp/whoops" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/fzaninotto/faker" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/promises" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/psr7" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/jakub-onderka/php-console-highlighter" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel-notification-channels/zoner-sms-gateway" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/dusk" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/tinker" />
@@ -51,6 +55,7 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/phpunit/phpunit" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/container" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/http-message" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/simple-cache" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psy/psysh" />
@@ -77,6 +82,7 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/options-resolver" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-iconv" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/process" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/translation" />
@@ -101,9 +107,13 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/fideloper/proxy" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/filp/whoops" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/fzaninotto/faker" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/promises" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/guzzlehttp/psr7" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/jakub-onderka/php-console-highlighter" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel-notification-channels/zoner-sms-gateway" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/dusk" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/laravel/tinker" />
@@ -131,6 +141,7 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/phpunit/phpunit" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/container" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/http-message" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psr/simple-cache" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/psy/psysh" />
@@ -157,6 +168,7 @@
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/options-resolver" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-iconv" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/process" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/../kultajousi-broker/vendor/symfony/translation" />
