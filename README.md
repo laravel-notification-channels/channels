@@ -66,7 +66,7 @@ Then, configure your Zoner SMS-Gateway credentials:
 ```
 
 ```bash
-// .env
+# .env
 ZONER_USERNAME=myusername
 ZONER_PASSWORD=mypassword
 ZONER_SENDER=mysender
