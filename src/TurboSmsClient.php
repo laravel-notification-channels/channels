@@ -27,15 +27,15 @@ class TurboSmsClient
     /** @var array */
     private $lastResults = [];
 
-    const AUTH_SUCCESSFUL                  = 'Вы успешно авторизировались';
-    const AUTH_ERROR_NEED_MORE_PARAMS      = 'Не достаточно параметров для выполнения функции';
-    const AUTH_ERROR_WRONG_CREDENTIALS     = 'Неверный логин или пароль';
-    const AUTH_ERROR_ACCOUNT_NOT_ACTIVATED = 'Ваша учётная запись не активирована, свяжитесь с администрацией';
-    const AUTH_ERROR_ACCOUNT_BLOCKED       = 'Ваша учётная запись заблокирована за нарушения, свяжитесь с администрацией';
-    const AUTH_ERROR_ACCOUNT_DISABLED      = 'Ваша учётная запись отключена, свяжитесь с администрацией';
+    public const AUTH_SUCCESSFUL                  = 'Вы успешно авторизировались';
+    public const AUTH_ERROR_NEED_MORE_PARAMS      = 'Не достаточно параметров для выполнения функции';
+    public const AUTH_ERROR_WRONG_CREDENTIALS     = 'Неверный логин или пароль';
+    public const AUTH_ERROR_ACCOUNT_NOT_ACTIVATED = 'Ваша учётная запись не активирована, свяжитесь с администрацией';
+    public const AUTH_ERROR_ACCOUNT_BLOCKED       = 'Ваша учётная запись заблокирована за нарушения, свяжитесь с администрацией';
+    public const AUTH_ERROR_ACCOUNT_DISABLED      = 'Ваша учётная запись отключена, свяжитесь с администрацией';
 
-    const UNAUTHORISED    = 'Вы не авторизированы';
-    const SUCCESSFUL_SEND = 'Сообщения успешно отправлены';
+    public const UNAUTHORISED    = 'Вы не авторизированы';
+    public const SUCCESSFUL_SEND = 'Сообщения успешно отправлены';
 
     /**
      * TurboSmsClient constructor.
@@ -63,25 +63,25 @@ class TurboSmsClient
     {
         // normalizing input data
 
-        $to = array_map( function (string $value) {
-            $value = preg_replace( '/\D/', '', $value );
-            if ( strlen( $value ) === 12 ) {
-                // accepted format \+\d{12} only
-                return '+'.$value;
-            }
-        }, $to );
+        array_walk( $to, function (&$value) {
+            $value = '+'.preg_replace( '/\D/', '', $value );
+        } );
+
+        $recipients = array_filter( $to, function ($value) {
+            return preg_match( '/\+\d{12}/', $value );
+        } );
 
         $message = trim( $message );
         $sender  = trim( $sender );
 
         // basic versifying and connecting
 
-        $this->verify( $to, $message, $sender )->connect()->checkBalance( count( $to ) );
+        $this->verify( $recipients, $message, $sender )->connect()->checkBalance( \count( $recipients ) );
 
         // sending notification and response handle
 
         $this->handleProviderResponses( $this->client->SendSMS( [
-            'destination' => implode( ',', $to ),
+            'destination' => implode( ',', $recipients ),
             'text'        => $message,
             'sender'      => $sender,
         ] )->SendSMSResult->ResultArray );
@@ -95,9 +95,9 @@ class TurboSmsClient
      * @return TurboSmsClient
      * @throws CouldNotSendNotification
      */
-    private function verify(array $to, string $message, string $sender) : self
+    public function verify(array $to, string $message, string $sender) : self
     {
-        if ( count( $to ) < 1 ) {
+        if ( \count( $to ) < 1 ) {
             throw CouldNotSendNotification::RecipientRequired();
         }
 
@@ -118,7 +118,7 @@ class TurboSmsClient
      * @return TurboSmsClient
      * @throws AuthException
      */
-    private function connect() : self
+    public function connect() : self
     {
         if ( $this->connected ) {
             return $this;
@@ -157,7 +157,7 @@ class TurboSmsClient
      * @return TurboSmsClient
      * @throws BalanceException
      */
-    private function checkBalance(int $credits) : self
+    public function checkBalance(int $credits) : self
     {
         $balanceResponse = $this->client->GetCreditBalance()->GetCreditBalanceResult;
 
@@ -185,7 +185,7 @@ class TurboSmsClient
             throw CouldNotSendNotification::serviceRespondedWithAnError( $responses[ 0 ] );
         }
 
-        $this->lastResults = array_slice( $responses, 1 );
+        $this->lastResults = $responses;
 
         return $this;
     }
@@ -197,4 +197,5 @@ class TurboSmsClient
     {
         return $this->lastResults;
     }
+
 }

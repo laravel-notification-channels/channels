@@ -12,20 +12,25 @@ class TurboSmsMessage
 
     /**
      * @param string $content
+     * @param string $sender
      *
      * @return static
      */
-    public static function create(string $content = '')
+    public static function create(string $content = '', string $sender = '')
     {
-        return new static( $content );
+        return new static( $content, $sender );
     }
 
     /**
+     * TurboSmsMessage constructor.
+     *
      * @param string $content
+     * @param string $sender
      */
-    public function __construct(string $content = '')
+    public function __construct(string $content = '', string $sender = '')
     {
         $this->content = $content;
+        $this->sender  = $sender;
     }
 
     /**

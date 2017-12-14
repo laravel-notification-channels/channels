@@ -19,6 +19,6 @@ class BalanceException extends \Exception
      */
     public static function InsufficientBalance(int $balance = 0)
     {
-        return new static( 'Insufficient balance: "{$balance}" credits.', 402 );
+        return new static( "Insufficient balance: '{$balance}' credits.", 402 );
     }
 }

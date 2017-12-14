@@ -11,7 +11,7 @@ class AuthException extends \Exception
      */
     public static function NeedMoreParams(string $message)
     {
-        return new static( 'Bad Request: "{$message}"', 400 );
+        return new static( "Bad Request: '{$message}'", 400 );
     }
 
     /**
@@ -21,7 +21,7 @@ class AuthException extends \Exception
      */
     public static function WrongCredentials(string $message)
     {
-        return new static( 'Unauthorized: "{$message}"', 401 );
+        return new static( "Unauthorized: '{$message}'", 401 );
     }
 
     /**
@@ -31,7 +31,7 @@ class AuthException extends \Exception
      */
     public static function AccountError(string $message)
     {
-        return new static( 'Account error: "{$message}"', 403 );
+        return new static( "Account error: '{$message}'", 403 );
     }
 
     /**
@@ -41,6 +41,6 @@ class AuthException extends \Exception
      */
     public static function serviceRespondedWithAnError(string $message)
     {
-        return new static( 'Auth error: "{$message}"', 400 );
+        return new static( "Auth error: '{$message}'", 400 );
     }
 }

@@ -36,13 +36,13 @@ class TurboSmsChannel
             return;
         }
 
-        if ( is_string( $to ) ) {
+        if ( \is_string( $to ) ) {
             $to = explode( ',', $to );
         }
 
         $message = $notification->toTurboSms( $notifiable );
 
-        if ( is_string( $message ) ) {
+        if ( \is_string( $message ) ) {
             $message = new TurboSmsMessage( $message );
         }
 

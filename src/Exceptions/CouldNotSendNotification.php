@@ -11,7 +11,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function serviceRespondedWithAnError(string $message)
     {
-        return new static( 'TurboSMS responded with an error "{$message}"', 424 );
+        return new static( "TurboSMS responded with an error '{$message}'", 424 );
     }
 
     /**
