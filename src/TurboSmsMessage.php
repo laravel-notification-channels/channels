@@ -30,7 +30,7 @@ class TurboSmsMessage
     public function __construct(string $content = '', string $sender = '')
     {
         $this->content = $content;
-        $this->sender  = $sender;
+        $this->sender = $sender;
     }
 
     /**

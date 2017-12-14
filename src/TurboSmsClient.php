@@ -27,14 +27,14 @@ class TurboSmsClient
     /** @var array */
     private $lastResults = [];
 
-    public const AUTH_SUCCESSFUL                  = 'Вы успешно авторизировались';
-    public const AUTH_ERROR_NEED_MORE_PARAMS      = 'Не достаточно параметров для выполнения функции';
-    public const AUTH_ERROR_WRONG_CREDENTIALS     = 'Неверный логин или пароль';
+    public const AUTH_SUCCESSFUL = 'Вы успешно авторизировались';
+    public const AUTH_ERROR_NEED_MORE_PARAMS = 'Не достаточно параметров для выполнения функции';
+    public const AUTH_ERROR_WRONG_CREDENTIALS = 'Неверный логин или пароль';
     public const AUTH_ERROR_ACCOUNT_NOT_ACTIVATED = 'Ваша учётная запись не активирована, свяжитесь с администрацией';
-    public const AUTH_ERROR_ACCOUNT_BLOCKED       = 'Ваша учётная запись заблокирована за нарушения, свяжитесь с администрацией';
-    public const AUTH_ERROR_ACCOUNT_DISABLED      = 'Ваша учётная запись отключена, свяжитесь с администрацией';
+    public const AUTH_ERROR_ACCOUNT_BLOCKED = 'Ваша учётная запись заблокирована за нарушения, свяжитесь с администрацией';
+    public const AUTH_ERROR_ACCOUNT_DISABLED = 'Ваша учётная запись отключена, свяжитесь с администрацией';
 
-    public const UNAUTHORISED    = 'Вы не авторизированы';
+    public const UNAUTHORISED = 'Вы не авторизированы';
     public const SUCCESSFUL_SEND = 'Сообщения успешно отправлены';
 
     /**
@@ -45,9 +45,9 @@ class TurboSmsClient
      */
     public function __construct(string $login, string $password)
     {
-        $this->login    = $login;
+        $this->login = $login;
         $this->password = $password;
-        $this->client   = new SoapClient( self::$host );
+        $this->client = new SoapClient( self::$host );
     }
 
     /**
@@ -72,7 +72,7 @@ class TurboSmsClient
         } );
 
         $message = trim( $message );
-        $sender  = trim( $sender );
+        $sender = trim( $sender );
 
         // basic versifying and connecting
 
@@ -197,5 +197,4 @@ class TurboSmsClient
     {
         return $this->lastResults;
     }
-
 }
