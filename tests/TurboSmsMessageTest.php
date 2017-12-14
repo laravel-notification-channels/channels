@@ -3,9 +3,9 @@
 namespace NotificationChannels\TurboSms\Test;
 
 use Mockery;
+use PHPUnit\Framework\TestCase;
 use NotificationChannels\TurboSms\TurboSmsClient;
 use NotificationChannels\TurboSms\TurboSmsMessage;
-use PHPUnit\Framework\TestCase;
 
 class TurboSmsMessageTest extends TestCase
 {
@@ -14,13 +14,13 @@ class TurboSmsMessageTest extends TestCase
     private $turboSmsMessage;
 
     private const SOME_CONTENT = 'This is some content';
-    private const SOME_SENDER  = 'Sender';
+    private const SOME_SENDER = 'Sender';
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->httpClient      = Mockery::mock( TurboSmsClient::class );
+        $this->httpClient = Mockery::mock( TurboSmsClient::class );
         $this->turboSmsMessage = new TurboSmsMessage( self::SOME_CONTENT );
     }
 
@@ -68,5 +68,4 @@ class TurboSmsMessageTest extends TestCase
         $this->assertEquals( self::SOME_CONTENT, $actual->getContent() );
         $this->assertEquals( self::SOME_SENDER, $actual->getSender() );
     }
-
 }
