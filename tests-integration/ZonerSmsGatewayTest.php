@@ -30,7 +30,7 @@ class ZonerSmsGatewayTest extends TestCase
 
         $httpClient = new Client();
 
-        $this->gateway = new ZonerSmsGateway($username, $password, $httpClient);
+        $this->gateway = new ZonerSmsGateway($username, $password, 'zonertest', $httpClient);
     }
 
     /**
@@ -38,7 +38,7 @@ class ZonerSmsGatewayTest extends TestCase
      */
     public function sendsSms()
     {
-        $tracking = $this->gateway->sendMessage($this->numberTo, 'zonertest', 'hello zoner');
+        $tracking = $this->gateway->sendMessage($this->numberTo, 'hello zoner', 'zonertest');
         $this->assertNotEmpty($tracking);
     }
 }

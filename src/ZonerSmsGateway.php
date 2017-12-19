@@ -63,14 +63,14 @@ class ZonerSmsGateway
         }
 
         if (empty($receiver)) {
-            throw CouldNotSendNotification::numberToNotProvided();
+            throw CouldNotSendNotification::receiverNotProvided();
         }
 
         if (empty($sender)) {
-            if ($this->sender) {
-                $sender = $this->sender;
+            if (empty($this->sender)) {
+                throw CouldNotSendNotification::senderNotProvided();
             } else {
-                throw CouldNotSendNotification::numberFromNotProvided();
+                $sender = $this->sender;
             }
         }
 
