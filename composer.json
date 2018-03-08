@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/asana",
+    "description": "Asana Notifications driver",
+    "homepage": "https://github.com/laravel-notification-channels/asana",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Mauthner",
+            "email": "mauthi@gmail.com",
+            "homepage": "https://www.netwerker.at",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "torann/laravel-asana": "^0.4.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*",
+        "orchestra/testbench": "3.3.x-dev",
+        "orchestra/database": "3.3.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Asana\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Asana\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
