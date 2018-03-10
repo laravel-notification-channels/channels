@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Asana\Test;
 
-use Mockery;
 use DateTime;
 use Illuminate\Support\Arr;
 use NotificationChannels\Asana\AsanaMessage;
@@ -20,11 +19,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         $this->setDefaultMessageParams($this->message);
     }
 
-
-    private function setDefaultMessageParams($message) {
-        $message->workspace("x");
-        $message->projects("x");
-
+    private function setDefaultMessageParams($message)
+    {
+        $message->workspace('x');
+        $message->projects('x');
     }
 
     /** @test */
@@ -64,10 +62,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_a_due_date_from_string()
     {
-        $date = "2018-01-31";
+        $date = '2018-01-31';
         $this->message->dueOn($date);
 
-        $this->assertEquals("2018-01-31", Arr::get($this->message->toArray(), 'due_on'));
+        $this->assertEquals('2018-01-31', Arr::get($this->message->toArray(), 'due_on'));
     }
 
     /** @test */
@@ -76,7 +74,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         $date = new DateTime('tomorrow');
         $this->message->dueOn($date);
 
-        $this->assertEquals($date->format("Y-m-d"), Arr::get($this->message->toArray(), 'due_on'));
+        $this->assertEquals($date->format('Y-m-d'), Arr::get($this->message->toArray(), 'due_on'));
     }
 
     /** @test */
@@ -94,7 +92,6 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('4711', Arr::get($this->message->toArray(), 'projects'));
     }
-
 
     /** @test */
     public function it_can_set_a_project_from_array()

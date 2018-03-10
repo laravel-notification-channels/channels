@@ -2,14 +2,11 @@
 
 namespace NotificationChannels\Asana\Test;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notification;
-use Mockery;
-use NotificationChannels\Asana\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Asana\Exceptions\InvalidConfiguration;
 use NotificationChannels\Asana\AsanaChannel;
 use NotificationChannels\Asana\AsanaMessage;
+use NotificationChannels\Asana\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Asana\Exceptions\InvalidConfiguration;
 use Orchestra\Testbench\TestCase;
 
 class ChannelTest extends TestCase
@@ -39,7 +36,6 @@ class TestNotifiable
 {
     use \Illuminate\Notifications\Notifiable;
 }
-
 
 class TestNotification extends Notification
 {
