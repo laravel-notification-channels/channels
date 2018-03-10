@@ -3,7 +3,6 @@
 namespace NotificationChannels\Asana;
 
 use DateTime;
-use Illuminate\Support\Arr;
 use Torann\LaravelAsana\Facade\Asana;
 
 class AsanaMessage
@@ -23,7 +22,7 @@ class AsanaMessage
     /** @var string|null */
     protected $workspace;
 
-	/** @var string|null */
+    /** @var string|null */
     protected $projects;
 
     /**
@@ -42,7 +41,7 @@ class AsanaMessage
     public function __construct($name)
     {
         $this->name = $name;
-        $this->notes = "";
+        $this->notes = '';
     }
 
     /**
@@ -59,7 +58,6 @@ class AsanaMessage
         return $this;
     }
 
-
     /**
      * Set the task notes.
      *
@@ -73,7 +71,6 @@ class AsanaMessage
 
         return $this;
     }
-
 
     /**
      * Set the task assignee (id or email address).
@@ -89,7 +86,6 @@ class AsanaMessage
         return $this;
     }
 
-
     /**
      * Set the task workspace (id or email address).
      *
@@ -103,7 +99,6 @@ class AsanaMessage
 
         return $this;
     }
-
 
     /**
      * Set the task projects (id or email address).
@@ -128,11 +123,11 @@ class AsanaMessage
      */
     public function dueOn($dueOn)
     {
-        if (! $dueOn instanceof DateTime) {
+        if (!$dueOn instanceof DateTime) {
             $dueOn = new DateTime($dueOn);
         }
 
-        $this->dueOn = $dueOn->format("Y-m-d");
+        $this->dueOn = $dueOn->format('Y-m-d');
 
         return $this;
     }
@@ -143,12 +138,12 @@ class AsanaMessage
     public function toArray()
     {
         return [
-            'name' => $this->name,
-            'notes' => $this->notes,
-            'assignee' => $this->assignee,
+            'name'      => $this->name,
+            'notes'     => $this->notes,
+            'assignee'  => $this->assignee,
             'workspace' => $this->workspace ? $this->workspace : asana()->defaultWorkspaceId,
-            'projects' => $this->projects ? $this->projects : asana()->defaultProjectId,
-            'due_on' => $this->dueOn,
+            'projects'  => $this->projects ? $this->projects : asana()->defaultProjectId,
+            'due_on'    => $this->dueOn,
         ];
     }
 }
