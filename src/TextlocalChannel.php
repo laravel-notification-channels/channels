@@ -52,7 +52,7 @@ class TextlocalChannel
 
             return json_decode(json_encode($response), true);
         } catch (\Exception $exception) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
+            throw CouldNotSendNotification::serviceRespondedWithAnError($exception, $message);
         }
     }
 }
