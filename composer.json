@@ -1,0 +1,53 @@
+{
+    "name": "khaninejad/linkedin",
+    "description": "This package used for send message using laravel notification service",
+    "homepage": "https://github.com/khaninejad/linkedin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Payam Khaninejad",
+            "email": "khaninejad@gmail.com",
+            "homepage": "https://copify.ir",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/psr7": "^1.4",
+        "happyr/linkedin-api-client": "^1.0",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "php-http/curl-client": "^1.7",
+        "php-http/message": "^1.6"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "khaninejad\\linkedin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "khaninejad\\linkedin\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "khaninejad\\linkedin\\LinkedinServiceProvider"
+            ]
+        }
+    }
+
+}
