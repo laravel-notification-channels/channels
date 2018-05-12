@@ -1,4 +1,4 @@
-# Exponent push notifications channel for Laravel 5.3
+# Exponent push notifications channel for Laravel 5
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/alymosul/laravel-exponent-push-notifications.svg?style=flat-square)](https://packagist.org/packages/alymosul/laravel-exponent-push-notifications)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -26,11 +26,6 @@
 You can install the package via composer:
 ```bash
 composer require alymosul/laravel-exponent-push-notifications
-```
-
-If you use Laravel <= 5.4, please use release v1.0:
-```bash
-composer require alymosul/laravel-exponent-push-notifications dev-master#v1.0
 ```
 
 You must install the service provider:
