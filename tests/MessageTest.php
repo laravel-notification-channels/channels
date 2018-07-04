@@ -90,4 +90,12 @@ class MessageTest extends TestCase
 
         $this->assertEquals(60, Arr::get($this->message->toArray(), 'ttl'));
     }
+
+    /** @test */
+    public function itCanSetJSONData()
+    {
+        $this->message->setJsonData('{"name":"Aly"}');
+
+        $this->assertEquals('{"name":"Aly"}', Arr::get($this->message->toArray(), 'data'));
+    }
 }
