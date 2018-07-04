@@ -143,8 +143,7 @@ class ExpoMessage
     {
         if (is_array($data)) {
             $data = json_encode($data);
-        }
-        elseif (is_string($data)) {
+        } elseif (is_string($data)) {
             @json_decode($data);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
