@@ -2,6 +2,8 @@
 
 namespace NotificationChannels\ExpoPushNotifications;
 
+use NotificationChannels\ExpoPushNotifications\Exceptions\CouldNotCreateMessage;
+
 class ExpoMessage
 {
     /**
@@ -34,6 +36,15 @@ class ExpoMessage
     protected $ttl = 0;
 
     /**
+     * The json data attached to the message.
+     *
+     * @var string
+     */
+    protected $jsonData = '';
+
+    /**
+     * Create a message with given body.
+     *
      * @param string $body
      *
      * @return static
@@ -120,6 +131,33 @@ class ExpoMessage
     }
 
     /**
+     * Set the json Data attached to the message.
+     *
+     * @param array|string $data
+     *
+     * @return $this
+     *
+     * @throws CouldNotCreateMessage
+     */
+    public function setJsonData($data)
+    {
+        if (is_array($data)) {
+            $data = json_encode($data);
+        }
+        elseif (is_string($data)) {
+            @json_decode($data);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new CouldNotCreateMessage('Invalid json format passed to the setJsonData().');
+            }
+        }
+
+        $this->jsonData = $data;
+
+        return $this;
+    }
+
+    /**
      * Get an array representation of the message.
      *
      * @return array
@@ -127,10 +165,11 @@ class ExpoMessage
     public function toArray()
     {
         return [
-            'body'  =>  $this->body,
-            'sound' =>  $this->sound,
-            'badge' =>  $this->badge,
-            'ttl'   =>  $this->ttl,
+            'body'      =>  $this->body,
+            'sound'     =>  $this->sound,
+            'badge'     =>  $this->badge,
+            'ttl'       =>  $this->ttl,
+            'jsonData'  => $this->jsonData,
         ];
     }
 }
