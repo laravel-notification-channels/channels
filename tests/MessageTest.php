@@ -96,6 +96,6 @@ class MessageTest extends TestCase
     {
         $this->message->setJsonData('{"name":"Aly"}');
 
-        $this->assertEquals('{"name":"Aly"}', Arr::get($this->message->toArray(), 'jsonData'));
+        $this->assertEquals('{"name":"Aly"}', Arr::get($this->message->toArray(), 'data'));
     }
 }

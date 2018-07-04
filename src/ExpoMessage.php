@@ -168,7 +168,7 @@ class ExpoMessage
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
             'ttl'       =>  $this->ttl,
-            'jsonData'  => $this->jsonData,
+            'data'  => $this->jsonData,
         ];
     }
 }
