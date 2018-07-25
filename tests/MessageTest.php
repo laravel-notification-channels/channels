@@ -92,6 +92,14 @@ class MessageTest extends TestCase
     }
 
     /** @test */
+    public function itCanSetChannelId()
+    {
+        $this->message->setChannelId('some-channel');
+
+        $this->assertEquals('some-channel', Arr::get($this->message->toArray(), 'channelId'));
+    }
+
+    /** @test */
     public function itCanSetJSONData()
     {
         $this->message->setJsonData('{"name":"Aly"}');

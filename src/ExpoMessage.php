@@ -36,6 +36,13 @@ class ExpoMessage
     protected $ttl = 0;
 
     /**
+     * ID of the Notification Channel through which to display this notification on Android devices.
+     *
+     * @var string
+     */
+    protected $channelId = "Default";
+
+    /**
      * The json data attached to the message.
      *
      * @var string
@@ -131,6 +138,16 @@ class ExpoMessage
     }
 
     /**
+     * Set the channelId of the notification for Android devices.
+     *
+     * @param string $channelId
+     */
+    public function setChannelId(string $channelId)
+    {
+        $this->channelId = $channelId;
+    }
+
+    /**
      * Set the json Data attached to the message.
      *
      * @param array|string $data
@@ -168,7 +185,8 @@ class ExpoMessage
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
             'ttl'       =>  $this->ttl,
-            'data'  => $this->jsonData,
+            'channelId' =>  $this->channelId,
+            'data'      => $this->jsonData,
         ];
     }
 }
