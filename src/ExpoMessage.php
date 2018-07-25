@@ -40,7 +40,7 @@ class ExpoMessage
      *
      * @var string
      */
-    protected $channelId = "Default";
+    protected $channelId = 'Default';
 
     /**
      * The json data attached to the message.
