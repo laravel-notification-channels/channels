@@ -141,10 +141,13 @@ class ExpoMessage
      * Set the channelId of the notification for Android devices.
      *
      * @param string $channelId
+     *
+     * @return $this
      */
     public function setChannelId(string $channelId)
     {
         $this->channelId = $channelId;
+        return $this;
     }
 
     /**
