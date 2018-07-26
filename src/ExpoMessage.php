@@ -47,7 +47,7 @@ class ExpoMessage
      *
      * @var string
      */
-    protected $jsonData = '';
+    protected $jsonData = '{}';
 
     /**
      * Create a message with given body.
@@ -147,6 +147,7 @@ class ExpoMessage
     public function setChannelId(string $channelId)
     {
         $this->channelId = $channelId;
+        
         return $this;
     }
 
