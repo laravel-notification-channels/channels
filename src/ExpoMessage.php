@@ -147,6 +147,7 @@ class ExpoMessage
     public function setChannelId(string $channelId)
     {
         $this->channelId = $channelId;
+
         return $this;
     }
 
