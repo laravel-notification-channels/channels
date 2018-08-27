@@ -30,6 +30,39 @@ composer require alymosul/laravel-exponent-push-notifications
 
 The package will automatically register itself.
 
+You can publish the migration with:
+```bash
+php artisan vendor:publish --provider="NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider" --tag="migrations"
+```
+
+After publishing the migration you can create the `exponent_push_notification_interests` table by running the migrations:
+
+```bash
+php artisan migrate
+```
+
+You can optionally publish the config file with:
+```bash
+php artisan vendor:publish --provider="NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider" --tag="config"
+```
+
+This is the contents of the published config file:
+
+```php
+return [
+    'interests' => [
+        /*
+         * Supported: "file", "database"
+         */
+        'driver' => env('EXPONENT_PUSH_NOTIFICATION_INTERESTS_STORAGE_DRIVER', 'file'),
+
+        'database' => [
+            'table_name' => 'exponent_push_notification_interests',
+        ],
+    ]
+];
+```
+
 ## Usage
 
 ``` php
