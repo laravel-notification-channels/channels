@@ -34,14 +34,7 @@ class ExpoDatabaseDriver implements ExpoRepository
      */
     public function retrieve(string $key)
     {
-        $interest = Interest::where('key', $key)->first();
-
-        if($interest instanceof Interest)
-        {
-            return (string) $interest->value;
-        }
-
-        return null;
+        return Interest::where('key', $key)->pluck('value')->toArray();
     }
 
     /**
