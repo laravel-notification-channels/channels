@@ -28,15 +28,7 @@ You can install the package via composer:
 composer require alymosul/laravel-exponent-push-notifications
 ```
 
-You must install the service provider:
-
-```php
-// config/app.php
-'providers' => [
-    ...
-    NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider::class,
-],
-```
+The package will automatically register itself.
 
 ## Usage
 
