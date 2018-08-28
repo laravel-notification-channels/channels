@@ -19,7 +19,7 @@ class ExpoDatabaseDriver implements ExpoRepository
     {
         $interest = Interest::firstOrCreate([
             'key' => $key,
-            'value' => $value
+            'value' => $value,
         ]);
 
         return $interest instanceof Interest;

@@ -8,7 +8,7 @@ return [
         'driver' => env('EXPONENT_PUSH_NOTIFICATION_INTERESTS_STORAGE_DRIVER', 'file'),
 
         'database' => [
-            'table_name' => 'exponent_push_notification_interests'
-        ]
-    ]
+            'table_name' => 'exponent_push_notification_interests',
+        ],
+    ],
 ];

@@ -34,7 +34,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
             ->give(function () {
                 $driver = new ExpoFileDriver();
 
-                if(config('exponent-push-notifications.interests.driver') === 'database') {
+                if (config('exponent-push-notifications.interests.driver') === 'database') {
                     $driver = new ExpoDatabaseDriver();
                 }
 
@@ -52,7 +52,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
     {
         $driverClass = ExpoFileDriver::class;
 
-        if(config('exponent-push-notifications.interests.driver') === 'database') {
+        if (config('exponent-push-notifications.interests.driver') === 'database') {
             $driverClass = ExpoDatabaseDriver::class;
         }
 
