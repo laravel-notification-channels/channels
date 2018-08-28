@@ -8,7 +8,7 @@ use NotificationChannels\ExpoPushNotifications\Models\Interest;
 class ExpoDatabaseDriver implements ExpoRepository
 {
     /**
-     * Stores an Expo token with a given identifier
+     * Stores an Expo token with a given identifier.
      *
      * @param $key
      * @param $value
@@ -26,7 +26,7 @@ class ExpoDatabaseDriver implements ExpoRepository
     }
 
     /**
-     * Retrieves an Expo token with a given identifier
+     * Retrieves an Expo token with a given identifier.
      *
      * @param string $key
      *
@@ -38,7 +38,7 @@ class ExpoDatabaseDriver implements ExpoRepository
     }
 
     /**
-     * Removes an Expo token with a given identifier
+     * Removes an Expo token with a given identifier.
      *
      * @param string $key
      *

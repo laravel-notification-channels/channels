@@ -10,7 +10,7 @@ class Interest extends Model
 
     protected $fillable = [
         'key',
-        'value'
+        'value',
     ];
 
     public $timestamps = false;

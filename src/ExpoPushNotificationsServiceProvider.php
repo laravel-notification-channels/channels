@@ -5,9 +5,9 @@ namespace NotificationChannels\ExpoPushNotifications;
 use ExponentPhpSDK\Expo;
 use ExponentPhpSDK\ExpoRegistrar;
 use ExponentPhpSDK\ExpoRepository;
-use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 use Illuminate\Support\ServiceProvider;
 use ExponentPhpSDK\Repositories\ExpoFileDriver;
+use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 
 class ExpoPushNotificationsServiceProvider extends ServiceProvider
 {
@@ -34,8 +34,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
             ->give(function () {
                 $driver = new ExpoFileDriver();
 
-                if(config('exponent-push-notifications.interests.driver') === 'database')
-                {
+                if(config('exponent-push-notifications.interests.driver') === 'database') {
                     $driver = new ExpoDatabaseDriver();
                 }
 
@@ -53,8 +52,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
     {
         $driverClass = ExpoFileDriver::class;
 
-        if(config('exponent-push-notifications.interests.driver') === 'database')
-        {
+        if(config('exponent-push-notifications.interests.driver') === 'database') {
             $driverClass = ExpoDatabaseDriver::class;
         }
 
