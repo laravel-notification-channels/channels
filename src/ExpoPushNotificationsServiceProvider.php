@@ -32,13 +32,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
         $this->app->when(ExpoChannel::class)
             ->needs(Expo::class)
             ->give(function () {
-                $driver = new ExpoFileDriver();
-
-                if (config('exponent-push-notifications.interests.driver') === 'database') {
-                    $driver = new ExpoDatabaseDriver();
-                }
-
-                return new Expo(new ExpoRegistrar($driver));
+                return new Expo(new ExpoRegistrar($this->getInterestsDriver()));
             });
 
         //Load routes
@@ -50,12 +44,24 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $driverClass = ExpoFileDriver::class;
+        $this->app->bind(ExpoRepository::class, get_class($this->getInterestsDriver()));
+    }
 
-        if (config('exponent-push-notifications.interests.driver') === 'database') {
-            $driverClass = ExpoDatabaseDriver::class;
+    /**
+     * @return ExpoRepository
+     */
+    public function getInterestsDriver()
+    {
+        $driver = config('exponent-push-notifications.interests.driver');
+
+        switch ($driver) {
+            case 'database':
+                $class = new ExpoDatabaseDriver();
+                break;
+            default:
+                $class = new ExpoFileDriver();
         }
 
-        $this->app->bind(ExpoRepository::class, $driverClass);
+        return $class;
     }
 }
