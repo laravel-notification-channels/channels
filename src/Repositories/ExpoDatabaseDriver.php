@@ -30,7 +30,7 @@ class ExpoDatabaseDriver implements ExpoRepository
      *
      * @param string $key
      *
-     * @return string|null
+     * @return array
      */
     public function retrieve(string $key)
     {
