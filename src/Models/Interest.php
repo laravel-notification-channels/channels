@@ -5,8 +5,7 @@ namespace NotificationChannels\ExpoPushNotifications\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Interest
- * @package NotificationChannels\ExpoPushNotifications\Models
+ * Class Interest.
  */
 class Interest extends Model
 {
