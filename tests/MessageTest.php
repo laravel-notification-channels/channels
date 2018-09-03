@@ -3,7 +3,6 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use Illuminate\Support\Arr;
-use PHPUnit\Framework\TestCase;
 use NotificationChannels\ExpoPushNotifications\ExpoMessage;
 
 class MessageTest extends TestCase

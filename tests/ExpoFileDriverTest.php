@@ -3,16 +3,15 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
-use Illuminate\Http\Request;
-use PHPUnit\Framework\TestCase;
+use ExponentPhpSDK\ExpoRegistrar;
+use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Validation\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
 
-class ExpoControllerTest extends TestCase
+class ExpoFileDriverTest extends TestCase
 {
     /**
      * @var ExpoChannel
@@ -28,7 +27,7 @@ class ExpoControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->expoChannel = new ExpoChannel(Expo::normalSetup(), new Dispatcher());
+        $this->expoChannel = new ExpoChannel(new Expo(new ExpoRegistrar(new ExpoFileDriver())), new Dispatcher());
 
         $this->expoController = new ExpoController($this->expoChannel);
 
@@ -129,47 +128,5 @@ class ExpoControllerTest extends TestCase
         $response = json_decode($response->content());
 
         $this->assertEquals('failed', $response->status);
-    }
-
-    /**
-     * Mocks a request for the ExpoController.
-     *
-     * @param $data
-     *
-     * @return \Mockery\MockInterface
-     */
-    private function mockRequest($data)
-    {
-        $request = \Mockery::mock(Request::class);
-        $request->shouldReceive('all')->andReturn($data);
-
-        return $request;
-    }
-
-    /**
-     * @param bool $fails
-     *
-     * @return \Mockery\MockInterface
-     */
-    private function mockValidator(bool $fails)
-    {
-        $validator = \Mockery::mock(\Illuminate\Validation\Validator::class);
-
-        $validation = \Mockery::mock(Factory::class);
-        $validation->shouldReceive('make')->once()->andReturn($validator);
-
-        $validator->shouldReceive('fails')->once()->andReturn($fails);
-
-        Validator::swap($validation);
-
-        return $validator;
-    }
-}
-
-class User
-{
-    public function getKey()
-    {
-        return 1;
     }
 }

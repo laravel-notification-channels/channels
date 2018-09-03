@@ -2,11 +2,11 @@
 
 namespace NotificationChannels\ExpoPushNotifications;
 
+use ExponentPhpSDK\Exceptions\ExpoException;
 use ExponentPhpSDK\Expo;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Notifications\Notification;
-use ExponentPhpSDK\Exceptions\ExpoException;
 use Illuminate\Notifications\Events\NotificationFailed;
+use Illuminate\Notifications\Notification;
 use NotificationChannels\ExpoPushNotifications\Exceptions\CouldNotSendNotification;
 
 class ExpoChannel
