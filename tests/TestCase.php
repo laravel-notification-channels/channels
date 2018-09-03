@@ -4,8 +4,8 @@ namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {

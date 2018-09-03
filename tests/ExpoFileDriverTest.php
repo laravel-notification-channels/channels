@@ -3,11 +3,11 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
-use ExponentPhpSDK\ExpoRegistrar;
-use ExponentPhpSDK\Repositories\ExpoFileDriver;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Request;
+use ExponentPhpSDK\ExpoRegistrar;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Auth;
+use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
 
