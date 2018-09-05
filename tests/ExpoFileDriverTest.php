@@ -103,14 +103,42 @@ class ExpoFileDriverTest extends TestCase
     }
 
     /** @test */
-    public function aDeviceCanUnsubscribeFromTheSystem()
+    public function aDeviceCanUnsubscribeSingleTokenFromTheSystem()
     {
+        // We will fake a request with the following data
+        $data = ['expo_token' => 'ExponentPushToken[fakeToken]'];
+        $request = $this->mockRequest($data);
+        $request->shouldReceive('get')->with('expo_token')->andReturn($data['expo_token']);
+
+        $this->mockValidator(false);
+
         // We will subscribe an interest to the server.
         $token = 'ExponentPushToken[fakeToken]';
         $interest = $this->expoChannel->interestName(new User());
         $this->expoChannel->expo->subscribe($interest, $token);
 
-        $response = $this->expoController->unsubscribe();
+        $response = $this->expoController->unsubscribe($request);
+        $response = json_decode($response->content());
+
+        // The response should contain a deleted property with value true
+        $this->assertTrue($response->deleted);
+    }
+
+    /** @test */
+    public function aDeviceCanUnsubscribeFromTheSystem()
+    {
+        // We will fake a request with the following data
+        $request = $this->mockRequest([]);
+        $request->shouldReceive('get')->with('expo_token')->andReturn([]);
+
+        $this->mockValidator(false);
+
+        // We will subscribe an interest to the server.
+        $token = 'ExponentPushToken[fakeToken]';
+        $interest = $this->expoChannel->interestName(new User());
+        $this->expoChannel->expo->subscribe($interest, $token);
+
+        $response = $this->expoController->unsubscribe($request);
         $response = json_decode($response->content());
 
         // The response should contain a deleted property with value true
@@ -120,11 +148,14 @@ class ExpoFileDriverTest extends TestCase
     /** @test */
     public function unsubscribeReturnsErrorResponseIfExceptionIsThrown()
     {
+        $request = $this->mockRequest([]);
+        $request->shouldReceive('get')->with('expo_token')->andReturn([]);
+
         $expo = \Mockery::mock(Expo::class);
         $expo->shouldReceive('unsubscribe')->andThrow(\Exception::class);
 
         /** @var Expo $expo */
-        $response = (new ExpoController(new ExpoChannel($expo, new Dispatcher())))->unsubscribe();
+        $response = (new ExpoController(new ExpoChannel($expo, new Dispatcher())))->unsubscribe($request);
         $response = json_decode($response->content());
 
         $this->assertEquals('failed', $response->status);
