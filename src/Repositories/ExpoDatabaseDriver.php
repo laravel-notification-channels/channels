@@ -50,8 +50,7 @@ class ExpoDatabaseDriver implements ExpoRepository
         // Delete interest
         $delete = Interest::where('key', $key);
 
-        if(isset($value))
-        {
+        if (isset($value)) {
             // Only delete this token
             $delete->where('value', $value);
         }
@@ -61,8 +60,7 @@ class ExpoDatabaseDriver implements ExpoRepository
         // Check if our interest exist
         $count = Interest::where('key', $key);
 
-        if(isset($value))
-        {
+        if (isset($value)) {
             $count->where('value', $value);
         }
 
