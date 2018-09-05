@@ -3,7 +3,7 @@
 namespace NotificationChannels\ExpoPushNotifications;
 
 use ExponentPhpSDK\Expo;
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Notifications\Notification;
 use ExponentPhpSDK\Exceptions\ExpoException;
 use Illuminate\Notifications\Events\NotificationFailed;
