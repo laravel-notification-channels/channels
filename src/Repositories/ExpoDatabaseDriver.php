@@ -41,11 +41,31 @@ class ExpoDatabaseDriver implements ExpoRepository
      * Removes an Expo token with a given identifier.
      *
      * @param string $key
+     * @param string $value
      *
      * @return bool
      */
-    public function forget(string $key): bool
+    public function forget(string $key, string $value = null): bool
     {
-        return Interest::where('key', $key)->delete();
+        // Delete interest
+        $delete = Interest::where('key', $key);
+
+        if(isset($value))
+        {
+            // Only delete this token
+            $delete->where('value', $value);
+        }
+
+        $delete->delete();
+
+        // Check if our interest exist
+        $count = Interest::where('key', $key);
+
+        if(isset($value))
+        {
+            $count->where('value', $value);
+        }
+
+        return $count->count() === 0;
     }
 }
