@@ -1,12 +1,12 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
-
 
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use Throwable;
@@ -28,7 +28,7 @@ class MessageIsNotCompleteException extends IntercomException
      */
     public function __construct(
         IntercomMessage $intercomMessage,
-        string $message = "",
+        string $message = '',
         int $code = 0,
         Throwable $previous = null
     ) {
@@ -44,6 +44,4 @@ class MessageIsNotCompleteException extends IntercomException
     {
         return $this->intercomMessage;
     }
-
-
 }

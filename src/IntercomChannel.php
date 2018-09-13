@@ -1,6 +1,7 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
@@ -16,13 +17,10 @@ use Illuminate\Notifications\Notification;
 use Intercom\IntercomClient;
 
 /**
- * Class IntercomNotificationChannel
- *
- * @package FtwSoft\NotificationChannels\Intercom\Notifications
+ * Class IntercomNotificationChannel.
  */
 class IntercomChannel
 {
-
     /**
      * @var \Intercom\IntercomClient
      */
@@ -39,17 +37,18 @@ class IntercomChannel
     }
 
     /**
-     * Send the given notification via Intercom API
+     * Send the given notification via Intercom API.
      *
      * @param mixed                                  $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @return void
-     * @throws \FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException When server responses with a bad HTTP
-     *                                                                                        code
+     * @throws \FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException              When server responses with a bad HTTP
+     *                                                                                         code
      * @throws \FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException When message is not
      *                                                                                         filled correctly
-     * @throws \GuzzleHttp\Exception\GuzzleException Other Guzzle uncatched exceptions
+     * @throws \GuzzleHttp\Exception\GuzzleException                                           Other Guzzle uncatched exceptions
+     *
+     * @return void
      *
      * @see https://developers.intercom.com/intercom-api-reference/reference#admin-initiated-conversation
      */
@@ -58,7 +57,7 @@ class IntercomChannel
         try {
             if (!$notification instanceof IntercomNotification) {
                 throw new InvalidArgumentException(
-                    sprintf("The notification must implement %s interface", IntercomNotification::class)
+                    sprintf('The notification must implement %s interface', IntercomNotification::class)
                 );
             }
 
@@ -71,11 +70,11 @@ class IntercomChannel
 
                 $message->to($to);
             }
-            
+
             if (!$message->isValid()) {
                 throw new MessageIsNotCompleteException(
                     $message,
-                    "The message is not valid. Please check that you have filled required params"
+                    'The message is not valid. Please check that you have filled required params'
                 );
             }
 
@@ -86,5 +85,4 @@ class IntercomChannel
             throw new RequestException($exception);
         }
     }
-
 }

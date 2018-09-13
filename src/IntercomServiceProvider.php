@@ -1,17 +1,18 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
 
 namespace FtwSoft\NotificationChannels\Intercom;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use Intercom\IntercomClient;
-use Illuminate\Contracts\Foundation\Application;
 
 class IntercomServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,7 @@ class IntercomServiceProvider extends ServiceProvider
         $this->app->when(IntercomChannel::class)
             ->needs(IntercomClient::class)
             ->give(function () {
-                /** @var Config $config */
+                /* @var Config $config */
                 return new IntercomClient(
                     Config::get('services.intercom.token'),
                     null

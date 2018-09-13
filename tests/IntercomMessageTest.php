@@ -2,13 +2,11 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use PHPUnit\Framework\TestCase;
 
 class IntercomMessageTest extends TestCase
 {
-
     public function testThatTypeInappConstantSetCorrectly(): void
     {
         $this->assertEquals('inapp', IntercomMessage::TYPE_INAPP);
@@ -90,7 +88,7 @@ class IntercomMessageTest extends TestCase
         $this->assertEquals(
             [
                 'type' => 'admin',
-                'id'   => 123
+                'id'   => 123,
             ],
             $message->payload['from']
         );
@@ -101,7 +99,7 @@ class IntercomMessageTest extends TestCase
         $message = new IntercomMessage();
         $expected = [
             'type'  => 'user',
-            'email' => 'foo@bar.baz'
+            'email' => 'foo@bar.baz',
         ];
         $message->to($expected);
 
@@ -115,7 +113,7 @@ class IntercomMessageTest extends TestCase
         $this->assertEquals(
             [
                 'type' => 'user',
-                'id'   => 456
+                'id'   => 456,
             ],
             $message->payload['to']
         );
@@ -128,7 +126,7 @@ class IntercomMessageTest extends TestCase
         $this->assertEquals(
             [
                 'type'  => 'user',
-                'email' => 'foo@bar.com'
+                'email' => 'foo@bar.com',
             ],
             $message->payload['to']
         );
@@ -141,7 +139,7 @@ class IntercomMessageTest extends TestCase
         $this->assertEquals(
             [
                 'type' => 'contact',
-                'id'   => 789
+                'id'   => 789,
             ],
             $message->payload['to']
         );
@@ -188,14 +186,14 @@ class IntercomMessageTest extends TestCase
             'template'     => 'personal',
             'from'         => [
                 'type' => 'admin',
-                'id'   => '123'
+                'id'   => '123',
             ],
             'to'           => [
                 'type'  => 'user',
-                'email' => 'recipient@foo.bar'
+                'email' => 'recipient@foo.bar',
             ],
             'subject'      => 'Test case',
-            'body'         => 'Some message'
+            'body'         => 'Some message',
         ];
 
         $this->assertEquals($expected, $message->toArray());
@@ -209,5 +207,4 @@ class IntercomMessageTest extends TestCase
         $message = IntercomMessage::create('Intercom message test');
         $this->assertEquals('Intercom message test', $message->payload['body']);
     }
-
 }

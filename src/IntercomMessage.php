@@ -1,6 +1,7 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
@@ -9,7 +10,6 @@ namespace FtwSoft\NotificationChannels\Intercom;
 
 class IntercomMessage
 {
-
     const TYPE_EMAIL = 'email';
 
     const TYPE_INAPP = 'inapp';
@@ -23,7 +23,7 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public static function create(?string $body = null): IntercomMessage
+    public static function create(?string $body = null): self
     {
         return new static($body);
     }
@@ -52,7 +52,7 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function body(string $body): IntercomMessage
+    public function body(string $body): self
     {
         $this->payload['body'] = $body;
 
@@ -62,7 +62,7 @@ class IntercomMessage
     /**
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function email(): IntercomMessage
+    public function email(): self
     {
         $this->payload['message_type'] = self::TYPE_EMAIL;
 
@@ -72,7 +72,7 @@ class IntercomMessage
     /**
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function inapp(): IntercomMessage
+    public function inapp(): self
     {
         $this->payload['message_type'] = self::TYPE_INAPP;
 
@@ -84,7 +84,7 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function subject(string $value): IntercomMessage
+    public function subject(string $value): self
     {
         $this->payload['subject'] = $value;
 
@@ -94,7 +94,7 @@ class IntercomMessage
     /**
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function plain(): IntercomMessage
+    public function plain(): self
     {
         $this->payload['template'] = self::TEMPLATE_PLAIN;
 
@@ -104,7 +104,7 @@ class IntercomMessage
     /**
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function personal(): IntercomMessage
+    public function personal(): self
     {
         $this->payload['template'] = self::TEMPLATE_PERSONAL;
 
@@ -116,11 +116,11 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function from(string $adminId): IntercomMessage
+    public function from(string $adminId): self
     {
         $this->payload['from'] = [
             'type' => 'admin',
-            'id'   => $adminId
+            'id'   => $adminId,
         ];
 
         return $this;
@@ -131,7 +131,7 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function to(array $value): IntercomMessage
+    public function to(array $value): self
     {
         $this->payload['to'] = $value;
 
@@ -143,11 +143,11 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function toUserId(string $id): IntercomMessage
+    public function toUserId(string $id): self
     {
         $this->payload['to'] = [
             'type' => 'user',
-            'id'   => $id
+            'id'   => $id,
         ];
 
         return $this;
@@ -158,11 +158,11 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function toUserEmail(string $email): IntercomMessage
+    public function toUserEmail(string $email): self
     {
         $this->payload['to'] = [
             'type'  => 'user',
-            'email' => $email
+            'email' => $email,
         ];
 
         return $this;
@@ -173,11 +173,11 @@ class IntercomMessage
      *
      * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
      */
-    public function toContactId(string $id): IntercomMessage
+    public function toContactId(string $id): self
     {
         $this->payload['to'] = [
             'type' => 'contact',
-            'id'   => $id
+            'id'   => $id,
         ];
 
         return $this;
@@ -210,5 +210,4 @@ class IntercomMessage
     {
         return $this->payload;
     }
-
 }
