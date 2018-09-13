@@ -1,8 +1,16 @@
 {
     "name": "ftw-soft/intercom-notification-channel",
     "description": "Intercom Notifications Driver",
-    "type": "library",
+    "homepage": "https://github.com/ftw-soft/intercom-notification-channel",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Telesh",
+            "email": "android991@gmail.com",
+            "homepage": "https://horoshop.com.ua",
+            "role": "CTO"
+        }
+    ],
     "require": {
         "php": ">=7.1.3",
         "guzzlehttp/guzzle": "^6.3",
