@@ -2,11 +2,10 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ftw-soft/intercom-notification-channel.svg?style=flat-square)](https://packagist.org/packages/ftw-soft/intercom-notification-channel)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/ftw-soft/intercom-notification-channel/master.svg?style=flat-square)](https://travis-ci.org/ftw-soft/intercom-notification-channel)
+[![Build Status](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel/build-status/master)
 [![StyleCI](https://styleci.io/repos/148610087/shield)](https://styleci.io/repos/148610087)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/ca6db073-da33-40bb-97b0-ddd1d0f5987f.svg?style=flat-square)](https://insight.sensiolabs.com/projects/ca6db073-da33-40bb-97b0-ddd1d0f5987f)
 [![Quality Score](https://img.shields.io/scrutinizer/g/ftw-soft/intercom-notification-channel.svg?style=flat-square)](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/ftw-soft/intercom-notification-channel/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ftw-soft/intercom-notification-channel/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/ftw-soft/intercom-notification-channel.svg?style=flat-square)](https://packagist.org/packages/ftw-soft/intercom-notification-channel)
 
 This package makes it easy to send notifications using [Intercom](https://app.intercom.com) with Laravel 5.6.
