@@ -1,29 +1,29 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
 
-use Throwable;
 use GuzzleHttp\Exception\RequestException as BaseRequestException;
+use Throwable;
 
 class RequestException extends IntercomException
 {
-
     /**
      * @var BaseRequestException
      */
     private $baseException;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __construct(
         BaseRequestException $baseException,
-        string $message = "",
+        string $message = '',
         int $code = 0,
         ?Throwable $previous = null
     ) {
@@ -39,5 +39,4 @@ class RequestException extends IntercomException
     {
         return $this->baseException;
     }
-
 }

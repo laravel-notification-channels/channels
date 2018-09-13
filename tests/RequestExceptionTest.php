@@ -1,15 +1,14 @@
 <?php
+
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-
 use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
+use GuzzleHttp\Exception\RequestException as BaseRequestException;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Exception\RequestException as BaseRequestException;
 
 class RequestExceptionTest extends TestCase
 {
-
     public function testItReturnsBaseExceptionProvidedToConstruct(): void
     {
         $baseException = new BaseRequestException(
@@ -19,5 +18,4 @@ class RequestExceptionTest extends TestCase
         $exception = new RequestException($baseException);
         $this->assertEquals($exception->getBaseException(), $baseException);
     }
-
 }

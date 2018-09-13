@@ -1,6 +1,7 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
@@ -17,13 +18,12 @@ use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotification;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Notifications\Notification;
+use Intercom\IntercomClient;
 use Intercom\IntercomMessages;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Intercom\IntercomClient;
 
 class IntercomChannelTest extends MockeryTestCase
 {
-
     /**
      * @var \Intercom\IntercomMessages|\Mockery\Mock
      */
@@ -64,12 +64,12 @@ class IntercomChannelTest extends MockeryTestCase
                 'message_type' => 'inapp',
                 'from'         => [
                     'type' => 'admin',
-                    'id'   => '123'
+                    'id'   => '123',
                 ],
                 'to'           => [
                     'type' => 'user',
-                    'id'   => '321'
-                ]
+                    'id'   => '321',
+                ],
             ]);
 
         $this->channel->send(new TestNotifiable(), $notification);
@@ -127,7 +127,7 @@ class IntercomChannelTest extends MockeryTestCase
     public function testItGetsToFromRouteNotificationForIntercomMethod(): void
     {
         $this->intercomMessages->shouldReceive('create');
-        
+
         $message = IntercomMessage::create('Hello World!')
             ->from(123);
         $notification = new TestNotification($message);
@@ -137,5 +137,4 @@ class IntercomChannelTest extends MockeryTestCase
 
         $this->assertEquals($expected, $message->payload['to']);
     }
-
 }

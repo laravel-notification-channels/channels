@@ -1,12 +1,12 @@
 <?php
 /**
  * @link      http://horoshop.ua
+ *
  * @copyright Copyright (c) 2015-2018 Horoshop TM
  * @author    Andrey Telesh <andrey@horoshop.ua>
  */
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests\Mocks;
-
 
 use FtwSoft\NotificationChannels\Intercom\Contracts\IntercomNotification;
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
@@ -14,7 +14,6 @@ use Illuminate\Notifications\Notification;
 
 class TestNotification extends Notification implements IntercomNotification
 {
-
     /**
      * @var IntercomMessage
      */
@@ -31,11 +30,10 @@ class TestNotification extends Notification implements IntercomNotification
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function toIntercom($notifiable): IntercomMessage
     {
         return $this->intercomMessage;
     }
-
 }
