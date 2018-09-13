@@ -1,0 +1,40 @@
+{
+    "name": "ftw-soft/intercom-notification-channel",
+    "description": "Intercom Notifications Driver",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "intercom/intercom-php": "^3.2",
+        "illuminate/notifications": ">=5.5",
+        "illuminate/support": ">=5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "FtwSoft\\NotificationChannels\\Intercom\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FtwSoft\\NotificationChannels\\Intercom\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FtwSoft\\NotificationChannels\\Intercom\\IntercomServiceProvider"
+            ]
+        }
+    }
+}
