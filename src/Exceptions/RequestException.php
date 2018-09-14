@@ -2,8 +2,8 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
 
-use GuzzleHttp\Exception\RequestException as BaseRequestException;
 use Throwable;
+use GuzzleHttp\Exception\RequestException as BaseRequestException;
 
 class RequestException extends IntercomException
 {

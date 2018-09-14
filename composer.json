@@ -19,8 +19,9 @@
         "illuminate/support": ">=5.5"
     },
     "require-dev": {
+        "mockery/mockery": "^1.1",
         "phpunit/phpunit": "~7.0",
-        "mockery/mockery": "^1.1"
+        "scrutinizer/ocular": "^1.5"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +34,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "ocular-code-coverage-upload": "vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover --repository=g/ftw-soft/intercom-notification-channel"
     },
     "config": {
         "sort-packages": true

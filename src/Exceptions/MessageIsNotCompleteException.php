@@ -2,8 +2,8 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
 
-use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use Throwable;
+use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 
 class MessageIsNotCompleteException extends IntercomException
 {

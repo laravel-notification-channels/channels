@@ -2,13 +2,13 @@
 
 namespace FtwSoft\NotificationChannels\Intercom;
 
+use Intercom\IntercomClient;
+use Illuminate\Notifications\Notification;
+use GuzzleHttp\Exception\BadResponseException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\Contracts\IntercomNotification;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
-use GuzzleHttp\Exception\BadResponseException;
-use Illuminate\Notifications\Notification;
-use Intercom\IntercomClient;
 
 /**
  * Class IntercomNotificationChannel.
@@ -49,7 +49,7 @@ class IntercomChannel
     public function send($notifiable, Notification $notification): void
     {
         try {
-            if (!$notification instanceof IntercomNotification) {
+            if (! $notification instanceof IntercomNotification) {
                 throw new InvalidArgumentException(
                     sprintf('The notification must implement %s interface', IntercomNotification::class)
                 );
@@ -57,15 +57,15 @@ class IntercomChannel
 
             $message = $notification->toIntercom($notifiable);
 
-            if (!$message->toIsGiven()) {
-                if (!$to = $notifiable->routeNotificationFor('intercom')) {
+            if (! $message->toIsGiven()) {
+                if (! $to = $notifiable->routeNotificationFor('intercom')) {
                     throw new MessageIsNotCompleteException($message, 'Recipient is not provided');
                 }
 
                 $message->to($to);
             }
 
-            if (!$message->isValid()) {
+            if (! $message->isValid()) {
                 throw new MessageIsNotCompleteException(
                     $message,
                     'The message is not valid. Please check that you have filled required params'
@@ -78,5 +78,13 @@ class IntercomChannel
         } catch (BadResponseException $exception) {
             throw new RequestException($exception);
         }
+    }
+
+    /**
+     * @return \Intercom\IntercomClient
+     */
+    public function getClient(): IntercomClient
+    {
+        return $this->client;
     }
 }
