@@ -3,17 +3,17 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
-use ExponentPhpSDK\ExpoRepository;
-use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use ExponentPhpSDK\ExpoRegistrar;
 use Illuminate\Events\Dispatcher;
+use ExponentPhpSDK\ExpoRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Factory;
 use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
-use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
 use NotificationChannels\ExpoPushNotifications\Models\Interest;
+use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
 use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 
 class ExpoControllerTest extends TestCase
@@ -34,6 +34,7 @@ class ExpoControllerTest extends TestCase
     {
         $expoChannel = new ExpoChannel(new Expo(new ExpoRegistrar($expoRepository)), new Dispatcher);
         $expoController = new ExpoController($expoChannel);
+
         return [$expoController, $expoChannel];
     }
 
@@ -55,7 +56,7 @@ class ExpoControllerTest extends TestCase
     }
 
     /**
-     * Data provider to help test the expo controller with the different repositories
+     * Data provider to help test the expo controller with the different repositories.
      *
      * @return array
      */
@@ -63,7 +64,7 @@ class ExpoControllerTest extends TestCase
     {
         return [
             [new ExpoDatabaseDriver],
-            [new ExpoFileDriver]
+            [new ExpoFileDriver],
         ];
     }
 
@@ -96,7 +97,7 @@ class ExpoControllerTest extends TestCase
         if ($expoRepository instanceof ExpoDatabaseDriver) {
             $this->assertDatabaseHas(config('exponent-push-notifications.interests.database.table_name'), [
                 'key' => 'NotificationChannels.ExpoPushNotifications.Test.User.'.(new User)->getKey(),
-                'value' => $data['expo_token']
+                'value' => $data['expo_token'],
             ]);
         }
     }
@@ -180,7 +181,7 @@ class ExpoControllerTest extends TestCase
         if ($expoRepository instanceof ExpoDatabaseDriver) {
             $this->assertDatabaseMissing(config('exponent-push-notifications.interests.database.table_name'), [
                 'key' => 'NotificationChannels.ExpoPushNotifications.Test.User.'.(new User)->getKey(),
-                'value' => $data['expo_token']
+                'value' => $data['expo_token'],
             ]);
         }
     }
@@ -232,6 +233,7 @@ class ExpoControllerTest extends TestCase
 
         $this->assertEquals('failed', $response->status);
     }
+
     /**
      * Mocks a request for the ExpoController.
      *
