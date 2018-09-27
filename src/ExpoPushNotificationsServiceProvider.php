@@ -13,34 +13,30 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
+     *
+     * @return void
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../config/exponent-push-notifications.php' => config_path('exponent-push-notifications.php'),
-        ], 'config');
+        $this->setupConfig();
 
-        $this->mergeConfigFrom(__DIR__.'/../config/exponent-push-notifications.php', 'exponent-push-notifications');
+        $repository = $this->getInterestsDriver();
 
-        if (! class_exists('CreateExponentPushNotificationInterestsTable')) {
-            $timestamp = date('Y_m_d_His', time());
-            $this->publishes([
-                __DIR__.'/../migrations/create_exponent_push_notification_interests_table.php.stub' => database_path("/migrations/{$timestamp}_create_exponent_push_notification_interests_table.php"),
-            ], 'migrations');
-        }
+        $this->shouldPublishMigrations($repository);
 
         $this->app->when(ExpoChannel::class)
             ->needs(Expo::class)
-            ->give(function () {
-                return new Expo(new ExpoRegistrar($this->getInterestsDriver()));
+            ->give(function () use ($repository) {
+                return new Expo(new ExpoRegistrar($repository));
             });
 
-        //Load routes
         $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
     }
 
     /**
      * Register the application services.
+     *
+     * @return void
      */
     public function register()
     {
@@ -48,6 +44,8 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
     }
 
     /**
+     * Gets the Expo repository driver based on config.
+     *
      * @return ExpoRepository
      */
     public function getInterestsDriver()
@@ -60,6 +58,37 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
                 break;
             default:
                 return new ExpoFileDriver();
+        }
+    }
+
+    /**
+     * Publishes the configuration files for the package.
+     *
+     * @return void
+     */
+    protected function setupConfig()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/exponent-push-notifications.php' => config_path('exponent-push-notifications.php'),
+        ], 'config');
+
+        $this->mergeConfigFrom(__DIR__.'/../config/exponent-push-notifications.php', 'exponent-push-notifications');
+    }
+
+    /**
+     * Publishes the migration files needed in the package.
+     *
+     * @param ExpoRepository $repository
+     *
+     * @return void
+     */
+    private function shouldPublishMigrations(ExpoRepository $repository)
+    {
+        if ($repository instanceof ExpoDatabaseDriver && !class_exists('CreateExponentPushNotificationInterestsTable')) {
+            $timestamp = date('Y_m_d_His', time());
+            $this->publishes([
+                __DIR__ . '/../migrations/create_exponent_push_notification_interests_table.php.stub' => database_path("/migrations/{$timestamp}_create_exponent_push_notification_interests_table.php"),
+            ], 'migrations');
         }
     }
 }
