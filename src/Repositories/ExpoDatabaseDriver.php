@@ -47,23 +47,12 @@ class ExpoDatabaseDriver implements ExpoRepository
      */
     public function forget(string $key, string $value = null): bool
     {
-        // Delete interest
-        $delete = Interest::where('key', $key);
+        $query = Interest::where('key', $key);
 
-        if (isset($value)) {
-            // Only delete this token
-            $delete->where('value', $value);
+        if ($value) {
+            $query->where('value', $value);
         }
 
-        $delete->delete();
-
-        // Check if our interest exist
-        $count = Interest::where('key', $key);
-
-        if (isset($value)) {
-            $count->where('value', $value);
-        }
-
-        return $count->count() === 0;
+        return $query->delete() > 0;
     }
 }
