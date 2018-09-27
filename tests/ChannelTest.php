@@ -41,6 +41,8 @@ class ChannelTest extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
+
         $this->expo = Mockery::mock(Expo::class);
 
         $this->events = Mockery::mock(Dispatcher::class);
@@ -54,9 +56,9 @@ class ChannelTest extends TestCase
 
     public function tearDown()
     {
-        Mockery::close();
-
         parent::tearDown();
+
+        Mockery::close();
     }
 
     /** @test */
