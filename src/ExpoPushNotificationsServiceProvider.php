@@ -69,7 +69,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
     protected function setupConfig()
     {
         $this->publishes([
-            __DIR__ . '/../config/exponent-push-notifications.php' => config_path('exponent-push-notifications.php'),
+            __DIR__.'/../config/exponent-push-notifications.php' => config_path('exponent-push-notifications.php'),
         ], 'config');
 
         $this->mergeConfigFrom(__DIR__.'/../config/exponent-push-notifications.php', 'exponent-push-notifications');
@@ -84,10 +84,10 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
      */
     private function shouldPublishMigrations(ExpoRepository $repository)
     {
-        if ($repository instanceof ExpoDatabaseDriver && !class_exists('CreateExponentPushNotificationInterestsTable')) {
+        if ($repository instanceof ExpoDatabaseDriver && ! class_exists('CreateExponentPushNotificationInterestsTable')) {
             $timestamp = date('Y_m_d_His', time());
             $this->publishes([
-                __DIR__ . '/../migrations/create_exponent_push_notification_interests_table.php.stub' => database_path("/migrations/{$timestamp}_create_exponent_push_notification_interests_table.php"),
+                __DIR__.'/../migrations/create_exponent_push_notification_interests_table.php.stub' => database_path("/migrations/{$timestamp}_create_exponent_push_notification_interests_table.php"),
             ], 'migrations');
         }
     }
