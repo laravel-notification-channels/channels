@@ -3,35 +3,45 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
+use ExponentPhpSDK\ExpoRepository;
+use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use ExponentPhpSDK\ExpoRegistrar;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Auth;
+use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
+use NotificationChannels\ExpoPushNotifications\Models\Interest;
 use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 
-class ExpoDatabaseDriverTest extends TestCase
+class ExpoControllerTest extends TestCase
 {
-    /**
-     * @var ExpoChannel
-     */
-    protected $expoChannel;
-
     /**
      * @var ExpoController
      */
     protected $expoController;
+
+    /**
+     * Sets up the expo controller with the given expo channel.
+     *
+     * @param ExpoRepository $expoRepository
+     *
+     * @return array
+     */
+    protected function setupExpo(ExpoRepository $expoRepository)
+    {
+        $expoChannel = new ExpoChannel(new Expo(new ExpoRegistrar($expoRepository)), new Dispatcher);
+        $expoController = new ExpoController($expoChannel);
+        return [$expoController, $expoChannel];
+    }
 
     public function setUp()
     {
         parent::setUp();
 
         $this->setUpDatabase();
-
-        $this->expoChannel = new ExpoChannel(new Expo(new ExpoRegistrar(new ExpoDatabaseDriver())), new Dispatcher());
-
-        $this->expoController = new ExpoController($this->expoChannel);
 
         // We will fake an authenticated user
         Auth::shouldReceive('user')->andReturn(new User());
@@ -44,9 +54,29 @@ class ExpoDatabaseDriverTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
-    public function aDeviceCanSubscribeToTheSystem()
+    /**
+     * Data provider to help test the expo controller with the different repositories
+     *
+     * @return array
+     */
+    public function availableRepositories()
     {
+        return [
+            [new ExpoDatabaseDriver],
+            [new ExpoFileDriver]
+        ];
+    }
+
+    /** @test
+     *
+     * @param $expoRepository
+     *
+     * @dataProvider availableRepositories
+     */
+    public function aDeviceCanSubscribeToTheSystem($expoRepository)
+    {
+        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+
         // We will fake a request with the following data
         $data = ['expo_token' => 'ExponentPushToken[fakeToken]'];
         $request = $this->mockRequest($data);
@@ -55,25 +85,39 @@ class ExpoDatabaseDriverTest extends TestCase
         $this->mockValidator(false);
 
         /** @var Request $request */
-        $response = $this->expoController->subscribe($request);
+        $response = $expoController->subscribe($request);
         $response = json_decode($response->content());
 
         // The response should contain a succeeded status
         $this->assertEquals('succeeded', $response->status);
         // The response should return the registered token
         $this->assertEquals($data['expo_token'], $response->expo_token);
+
+        if ($expoRepository instanceof ExpoDatabaseDriver) {
+            $this->assertDatabaseHas(config('exponent-push-notifications.interests.database.table_name'), [
+                'key' => 'NotificationChannels.ExpoPushNotifications.Test.User.'.(new User)->getKey(),
+                'value' => $data['expo_token']
+            ]);
+        }
     }
 
-    /** @test */
-    public function subscribeReturnsErrorResponseIfTokenInvalid()
+    /** @test
+     *
+     * @param $expoRepository
+     *
+     * @dataProvider availableRepositories
+     */
+    public function subscribeReturnsErrorResponseIfTokenInvalid($expoRepository)
     {
+        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+
         // We will fake a request with no data
         $request = $this->mockRequest([]);
 
         $this->mockValidator(true);
 
         /** @var Request $request */
-        $response = $this->expoController->subscribe($request);
+        $response = $expoController->subscribe($request);
 
         // The response should contain a failed status
         $this->assertEquals('failed', json_decode($response->content())->status);
@@ -104,9 +148,17 @@ class ExpoDatabaseDriverTest extends TestCase
         $this->assertEquals('failed', $response->status);
     }
 
-    /** @test */
-    public function aDeviceCanUnsubscribeSingleTokenFromTheSystem()
+    /** @test
+     *
+     *
+     * @dataProvider availableRepositories
+     *
+     * @param $expoRepository
+     */
+    public function aDeviceCanUnsubscribeSingleTokenFromTheSystem($expoRepository)
     {
+        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+
         // We will fake a request with the following data
         $data = ['expo_token' => 'ExponentPushToken[fakeToken]'];
         $request = $this->mockRequest($data);
@@ -116,19 +168,33 @@ class ExpoDatabaseDriverTest extends TestCase
 
         // We will subscribe an interest to the server.
         $token = 'ExponentPushToken[fakeToken]';
-        $interest = $this->expoChannel->interestName(new User());
-        $this->expoChannel->expo->subscribe($interest, $token);
+        $interest = $expoChannel->interestName(new User());
+        $expoChannel->expo->subscribe($interest, $token);
 
-        $response = $this->expoController->unsubscribe($request);
+        $response = $expoController->unsubscribe($request);
         $response = json_decode($response->content());
 
         // The response should contain a deleted property with value true
         $this->assertTrue($response->deleted);
+
+        if ($expoRepository instanceof ExpoDatabaseDriver) {
+            $this->assertDatabaseMissing(config('exponent-push-notifications.interests.database.table_name'), [
+                'key' => 'NotificationChannels.ExpoPushNotifications.Test.User.'.(new User)->getKey(),
+                'value' => $data['expo_token']
+            ]);
+        }
     }
 
-    /** @test */
-    public function aDeviceCanUnsubscribeFromTheSystem()
+    /** @test
+     *
+     * @param $expoRepository
+     *
+     * @dataProvider availableRepositories
+     */
+    public function aDeviceCanUnsubscribeFromTheSystem($expoRepository)
     {
+        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+
         // We will fake a request with the following data
         $request = $this->mockRequest([]);
         $request->shouldReceive('get')->with('expo_token')->andReturn([]);
@@ -137,14 +203,18 @@ class ExpoDatabaseDriverTest extends TestCase
 
         // We will subscribe an interest to the server.
         $token = 'ExponentPushToken[fakeToken]';
-        $interest = $this->expoChannel->interestName(new User());
-        $this->expoChannel->expo->subscribe($interest, $token);
+        $interest = $expoChannel->interestName(new User());
+        $expoChannel->expo->subscribe($interest, $token);
 
-        $response = $this->expoController->unsubscribe($request);
+        $response = $expoController->unsubscribe($request);
         $response = json_decode($response->content());
 
         // The response should contain a deleted property with value true
         $this->assertTrue($response->deleted);
+
+        if ($expoRepository instanceof ExpoDatabaseDriver) {
+            $this->assertEquals(0, Interest::count());
+        }
     }
 
     /** @test */
@@ -161,5 +231,47 @@ class ExpoDatabaseDriverTest extends TestCase
         $response = json_decode($response->content());
 
         $this->assertEquals('failed', $response->status);
+    }
+    /**
+     * Mocks a request for the ExpoController.
+     *
+     * @param $data
+     *
+     * @return \Mockery\MockInterface
+     */
+    public function mockRequest($data)
+    {
+        $request = \Mockery::mock(Request::class);
+        $request->shouldReceive('all')->andReturn($data);
+
+        return $request;
+    }
+
+    /**
+     * @param bool $fails
+     *
+     * @return \Mockery\MockInterface
+     */
+    public function mockValidator(bool $fails)
+    {
+        $validator = \Mockery::mock(\Illuminate\Validation\Validator::class);
+
+        $validation = \Mockery::mock(Factory::class);
+
+        $validation->shouldReceive('make')->once()->andReturn($validator);
+
+        $validator->shouldReceive('fails')->once()->andReturn($fails);
+
+        Validator::swap($validation);
+
+        return $validator;
+    }
+}
+
+class User
+{
+    public function getKey()
+    {
+        return 1;
     }
 }
