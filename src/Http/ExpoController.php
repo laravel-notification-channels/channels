@@ -72,14 +72,31 @@ class ExpoController extends Controller
     /**
      * Handles removing subscription endpoint for the authenticated interest.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     *
+     * @return JsonResponse
      */
-    public function unsubscribe()
+    public function unsubscribe(Request $request)
     {
         $interest = $this->expoChannel->interestName(Auth::user());
 
+        $validator = Validator::make($request->all(), [
+            'expo_token'    =>  'sometimes|string',
+        ]);
+
+        if ($validator->fails()) {
+            return JsonResponse::create([
+                'status' => 'failed',
+                'error' => [
+                    'message' => 'Expo Token is invalid',
+                ],
+            ], 422);
+        }
+
+        $token = $request->get('expo_token') ?: null;
+
         try {
-            $deleted = $this->expoChannel->expo->unsubscribe($interest);
+            $deleted = $this->expoChannel->expo->unsubscribe($interest, $token);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'status'    => 'failed',
