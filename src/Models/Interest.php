@@ -4,17 +4,18 @@ namespace NotificationChannels\ExpoPushNotifications\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Interest.
- */
 class Interest extends Model
 {
     /**
+     * The associated table.
+     *
      * @var string
      */
     protected $table;
 
     /**
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -23,12 +24,15 @@ class Interest extends Model
     ];
 
     /**
+     * Indicates if the model should be timestamped.
+     *
      * @var bool
      */
     public $timestamps = false;
 
     /**
      * Interest constructor.
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes = [])

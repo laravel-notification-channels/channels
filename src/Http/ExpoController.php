@@ -72,7 +72,9 @@ class ExpoController extends Controller
     /**
      * Handles removing subscription endpoint for the authenticated interest.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     *
+     * @return JsonResponse
      */
     public function unsubscribe(Request $request)
     {
