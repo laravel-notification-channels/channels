@@ -90,7 +90,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 
 - [Manash Jyoti Sonowal](https://github.com/msonowal)
-- [Manash Jyoti Sonowal](https://github.com/tomonsoejang)
+- [Mr Ejang](https://github.com/tomonsoejang)
 - [All Contributors](../../contributors)
 
 ## License
