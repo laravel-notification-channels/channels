@@ -40,9 +40,9 @@ put the followings and to your config/services
 ```
 'sms' => [
      'textlocal' => [
-	 'username'  => env('TEXTLOCAL_USERNAME'),
-	 'hash'      => env('TEXTLOCAL_HASH'),
-	 'sender'    => env('TEXTLOCAL_SENDER'),
+		 'username'  => env('TEXTLOCAL_USERNAME'),
+		 'hash'      => env('TEXTLOCAL_HASH'),
+		 'sender'    => env('TEXTLOCAL_SENDER'),
      ]
 ]
 ```
@@ -52,6 +52,11 @@ put the followings and to your config/services
     TEXTLOCAL_HASH=get it from url '/docs/' under your API KEYS section
     TEXTLOCAL_SENDER=Name of the Sender that will be displayed to the recipient (max 6 Characters).
     TEXTLOCAL_COUNTRY=Your Two letter(ISO-3166-alpha-2) Country Code. It should be the Country of the TEXTLOCAL account.
+```
+
+### Publish Config
+```
+    php artisan vendor:publish --tag=textlocal
 ```
 
 Currently, only textlocal of two country is supported IN(India) and UK(United Kingdom). 
