@@ -46,12 +46,19 @@ put the followings and to your config/services
      ]
 ]
 ```
+### Configuring .env 
+```
+    TEXTLOCAL_USERNAME=Your email id or api key
+    TEXTLOCAL_HASH=get it from url '/docs/' under your API KEYS section
+    TEXTLOCAL_SENDER=Name of the Sender that will be displayed to the recipient (max 6 Characters).
+    TEXTLOCAL_COUNTRY=Your Two letter(ISO-3166-alpha-2) Country Code. It should be the Country of the TEXTLOCAL account.
+```
 
+Currently, only textlocal of two country is supported IN(India) and UK(United Kingdom). 
 
 ## Usage
-textlocal
-implement this method `routeNotificationForSms()` in your notifiable class/model which will return array of mobile numbers
-and lastly implement `toSms()` method in the notification class which will return the (string) sms or template that is defined in textlocal account that needs to be send.
+
+Implement this method `routeNotificationForSms()` in your notifiable class/model which will return array of mobile numbers. Please make sure the mobile number contains the dial code as well (e.g +91 for India). And lastly implement `toSms()` method in the notification class which will return the (string) sms or template that is defined in textlocal account that needs to be send.
 
 ### Available Message methods
 
@@ -78,6 +85,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 
 - [Manash Jyoti Sonowal](https://github.com/msonowal)
+- [Manash Jyoti Sonowal](https://github.com/tomonsoejang)
 - [All Contributors](../../contributors)
 
 ## License
@@ -86,4 +94,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## TODO
 Need to convert to Guzzle Http as a Client in core
+Add more countries
 add tests

@@ -25,6 +25,10 @@ class TextlocalServiceProvider extends ServiceProvider
                     );
                 }
             );
+
+        $this->publishes([
+            __DIR__.'/../config/textlocal.php' => config_path('textlocal.php'),
+        ], 'textlocal');
     }
 
     /**
