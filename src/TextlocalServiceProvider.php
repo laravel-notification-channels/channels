@@ -26,9 +26,7 @@ class TextlocalServiceProvider extends ServiceProvider
                 }
             );
 
-        $this->publishes([
-            __DIR__.'/../config/textlocal.php' => config_path('textlocal.php'),
-        ], 'textlocal');
+        $this->publishConfiguration();
     }
 
     /**
@@ -36,5 +34,17 @@ class TextlocalServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $config = __DIR__ . '/../config/textlocal.php';
+
+        $this->mergeConfigFrom($config, 'textlocal');
+    }
+
+    public function publishConfiguration()
+    {
+        $path   =   realpath(__DIR__.'/../config/textlocal.php');
+        
+        $this->publishes([
+            $path => config_path('textlocal.php')
+        ], 'textlocal');
     }
 }
