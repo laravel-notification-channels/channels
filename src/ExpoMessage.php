@@ -206,7 +206,7 @@ class ExpoMessage
     public function toArray()
     {
         return [
-            'title'     =>  $this-
+            'title'     =>  $this->title,
             'body'      =>  $this->body,
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
