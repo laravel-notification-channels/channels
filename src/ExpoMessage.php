@@ -7,7 +7,7 @@ use NotificationChannels\ExpoPushNotifications\Exceptions\CouldNotCreateMessage;
 class ExpoMessage
 {
     /**
-     * The message title.
+     * The message title
      *
      * @var string
      */
