@@ -7,6 +7,13 @@ use NotificationChannels\ExpoPushNotifications\Exceptions\CouldNotCreateMessage;
 class ExpoMessage
 {
     /**
+     * The message title.
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
      * The message body.
      *
      * @var string
@@ -69,6 +76,20 @@ class ExpoMessage
     public function __construct(string $body = '')
     {
         $this->body = $body;
+    }
+
+    /**
+     * Set the message title.
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function title(string $value)
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     /**
@@ -185,6 +206,7 @@ class ExpoMessage
     public function toArray()
     {
         return [
+            'title'     =>  $this->title,
             'body'      =>  $this->body,
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
