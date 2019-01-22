@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1548187585">
+  <project timestamp="1548187585">
+    <package name="NotificationChannels\Pushmix\Exceptions">
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/Exceptions/CouldNotSendNotification.php">
+        <class name="NotificationChannels\Pushmix\Exceptions\CouldNotSendNotification" namespace="NotificationChannels\Pushmix\Exceptions">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="8" type="method" name="error" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="10" type="stmt" count="1"/>
+        <metrics loc="12" ncloc="12" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/Exceptions/InvalidConfiguration.php">
+        <class name="NotificationChannels\Pushmix\Exceptions\InvalidConfiguration" namespace="NotificationChannels\Pushmix\Exceptions">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="7" type="method" name="configurationNotSet" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="9" type="stmt" count="1"/>
+        <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/Exceptions/MissingParameter.php">
+        <class name="NotificationChannels\Pushmix\Exceptions\MissingParameter" namespace="NotificationChannels\Pushmix\Exceptions">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="7" type="method" name="error" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="9" type="stmt" count="4"/>
+        <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+    </package>
+    <package name="NotificationChannels\Pushmix">
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/PushmixChannel.php">
+        <class name="NotificationChannels\Pushmix\PushmixChannel" namespace="NotificationChannels\Pushmix">
+          <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
+        </class>
+        <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="18" type="stmt" count="3"/>
+        <line num="19" type="stmt" count="3"/>
+        <line num="30" type="method" name="send" visibility="public" complexity="3" crap="3" count="3"/>
+        <line num="32" type="stmt" count="3"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="39" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="2"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <metrics loc="54" ncloc="39" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
+      </file>
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/PushmixClient.php">
+        <class name="NotificationChannels\Pushmix\PushmixClient" namespace="NotificationChannels\Pushmix">
+          <metrics complexity="13" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="38" coveredelements="38"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="12"/>
+        <line num="30" type="stmt" count="12"/>
+        <line num="31" type="stmt" count="12"/>
+        <line num="32" type="stmt" count="12"/>
+        <line num="33" type="stmt" count="12"/>
+        <line num="42" type="method" name="async" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="44" type="stmt" count="2"/>
+        <line num="45" type="stmt" count="2"/>
+        <line num="52" type="method" name="getRequestAsync" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="60" type="method" name="initKey" visibility="public" complexity="2" crap="2" count="4"/>
+        <line num="62" type="stmt" count="4"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="3"/>
+        <line num="69" type="stmt" count="3"/>
+        <line num="71" type="stmt" count="3"/>
+        <line num="78" type="method" name="getAdditionalParams" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="89" type="method" name="getKey" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="91" type="stmt" count="2"/>
+        <line num="99" type="method" name="setKey" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="101" type="stmt" count="4"/>
+        <line num="102" type="stmt" count="4"/>
+        <line num="105" type="stmt" count="4"/>
+        <line num="112" type="method" name="setApiUrl" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="113" type="stmt" count="6"/>
+        <line num="114" type="stmt" count="6"/>
+        <line num="121" type="method" name="getApiUrl" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="122" type="stmt" count="1"/>
+        <line num="132" type="method" name="sendNotification" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="135" type="stmt" count="4"/>
+        <line num="136" type="stmt" count="4"/>
+        <line num="137" type="stmt" count="4"/>
+        <line num="138" type="stmt" count="4"/>
+        <line num="148" type="method" name="post" visibility="public" complexity="2" crap="2" count="4"/>
+        <line num="150" type="stmt" count="4"/>
+        <line num="152" type="stmt" count="1"/>
+        <line num="157" type="stmt" count="3"/>
+        <metrics loc="163" ncloc="102" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="38" coveredelements="38"/>
+      </file>
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/PushmixMessage.php">
+        <class name="NotificationChannels\Pushmix\PushmixMessage" namespace="NotificationChannels\Pushmix">
+          <metrics complexity="29" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="62" elements="76" coveredelements="76"/>
+        </class>
+        <line num="47" type="method" name="create" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="50" type="stmt" count="15"/>
+        <line num="56" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="17"/>
+        <line num="58" type="stmt" count="17"/>
+        <line num="59" type="stmt" count="17"/>
+        <line num="74" type="method" name="to" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="87" type="method" name="title" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="89" type="stmt" count="6"/>
+        <line num="91" type="stmt" count="6"/>
+        <line num="101" type="method" name="body" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="103" type="stmt" count="5"/>
+        <line num="105" type="stmt" count="5"/>
+        <line num="114" type="method" name="url" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="116" type="stmt" count="4"/>
+        <line num="118" type="stmt" count="4"/>
+        <line num="127" type="method" name="ttl" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="129" type="stmt" count="2"/>
+        <line num="131" type="stmt" count="2"/>
+        <line num="141" type="method" name="priority" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="143" type="stmt" count="2"/>
+        <line num="145" type="stmt" count="2"/>
+        <line num="154" type="method" name="icon" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="156" type="stmt" count="2"/>
+        <line num="158" type="stmt" count="2"/>
+        <line num="167" type="method" name="badge" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="169" type="stmt" count="2"/>
+        <line num="171" type="stmt" count="2"/>
+        <line num="180" type="method" name="image" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="182" type="stmt" count="2"/>
+        <line num="184" type="stmt" count="2"/>
+        <line num="194" type="method" name="button" visibility="public" complexity="4" crap="4" count="2"/>
+        <line num="197" type="stmt" count="2"/>
+        <line num="199" type="stmt" count="2"/>
+        <line num="201" type="stmt" count="1"/>
+        <line num="208" type="stmt" count="2"/>
+        <line num="209" type="stmt" count="2"/>
+        <line num="210" type="stmt" count="2"/>
+        <line num="211" type="stmt" count="2"/>
+        <line num="213" type="stmt" count="2"/>
+        <line num="215" type="stmt" count="2"/>
+        <line num="216" type="stmt" count="2"/>
+        <line num="217" type="stmt" count="2"/>
+        <line num="218" type="stmt" count="2"/>
+        <line num="220" type="stmt" count="2"/>
+        <line num="226" type="stmt" count="2"/>
+        <line num="234" type="method" name="getButtons" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="235" type="stmt" count="1"/>
+        <line num="245" type="method" name="toArray" visibility="public" complexity="12" crap="12" count="7"/>
+        <line num="248" type="stmt" count="7"/>
+        <line num="249" type="stmt" count="1"/>
+        <line num="252" type="stmt" count="6"/>
+        <line num="253" type="stmt" count="1"/>
+        <line num="256" type="stmt" count="5"/>
+        <line num="257" type="stmt" count="1"/>
+        <line num="260" type="stmt" count="4"/>
+        <line num="261" type="stmt" count="1"/>
+        <line num="265" type="stmt" count="3"/>
+        <line num="266" type="stmt" count="3"/>
+        <line num="267" type="stmt" count="3"/>
+        <line num="268" type="stmt" count="3"/>
+        <line num="275" type="stmt" count="3"/>
+        <line num="276" type="stmt" count="1"/>
+        <line num="279" type="stmt" count="3"/>
+        <line num="280" type="stmt" count="1"/>
+        <line num="284" type="stmt" count="3"/>
+        <line num="285" type="stmt" count="1"/>
+        <line num="288" type="stmt" count="3"/>
+        <line num="289" type="stmt" count="1"/>
+        <line num="292" type="stmt" count="3"/>
+        <line num="293" type="stmt" count="1"/>
+        <line num="297" type="stmt" count="3"/>
+        <line num="298" type="stmt" count="1"/>
+        <line num="299" type="stmt" count="1"/>
+        <line num="303" type="stmt" count="3"/>
+        <metrics loc="306" ncloc="204" classes="1" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="62" elements="76" coveredelements="76"/>
+      </file>
+      <file name="/home/alexander/www/pmpack/NotificationChannels/Pushmix/src/PushmixServiceProvider.php">
+        <class name="NotificationChannels\Pushmix\PushmixServiceProvider" namespace="NotificationChannels\Pushmix">
+          <metrics complexity="7" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+        </class>
+        <line num="27" type="method" name="anonymousFunction:27#89" complexity="1" crap="1" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="61" type="method" name="provides" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <metrics loc="68" ncloc="47" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+    </package>
+    <metrics files="7" loc="625" ncloc="426" classes="7" methods="32" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="105" coveredstatements="105" elements="137" coveredelements="137"/>
+  </project>
+</coverage>

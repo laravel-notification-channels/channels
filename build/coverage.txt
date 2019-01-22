@@ -1,0 +1,24 @@
+
+
+Code Coverage Report:       
+  2019-01-22 20:06:25       
+                            
+ Summary:                   
+  Classes: 100.00% (7/7)    
+  Methods: 100.00% (32/32)  
+  Lines:   100.00% (105/105)
+
+\NotificationChannels\Pushmix::NotificationChannels\Pushmix\PushmixChannel
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  9/  9)
+\NotificationChannels\Pushmix::NotificationChannels\Pushmix\PushmixClient
+  Methods: 100.00% (11/11)   Lines: 100.00% ( 27/ 27)
+\NotificationChannels\Pushmix::NotificationChannels\Pushmix\PushmixMessage
+  Methods: 100.00% (14/14)   Lines: 100.00% ( 62/ 62)
+\NotificationChannels\Pushmix::NotificationChannels\Pushmix\PushmixServiceProvider
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  3/  3)
+\NotificationChannels\Pushmix\Exceptions::NotificationChannels\Pushmix\Exceptions\CouldNotSendNotification
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+\NotificationChannels\Pushmix\Exceptions::NotificationChannels\Pushmix\Exceptions\InvalidConfiguration
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+\NotificationChannels\Pushmix\Exceptions::NotificationChannels\Pushmix\Exceptions\MissingParameter
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)

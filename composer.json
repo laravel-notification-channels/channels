@@ -1,0 +1,47 @@
+{
+    "name": "alexpechkarev/new-channels",
+    "description": "Pushmix Notification Driver",
+    "homepage": "https://github.com/alexpechkarev/new-channels",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Pechkarev",
+            "email": "alexpechkarev@gmail.com",
+            "homepage": "https://www.pushmix.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/notifications": "5.*",
+        "illuminate/support": "5.*"
+    },
+    "require-dev": {
+      "mockery/mockery": "^1.0",
+      "orchestra/testbench": "^3.5",
+      "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Pushmix\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Pushmix\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "../../vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Pushmix\\PushmixServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
