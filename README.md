@@ -37,7 +37,7 @@ If you're installing the package in Laravel 5.4 or lower, you must import the se
 // config/app.php
 'providers' => [
     ...
-    NotificationChannels\OneSignal\PushmixServiceProvider::class,
+    NotificationChannels\Pushmix\PushmixServiceProvider::class,
 ],
 ```
 
