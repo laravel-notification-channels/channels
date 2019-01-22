@@ -9,7 +9,6 @@ This package makes it easy to send [Pushmix notifications](https://www.pushmix.c
 	- [Configuration](#configuration)
 - [Usage](#usage)
 	- [Available Message methods](#all-available-methods)
-	- [Button usage](#button-usage)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Security](#security)
