@@ -31,10 +31,8 @@ class PushmixMessage
     /** @var string */
     public $badge;
 
-
     /** @var array */
     public $buttons = [];
-
 
     /** @var array */
     public $extraParameters = [];
@@ -46,7 +44,6 @@ class PushmixMessage
      */
     public static function create($to)
     {
-
         return new static($to);
     }
 
@@ -55,15 +52,13 @@ class PushmixMessage
      */
     public function __construct($to = '')
     {
-        $this->to = !empty($to) ? $to : "all";
+        $this->to = ! empty($to) ? $to : 'all';
     }
+
     /***/
 
-
-
-
     /**
-     * Set to parameter
+     * Set to parameter.
      * @param  string $value specify subscribers topic,
      *  'all' -all subscribers,
      *  'one' - topic one subscribers,
@@ -77,10 +72,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Notification Title
+     * Set Notification Title.
      * @param  string $value notification title
      * @return $this
      */
@@ -90,7 +86,9 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
+
     /**
      * Set the message body.
      *
@@ -104,10 +102,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Notification Default URL
+     * Set Notification Default URL.
      * @param  string $value notification default url
      * @return $this
      */
@@ -117,10 +116,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Time To Live Parameter
+     * Set Time To Live Parameter.
      * @param  string $value notification time to live value
      * @return $this
      */
@@ -130,11 +130,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
-
     /**
-     * Set Priority Parameter
+     * Set Priority Parameter.
      * @param  string $value notification priority value
      * @return $this
      */
@@ -144,10 +144,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Icon Parameter
+     * Set Icon Parameter.
      * @param  string $value notification icon value
      * @return $this
      */
@@ -157,10 +158,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Badge Parameter
+     * Set Badge Parameter.
      * @param  string $value notification badge value
      * @return $this
      */
@@ -170,10 +172,11 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Large Image Parameter
+     * Set Large Image Parameter.
      * @param  string $value notification large image
      * @return $this
      */
@@ -183,124 +186,117 @@ class PushmixMessage
 
         return $this;
     }
+
     /***/
 
     /**
-     * Set Notification Buttons
+     * Set Notification Buttons.
      * @param  string $title button Title
      * @param  string $ur button url
      * @return $this
      */
     public function button($title, $url)
     {
-
         $cnt = count($this->buttons);
         // supporting maximum two buttons
-        if( $cnt >= 2){
-
-          return $this;
-
+        if ($cnt >= 2) {
+            return $this;
         }
-
-
 
         switch ($cnt) {
           case 0:
             array_push($this->buttons, [
               'action_title_one'  => $title,
-              'action_url_one'    => $url
+              'action_url_one'    => $url,
             ]);
             break;
 
             case 1:
               array_push($this->buttons, [
                 'action_title_two'  => $title,
-                'action_url_two'    => $url
+                'action_url_two'    => $url,
               ]);
               break;
 
         }
 
-
-
         return $this;
     }
+
     /***/
 
     /**
-     * Get Buttons
+     * Get Buttons.
      * @return array return an array of buttons
      */
-    public function getButtons(){
-      return $this->buttons;
+    public function getButtons()
+    {
+        return $this->buttons;
     }
+
     /***/
 
-
-
     /**
-     * Create Array of Parameters
+     * Create Array of Parameters.
      * @return array
      */
     public function toArray()
     {
+        if (empty($this->to)) {
+            throw MissingParameter::error('to');
+        }
 
-      if( empty( $this->to ) ){
-        throw MissingParameter::error('to');
-      }
+        if (empty($this->title)) {
+            throw MissingParameter::error('title');
+        }
 
-      if( empty( $this->title ) ){
-        throw MissingParameter::error('title');
-      }
+        if (empty($this->body)) {
+            throw MissingParameter::error('body');
+        }
 
-      if( empty( $this->body ) ){
-        throw MissingParameter::error('body');
-      }
-
-      if( empty( $this->default_url ) ){
-        throw MissingParameter::error('url');
-      }
+        if (empty($this->default_url)) {
+            throw MissingParameter::error('url');
+        }
 
         $message = [
             'to'          => $this->to,
             'title'       => $this->title,
             'body'        => $this->body,
-            'default_url' => $this->default_url
+            'default_url' => $this->default_url,
         ];
 
-        /**
+        /*
          * Set Optional Parameters
          * @var [type]
          */
-        if( !empty($this->priority) ){
-          $message['priority'] = $this->priority;
+        if (! empty($this->priority)) {
+            $message['priority'] = $this->priority;
         }
 
-        if( !empty($this->time_to_live) ){
-          $message['time_to_live'] = $this->time_to_live;
+        if (! empty($this->time_to_live)) {
+            $message['time_to_live'] = $this->time_to_live;
         }
 
-
-        if( !empty($this->icon) ){
-          $message['icon'] = $this->icon;
+        if (! empty($this->icon)) {
+            $message['icon'] = $this->icon;
         }
 
-        if( !empty($this->badge) ){
-          $message['badge'] = $this->badge;
+        if (! empty($this->badge)) {
+            $message['badge'] = $this->badge;
         }
 
-        if( !empty($this->image) ){
-          $message['image'] = $this->image;
+        if (! empty($this->image)) {
+            $message['image'] = $this->image;
         }
-
 
         foreach ($this->buttons as $data => $value) {
-          foreach ($value as $key => $val) {
-            Arr::set($message, $key, $val);
-          }
+            foreach ($value as $key => $val) {
+                Arr::set($message, $key, $val);
+            }
         }
 
         return $message;
     }
+
     /***/
 }

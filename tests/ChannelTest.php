@@ -3,19 +3,14 @@
 namespace NotificationChannels\Pushmix\Test;
 
 use Mockery;
-use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use Psr\Http\Message\ResponseInterface;
 use NotificationChannels\Pushmix\PushmixClient;
 use NotificationChannels\Pushmix\PushmixChannel;
+use Illuminate\Notifications\AnonymousNotifiable;
 use NotificationChannels\Pushmix\Exceptions\CouldNotSendNotification;
-use \Illuminate\Notifications\AnonymousNotifiable;
-
-
 
 class ChannelTest extends TestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -25,7 +20,6 @@ class ChannelTest extends TestCase
     {
         //setup db config if needed
         $app['config']->set('services.pushmix.key', 'SUBSCRIPTION_ID');
-
     }
 
     public function tearDown()
@@ -35,47 +29,42 @@ class ChannelTest extends TestCase
     }
 
     /** @test */
-    public function it_can_send(){
+    public function it_can_send()
+    {
+        $client = new PushmixClient();
+        $client->setApiUrl('https://www.pushmix.co.uk/api/ping');
+        $channel = new PushmixChannel($client);
+        $notifiable = (new AnonymousNotifiable)->route('Pushmix', 'all');
+        $response = $channel->send($notifiable, new OrderShipped());
 
-      $client = new PushmixClient();
-      $client->setApiUrl('https://www.pushmix.co.uk/api/ping');
-      $channel = new PushmixChannel( $client );
-      $notifiable = (new AnonymousNotifiable)->route('Pushmix', 'all');
-      $response = $channel->send($notifiable, new OrderShipped());
-
-      $this->assertSame(200, $response->getStatusCode());
-
+        $this->assertSame(200, $response->getStatusCode());
     }
+
     /***/
 
     /** @test */
-    public function it_can_throw_exception(){
-
-      $this->expectException(CouldNotSendNotification::class);
-      $client = new PushmixClient();
-      $client->setApiUrl('https://www.pushmix.co.uk/api/fail');
-      $channel = new PushmixChannel( $client );
-      $notifiable = (new AnonymousNotifiable)->route('Pushmix', 'all');
-      $channel->send($notifiable, new OrderShipped());
-
-
-
+    public function it_can_throw_exception()
+    {
+        $this->expectException(CouldNotSendNotification::class);
+        $client = new PushmixClient();
+        $client->setApiUrl('https://www.pushmix.co.uk/api/fail');
+        $channel = new PushmixChannel($client);
+        $notifiable = (new AnonymousNotifiable)->route('Pushmix', 'all');
+        $channel->send($notifiable, new OrderShipped());
     }
+
     /***/
 
     /** @test */
-    public function it_can_route_notification(){
-
-      $client = new PushmixClient();
-      $client->setApiUrl('https://www.pushmix.co.uk/api/ping');
-      $channel = new PushmixChannel( $client );
-      $notifiable = (new AnonymousNotifiable)->route('Not_Pushmix', 'all');
-      $channel->send($notifiable, new OrderShipped());
-      $this->assertTrue(TRUE);
-
-
+    public function it_can_route_notification()
+    {
+        $client = new PushmixClient();
+        $client->setApiUrl('https://www.pushmix.co.uk/api/ping');
+        $channel = new PushmixChannel($client);
+        $notifiable = (new AnonymousNotifiable)->route('Not_Pushmix', 'all');
+        $channel->send($notifiable, new OrderShipped());
+        $this->assertTrue(true);
     }
+
     /***/
-
-
 }
