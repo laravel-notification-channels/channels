@@ -2,10 +2,8 @@
 
 namespace NotificationChannels\Pushmix;
 
-use NotificationChannels\Pushmix\PushmixClient;
-use Psr\Http\Message\ResponseInterface;
-use Illuminate\Notifications\Notification;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Notifications\Notification;
 use NotificationChannels\Pushmix\Exceptions\CouldNotSendNotification;
 
 class PushmixChannel
@@ -29,7 +27,7 @@ class PushmixChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('Pushmix') ) {
+        if (! $to = $notifiable->routeNotificationFor('Pushmix')) {
             return;
         }
 
@@ -39,16 +37,12 @@ class PushmixChannel
         $this->pusmixClient->initKey();
 
         // Call with parameters
-        try{
+        try {
             return $this->pusmixClient->sendNotification($parameters);
-
         } catch (RequestException $e) {
-
-          throw CouldNotSendNotification::error($e);
-      }
-
+            throw CouldNotSendNotification::error($e);
+        }
     }
+
     /***/
-
-
 }
