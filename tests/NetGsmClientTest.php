@@ -19,6 +19,7 @@ class NetGsmClientTest extends PHPUnit_Framework_TestCase
 
         $this->client = Mockery::mock(new NetGsmClient($this->guzzle, $userCode, $secret));
         $this->message = (new NetGsmMessage('Message content'))
+            ->setRecipients("5984196155")
             ->setHeader('COMPANY');
     }
 
