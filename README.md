@@ -28,21 +28,83 @@ This package makes it easy to send notifications using [NetGsm](https://www.netg
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
+
+``` bash
+composer require laravel-notification-channels/netgsm
+```
+
+for Laravel 5.4 or lower, you must add the service provider to your config:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\NetGsm\NetGsmServiceProvider::class,
+],
+```
 
 ### Setting up the NetGsm service
 
-Add your Netgsm user, password and api identifier to your config/services.php:
+Add the environment variables to your `config/services.php`:
 
-Optionally include a few steps how users can set up the service.
+```php
+// config/services.php
+...
+'netgsm' => [
+    'user_code' => env('NETGSM_USER_CODE'),
+    'secret' => env('NETGSM_SECRET'),
+    'msg_header' => env('NETGSM_HEADER'),
+],
+...
+```
+
+Add your NetGsm User Code, Default header (name or number of sender), and secret (password) to your `.env`:
+
+```php
+// .env
+...
+NETGSM_USER_CODE=
+NETGSM_SECRET=
+NETGSM_HEADER=
+],
+...
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+Now you can use the channel in your `via()` method inside the notification:
 
-### Available Message methods
+``` php
+use NotificationChannels\NetGsm\NetGsmChannel;
+use NotificationChannels\NetGsm\NetGsmMessage;
+use Illuminate\Notifications\Notification;
 
-A list of all available options
+class VpsServerOrdered extends Notification
+{
+    public function via($notifiable)
+    {
+        return [NetGsmChannel::class];
+    }
+
+    public function toNetGsm($notifiable)
+    {
+        return (new NetGsmMessage("Your {$notifiable->service} was ordered!"));
+    }
+}
+```
+
+You can add recipients (single value or array)
+
+``` php
+return (new NetGsmMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
+```
+
+Additionally you can change header
+
+``` php
+return (new NetGsmMessage("Your {$notifiable->service} was ordered!"))->setHeader("COMPANY");
+```
 
 ## Changelog
 
