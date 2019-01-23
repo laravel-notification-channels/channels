@@ -1,0 +1,47 @@
+{
+    "name": "laravel-notification-channels/netgsm",
+    "description": "NetGSM notification channel for Laravel 5.3 - 5.7",
+    "homepage": "https://github.com/laravel-notification-channels/netgsm",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Talha Zekeriya Durmuş",
+            "email": "drtzack@gmail.com",
+            "homepage": "https://talhadurmus.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/notifications": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/support": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\NetGsm\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\NetGsm\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\NetGsm\\NetGsmServiceProvider"
+            ]
+        }
+    }
+}
