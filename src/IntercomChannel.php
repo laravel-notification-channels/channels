@@ -76,7 +76,7 @@ class IntercomChannel
                 $message->toArray()
             );
         } catch (BadResponseException $exception) {
-            throw new RequestException($exception);
+            throw new RequestException($exception, $exception->getMessage(), $exception->getCode());
         }
     }
 
