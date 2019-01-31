@@ -36,8 +36,12 @@ If you are using Laravel 5.5 or higher this package will automatically register 
     ...
     NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider::class,
 ],
-```
 
+```
+Before publish exponent notification migration you must add in .env file:  
+```bash
+EXPONENT_PUSH_NOTIFICATION_INTERESTS_STORAGE_DRIVER=database
+```
 You can publish the migration with:
 ```bash
 php artisan vendor:publish --provider="NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider" --tag="migrations"
