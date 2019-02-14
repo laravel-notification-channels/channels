@@ -1,0 +1,49 @@
+{
+    "name": "laravel-notification-channels/totalvoice",
+    "description": "TotalVoice Notification Channels for Laravel 5.3+",
+    "homepage": "https://github.com/laravel-notification-channels/totalvoice",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafael",
+            "email": "villa655321verde@gmail.com",
+            "homepage": "https://github.com/hafael",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "total-voice/php-client": "1.*",
+        "illuminate/notifications": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/events": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/queue": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\TotalVoice\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\TotalVoice\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\TotalVoice\\TotalVoiceServiceProvider"
+            ]
+        }
+    }
+}
