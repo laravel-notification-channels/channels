@@ -39,7 +39,7 @@ class PusherApiChannel
             $message['alreadyEncoded'] ?? false
         );
 
-        if (!$response) {
+        if (! $response) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($response);
         }
     }

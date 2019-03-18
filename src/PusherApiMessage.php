@@ -16,10 +16,10 @@ class PusherApiMessage
     /** @var string $socketId */
     protected $socketId = null;
 
-    /** @var boolean $debug */
+    /** @var bool $debug */
     protected $debug = false;
 
-    /** @var boolean $alreadyEncoded */
+    /** @var bool $alreadyEncoded */
     protected $alreadyEncoded = false;
 
     /**
@@ -29,8 +29,8 @@ class PusherApiMessage
      * @param string $event
      * @param mixed $data
      * @param string|null $socketId
-     * @param boolean $debug
-     * @param boolean $alreadyEncoded
+     * @param bool $debug
+     * @param bool $alreadyEncoded
      */
     public function __construct(
         $channels = null,
@@ -88,7 +88,7 @@ class PusherApiMessage
     }
 
     /**
-     * [optional]
+     * [optional].
      *
      * @param string|null $socketId
      * @return  $this
@@ -101,9 +101,9 @@ class PusherApiMessage
     }
 
     /**
-     * [optional]
+     * [optional].
      *
-     * @param boolean $debug
+     * @param bool $debug
      * @return  $this
      */
     public function debug($debug = false)
@@ -114,9 +114,9 @@ class PusherApiMessage
     }
 
     /**
-     * [optional]
+     * [optional].
      *
-     * @param boolean $alreadyEncoded
+     * @param bool $alreadyEncoded
      * @return  $this
      */
     public function alreadyEncoded($alreadyEncoded = false)

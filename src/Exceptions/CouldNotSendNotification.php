@@ -8,6 +8,7 @@ class CouldNotSendNotification extends \Exception
     {
         $encodedResponse = is_string($response) || is_bool($response)
             ? $response : json_encode($response);
+
         return new static("Message could not be sent: $encodedResponse");
     }
 }

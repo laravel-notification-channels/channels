@@ -6,7 +6,6 @@ use Orchestra\Testbench\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use NotificationChannels\PusherApiNotifications\PusherApiMessage;
 
-
 class MessageTest extends TestCase
 {
     use WithFaker;

@@ -13,7 +13,7 @@ class PusherApiServiceProvider extends ServiceProvider
     {
         // Bootstrap code here.
 
-        /**
+        /*
          * Here's some example code we use for the pusher package.
 
         $this->app->when(Channel::class)
@@ -34,5 +34,6 @@ class PusherApiServiceProvider extends ServiceProvider
      * Register the application services.
      */
     public function register()
-    { }
+    {
+    }
 }
