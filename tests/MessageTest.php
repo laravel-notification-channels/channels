@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\PusherApiNotifications\Test;
 
+use Orchestra\Testbench\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use NotificationChannels\PusherApiNotifications\PusherApiMessage;
-use Orchestra\Testbench\TestCase;
 
 
 class MessageTest extends TestCase

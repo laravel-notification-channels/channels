@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\PusherApiNotifications;
 
-use Illuminate\Support\Arr;
-
 class PusherApiMessage
 {
     /** @var string $channels */

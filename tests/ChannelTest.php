@@ -2,13 +2,13 @@
 
 namespace NotificationChannels\PusherApiNotifications\Test;
 
+use Mockery;
+use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Mockery;
-use NotificationChannels\PusherApiNotifications\Exceptions\CouldNotSendNotification;
 use NotificationChannels\PusherApiNotifications\PusherApiChannel;
 use NotificationChannels\PusherApiNotifications\PusherApiMessage;
-use Orchestra\Testbench\TestCase;
+use NotificationChannels\PusherApiNotifications\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
