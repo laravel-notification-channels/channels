@@ -2,16 +2,18 @@
 
 namespace NotificationChannels\PusherApiNotifications;
 
-use NotificationChannels\PusherApiNotifications\Exceptions\CouldNotSendNotification;
-use NotificationChannels\PusherApiNotifications\Events\MessageWasSent;
-use NotificationChannels\PusherApiNotifications\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\PusherApiNotifications\Exceptions\CouldNotSendNotification;
+use Pusher\Laravel\PusherManager;
 
 class PusherApiChannel
 {
-    public function __construct()
+    /** @var PusherManager|\Pusher\Pusher $pusher */
+    protected $pusher;
+
+    public function __construct(PusherManager $pusher)
     {
-        // Initialisation code here
+        $this->pusher = $pusher;
     }
 
     /**
@@ -24,10 +26,16 @@ class PusherApiChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
+        $message = $notification->toApiNotification($notifiable);
 
-        //        if ($response->error) { // replace this by the code need to check for errors
-        //            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-        //        }
+        $response = $this->pusher->trigger(
+            $message['channel'],
+            $message['event'],
+            $message['message']
+        );
+
+        if (!$response) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+        }
     }
 }
