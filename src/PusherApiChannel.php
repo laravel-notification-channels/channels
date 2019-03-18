@@ -32,7 +32,7 @@ class PusherApiChannel
         $message = $message instanceof PusherApiMessage ? $message->toArray() : $message;
 
         $response = $this->pusher->trigger(
-            $message['channel'],
+            $message['channels'],
             $message['event'],
             $message['data'],
             $message['socketId'] ?? null,
