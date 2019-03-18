@@ -35,9 +35,9 @@ class PusherApiChannel
             $message['channel'],
             $message['event'],
             $message['data'],
-            $message['socketId'],
-            $message['debug'],
-            $message['alreadyEncoded']
+            $message['socketId'] ?? null,
+            $message['debug'] ?? false,
+            $message['alreadyEncoded'] ?? false
         );
 
         if (!$response) {
