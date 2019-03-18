@@ -1,6 +1,12 @@
 {
     "name": "laravel-notification-channels/pusher-api-notifications",
     "description": "Send Pusher API Notifications",
+    "keywords": [
+        "pusher-api-notifications",
+        "laravel",
+        "pusher",
+        "notifications"
+    ],
     "homepage": "https://github.com/laravel-notification-channels/pusher-api-notifications",
     "license": "MIT",
     "authors": [
@@ -12,14 +18,15 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.0.0",
         "illuminate/notifications": "^5.3",
         "illuminate/support": "^5.1|^5.2|^5.3",
         "pusher/pusher-http-laravel": "^4.2"
     },
     "require-dev": {
-        "mockery/mockery": "^0.9.5",
-        "phpunit/phpunit": "4.*"
+        "mockery/mockery": "^1.2",
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {

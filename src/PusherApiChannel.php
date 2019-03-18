@@ -4,14 +4,13 @@ namespace NotificationChannels\PusherApiNotifications;
 
 use Illuminate\Notifications\Notification;
 use NotificationChannels\PusherApiNotifications\Exceptions\CouldNotSendNotification;
-use Pusher\Laravel\PusherManager;
 
 class PusherApiChannel
 {
-    /** @var PusherManager|\Pusher\Pusher $pusher */
+    /** @var \Pusher|\Pusher\Pusher $pusher */
     protected $pusher;
 
-    public function __construct(PusherManager $pusher)
+    public function __construct(\Pusher $pusher)
     {
         $this->pusher = $pusher;
     }
