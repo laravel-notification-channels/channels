@@ -25,10 +25,10 @@ class PusherApiChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        /** @var PusherApiMessage|array $message */
-        $message = $notification->toApiNotification($notifiable);
+        /** @var PusherApiMessage $pusherApiMessage */
+        $pusherApiMessage = $notification->toApiNotification($notifiable);
 
-        $message = $message instanceof PusherApiMessage ? $message->toArray() : $message;
+        $message = $pusherApiMessage->toArray();
 
         $response = $this->pusher::trigger(
             $message['channels'],

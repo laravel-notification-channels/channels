@@ -25,6 +25,32 @@ class PusherApiMessage
     protected $alreadyEncoded = false;
 
     /**
+     * Creates the instance.
+     *
+     * @param array|string $channels
+     * @param string $event
+     * @param mixed $data
+     * @param string|null $socketId
+     * @param boolean $debug
+     * @param boolean $alreadyEncoded
+     */
+    public function __construct(
+        $channels = null,
+        $event = null,
+        $data = null,
+        $socketId = null,
+        $debug = false,
+        $alreadyEncoded = false
+    ) {
+        $this->channels = $channels;
+        $this->event = $event;
+        $this->data = $data;
+        $this->socketId = $socketId;
+        $this->debug = $debug;
+        $this->alreadyEncoded = $alreadyEncoded;
+    }
+
+    /**
      * A channel name or an array of channel names to publish the event on.
      *
      * @param array|string $channels
