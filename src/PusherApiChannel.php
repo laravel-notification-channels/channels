@@ -30,7 +30,7 @@ class PusherApiChannel
 
         $message = $message instanceof PusherApiMessage ? $message->toArray() : $message;
 
-        $response = $this->pusher->trigger(
+        $response = $this->pusher::trigger(
             $message['channels'],
             $message['event'],
             $message['data'],
