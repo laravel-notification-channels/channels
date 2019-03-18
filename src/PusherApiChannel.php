@@ -26,12 +26,18 @@ class PusherApiChannel
      */
     public function send($notifiable, Notification $notification)
     {
+        /** @var PusherApiMessage|array $message */
         $message = $notification->toApiNotification($notifiable);
+
+        $message = $message instanceof PusherApiMessage ? $message->toArray() : $message;
 
         $response = $this->pusher->trigger(
             $message['channel'],
             $message['event'],
-            $message['message']
+            $message['data'],
+            $message['socketId'],
+            $message['debug'],
+            $message['alreadyEncoded']
         );
 
         if (!$response) {
