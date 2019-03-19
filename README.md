@@ -48,6 +48,15 @@ $ composer require laravel-notification-channels/pusher-api-notifications
 
 This package requires [pusher/pusher-http-laravel ^4.2](https://github.com/pusher/pusher-http-laravel), so after installing this, you have to [configure it](https://github.com/pusher/pusher-http-laravel#configuration).
 
+> If your using Laravel ^5.5, don't worry about adding the service provider to your `config/app.php` file because this package uses [Laravel Package Discovery](https://laravel.com/docs/5.8/packages#package-discovery). If don't, you have to add it:
+
+```php
+'providers' => [
+    // ...,
+    NotificationChannels\PusherApiNotifications\PusherApiServiceProvider::class,
+],
+```
+
 ## Usage
 
 > This is a third-party Laravel Notification Package, so you should know how to use Notifications in Laravel before using this. Docs can be found here: https://laravel.com/docs/master/notifications.
