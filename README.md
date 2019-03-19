@@ -1,10 +1,4 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
-
-Here's the latest documentation on Laravel 5.3 Notifications System:
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
+# Pusher API Notifications
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pusher-api-notifications.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pusher-api-notifications)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -17,14 +11,9 @@ https://laravel.com/docs/master/notifications
 
 This package makes it easy to send notifications using [Pusher API Notifications](https://pusher.com) with Laravel 5.3 or greater.
 
-**Note:** Replace `PusherApiNotifications` `Pusher API Notifications` `Andrés Herrera García` `andreshg112` `https://github.com/andreshg112` `andreshg112@gmail.com` `pusher-api-notifications` `Send Pusher API Notifications` `175997406` `1b3c70de-4b10-4f3d-8a27-edd150e64193` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
 ## Contents
 
--   [Installation](#installation) - [Setting up the Pusher API Notifications service](#setting-up-the-Pusher API Notifications-service)
+-   [Installation](#installation) - [Setting up the Pusher API Notifications service](#setting-up-the-Pusher-API-Notifications-service)
 -   [Usage](#usage) - [Available Message methods](#available-message-methods)
 -   [Changelog](#changelog)
 -   [Testing](#testing)
@@ -35,19 +24,76 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+> While this is not accepted in [Laravel Notification Channels](http://laravel-notification-channels.com/) and added to [Packagist](http://packagist.org), you have to add this in your `composer.json` file:
+
+```json
+{
+    ...,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/andreshg112/pusher-api-notifications.git"
+        }
+    ]
+}
+```
+
+Require the package:
+
+```bash
+$ composer require laravel-notification-channels/pusher-api-notifications
+```
 
 ### Setting up the Pusher API Notifications service
 
-Optionally include a few steps how users can set up the service.
+This package requires [pusher/pusher-http-laravel ^4.2](https://github.com/pusher/pusher-http-laravel), so after installing this, you have to [configure it](https://github.com/pusher/pusher-http-laravel#configuration).
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+> This is a third-party Laravel Notification Package, so you should know how to use Notifications in Laravel before using this. Docs can be found here: https://laravel.com/docs/master/notifications.
+
+In your notification, add the `PusherApiChannel` to the `via()` function:
+
+```php
+use NotificationChannels\PusherApiNotifications\PusherApiChannel;
+
+public function via($notifiable)
+{
+    return [PusherApiChannel::class];
+}
+```
+
+Then, create a method called `toApiNotification()` in your notification:
+
+```php
+use NotificationChannels\PusherApiNotifications\PusherApiMessage;
+
+public function toApiNotification($notifiable)
+{
+    return (new PusherApiMessage)
+        ->channels($channelName)
+        ->event($eventName)
+        ->data($data)
+        ->socketId($socketId)
+        ->debug($debug)
+        ->alreadyEncoded($alreadyEncoded);
+
+    // or
+
+    return new PusherApiMessage($channelName, $eventName, $data, $socketId, $debug, $alreadyEncoded);
+}
+```
 
 ### Available Message methods
 
-A list of all available options
+-   `channels($channelName)`: array or string of channel name(s).
+-   `event($eventName)`: the name of the event for the Pusher message.
+-   `data($data)`: array, string or something that can be corverted to JSON. It's the body of the Pusher message.
+-   `socketId($socketId)`: [optional] socketId of Pusher.
+-   `debug($debug)`: boolean that tells Pusher if you're debugging.
+-   `alreadyEncoded($alreadyEncoded)`: [optional] If the data is already encoded and you don't want Pusher to convert it, set this tu true.
+
+These parameters are the same received by [`Pusher::trigger()` method](https://github.com/pusher/pusher-http-laravel#examples).
 
 ## Changelog
 
