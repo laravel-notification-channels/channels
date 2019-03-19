@@ -28,7 +28,7 @@ This package makes it easy to send notifications using [Pusher API Notifications
 
 ```json
 {
-    ...,
+    // ...,
     "repositories": [
         {
             "type": "vcs",
@@ -100,9 +100,9 @@ public function toApiNotification($notifiable)
 -   `data($data)`: array, string or something that can be corverted to JSON. It's the body of the Pusher message.
 -   `socketId($socketId)`: [optional] socketId of Pusher.
 -   `debug($debug)`: boolean that tells Pusher if you're debugging.
--   `alreadyEncoded($alreadyEncoded)`: [optional] If the data is already encoded and you don't want Pusher to convert it, set this tu true.
+-   `alreadyEncoded($alreadyEncoded)`: [optional] If the data is already encoded and you don't want Pusher to convert it, set this to true.
 
-These parameters are the same received by [`Pusher::trigger()` method](https://github.com/pusher/pusher-http-laravel#examples).
+These parameters are the same received by [`Pusher::trigger()`](https://github.com/pusher/pusher-http-laravel#examples) method.
 
 ## Changelog
 
