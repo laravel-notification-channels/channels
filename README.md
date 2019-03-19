@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/andreshg112/pusher-api-notifications/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/andreshg112/pusher-api-notifications/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pusher-api-notifications.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pusher-api-notifications)
 
-This package makes it easy to send notifications using [Pusher API Notifications](https://pusher.com) with Laravel 5.3 or greater.
+This package makes it easy to send notifications using [Pusher API Notifications](https://pusher.com/docs/javascript_quick_start) with Laravel 5.3 or greater.
 
 ## Contents
 
