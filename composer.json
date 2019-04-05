@@ -30,6 +30,13 @@
             "NotificationChannels\\Textlocal\\Test\\": "tests"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Textlocal\\TextlocalServiceProvider"
+            ]
+        }
+    },
     "scripts": {
         "test": "vendor/bin/phpunit"
     },
