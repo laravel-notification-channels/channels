@@ -55,7 +55,7 @@ class ExpoChannel
                 true
             );
         } catch (ExpoException $e) {
-            $this->events->fire(
+            $this->events->dispatch(
                 new NotificationFailed($notifiable, $notification, 'expo-push-notifications', $e->getMessage())
             );
         }

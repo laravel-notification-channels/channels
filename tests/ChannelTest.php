@@ -82,7 +82,7 @@ class ChannelTest extends TestCase
 
         $this->expo->shouldReceive('notify')->with('interest_name', $data, true)->andThrow(ExpoException::class, '');
 
-        $this->events->shouldReceive('fire')->with(Mockery::type(NotificationFailed::class));
+        $this->events->shouldReceive('dispatch')->with(Mockery::type(NotificationFailed::class));
 
         $this->channel->send($this->notifiable, $this->notification);
     }
