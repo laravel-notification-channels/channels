@@ -13,15 +13,15 @@
     "require": {
         "php": ">=7.0",
         "alymosul/exponent-server-sdk-php": "1.1.*",
-        "illuminate/config": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/notifications": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/support": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/events": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/queue": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/http": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/routing": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/validation": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
-        "illuminate/auth": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*"
+        "illuminate/config": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/notifications": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/support": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/events": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/queue": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/http": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/routing": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/validation": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+        "illuminate/auth": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
