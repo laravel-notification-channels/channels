@@ -4,7 +4,7 @@ https://laravel.com/docs/master/notifications
 
 # A Boilerplate repo for contributions
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/sailthru.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/sailthru)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/sailthru.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/sailthru-notifications-channel)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/sailthru/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/sailthru)
 [![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)

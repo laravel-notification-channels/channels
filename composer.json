@@ -1,5 +1,5 @@
 {
-    "name": "laravel-notification-channels/sailthru",
+    "name": "laravel-notification-channels/sailthru-notifications-channel",
     "description": ":package_description",
     "homepage": "https://github.com/laravel-notification-channels/sailthru",
     "license": "MIT",
