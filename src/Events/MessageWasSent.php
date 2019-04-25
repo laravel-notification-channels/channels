@@ -17,12 +17,12 @@ class MessageWasSent
     /**
      * @var SailthruMessage
      */
-    protected $sailthruMessage;
+    public $sailthruMessage;
 
     /**
      * @var array
      */
-    protected $response;
+    public $response;
 
     /**
      * MessageWasSent constructor.

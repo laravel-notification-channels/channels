@@ -17,12 +17,12 @@ class MessageFailedToSend
     /**
      * @var SailthruMessage
      */
-    protected $sailthruMessage;
+    public $sailthruMessage;
 
     /**
      * @var
      */
-    protected $exception;
+    public $exception;
 
     /**
      * MessageWasSent constructor.
