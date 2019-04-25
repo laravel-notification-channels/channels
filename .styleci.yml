@@ -1,0 +1,132 @@
+preset: psr2
+
+risky: false
+
+disabled:
+
+enabled:
+#  - align_double_arrow
+#  - align_equals
+  - binary_operator_spaces
+#  - blank_line_after_namespace #psr2
+  - blank_line_after_opening_tag
+  - blank_line_before_return
+#  - braces #psr2
+  - cast_spaces
+#  - class_definition #psr2
+  - concat_with_spaces
+#  - concat_without_spaces
+#  - declare_equal_normalize
+#  - declare_strict_types
+#  - dir_constant
+#  - echo_to_print
+#  - elseif #psr2
+#  - encoding #psr2
+#  - ereg_to_preg #risky
+#  - full_opening_tag #psr2
+#  - function_declaration #psr2
+  - function_typehint_space
+  - hash_to_slash_comment
+  - heredoc_to_nowdoc
+  - include
+  - linebreak_after_opening_tag
+#  - long_array_syntax
+  - lowercase_cast
+#  - lowercase_constants #psr2
+#  - lowercase_keywords #psr2
+#  - method_argument_space #psr2
+  - method_separation
+#  - modernize_types_casting
+  - native_function_casing
+  - new_with_braces
+#  - no_alias_functions
+  - no_blank_lines_after_class_opening
+  - no_blank_lines_after_phpdoc
+  - no_blank_lines_after_return
+  - no_blank_lines_after_throw
+  - no_blank_lines_between_imports
+  - no_blank_lines_between_traits
+#  - no_blank_lines_before_namespace
+#  - no_closing_tag #psr2
+  - no_empty_comment
+  - no_empty_phpdoc
+  - no_empty_statement
+  - no_extra_consecutive_blank_lines
+  - no_leading_import_slash
+  - no_leading_namespace_whitespace
+#  - no_multiline_whitespace_around_double_arrow
+#  - no_multiline_whitespace_before_semicolons
+#  - no_php4_constructor #risky
+  - no_short_bool_cast
+#  - no_short_echo_tag
+  - no_singleline_whitespace_before_semicolons
+#  - no_spaces_after_function_name #psr2
+  - no_spaces_inside_offset
+#  - no_spaces_inside_parenthesis #psr2
+  - no_spaces_outside_offset
+#  - no_tab_indentation #psr2
+  - no_trailing_comma_in_list_call
+  - no_trailing_comma_in_singleline_array
+#  - no_trailing_whitespace #psr2
+#  - no_trailing_whitespace_in_comment #psr2
+  - no_unneeded_control_parentheses
+#  - no_unreachable_default_argument_value
+  - no_unused_imports
+#  - no_useless_else
+  - no_useless_return
+  - no_whitespace_before_comma_in_array
+  - no_whitespace_in_blank_line
+  - normalize_index_brace
+#  - not_operator_with_space
+#  - not_operator_with_successor_space
+  - object_operator_without_whitespace
+#  - ordered_class_elements
+  - alpha_ordered_imports
+#  - phpdoc_align
+  - phpdoc_add_missing_param_annotation
+  - phpdoc_indent
+  - phpdoc_inline_tag
+  - phpdoc_link_to_see
+  - phpdoc_no_access
+  - phpdoc_no_empty_return
+  - phpdoc_no_package
+  - phpdoc_order
+  - phpdoc_property
+  - phpdoc_scalar
+  - phpdoc_separation
+  - phpdoc_single_line_var_spacing
+#  - phpdoc_summary
+#  - phpdoc_to_comment
+  - phpdoc_trim
+  - phpdoc_type_to_var
+  - phpdoc_types
+#  - phpdoc_var_to_type
+  - phpdoc_var_without_name
+  - print_to_echo
+#  - property_visibility_required #psr2
+#  - psr4 #psr2
+  - return_type_declaration
+#  - self_accessor
+  - short_array_syntax
+  - short_scalar_cast
+#  - simplified_null_return
+#  - single_blank_line_at_eof #psr2
+  - single_blank_line_before_namespace
+#  - single_class_element_per_statement #psr2
+#  - single_import_per_statement #psr2
+#  - single_line_after_imports #psr2
+  - single_quote
+  - space_after_semicolon
+  - standardize_not_equals
+#  - switch_case_semicolon_to_colon #psr2
+#  - switch_case_space #psr2
+  - ternary_operator_spaces
+  - trailing_comma_in_multiline_array
+  - trim_array_spaces
+  - unalign_double_arrow
+  - unalign_equals
+  - unary_operator_spaces
+#  - unix_line_endings #psr2
+#  - uppercase_constants
+#  - visibility_required #psr2
+  - whitespace_after_comma_in_array
