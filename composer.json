@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/sailthru",
+    "description": ":package_description",
+    "homepage": "https://github.com/laravel-notification-channels/sailthru",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dylan Harbour",
+            "email": "tools@roam.africa",
+            "homepage": "http://ringier.tech",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "sailthru/sailthru-php5-client": "^1.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Sailthru\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Sailthru\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
