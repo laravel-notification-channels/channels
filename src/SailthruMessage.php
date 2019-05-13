@@ -139,6 +139,30 @@ class SailthruMessage
     }
 
     /**
+     * @param array $from Associative array with email and name
+     *
+     * @return SailthruMessage
+     */
+    public function from(array $from): SailthruMessage
+    {
+        return $this
+            ->fromEmail(array_get($from, 'address', array_get($from, 'email')))
+            ->fromName(array_get($from, 'name'));
+    }
+
+    /**
+     * @param array $to Associative array with email and name
+     *
+     * @return SailthruMessage
+     */
+    public function to(array $to): SailthruMessage
+    {
+        return $this
+            ->toEmail(array_get($to, 'address', array_get($to, 'email')))
+            ->toName(array_get($to, 'name'));
+    }
+
+    /**
      * @param string $toName
      *
      * @return SailthruMessage
