@@ -3,6 +3,7 @@
 namespace NotificationChannels\Sailthru;
 
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 use NotificationChannels\Sailthru\Events\MessageFailedToSend;
 use NotificationChannels\Sailthru\Events\MessageWasSent;
 use Sailthru_Client_Exception;
@@ -20,6 +21,18 @@ class SailthruChannel
     }
 
     /**
+     * Get default variables that are defined for all emails.
+     *
+     * Override this to use a different strategy.
+     *
+     * @return array
+     */
+    public static function getDefaultVars(): array
+    {
+        return [];
+    }
+
+    /**
      * @param $notifiable
      * @param Notification $notification
      *
@@ -27,14 +40,22 @@ class SailthruChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        try {
+        if (!config('services.sailthru.enabled', true)) {
+            Log::info(
+                'Sending Sailthru message',
+                [
+                    'notifiable' => $notifiable,
+                    'notification' => $notification,
+                ]
+            );
 
+            return [];
+        }
+
+        try {
             /** @var SailthruMessage $message */
             $message = $notification->toSailthru($notifiable);
-
-            if (method_exists($notifiable, 'sailthruDefaultVars')) {
-                $message->mergeDefaultVars($notifiable->sailthruDefaultVars());
-            }
+            $message->mergeDefaultVars(self::getDefaultVars());
 
             $response = $message->isMultiSend()
                 ? $this->multiSend($message)
@@ -45,6 +66,8 @@ class SailthruChannel
             return $response;
         } catch (Sailthru_Client_Exception $e) {
             event(new MessageFailedToSend($message, $e));
+
+            return [];
         }
     }
 
