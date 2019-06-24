@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\Sailthru\Events\MessageFailedToSend;
 use NotificationChannels\Sailthru\Events\MessageWasSent;
-use Sailthru_Client_Exception;
 
 class SailthruChannel
 {
@@ -64,7 +63,7 @@ class SailthruChannel
             event(new MessageWasSent($message, $response));
 
             return $response;
-        } catch (Sailthru_Client_Exception $e) {
+        } catch (\Sailthru_Client_Exception $e) {
             event(new MessageFailedToSend($message, $e));
 
             return [];
@@ -74,7 +73,7 @@ class SailthruChannel
     /**
      * @param SailthruMessage $sailthruMessage
      *
-     * @throws Sailthru_Client_Exception
+     * @throws \Sailthru_Client_Exception
      *
      * @return array
      */
@@ -92,7 +91,7 @@ class SailthruChannel
     /**
      * @param SailthruMessage $sailthruMessage
      *
-     * @throws Sailthru_Client_Exception
+     * @throws \Sailthru_Client_Exception
      *
      * @return array
      */
