@@ -11,19 +11,19 @@
 
 ## Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
-
+-   [Installation](#installation)
+-   [Usage](#usage) - [Available Message methods](#available-message-methods)
+-   [Changelog](#changelog)
+-   [Testing](#testing)
+-   [Security](#security)
+-   [Contributing](#contributing)
+-   [Credits](#credits)
+-   [License](#license)
 
 ## Installation
+
 You can install the package via composer:
+
 ```bash
 composer require alymosul/laravel-exponent-push-notifications
 ```
@@ -38,11 +38,15 @@ If you are using Laravel 5.5 or higher this package will automatically register 
 ],
 
 ```
-Before publish exponent notification migration you must add in .env file:  
+
+Before publish exponent notification migration you must add in .env file:
+
 ```bash
 EXPONENT_PUSH_NOTIFICATION_INTERESTS_STORAGE_DRIVER=database
 ```
+
 You can publish the migration with:
+
 ```bash
 php artisan vendor:publish --provider="NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider" --tag="migrations"
 ```
@@ -54,6 +58,7 @@ php artisan migrate
 ```
 
 You can optionally publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="NotificationChannels\ExpoPushNotifications\ExpoPushNotificationsServiceProvider" --tag="config"
 ```
@@ -77,7 +82,7 @@ return [
 
 ## Usage
 
-``` php
+```php
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\ExpoMessage;
 use Illuminate\Notifications\Notification;
@@ -94,6 +99,7 @@ class AccountApproved extends Notification
         return ExpoMessage::create()
             ->badge(1)
             ->enableSound()
+            ->title("Congratulations!")
             ->body("Your {$notifiable->service} account was approved!");
     }
 }
@@ -102,11 +108,13 @@ class AccountApproved extends Notification
 ### Available Message methods
 
 A list of all available options
-- `body('')`: Accepts a string value for the body.
-- `enableSound()`: Enables the notification sound.
-- `disableSound()`: Mutes the notification sound.
-- `badge(1)`: Accepts an integer value for the badge.
-- `ttl(60)`: Accepts an integer value for the time to live.
+
+-   `title('')`: Accepts a string value for the title.
+-   `body('')`: Accepts a string value for the body.
+-   `enableSound()`: Enables the notification sound.
+-   `disableSound()`: Mutes the notification sound.
+-   `badge(1)`: Accepts an integer value for the badge.
+-   `ttl(60)`: Accepts an integer value for the time to live. -`jsonData('')`: Accepts a json string or an array for additional. -`channelID('')`: Accepts a string to set the channelId of the notification for Android devices.
 
 ### Managing Recipients
 
@@ -122,7 +130,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
@@ -136,8 +144,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Aly Suleiman](https://github.com/Alymosul)
-- [All Contributors](../../contributors)
+-   [Aly Suleiman](https://github.com/Alymosul)
+-   [All Contributors](../../contributors)
 
 ## License
 
