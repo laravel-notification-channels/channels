@@ -21,7 +21,8 @@ class TextlocalServiceProvider extends ServiceProvider
 
                     return new Textlocal(
                         $textlocalConfig['username'],
-                        $textlocalConfig['hash']
+                        $textlocalConfig['hash'],
+                        $textlocalConfig['api_key'],
                     );
                 }
             );
