@@ -41,7 +41,9 @@ put the followings and to your config/services
 'sms' => [
      'textlocal' => [
 		 'username'  => env('TEXTLOCAL_USERNAME'),
+		 'password'  => env('TEXTLOCAL_PASSWORD'),
 		 'hash'      => env('TEXTLOCAL_HASH'),
+		 'api_key'   => env('TEXTLOCAL_API_KEY'),
 		 'sender'    => env('TEXTLOCAL_SENDER'),
      ]
 ]
@@ -50,6 +52,7 @@ put the followings and to your config/services
 ```
     TEXTLOCAL_USERNAME=Your email id or api key
     TEXTLOCAL_HASH=get it from url '/docs/' under your API KEYS section
+    TEXTLOCAL_API_KEY get it from url '/docs/' under your API KEYS section
     TEXTLOCAL_SENDER=Name of the Sender that will be displayed to the recipient (max 6 Characters).
     TEXTLOCAL_COUNTRY=Your Two letter(ISO-3166-alpha-2) Country Code. It should be the Country of the TEXTLOCAL account.
 ```
