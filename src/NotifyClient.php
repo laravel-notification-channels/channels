@@ -4,9 +4,9 @@ namespace NotificationChannels\Notify;
 
 use Exception;
 use GuzzleHttp\Client;
-use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Notify\Exceptions\InvalidConfiguration;
 use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
+use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
 
 class NotifyClient
 {
@@ -77,8 +77,9 @@ class NotifyClient
 
         try {
             $response = $this->client->request('POST', $this->endpointUrl, [
-                'body' => json_encode(new NotifyMessageResource($message))
+                'body' => json_encode(new NotifyMessageResource($message)),
             ]);
+
             return $response;
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);

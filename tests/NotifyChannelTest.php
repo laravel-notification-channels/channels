@@ -2,20 +2,17 @@
 
 namespace NotificationChannels\Notify\Test;
 
+use Mockery;
 use GuzzleHttp\Client;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Response;
-use Illuminate\Notifications\Events\NotificationFailed;
+use Illuminate\Events\Dispatcher;
+use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Mockery;
-use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Notify\Exceptions\InvalidConfiguration;
-use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
-use NotificationChannels\Notify\NotifyChannel;
 use NotificationChannels\Notify\NotifyClient;
+use NotificationChannels\Notify\NotifyChannel;
 use NotificationChannels\Notify\NotifyMessage;
-use Orchestra\Testbench\TestCase;
+use Illuminate\Notifications\Events\NotificationFailed;
 
 class NotifyChannelTest extends TestCase
 {
@@ -113,8 +110,8 @@ class TestNotification extends Notification
             ->setNotificationType('notificationType')
             ->setTransport('mail')
             ->setLanguage('en')
-            ->setParams(array(''))
-            ->setCc(array())
-            ->setBcc(array());
+            ->setParams([''])
+            ->setCc([])
+            ->setBcc([]);
     }
 }

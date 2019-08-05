@@ -18,8 +18,10 @@ class CouldNotSendNotification extends \Exception
     {
         $message = $exception->getResponse()->getBody();
         $code = $exception->getResponse()->getStatusCode();
+
         return new static("Notify responded with an error `{$code} - {$message}`");
     }
+
     /**
      * Thrown when we're unable to communicate with Notify.
      *

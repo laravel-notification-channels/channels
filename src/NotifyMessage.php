@@ -16,7 +16,6 @@ class NotifyMessage
 
     /**
      * Message constructor.
-     *
      */
     public function __construct()
     {
@@ -168,9 +167,9 @@ class NotifyMessage
      * @param string $name
      * @param string $email
      */
-    public function addRecipient($name = '', $email)
+    public function addRecipient($name, $email)
     {
-        $this->to[] = array('name' => $name, 'recipient' => $email);
+        $this->to[] = ['name' => $name, 'recipient' => $email];
 
         return $this;
     }

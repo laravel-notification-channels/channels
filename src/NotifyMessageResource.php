@@ -20,7 +20,7 @@ class NotifyMessageResource extends JsonResource
                 'params' => $this->getParams(),
                 'customer' => [
                     'clientId' => $this->getClientId(),
-                    'secretKey' => $this->getSecret()
+                    'secretKey' => $this->getSecret(),
                 ],
                 'transport' => [
                     [
@@ -30,9 +30,9 @@ class NotifyMessageResource extends JsonResource
                             'cc' => $this->getCc(),
                             'bcc' => $this->getBcc(),
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
     }
 }

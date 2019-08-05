@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Notify\Test;
 
-use NotificationChannels\Notify\NotifyMessage;
 use Orchestra\Testbench\TestCase;
+use NotificationChannels\Notify\NotifyMessage;
 
 class NotifyMessageTest extends TestCase
 {
@@ -42,9 +42,9 @@ class NotifyMessageTest extends TestCase
     /** @test */
     public function it_can_set_params_from_array()
     {
-        $message = (new NotifyMessage)->setParams(array('test' => 'test'));
+        $message = (new NotifyMessage)->setParams(['test' => 'test']);
 
-        $this->assertEquals(array('test' => 'test'), $message->getParams());
+        $this->assertEquals(['test' => 'test'], $message->getParams());
     }
 
     /** @test */
@@ -74,17 +74,17 @@ class NotifyMessageTest extends TestCase
     /** @test */
     public function it_can_set_cc_from_array()
     {
-        $message = (new NotifyMessage)->setCc(array(array('test' => 'test')));
+        $message = (new NotifyMessage)->setCc([['test' => 'test']]);
 
-        $this->assertEquals(array(array('test' => 'test')), $message->getCc());
+        $this->assertEquals([['test' => 'test']], $message->getCc());
     }
 
     /** @test */
     public function it_can_set_bcc_from_array()
     {
-        $message = (new NotifyMessage)->setBcc(array(array('test' => 'test')));
+        $message = (new NotifyMessage)->setBcc([['test' => 'test']]);
 
-        $this->assertEquals(array(array('test' => 'test')), $message->getBcc());
+        $this->assertEquals([['test' => 'test']], $message->getBcc());
     }
 
     /** @test */
@@ -92,6 +92,6 @@ class NotifyMessageTest extends TestCase
     {
         $message = (new NotifyMessage)->addRecipient('John Doe', 'john@doe.com');
 
-        $this->assertEquals(array(array('name' => 'John Doe','recipient'=>'john@doe.com')), $message->getTo());
+        $this->assertEquals([['name' => 'John Doe', 'recipient'=>'john@doe.com']], $message->getTo());
     }
 }
