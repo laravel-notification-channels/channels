@@ -40,8 +40,12 @@ class NotifyChannel
             }
             return $this->client->send($message);
         } catch (Exception $exception) {
-            $event = new NotificationFailed($notifiable, $notification, 'notify',
-            ['message' => $exception->getMessage(), 'exception' => $exception]);
+            $event = new NotificationFailed(
+                $notifiable,
+                $notification,
+                'notify',
+                ['message' => $exception->getMessage(), 'exception' => $exception]
+            );
             $this->events->fire($event);
         }
     }

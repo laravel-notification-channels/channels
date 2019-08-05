@@ -69,7 +69,7 @@ class NotifyChannelTest extends TestCase
     /** @test */
     public function it_can_send_a_notification()
     {
-        $response = new Response( '{ "success": true, "identifier": "015da530-e867-11e8-9580-3b2b4d2b2a6b" }',200);
+        $response = new Response('{ "success": true, "identifier": "015da530-e867-11e8-9580-3b2b4d2b2a6b" }', 200);
         $this->client->shouldReceive('send')->andReturn($response);
         $result = $this->channel->send($this->notifiable, $this->notification);
         $this->assertSame($response, $result);
