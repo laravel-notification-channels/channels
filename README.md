@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/notify/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/notify/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/notify.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/notify)
 
-This package makes it easy to send notifications using [Notify](https://app.notify.eu) with Laravel 5.5+
+This package makes it easy to send notifications using [Notify](https://app.notify.eu) with Laravel 5.6+
 
 ## Contents
 
