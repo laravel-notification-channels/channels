@@ -2,11 +2,11 @@
 
 namespace NotificationChannels\Notify;
 
-use Illuminate\Events\Dispatcher;
-use Illuminate\Notifications\Events\NotificationFailed;
-use Illuminate\Notifications\Notification;
-use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
 use Exception;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Events\NotificationFailed;
+use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
 
 class NotifyChannel
 {
@@ -38,6 +38,7 @@ class NotifyChannel
             if ($to = $this->getTo($notifiable)) {
                 $message->addRecipient($to['name'], $to['recipient']);
             }
+
             return $this->client->send($message);
         } catch (Exception $exception) {
             $event = new NotificationFailed(

@@ -20,6 +20,7 @@ class NotifyServiceProvider extends ServiceProvider
                 if (is_null($config)) {
                     throw InvalidConfiguration::configurationNotSet();
                 }
+
                 return new NotifyClient(new Client());
             });
     }
