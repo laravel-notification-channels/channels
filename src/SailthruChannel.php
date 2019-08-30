@@ -90,13 +90,23 @@ class SailthruChannel
 
     /**
      * @param SailthruMessage $sailthruMessage
-     *
-     * @throws \Sailthru_Client_Exception
-     *
      * @return array
      */
     protected function singleSend(SailthruMessage $sailthruMessage)
     {
+        if (config('services.sailthru.log_payload', false)) {
+            Log::debug(
+                'Sailthru Payload',
+                [
+                    'template' => $sailthruMessage->getTemplate(),
+                    'email' => $sailthruMessage->getToEmail(),
+                    'vars' => $sailthruMessage->getVars(),
+                    'options' => $sailthruMessage->getOptions()
+                ]
+            );
+        }
+
+
         return $this->sailthru->send(
             $sailthruMessage->getTemplate(),
             $sailthruMessage->getToEmail(),
