@@ -90,6 +90,7 @@ class SailthruChannel
 
     /**
      * @param SailthruMessage $sailthruMessage
+     *
      * @return array
      */
     protected function singleSend(SailthruMessage $sailthruMessage)
@@ -101,11 +102,10 @@ class SailthruChannel
                     'template' => $sailthruMessage->getTemplate(),
                     'email' => $sailthruMessage->getToEmail(),
                     'vars' => $sailthruMessage->getVars(),
-                    'options' => $sailthruMessage->getOptions()
+                    'options' => $sailthruMessage->getOptions(),
                 ]
             );
         }
-
 
         return $this->sailthru->send(
             $sailthruMessage->getTemplate(),
