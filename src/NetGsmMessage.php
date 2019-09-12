@@ -23,12 +23,14 @@ class NetGsmMessage
     public function setBody($body)
     {
         $this->body = trim($body);
+
         return $this;
     }
 
     public function setHeader($header)
     {
         $this->header = $header;
+
         return $this;
     }
 
@@ -38,6 +40,7 @@ class NetGsmMessage
             $recipients = [$recipients];
         }
         $this->recipients = $recipients;
+
         return $this;
     }
 }

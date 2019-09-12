@@ -9,7 +9,6 @@ class CouldNotSendNotification extends \Exception
         return new static("NetGsm service responded with an error '{$exception->getCode()}: {$exception->getMessage()}'");
     }
 
-
     public static function emptyRecipients()
     {
         return new static('In order to send notification via NetGsm you need to add some recipients.');

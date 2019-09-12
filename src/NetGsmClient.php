@@ -40,7 +40,7 @@ class NetGsmClient
      * @param  string  $secret
      * @param  string  $msgHeader
      */
-    public function __construct(Client $client, string $userCode, string $secret, string $msgHeader = "")
+    public function __construct(Client $client, string $userCode, string $secret, string $msgHeader = '')
     {
         $this->client = $client;
         $this->userCode = $userCode;
@@ -85,7 +85,7 @@ class NetGsmClient
             } elseif ($result[0] == '70') {
                 throw new Exception('Invalid request', $result[0]);
             } else {
-                throw new Exception("Unknown error", -1);
+                throw new Exception('Unknown error', -1);
             }
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
