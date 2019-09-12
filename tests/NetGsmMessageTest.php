@@ -3,8 +3,9 @@
 namespace NotificationChannels\NetGsm\Test;
 
 use NotificationChannels\NetGsm\NetGsmMessage;
+use PHPUnit\Framework\TestCase;
 
-class NetGsmMessageTest extends \PHPUnit_Framework_TestCase
+class NetGsmMessageTest extends TestCase
 {
     /** @test */
     public function it_can_be_instantiated()
@@ -52,7 +53,7 @@ class NetGsmMessageTest extends \PHPUnit_Framework_TestCase
     {
         $message = (new NetGsmMessage)->setRecipients([31650520659, 31599858770]);
 
-        $this->assertEquals(['31650520659','31599858770'], $message->recipients);
+        $this->assertEquals(['31650520659', '31599858770'], $message->recipients);
     }
 
     /** @test */

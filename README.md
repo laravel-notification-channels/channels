@@ -1,4 +1,4 @@
-# NetGsm notifications channel for Laravel 5.3, 5.4, 5.5, 5.6, 5.7
+# NetGsm notifications channel for Laravel 6
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/netgsm.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/netgsm)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -32,16 +32,6 @@ You can install the package via composer:
 
 ``` bash
 composer require laravel-notification-channels/netgsm
-```
-
-for Laravel 5.4 or lower, you must add the service provider to your config:
-
-```php
-// config/app.php
-'providers' => [
-    ...
-    NotificationChannels\NetGsm\NetGsmServiceProvider::class,
-],
 ```
 
 ### Setting up the NetGsm service

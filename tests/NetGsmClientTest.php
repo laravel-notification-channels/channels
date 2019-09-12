@@ -6,11 +6,20 @@ use GuzzleHttp\Client;
 use Mockery;
 use NotificationChannels\NetGsm\NetGsmClient;
 use NotificationChannels\NetGsm\NetGsmMessage;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class NetGsmClientTest extends PHPUnit_Framework_TestCase
+class NetGsmClientTest extends TestCase
 {
-    public function setUp()
+    /** @var NetGsmClient */
+    protected $client;
+
+    /** @var Client */
+    protected $guzzle;
+
+    /** @var NetGsmMessage */
+    protected $message;
+
+    public function setUp(): void
     {
         $this->guzzle = Mockery::mock(new Client());
 
@@ -23,7 +32,7 @@ class NetGsmClientTest extends PHPUnit_Framework_TestCase
             ->setHeader('COMPANY');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();
@@ -39,6 +48,8 @@ class NetGsmClientTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_send_message()
     {
+        $this->expectExceptionMessage('30: Invalid API credentials');
+
         $this->client->send($this->message);
     }
 }

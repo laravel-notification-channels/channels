@@ -11,7 +11,7 @@ class NetGsmChannel
 
     /**
      * NetGsmChannel constructor.
-     * @param NetGsmClient $client
+     * @param  NetGsmClient  $client
      */
     public function __construct(NetGsmClient $client)
     {
@@ -21,8 +21,8 @@ class NetGsmChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      *
      * @throws \NotificationChannels\NetGsm\Exceptions\CouldNotSendNotification
      */

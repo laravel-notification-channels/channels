@@ -9,11 +9,29 @@ use Mockery;
 use NotificationChannels\NetGsm\NetGsmChannel;
 use NotificationChannels\NetGsm\NetGsmClient;
 use NotificationChannels\NetGsm\NetGsmMessage;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class NetGsmChannelTest extends PHPUnit_Framework_TestCase
+class NetGsmChannelTest extends TestCase
 {
-    public function setUp()
+    /** @var NetGsmClient */
+    protected $client;
+
+    /** @var Client */
+    protected $guzzle;
+
+    /** @var NetGsmChannel */
+    protected $channel;
+
+    /** @var TestNotification */
+    protected $notification;
+
+    /** @var TestNotifiable */
+    protected $notifiable;
+
+    /** @var TestStringNotification */
+    protected $string_notification;
+
+    public function setUp(): void
     {
         $this->notification = new TestNotification;
         $this->string_notification = new TestStringNotification;
@@ -28,31 +46,35 @@ class NetGsmChannelTest extends PHPUnit_Framework_TestCase
         $this->channel = new NetGsmChannel($this->client);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();
     }
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $this->assertInstanceOf(NetGsmClient::class, $this->client);
         $this->assertInstanceOf(NetGsmChannel::class, $this->channel);
     }
 
     /** @test */
-    public function test_it_shares_message()
+    public function test_it_shares_message(): void
     {
         $this->client->shouldReceive('send')->once();
         $this->channel->send($this->notifiable, $this->notification);
+
+        $this->assertEquals(1, $this->client->mockery_getExpectationCount());
     }
 
     /** @test */
-    public function if_string_message_can_be_send()
+    public function if_string_message_can_be_send(): void
     {
         $this->client->shouldReceive('send')->once();
         $this->channel->send($this->notifiable, $this->string_notification);
+
+        $this->assertEquals(1, $this->client->mockery_getExpectationCount());
     }
 }
 
