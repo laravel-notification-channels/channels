@@ -1,4 +1,4 @@
-# NetGsm notifications channel for Laravel 6
+# NetGsm notifications channel for Laravel 5.5, 5.6, 5.7. 5.8, 6
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/netgsm.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/netgsm)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
