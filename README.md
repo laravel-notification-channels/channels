@@ -1,8 +1,6 @@
 This package allows to send SMS using Textlocal API using laravel notifications
 
-Here's the latest documentation on Laravel 5.4 Notifications System: 
-
-https://laravel.com/docs/5.4/notifications
+Supports Laravel 5.x to 6.x
 
 # Found any bugs or improvement open an issue or send me a PR
 
