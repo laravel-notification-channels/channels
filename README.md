@@ -42,64 +42,92 @@ With more endpoints to come. Feel free to contribute.
 ## Installation
 
 ```
-composer require dalnix/46elks
+composer require larsemil/46elks
 ```
 
 ### Setting up the 46Elks service
 
-You must add the service provider:
 
+add the following to your config/services.php
 ```
-// config/app.php
-'providers' => [
-    ...
-    NotificationChannels\FourtySixElks\FourtySixElksServiceProvider::class,
-],
-```
-
-and add the following to your config/services.php
-
 	'46elks' => [
-		'username' => env('46ELKS_USERNAME'),
-		'password' => env('46ELKS_PASSWORD'),
+		'username' => env('FORTY_SIX_ELKS_USERNAME'),
+		'password' => env('FORTY_SIX_ELKS_PASSWORD'),
 	],
+```
 	
-Also remember to update your .env with correct information
+Also remember to update your .env with correct information:
+```
+FORTY_SIX_ELKS_USERNAME=
+FORTY_SIX_ELKS_PASSWORD=
+```
+You will find your username and password at https://46elks.se/account
+
 ## Usage
+
 
 To use this channel simply create a notification that has the following content:
 ```
-/**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+
     public function via($notifiable)
     {
-        return [FourtySixElksChannel::class];
+        return [FortySixElksChannel::class];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
+ 
     public function to46Elks($notifiable)
     {
-        return (new FourtySixElksSMS())
+        return (new FortySixElksSMS())
 	        ->line('Testsms')
 	        ->line('Olle')
 	        ->to('+46762216234')
 	        ->from('Emil');
     }
 ```
+### Available mediums
+#### SMS
+The FortySixElksSMS have the following methods, all chainable.
+### Available Message methods for sms
 
+
+``from($mixed)``. Accepts a string up to 11 characters or number. Sms will be sent with that name.
+
+``to($number)``. International phone number.
+
+``line($string)``. Every string in a line will be on its own row.
+
+``flash()``. Will set the message type to flash. Will not endup in sms inbox. See [This tweet](https://twitter.com/46elks/status/583183559420178432) to find out how it looks on an iphone.
+#### MMS
+To use MMS simply use `new FortySixElksMMS()` instead of `new FortySixElksSMS()`
+
+The FortySixElksMMS have the following methods, all chainable.
 
 ### Available Message methods
 
-A list of all available options
+
+``from($mixed)``. Accepts 'noreply' as a string or a MMS activated number
+
+``to($number)``. International phone number.
+
+``line($string)``. Every string in a line will be on its own row.
+
+``image()``. URL to the image to send in mms.
+ 
+
+### Error handling
+> How to handle notification send errors
+
+If for any reason there would be an error when sending a notification it will fire a 
+`Illuminate\Notifications\Events\NotificationFailed` event. You can then listen for that.
+
+Example:
+```
+Event::listen(NotificationFailed::class, function($event){
+    info('Error while sending sms');
+});
+```
+And the event has `$event->notifiable`, `$event->notification`, `$event->channel` and `$event->data`(where you have the exception at `$event->data['exception']`)
+
 
 ## Changelog
 
