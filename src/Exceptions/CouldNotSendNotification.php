@@ -8,5 +8,4 @@ class CouldNotSendNotification extends \Exception
     {
         return new static('46Elks responded with an error:'.$message.' '.$code);
     }
-
 }

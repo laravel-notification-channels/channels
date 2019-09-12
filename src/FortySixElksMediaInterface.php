@@ -1,21 +1,19 @@
 <?php
+
 namespace NotificationChannels\FortySixElks;
 
-
 /**
- * Interface FourtSixElksMediaInterface
- * @package NotificationChannels\FortySixElks
+ * Interface FourtSixElksMediaInterface.
  */
-interface FortySixElksMediaInterface {
+interface FortySixElksMediaInterface
+{
+    /**
+     * FourtSixElksMediaInterface constructor.
+     */
+    public function __construct();
 
-	/**
-	 * FourtSixElksMediaInterface constructor.
-	 */
-	public function __construct();
-
-	/**
-	 * @return mixed
-	 */
-	public function send();
-
+    /**
+     * @return mixed
+     */
+    public function send();
 }
