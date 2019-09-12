@@ -12,6 +12,6 @@ class CouldNotSendNotification extends \Exception
 
     public static function emptyRecipients()
     {
-        return new static("In order to send notification via NetGsm you need to add some recipients.");
+        return new static('In order to send notification via NetGsm you need to add some recipients.');
     }
 }

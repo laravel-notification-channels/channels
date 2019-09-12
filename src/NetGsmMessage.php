@@ -4,7 +4,7 @@ namespace NotificationChannels\NetGsm;
 
 class NetGsmMessage
 {
-    public $body = "";
+    public $body = '';
     public $header = null;
     public $recipients = [];
 
@@ -15,7 +15,7 @@ class NetGsmMessage
 
     public function __construct($body = '')
     {
-        if (!empty($body)) {
+        if (! empty($body)) {
             $this->body = trim($body);
         }
     }
@@ -34,12 +34,10 @@ class NetGsmMessage
 
     public function setRecipients($recipients)
     {
-        if (!is_array($recipients)) {
+        if (! is_array($recipients)) {
             $recipients = [$recipients];
         }
         $this->recipients = $recipients;
         return $this;
     }
-
-
 }

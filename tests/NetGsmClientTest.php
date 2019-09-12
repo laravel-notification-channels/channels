@@ -23,12 +23,12 @@ class NetGsmClientTest extends TestCase
     {
         $this->guzzle = Mockery::mock(new Client());
 
-        $userCode = "5458886155";
-        $secret = "578BEA";
+        $userCode = '5458886155';
+        $secret = '578BEA';
 
         $this->client = Mockery::mock(new NetGsmClient($this->guzzle, $userCode, $secret));
         $this->message = (new NetGsmMessage('Message content'))
-            ->setRecipients("5984196155")
+            ->setRecipients('5984196155')
             ->setHeader('COMPANY');
     }
 
