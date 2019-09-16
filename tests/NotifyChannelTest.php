@@ -16,7 +16,7 @@ use Illuminate\Notifications\Events\NotificationFailed;
 
 class NotifyChannelTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->notification = new TestNotification;
         $this->notifiable = new TestNotifiable;
@@ -27,7 +27,7 @@ class NotifyChannelTest extends TestCase
         $this->channel = new NotifyChannel($this->client, $this->dispatcher);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();
