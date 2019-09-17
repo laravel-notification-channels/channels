@@ -47,19 +47,18 @@ class FortySixElksMedia
         if (!$this->username || !$this->password) {
             throw MissingConfigNotification::missingConfig();
         }
-        if ($this->username && $this->password) {
-            $this->client = new Client(
-                [
-                    'headers' => [
-                        'Content-Type' => 'application/x-www-urlencoded',
-                    ],
-                    'auth'    => [
-                        $this->username,
-                        $this->password,
-                    ],
-                ]
-            );
-        }
+
+        $this->client = new Client(
+            [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-urlencoded',
+                ],
+                'auth'    => [
+                    $this->username,
+                    $this->password,
+                ],
+            ]
+        );
     }
 
     /**
