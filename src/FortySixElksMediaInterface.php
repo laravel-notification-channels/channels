@@ -2,9 +2,6 @@
 
 namespace NotificationChannels\FortySixElks;
 
-/**
- * Interface FourtSixElksMediaInterface.
- */
 interface FortySixElksMediaInterface
 {
     /**
@@ -13,7 +10,7 @@ interface FortySixElksMediaInterface
     public function __construct();
 
     /**
-     * @return mixed
+     * @return self
      */
     public function send();
 }

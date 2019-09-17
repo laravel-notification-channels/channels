@@ -6,7 +6,7 @@ use NotificationChannels\FortySixElks\Exceptions\CouldNotSendNotification;
 
 class FortySixElksSMS extends FortySixElksMedia implements FortySixElksMediaInterface
 {
-    protected $endpoint = 'https://api.46elks.com/a1/SMS';
+    const ENDPOINT = 'https://api.46elks.com/a1/SMS';
     public $type = 'SMS';
 
     /**
@@ -23,7 +23,7 @@ class FortySixElksSMS extends FortySixElksMedia implements FortySixElksMediaInte
     public function send()
     {
         try {
-            $response = $this->client->request('POST', $this->endpoint, [
+            $response = $this->client->request('POST', self::ENDPOINT, [
                 'form_params' => [
                     'from'     => $this->from,
                     'message'  => $this->getContent(),
@@ -35,7 +35,10 @@ class FortySixElksSMS extends FortySixElksMedia implements FortySixElksMediaInte
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
             $response = $e->getResponse();
 
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response->getBody()->getContents(), $response->getStatusCode());
+            throw CouldNotSendNotification::serviceRespondedWithAnError(
+                $response->getBody()->getContents(),
+                $response->getStatusCode()
+            );
         }
 
         return $this;

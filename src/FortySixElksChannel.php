@@ -7,9 +7,6 @@ use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\FortySixElks\Exceptions\CouldNotUseNotification;
 
-/**
- * Class FortySixElksChannel.
- */
 class FortySixElksChannel
 {
     protected $events;

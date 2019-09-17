@@ -1,7 +1,7 @@
 {
-    "name": "larsemil/46elks",
+    "name": "laravel-notification-channels/46elks",
     "description": "Laravel notification channel package for 46Elks.",
-    "homepage": "https://github.com/larsemil/46Elks",
+    "homepage": "https://github.com/laravel-notification-channels/46Elks",
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.3",
         "illuminate/events": "~5.5 || ~6.0",
         "illuminate/notifications": "~5.5 || ~6.0",

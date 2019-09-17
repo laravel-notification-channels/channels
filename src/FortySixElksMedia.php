@@ -3,14 +3,14 @@
 namespace NotificationChannels\FortySixElks;
 
 use GuzzleHttp\Client;
-use NotificationChannels\FortySixElks\Exceptions\CouldNotUseNotification;
+use NotificationChannels\FortySixElks\Exceptions\MissingConfigNotification;
 
 class FortySixElksMedia
 {
     /**
      * @var string
      */
-    protected $endpoint = null;
+    const ENDPOINT = null;
     /**
      * @var array
      */
@@ -44,7 +44,9 @@ class FortySixElksMedia
     {
         $this->username = config('services.46elks.username');
         $this->password = config('services.46elks.password');
-
+        if (!$this->username || !$this->password) {
+            throw MissingConfigNotification::missingConfig();
+        }
         if ($this->username && $this->password) {
             $this->client = new Client(
                 [
@@ -57,8 +59,6 @@ class FortySixElksMedia
                     ],
                 ]
             );
-        } else {
-            throw CouldNotUseNotification::missingConfig();
         }
     }
 
@@ -91,9 +91,9 @@ class FortySixElksMedia
      *
      * @return $this
      */
-    public function to($phone_number)
+    public function to($phoneNumber)
     {
-        $this->phone_number = $phone_number;
+        $this->phone_number = $phoneNumber;
 
         return $this;
     }

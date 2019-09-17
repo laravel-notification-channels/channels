@@ -6,7 +6,7 @@ use NotificationChannels\FortySixElks\Exceptions\CouldNotSendNotification;
 
 class FortySixElksMMS extends FortySixElksMedia
 {
-    protected $endpoint = 'https://api.46elks.com/a1/mms';
+    const ENDPOINT = 'https://api.46elks.com/a1/mms';
     public $type = 'MMS';
 
     public function __construct()
@@ -27,7 +27,7 @@ class FortySixElksMMS extends FortySixElksMedia
     public function send()
     {
         try {
-            $response = $this->client->request('POST', $this->endpoint, [
+            $response = $this->client->request('POST', self::ENDPOINT, [
                 'form_params' => [
                     'from'     => $this->from,
                     'message'  => $this->getContent(),

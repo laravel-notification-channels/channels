@@ -1,4 +1,4 @@
-Here's the latest documentation on Laravel 5.3 Notifications System: 
+Here's the latest documentation on Laravel Notifications System: 
 
 https://laravel.com/docs/master/notifications
 
@@ -13,7 +13,7 @@ https://laravel.com/docs/master/notifications
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/46Elks/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/46Elks/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/46Elks.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/46Elks)
 
-This package makes it easy to send notifications using [46Elks](https://www.46elks.com) with Laravel 5.3.
+This package makes it easy to send notifications using [46Elks](https://www.46elks.com) with Laravel.
 
 
 
@@ -42,7 +42,7 @@ With more endpoints to come. Feel free to contribute.
 ## Installation
 
 ```
-composer require larsemil/46elks
+composer require laravel-notification-channels/46elks
 ```
 
 ### Setting up the 46Elks service
