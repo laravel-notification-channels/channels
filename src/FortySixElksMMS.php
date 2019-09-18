@@ -4,7 +4,7 @@ namespace NotificationChannels\FortySixElks;
 
 use NotificationChannels\FortySixElks\Exceptions\CouldNotSendNotification;
 
-class FortySixElksMMS extends FortySixElksMedia
+class FortySixElksMMS extends FortySixElksMedia implements FortySixElksMediaInterface
 {
     const ENDPOINT = 'https://api.46elks.com/a1/mms';
     public $type = 'MMS';
