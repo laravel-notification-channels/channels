@@ -76,7 +76,7 @@ class ExpoControllerTest extends TestCase
      */
     public function aDeviceCanSubscribeToTheSystem($expoRepository)
     {
-        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+        [$expoController, $expoChannel] = $this->setupExpo($expoRepository);
 
         // We will fake a request with the following data
         $data = ['expo_token' => 'ExponentPushToken[fakeToken]'];
@@ -110,7 +110,7 @@ class ExpoControllerTest extends TestCase
      */
     public function subscribeReturnsErrorResponseIfTokenInvalid($expoRepository)
     {
-        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+        [$expoController, $expoChannel] = $this->setupExpo($expoRepository);
 
         // We will fake a request with no data
         $request = $this->mockRequest([]);
@@ -158,7 +158,7 @@ class ExpoControllerTest extends TestCase
      */
     public function aDeviceCanUnsubscribeSingleTokenFromTheSystem($expoRepository)
     {
-        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+        [$expoController, $expoChannel] = $this->setupExpo($expoRepository);
 
         // We will fake a request with the following data
         $data = ['expo_token' => 'ExponentPushToken[fakeToken]'];
@@ -194,7 +194,7 @@ class ExpoControllerTest extends TestCase
      */
     public function aDeviceCanUnsubscribeFromTheSystem($expoRepository)
     {
-        list($expoController, $expoChannel) = $this->setupExpo($expoRepository);
+        [$expoController, $expoChannel] = $this->setupExpo($expoRepository);
 
         // We will fake a request with the following data
         $request = $this->mockRequest([]);
