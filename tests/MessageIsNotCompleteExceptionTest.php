@@ -2,9 +2,9 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
-use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use PHPUnit\Framework\TestCase;
+use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
 
 class MessageIsNotCompleteExceptionTest extends TestCase
 {

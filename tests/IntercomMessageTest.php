@@ -2,8 +2,8 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use PHPUnit\Framework\TestCase;
+use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 
 class IntercomMessageTest extends TestCase
 {

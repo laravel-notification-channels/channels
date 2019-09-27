@@ -2,19 +2,19 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
+use GuzzleHttp\Psr7\Request;
+use Intercom\IntercomClient;
+use Intercom\IntercomMessages;
+use Illuminate\Notifications\Notification;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+use GuzzleHttp\Exception\BadResponseException;
 use FtwSoft\NotificationChannels\Intercom\IntercomChannel;
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotifiable;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotification;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Notifications\Notification;
-use Intercom\IntercomClient;
-use Intercom\IntercomMessages;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
 
 class IntercomChannelTest extends MockeryTestCase
 {

@@ -2,10 +2,10 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
-use GuzzleHttp\Exception\RequestException as BaseRequestException;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\RequestException as BaseRequestException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 
 class RequestExceptionTest extends TestCase
 {
