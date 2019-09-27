@@ -1,4 +1,4 @@
-# Intercom notifications channel for Laravel 5.6
+# Intercom notifications channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ftw-soft/intercom-notification-channel.svg?style=flat-square)](https://packagist.org/packages/ftw-soft/intercom-notification-channel)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)

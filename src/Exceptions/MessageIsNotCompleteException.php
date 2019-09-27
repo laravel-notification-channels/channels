@@ -13,8 +13,6 @@ class MessageIsNotCompleteException extends IntercomException
     private $intercomMessage;
 
     /**
-     * MessageIsNotCompleteException constructor.
-     *
      * @param IntercomMessage $intercomMessage
      * @param string          $message
      * @param int             $code
@@ -24,7 +22,7 @@ class MessageIsNotCompleteException extends IntercomException
         IntercomMessage $intercomMessage,
         string $message = '',
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         $this->intercomMessage = $intercomMessage;
 

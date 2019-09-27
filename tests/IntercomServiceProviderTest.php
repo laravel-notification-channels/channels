@@ -2,6 +2,7 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
+use Illuminate\Contracts\Foundation\Application;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\ChannelManager;
@@ -14,12 +15,12 @@ use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestConfigRepository;
 class IntercomServiceProviderTest extends TestCase
 {
     /**
-     * @var \Illuminate\Contracts\Foundation\Application
+     * @var Application
      */
     private $app;
 
     /**
-     * @var \FtwSoft\NotificationChannels\Intercom\IntercomServiceProvider
+     * @var IntercomServiceProvider
      */
     private $serviceProvider;
 

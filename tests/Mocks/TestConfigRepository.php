@@ -16,9 +16,6 @@ class TestConfigRepository implements Repository
      */
     private $data;
 
-    /**
-     * ConfigRepository constructor.
-     */
     public function __construct()
     {
         $this->data = [];

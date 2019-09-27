@@ -5,6 +5,7 @@ namespace FtwSoft\NotificationChannels\Intercom;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
 use Intercom\IntercomClient;
 
@@ -14,14 +15,12 @@ use Intercom\IntercomClient;
 class IntercomChannel
 {
     /**
-     * @var \Intercom\IntercomClient
+     * @var IntercomClient
      */
     private $client;
 
     /**
-     * IntercomNotificationChannel constructor.
-     *
-     * @param \Intercom\IntercomClient $client
+     * @param IntercomClient $client
      */
     public function __construct(IntercomClient $client)
     {
@@ -31,17 +30,15 @@ class IntercomChannel
     /**
      * Send the given notification via Intercom API.
      *
-     * @param mixed                                  $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
-     * @throws \FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException              When server responses with a bad HTTP
-     *                                                                                         code
-     * @throws \FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException When message is not
-     *                                                                                         filled correctly
-     * @throws \GuzzleHttp\Exception\GuzzleException                                           Other Guzzle uncatched exceptions
+     * @param mixed        $notifiable
+     * @param Notification $notification
      *
      * @return void
      *
+     * @throws MessageIsNotCompleteException When message is not filled correctly
+     * @throws GuzzleException               Other Guzzle uncatched exceptions
+     * @throws RequestException              When server responses with a bad HTTP
+     *                                                                                         code
      * @see https://developers.intercom.com/intercom-api-reference/reference#admin-initiated-conversation
      */
     public function send($notifiable, Notification $notification): void
@@ -54,7 +51,7 @@ class IntercomChannel
     }
 
     /**
-     * @return \Intercom\IntercomClient
+     * @return IntercomClient
      */
     public function getClient(): IntercomClient
     {
@@ -66,7 +63,7 @@ class IntercomChannel
      * @param Notification $notification
      *
      * @throws MessageIsNotCompleteException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     protected function sendNotification($notifiable, Notification $notification): void
     {

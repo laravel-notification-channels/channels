@@ -2,24 +2,24 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use GuzzleHttp\Psr7\Request;
-use Intercom\IntercomClient;
-use Intercom\IntercomMessages;
-use Illuminate\Notifications\Notification;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
-use GuzzleHttp\Exception\BadResponseException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\IntercomChannel;
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotifiable;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotification;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Request;
+use Intercom\IntercomClient;
+use Intercom\IntercomMessages;
+use Mockery;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Mockery\Mock;
 
 class IntercomChannelTest extends MockeryTestCase
 {
     /**
-     * @var \Intercom\IntercomMessages|\Mockery\Mock
+     * @var IntercomMessages|Mock
      */
     private $intercomMessages;
 
@@ -29,7 +29,7 @@ class IntercomChannelTest extends MockeryTestCase
     private $intercom;
 
     /**
-     * @var \FtwSoft\NotificationChannels\Intercom\IntercomChannel
+     * @var IntercomChannel
      */
     private $channel;
 
@@ -38,7 +38,7 @@ class IntercomChannelTest extends MockeryTestCase
         parent::setUp();
 
         $this->intercom = new IntercomClient(null, null);
-        $this->intercomMessages = \Mockery::mock(IntercomMessages::class, $this->intercom);
+        $this->intercomMessages = Mockery::mock(IntercomMessages::class, $this->intercom);
         $this->intercom->messages = $this->intercomMessages;
         $this->channel = new IntercomChannel($this->intercom);
     }
@@ -68,14 +68,6 @@ class IntercomChannelTest extends MockeryTestCase
 
         $this->channel->send(new TestNotifiable(), $notification);
         $this->assertPostConditions();
-    }
-
-    public function testInThrowsAnExceptionWhenNotificationIsNotAnIntercomNotification(): void
-    {
-        $notification = new Notification();
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->channel->send(new TestNotifiable(), $notification);
     }
 
     public function testItThrowsAnExceptionWhenRecipientIsNotProvided(): void

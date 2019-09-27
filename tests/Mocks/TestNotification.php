@@ -13,9 +13,7 @@ class TestNotification extends Notification
     private $intercomMessage;
 
     /**
-     * TestNotification constructor.
-     *
-     * @param \FtwSoft\NotificationChannels\Intercom\IntercomMessage $intercomMessage
+     * @param IntercomMessage $intercomMessage
      */
     public function __construct(IntercomMessage $intercomMessage)
     {

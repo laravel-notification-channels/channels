@@ -145,7 +145,7 @@ class IntercomMessageTest extends TestCase
         );
     }
 
-    public function testItCanDetermiteIfToIsNotGiven()
+    public function testItCanDetermiteIfToIsNotGiven(): void
     {
         $message = new IntercomMessage();
         self::assertFalse($message->toIsGiven());

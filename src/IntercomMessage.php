@@ -15,7 +15,7 @@ class IntercomMessage
     /**
      * @param string $body
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public static function create(?string $body = null): self
     {
@@ -28,9 +28,7 @@ class IntercomMessage
     public $payload;
 
     /**
-     * IntercomMessage constructor.
-     *
-     * @param string $body
+     * @param string|null $body
      */
     public function __construct(?string $body = null)
     {
@@ -44,7 +42,7 @@ class IntercomMessage
     /**
      * @param string $body
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function body(string $body): self
     {
@@ -54,7 +52,7 @@ class IntercomMessage
     }
 
     /**
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function email(): self
     {
@@ -64,7 +62,7 @@ class IntercomMessage
     }
 
     /**
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function inapp(): self
     {
@@ -76,7 +74,7 @@ class IntercomMessage
     /**
      * @param string $value
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function subject(string $value): self
     {
@@ -86,7 +84,7 @@ class IntercomMessage
     }
 
     /**
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function plain(): self
     {
@@ -96,7 +94,7 @@ class IntercomMessage
     }
 
     /**
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function personal(): self
     {
@@ -108,7 +106,7 @@ class IntercomMessage
     /**
      * @param string $adminId
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function from(string $adminId): self
     {
@@ -123,7 +121,7 @@ class IntercomMessage
     /**
      * @param array $value
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function to(array $value): self
     {
@@ -135,7 +133,7 @@ class IntercomMessage
     /**
      * @param string $id
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function toUserId(string $id): self
     {
@@ -150,7 +148,7 @@ class IntercomMessage
     /**
      * @param string $email
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function toUserEmail(string $email): self
     {
@@ -165,7 +163,7 @@ class IntercomMessage
     /**
      * @param string $id
      *
-     * @return \FtwSoft\NotificationChannels\Intercom\IntercomMessage
+     * @return IntercomMessage
      */
     public function toContactId(string $id): self
     {
