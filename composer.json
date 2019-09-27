@@ -6,9 +6,7 @@
     "authors": [
         {
             "name": "Andrey Telesh",
-            "email": "andrey.telesh.y@gmail.com",
-            "homepage": "https://horoshop.ua",
-            "role": "CTO"
+            "email": "andrey.telesh.y@gmail.com"
         }
     ],
     "require": {
