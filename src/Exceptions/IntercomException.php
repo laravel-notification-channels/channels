@@ -2,6 +2,8 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
 
-class IntercomException extends \Exception
+use Exception;
+
+class IntercomException extends Exception
 {
 }

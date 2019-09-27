@@ -24,7 +24,7 @@ class IntercomChannelTest extends MockeryTestCase
     private $intercomMessages;
 
     /**
-     * @var \Intercom\IntercomClient
+     * @var IntercomClient
      */
     private $intercom;
 

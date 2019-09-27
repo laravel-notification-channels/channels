@@ -17,7 +17,7 @@ class IntercomServiceProvider extends ServiceProvider
     {
         $this->app->when(IntercomChannel::class)
             ->needs(IntercomClient::class)
-            ->give(function () {
+            ->give(static function () {
                 /* @var Config $config */
                 return new IntercomClient(
                     Config::get('services.intercom.token'),
@@ -31,7 +31,7 @@ class IntercomServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        Notification::extend('intercom', function (Container $app) {
+        Notification::extend('intercom', static function (Container $app) {
             return $app->make(IntercomChannel::class);
         });
     }
