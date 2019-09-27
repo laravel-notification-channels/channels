@@ -2,11 +2,11 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use Illuminate\Contracts\Foundation\Application;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Contracts\Foundation\Application;
 use FtwSoft\NotificationChannels\Intercom\IntercomChannel;
 use FtwSoft\NotificationChannels\Intercom\IntercomServiceProvider;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestFakeApplication;

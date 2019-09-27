@@ -2,12 +2,12 @@
 
 namespace FtwSoft\NotificationChannels\Intercom;
 
-use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
-use GuzzleHttp\Exception\BadResponseException;
+use Intercom\IntercomClient;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
-use Intercom\IntercomClient;
+use GuzzleHttp\Exception\BadResponseException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
 
 /**
  * Class IntercomNotificationChannel.

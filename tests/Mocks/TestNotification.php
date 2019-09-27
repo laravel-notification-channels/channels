@@ -2,8 +2,8 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests\Mocks;
 
-use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use Illuminate\Notifications\Notification;
+use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 
 class TestNotification extends Notification
 {

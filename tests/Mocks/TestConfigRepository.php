@@ -1,4 +1,5 @@
 <?php
+
 namespace FtwSoft\NotificationChannels\Intercom\Tests\Mocks;
 
 use Illuminate\Contracts\Config\Repository;
