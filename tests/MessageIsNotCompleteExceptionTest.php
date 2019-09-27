@@ -2,9 +2,9 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use PHPUnit\Framework\TestCase;
-use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
+use PHPUnit\Framework\TestCase;
 
 class MessageIsNotCompleteExceptionTest extends TestCase
 {
@@ -12,6 +12,6 @@ class MessageIsNotCompleteExceptionTest extends TestCase
     {
         $message = IntercomMessage::create('TEST');
         $exception = new MessageIsNotCompleteException($message);
-        $this->assertEquals($message, $exception->getIntercomMessage());
+        self::assertEquals($message, $exception->getIntercomMessage());
     }
 }

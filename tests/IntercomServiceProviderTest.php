@@ -2,14 +2,14 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use PHPUnit\Framework\TestCase;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Notifications\ChannelManager;
-use Illuminate\Support\Facades\Notification;
 use FtwSoft\NotificationChannels\Intercom\IntercomChannel;
 use FtwSoft\NotificationChannels\Intercom\IntercomServiceProvider;
-use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestFakeApplication;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestConfigRepository;
+use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestFakeApplication;
+use Illuminate\Notifications\ChannelManager;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
+use PHPUnit\Framework\TestCase;
 
 class IntercomServiceProviderTest extends TestCase
 {
@@ -46,13 +46,13 @@ class IntercomServiceProviderTest extends TestCase
         /** @var IntercomChannel $client */
         $client = $this->app->make(IntercomChannel::class);
 
-        $this->assertEquals('SOME_TOKEN', $client->getClient()->getAuth()[0]);
+        self::assertEquals('SOME_TOKEN', $client->getClient()->getAuth()[0]);
     }
 
     public function testItRegistersNewIntercomNorificationDriverAlias(): void
     {
         $this->serviceProvider->register();
 
-        $this->assertInstanceOf(IntercomChannel::class, Notification::driver('intercom'));
+        self::assertInstanceOf(IntercomChannel::class, Notification::driver('intercom'));
     }
 }

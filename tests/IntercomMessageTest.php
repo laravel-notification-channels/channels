@@ -2,90 +2,90 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use PHPUnit\Framework\TestCase;
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
+use PHPUnit\Framework\TestCase;
 
 class IntercomMessageTest extends TestCase
 {
     public function testThatTypeInappConstantSetCorrectly(): void
     {
-        $this->assertEquals('inapp', IntercomMessage::TYPE_INAPP);
+        self::assertEquals('inapp', IntercomMessage::TYPE_INAPP);
     }
 
     public function testThatTypeEmailConstantSetCorrectly(): void
     {
-        $this->assertEquals('email', IntercomMessage::TYPE_EMAIL);
+        self::assertEquals('email', IntercomMessage::TYPE_EMAIL);
     }
 
     public function testThatTemplatePlainConstantSetCorrectly(): void
     {
-        $this->assertEquals('plain', IntercomMessage::TEMPLATE_PLAIN);
+        self::assertEquals('plain', IntercomMessage::TEMPLATE_PLAIN);
     }
 
     public function testThatTemplatePersonalConstantSetCorrectly(): void
     {
-        $this->assertEquals('personal', IntercomMessage::TEMPLATE_PERSONAL);
+        self::assertEquals('personal', IntercomMessage::TEMPLATE_PERSONAL);
     }
 
     public function testItAcceptsBodyWhenConstructed(): void
     {
         $message = new IntercomMessage('Intercom message test');
-        $this->assertEquals('Intercom message test', $message->payload['body']);
+        self::assertEquals('Intercom message test', $message->payload['body']);
     }
 
     public function testThatDefaultMessageTypeIsInapp(): void
     {
         $message = new IntercomMessage();
-        $this->assertEquals(IntercomMessage::TYPE_INAPP, $message->payload['message_type']);
+        self::assertEquals(IntercomMessage::TYPE_INAPP, $message->payload['message_type']);
     }
 
     public function testThatBodyCanBeSet(): void
     {
         $message = new IntercomMessage('Intercom message test');
         $message->body('Some other intercom body');
-        $this->assertEquals('Some other intercom body', $message->payload['body']);
+        self::assertEquals('Some other intercom body', $message->payload['body']);
     }
 
     public function testThatMessageTypeToEmailCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->email();
-        $this->assertEquals(IntercomMessage::TYPE_EMAIL, $message->payload['message_type']);
+        self::assertEquals(IntercomMessage::TYPE_EMAIL, $message->payload['message_type']);
     }
 
     public function testThatMessageTypeToInappCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->email()->inapp();
-        $this->assertEquals(IntercomMessage::TYPE_INAPP, $message->payload['message_type']);
+        self::assertEquals(IntercomMessage::TYPE_INAPP, $message->payload['message_type']);
     }
 
     public function testThatSubjectCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->subject('Some interesting subject');
-        $this->assertEquals('Some interesting subject', $message->payload['subject']);
+        self::assertEquals('Some interesting subject', $message->payload['subject']);
     }
 
     public function testThatTemplatePlainCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->plain();
-        $this->assertEquals(IntercomMessage::TEMPLATE_PLAIN, $message->payload['template']);
+        self::assertEquals(IntercomMessage::TEMPLATE_PLAIN, $message->payload['template']);
     }
 
     public function testThatTemplatePersonalCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->personal();
-        $this->assertEquals(IntercomMessage::TEMPLATE_PERSONAL, $message->payload['template']);
+        self::assertEquals(IntercomMessage::TEMPLATE_PERSONAL, $message->payload['template']);
     }
 
     public function testThatSenderCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->from(123);
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'type' => 'admin',
                 'id'   => 123,
@@ -103,14 +103,14 @@ class IntercomMessageTest extends TestCase
         ];
         $message->to($expected);
 
-        $this->assertEquals($expected, $message->payload['to']);
+        self::assertEquals($expected, $message->payload['to']);
     }
 
     public function testThatRecipientUserIdCanBeSet(): void
     {
         $message = new IntercomMessage();
         $message->toUserId(456);
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'type' => 'user',
                 'id'   => 456,
@@ -123,7 +123,7 @@ class IntercomMessageTest extends TestCase
     {
         $message = new IntercomMessage();
         $message->toUserEmail('foo@bar.com');
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'type'  => 'user',
                 'email' => 'foo@bar.com',
@@ -136,7 +136,7 @@ class IntercomMessageTest extends TestCase
     {
         $message = new IntercomMessage();
         $message->toContactId(789);
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'type' => 'contact',
                 'id'   => 789,
@@ -148,25 +148,25 @@ class IntercomMessageTest extends TestCase
     public function testItCanDetermiteIfToIsNotGiven()
     {
         $message = new IntercomMessage();
-        $this->assertFalse($message->toIsGiven());
+        self::assertFalse($message->toIsGiven());
 
         $message->toUserId(123);
-        $this->assertTrue($message->toIsGiven());
+        self::assertTrue($message->toIsGiven());
     }
 
     public function testInCanDetermineWhenRequiredParamsAreNotSet(): void
     {
         $message = new IntercomMessage();
-        $this->assertFalse($message->isValid());
+        self::assertFalse($message->isValid());
 
         $message->body('Some body');
-        $this->assertFalse($message->isValid());
+        self::assertFalse($message->isValid());
 
         $message->from(123);
-        $this->assertFalse($message->isValid());
+        self::assertFalse($message->isValid());
 
         $message->toUserId(321);
-        $this->assertTrue($message->isValid());
+        self::assertTrue($message->isValid());
     }
 
     public function testItCanReturnPayloadAsAnArray(): void
@@ -196,15 +196,15 @@ class IntercomMessageTest extends TestCase
             'body'         => 'Some message',
         ];
 
-        $this->assertEquals($expected, $message->toArray());
+        self::assertEquals($expected, $message->toArray());
     }
 
     public function testThatStaticCreateMethodProvidesBodyToObject(): void
     {
         $message = IntercomMessage::create();
-        $this->assertFalse(isset($message->payload['body']));
+        self::assertFalse(isset($message->payload['body']));
 
         $message = IntercomMessage::create('Intercom message test');
-        $this->assertEquals('Intercom message test', $message->payload['body']);
+        self::assertEquals('Intercom message test', $message->payload['body']);
     }
 }

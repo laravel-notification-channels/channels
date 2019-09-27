@@ -2,19 +2,19 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Tests;
 
-use GuzzleHttp\Psr7\Request;
-use Intercom\IntercomClient;
-use Intercom\IntercomMessages;
-use Illuminate\Notifications\Notification;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
-use GuzzleHttp\Exception\BadResponseException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\IntercomChannel;
 use FtwSoft\NotificationChannels\Intercom\IntercomMessage;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotifiable;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
 use FtwSoft\NotificationChannels\Intercom\Tests\Mocks\TestNotification;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Notifications\Notification;
+use Intercom\IntercomClient;
+use Intercom\IntercomMessages;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 class IntercomChannelTest extends MockeryTestCase
 {
@@ -33,7 +33,7 @@ class IntercomChannelTest extends MockeryTestCase
      */
     private $channel;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -70,7 +70,7 @@ class IntercomChannelTest extends MockeryTestCase
         $this->assertPostConditions();
     }
 
-    public function testInThrowsAnExceptionWhenNotificationIsNotAnIntercomNotification()
+    public function testInThrowsAnExceptionWhenNotificationIsNotAnIntercomNotification(): void
     {
         $notification = new Notification();
 
@@ -78,7 +78,7 @@ class IntercomChannelTest extends MockeryTestCase
         $this->channel->send(new TestNotifiable(), $notification);
     }
 
-    public function testItThrowsAnExceptionWhenRecipientIsNotProvided()
+    public function testItThrowsAnExceptionWhenRecipientIsNotProvided(): void
     {
         $notification = new TestNotification(
             IntercomMessage::create('Hello World!')
@@ -89,7 +89,7 @@ class IntercomChannelTest extends MockeryTestCase
         $this->channel->send(new TestNotifiable(), $notification);
     }
 
-    public function testItThrowsAnExceptionSomeOfRequiredParamsAreNotDefined()
+    public function testItThrowsAnExceptionSomeOfRequiredParamsAreNotDefined(): void
     {
         $notification = new TestNotification(
             IntercomMessage::create()
@@ -129,6 +129,6 @@ class IntercomChannelTest extends MockeryTestCase
         $expected = ['type' => 'user', 'id' => 321];
         $this->channel->send(new TestNotifiable($expected), $notification);
 
-        $this->assertEquals($expected, $message->payload['to']);
+        self::assertEquals($expected, $message->payload['to']);
     }
 }
