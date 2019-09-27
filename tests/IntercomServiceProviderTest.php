@@ -50,7 +50,7 @@ class IntercomServiceProviderTest extends TestCase
         self::assertEquals('SOME_TOKEN', $client->getClient()->getAuth()[0]);
     }
 
-    public function testItRegistersNewIntercomNorificationDriverAlias(): void
+    public function testItRegistersNewIntercomNotificationDriverAlias(): void
     {
         $this->serviceProvider->register();
 

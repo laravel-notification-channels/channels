@@ -2,11 +2,11 @@
 
 namespace FtwSoft\NotificationChannels\Intercom\Exceptions;
 
-use InvalidArgumentException as BaseInvalidArgmentException;
+use InvalidArgumentException as BaseInvalidArgumentException;
 
 /**
  * {@inheritdoc}
  */
-class InvalidArgumentException extends BaseInvalidArgmentException
+class InvalidArgumentException extends BaseInvalidArgumentException
 {
 }
