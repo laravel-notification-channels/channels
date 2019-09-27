@@ -4,13 +4,13 @@ namespace FtwSoft\NotificationChannels\Intercom;
 
 class IntercomMessage
 {
-    const TYPE_EMAIL = 'email';
+    public const TYPE_EMAIL = 'email';
 
-    const TYPE_INAPP = 'inapp';
+    public const TYPE_INAPP = 'inapp';
 
-    const TEMPLATE_PLAIN = 'plain';
+    public const TEMPLATE_PLAIN = 'plain';
 
-    const TEMPLATE_PERSONAL = 'personal';
+    public const TEMPLATE_PERSONAL = 'personal';
 
     /**
      * @param string $body
@@ -34,7 +34,7 @@ class IntercomMessage
      */
     public function __construct(?string $body = null)
     {
-        if ($body !== null) {
+        if (null !== $body) {
             $this->body($body);
         }
 

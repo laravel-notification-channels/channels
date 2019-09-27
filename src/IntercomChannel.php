@@ -49,32 +49,7 @@ class IntercomChannel
     public function send($notifiable, Notification $notification): void
     {
         try {
-            if (! $notification instanceof IntercomNotification) {
-                throw new InvalidArgumentException(
-                    sprintf('The notification must implement %s interface', IntercomNotification::class)
-                );
-            }
-
-            $message = $notification->toIntercom($notifiable);
-
-            if (! $message->toIsGiven()) {
-                if (! $to = $notifiable->routeNotificationFor('intercom')) {
-                    throw new MessageIsNotCompleteException($message, 'Recipient is not provided');
-                }
-
-                $message->to($to);
-            }
-
-            if (! $message->isValid()) {
-                throw new MessageIsNotCompleteException(
-                    $message,
-                    'The message is not valid. Please check that you have filled required params'
-                );
-            }
-
-            $this->client->messages->create(
-                $message->toArray()
-            );
+            $this->sendNotification($notifiable, $notification);
         } catch (BadResponseException $exception) {
             throw new RequestException($exception, $exception->getMessage(), $exception->getCode());
         }
@@ -86,5 +61,42 @@ class IntercomChannel
     public function getClient(): IntercomClient
     {
         return $this->client;
+    }
+
+    /**
+     * @param mixed        $notifiable
+     * @param Notification $notification
+     *
+     * @throws MessageIsNotCompleteException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function sendNotification($notifiable, Notification $notification): void
+    {
+        if (false === $notification instanceof IntercomNotification) {
+            throw new InvalidArgumentException(
+                sprintf('The notification must implement %s interface', IntercomNotification::class)
+            );
+        }
+
+        /** @var IntercomMessage $message */
+        $message = $notification->toIntercom($notifiable);
+        if (false === $message->toIsGiven()) {
+            if (false === $to = $notifiable->routeNotificationFor('intercom')) {
+                throw new MessageIsNotCompleteException($message, 'Recipient is not provided');
+            }
+
+            $message->to($to);
+        }
+
+        if (false === $message->isValid()) {
+            throw new MessageIsNotCompleteException(
+                $message,
+                'The message is not valid. Please check that you have filled required params'
+            );
+        }
+
+        $this->client->messages->create(
+            $message->toArray()
+        );
     }
 }
