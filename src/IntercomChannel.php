@@ -2,13 +2,11 @@
 
 namespace FtwSoft\NotificationChannels\Intercom;
 
-use Intercom\IntercomClient;
-use Illuminate\Notifications\Notification;
-use GuzzleHttp\Exception\BadResponseException;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
-use FtwSoft\NotificationChannels\Intercom\Contracts\IntercomNotification;
-use FtwSoft\NotificationChannels\Intercom\Exceptions\InvalidArgumentException;
 use FtwSoft\NotificationChannels\Intercom\Exceptions\MessageIsNotCompleteException;
+use FtwSoft\NotificationChannels\Intercom\Exceptions\RequestException;
+use GuzzleHttp\Exception\BadResponseException;
+use Illuminate\Notifications\Notification;
+use Intercom\IntercomClient;
 
 /**
  * Class IntercomNotificationChannel.
@@ -72,12 +70,6 @@ class IntercomChannel
      */
     protected function sendNotification($notifiable, Notification $notification): void
     {
-        if (false === $notification instanceof IntercomNotification) {
-            throw new InvalidArgumentException(
-                sprintf('The notification must implement %s interface', IntercomNotification::class)
-            );
-        }
-
         /** @var IntercomMessage $message */
         $message = $notification->toIntercom($notifiable);
         if (false === $message->toIsGiven()) {
