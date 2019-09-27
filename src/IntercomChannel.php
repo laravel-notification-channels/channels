@@ -69,7 +69,7 @@ class IntercomChannel
     {
         /** @var IntercomMessage $message */
         $message = $notification->toIntercom($notifiable);
-        if (false === $message->toIsGiven()) {
+        if (!$message->toIsGiven()) {
             if (false === $to = $notifiable->routeNotificationFor('intercom')) {
                 throw new MessageIsNotCompleteException($message, 'Recipient is not provided');
             }
@@ -77,7 +77,7 @@ class IntercomChannel
             $message->to($to);
         }
 
-        if (false === $message->isValid()) {
+        if (!$message->isValid()) {
             throw new MessageIsNotCompleteException(
                 $message,
                 'The message is not valid. Please check that you have filled required params'

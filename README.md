@@ -43,7 +43,7 @@ Once installed you need to register the service provider with the application. O
 ]
 ```
 
-Put the followings to your config/services
+Put the followings to your `config/services.php`
 
 ``` php
 'intercom' => [
