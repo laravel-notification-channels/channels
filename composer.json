@@ -1,0 +1,52 @@
+{
+    "name": "laravel-notification-channels/workplace",
+    "description": "Workplace notification channel",
+    "homepage": "https://github.com/laravel-notification-channels/workplace",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandre Lima",
+            "email": "infus0815@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Gonçalo Queirós",
+            "email": "mail@goncaloqueiros.net",
+            "homepage": "https://goncaloqueiros.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/notifications": "~5.5 || ~6.0",
+        "illuminate/support": "~5.5 || ~6.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Workplace\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Workplace\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Workplace\\WorkplaceServiceProvider"
+            ]
+        }
+    }
+}
