@@ -1,8 +1,4 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
-
-Here's the latest documentation on Laravel's Notifications System: 
-
-https://laravel.com/docs/master/notifications
+Please see [this repo](https://github.com/laravel-notification-channels/channels) for insturctions on how to submit a channel proposal.
 
 # A Boilerplate repo for contributions
 
