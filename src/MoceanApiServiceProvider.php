@@ -3,8 +3,8 @@
 namespace NotificationChannels\MoceanApi;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Notifications\ChannelManager;
+use Illuminate\Support\Facades\Notification;
 
 class MoceanApiServiceProvider extends ServiceProvider
 {
