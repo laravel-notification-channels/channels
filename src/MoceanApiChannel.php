@@ -3,9 +3,9 @@
 namespace NotificationChannels\MoceanApi;
 
 use Mocean\Message\Message;
-use NotificationChannels\MoceanApi\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 use Mocean\Laravel\Manager as MoceanClient;
+use NotificationChannels\MoceanApi\Exceptions\CouldNotSendNotification;
 
 class MoceanApiChannel
 {
@@ -36,7 +36,7 @@ class MoceanApiChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$to = $notifiable->routeNotificationFor('moceanapi', $notification)) {
+        if (! $to = $notifiable->routeNotificationFor('moceanapi', $notification)) {
             throw CouldNotSendNotification::invalidReceiver();
         }
 
@@ -44,11 +44,11 @@ class MoceanApiChannel
 
         if (is_string($message)) {
             $message = new MoceanApiSmsMessage('MoceanApi', $to, $message);
-        } else if (is_array($message)) {
+        } elseif (is_array($message)) {
             $message = $this->createMessageFromArray($message, $to);
         }
 
-        if (!$message instanceof Message) {
+        if (! $message instanceof Message) {
             throw CouldNotSendNotification::invalidMessageObject($message);
         }
 
@@ -56,7 +56,7 @@ class MoceanApiChannel
     }
 
     /**
-     * Create MoceanApiSmsMessage from array
+     * Create MoceanApiSmsMessage from array.
      *
      * @param $message
      * @return MoceanApiSmsMessage

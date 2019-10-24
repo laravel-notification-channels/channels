@@ -8,14 +8,14 @@
 
 namespace NotificationChannels\MoceanApi\Test;
 
-use NotificationChannels\MoceanApi\MoceanApiChannel;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Mocean\Message\Client as MoceanClient;
+use NotificationChannels\MoceanApi\MoceanApiChannel;
 use NotificationChannels\MoceanApi\Test\Dummy\DummyNotifiable;
 use NotificationChannels\MoceanApi\Test\Dummy\MockMoceanClient;
 use NotificationChannels\MoceanApi\Test\Dummy\DummyNotificationClass;
 use NotificationChannels\MoceanApi\Test\Dummy\DummyCustomNotificationClass;
-use Mocean\Message\Client as MoceanClient;
 
 class MoceanChannelTest extends TestCase
 {

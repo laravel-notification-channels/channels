@@ -23,6 +23,6 @@ class CouldNotSendNotification extends \Exception
     {
         $className = get_class($message) ?: 'Unknown';
 
-        return new static("Invalid message object `{$className}`, it should be `" . MoceanApiSmsMessage::class . '` or `' . Message::class . '`');
+        return new static("Invalid message object `{$className}`, it should be `".MoceanApiSmsMessage::class.'` or `'.Message::class.'`');
     }
 }

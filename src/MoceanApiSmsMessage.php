@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\MoceanApi;
 
-use Illuminate\Support\Arr;
-
 class MoceanApiSmsMessage extends \Mocean\Message\Message
 {
     /**
