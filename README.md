@@ -11,7 +11,7 @@ Please create an issue for it if it does not already exist, then PR you code for
 1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) & press "Use this template" to create a repo from the skeleton.
 2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
 3) Implement to logic for the channel & add tests.
-4) Add this repo as a remote, and push your new channel to a branch.
+4) Fork this repo, add it as a remote and push your new channel to a branch.
 5) Submit a new PR against this repo for review.
 
 Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
