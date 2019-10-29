@@ -35,6 +35,7 @@ class Textlocal
     public $warnings = [];
 
     public $lastRequest = [];
+    public $treatAsUnicode = 0;
 
     /**
      * Instantiate the object.
@@ -171,7 +172,7 @@ class Textlocal
      * @param null  $sched
      * @param false $test
      * @param null  $receiptURL
-     * @param numm  $custom
+     * @param null  $custom
      * @param false $optouts
      * @param false $simpleReplyService
      *
@@ -195,15 +196,16 @@ class Textlocal
         }
 
         $params = [
-        'message'       => rawurlencode($message),
-        'numbers'       => implode(',', $numbers),
-        'sender'        => rawurlencode($sender),
-        'schedule_time' => $sched,
-        'test'          => $test,
-        'receipt_url'   => $receiptURL,
-        'custom'        => $custom,
-        'optouts'       => $optouts,
-        'simple_reply'  => $simpleReplyService,
+            'message'       =>  rawurlencode($message),
+            'numbers'       =>  implode(',', $numbers),
+            'sender'        =>  rawurlencode($sender),
+            'schedule_time' =>  $sched,
+            'test'          =>  $test,
+            'receipt_url'   =>  $receiptURL,
+            'custom'        =>  $custom,
+            'optouts'       =>  $optouts,
+            'simple_reply'  =>  $simpleReplyService,
+            'unicode'       =>  $this->treatAsUnicode,
         ];
 
         return $this->_sendRequest('send', $params);
@@ -778,6 +780,18 @@ class Textlocal
     public function getOptouts($time = null)
     {
         return $this->_sendRequest('get_optouts');
+    }
+    
+    /**
+     * Set unicode mode
+     * 
+     * @param bool $mode
+     * @return \NotificationChannels\Textlocal\Textlocal
+     */
+    public function setUnicodeMode(bool $mode)
+    {
+        $this->treatAsUnicode = (int) $mode;
+        return $this;
     }
 }
 
