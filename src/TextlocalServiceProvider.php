@@ -17,12 +17,12 @@ class TextlocalServiceProvider extends ServiceProvider
             ->needs(Textlocal::class)
             ->give(
                 function () {
-                    $textlocalConfig = config('services.sms.textlocal');
+                    $config = config('textlocal');
 
                     return new Textlocal(
-                        $textlocalConfig['username'],
-                        $textlocalConfig['hash'],
-                        $textlocalConfig['api_key']
+                        $config['username'],
+                        $config['hash'],
+                        $config['api_key']
                     );
                 }
             );
