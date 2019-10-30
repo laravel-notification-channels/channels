@@ -24,7 +24,6 @@ This package makes it easy to send notifications using [Notify](https://app.noti
 - [Credits](#credits)
 - [License](#license)
 
-
 ## Installation
 
 You can install the package via composer:
