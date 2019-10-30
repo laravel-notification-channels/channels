@@ -37,7 +37,7 @@ class TextlocalChannel
     public function send($notifiable, Notification $notification)
     {
         // Get the mobile number/s from the model
-        if (! $numbers = $notifiable->routeNotificationFor('sms')) {
+        if (! $numbers = $notifiable->routeNotificationFor('Textlocal')) {
             return;
         }
 
