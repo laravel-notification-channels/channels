@@ -42,12 +42,13 @@ class Textlocal
      *
      * @param $username
      * @param $hash
+     * @param string|null $apiKey
      */
-    public function __construct($username, $hash, $apiKey = false)
+    public function __construct($username, $hash, $apiKey = null)
     {
         $this->username = $username;
         $this->hash = $hash;
-        if ($apiKey) {
+        if (! is_null($apiKey)) {
             $this->apiKey = $apiKey;
         }
 
@@ -170,7 +171,7 @@ class Textlocal
      * @param  $message
      * @param  $sender
      * @param null  $sched
-     * @param false $test
+     * @param bool $test
      * @param null  $receiptURL
      * @param null  $custom
      * @param false $optouts
@@ -180,7 +181,7 @@ class Textlocal
      *
      * @return array|mixed
      */
-    public function sendSms($numbers, $message, $sender, $sched = null, $test = false, $receiptURL = null, $custom = null, $optouts = false, $simpleReplyService = false)
+    public function sendSms($numbers, $message, $sender, $sched = null, bool $test = false, $receiptURL = null, $custom = null, $optouts = false, $simpleReplyService = false)
     {
         if (! is_array($numbers)) {
             throw new Exception('Invalid $numbers format. Must be an array');
