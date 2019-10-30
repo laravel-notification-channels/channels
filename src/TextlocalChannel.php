@@ -58,9 +58,9 @@ class TextlocalChannel
 
         try {
             $response = $this->client->setUnicodeMode($unicode)
-            ->sendSms($numbers, $message, $this->sender);
+                ->sendSms($numbers, $message, $this->sender);
 
-            return json_decode(json_encode($response), true);
+            return $response;
         } catch (\Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception, $message);
         }
