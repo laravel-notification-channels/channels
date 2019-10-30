@@ -34,17 +34,20 @@ Create an account in textlocal then create an API key or hash(password).
 
 ### Setting up the textlocal service
 
-put the followings and to your config/services
+default textlocal config update as desired
 ```
-'sms' => [
-     'textlocal' => [
-		 'username'  => env('TEXTLOCAL_USERNAME'),
-		 'password'  => env('TEXTLOCAL_PASSWORD'),
-		 'hash'      => env('TEXTLOCAL_HASH'),
-		 'api_key'   => env('TEXTLOCAL_API_KEY'),
-		 'sender'    => env('TEXTLOCAL_SENDER'),
-     ]
-]
+return [
+	'username'  => env('TEXTLOCAL_USERNAME'),
+	'password'  => env('TEXTLOCAL_PASSWORD'),
+	'hash'      => env('TEXTLOCAL_HASH'),
+	'api_key'   => env('TEXTLOCAL_API_KEY'),
+	'sender'    => env('TEXTLOCAL_SENDER'),
+    'request_urls' => [
+        'IN' => 'https://api.textlocal.in/',
+        'UK' => 'https://api.txtlocal.com/'
+    ],
+    'country'   => env('TEXTLOCAL_COUNTRY', 'IN'),
+];
 ```
 ### Configuring .env 
 ```
@@ -64,7 +67,7 @@ Currently, only textlocal of two country is supported IN(India) and UK(United Ki
 
 ## Usage
 
-Implement this method `routeNotificationForSms()` in your notifiable class/model which will return array of mobile numbers. Please make sure the mobile number contains the dial code as well (e.g +91 for India). And lastly implement `toSms()` method in the notification class which will return the (string) sms or template that is defined in textlocal account that needs to be send.
+Implement this method `routeNotificationForTextlocal()` in your notifiable class/model which will return array of mobile numbers. Please make sure the mobile number contains the dial code as well (e.g +91 for India). And lastly implement `toSms()` method in the notification class which will return the (string) sms or template that is defined in textlocal account that needs to be send.
 
 ### Available Message methods
 
