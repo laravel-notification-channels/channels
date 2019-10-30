@@ -40,7 +40,6 @@ class TextlocalChannel
         if (! $numbers = $notifiable->routeNotificationFor('sms')) {
             return;
         }
-        //$numbers = (array) $notifiable->routeNotificationForSms();
 
         if (empty($numbers)) {
             return;
