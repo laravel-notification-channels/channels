@@ -5,11 +5,21 @@ namespace NotificationChannels\Textlocal;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Textlocal\Exceptions\CouldNotSendNotification;
 
+/**
+ * Textlocal channel class which is used to interact with core
+ * textlocal sdk and faciliate to send sms via
+ * laravel notification system
+ */
 class TextlocalChannel
 {
     private $client;
     private $sender;
 
+    /**
+     * creates a textlocal channel object by using the configs
+     *
+     * @param Textlocal $client
+     */
     public function __construct(Textlocal $client)
     {
         $this->client = $client;
@@ -56,7 +66,8 @@ class TextlocalChannel
         }
 
         try {
-            $response = $this->client->setUnicodeMode($unicode)
+            $response = $this->client
+                ->setUnicodeMode($unicode)
                 ->sendSms($numbers, $message, $this->sender);
 
             return $response;
