@@ -48,8 +48,6 @@ class TextlocalChannel
         if (!is_array($numbers)) {
             $numbers = [$numbers];
         }
-        
-        //TODO check if numbers are correct
 
         // Get the message from the notification class
         $message = (string) $notification->toSms($notifiable);
