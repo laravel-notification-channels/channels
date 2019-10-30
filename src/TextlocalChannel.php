@@ -12,9 +12,8 @@ class TextlocalChannel
 
     public function __construct(Textlocal $client)
     {
-        // Initialisation code here
         $this->client = $client;
-        $this->sender = config('services.sms.textlocal.sender');
+        $this->sender = config('textlocal.sender');
     }
 
     /**
