@@ -1,4 +1,4 @@
-Please see [this repo](https://github.com/laravel-notification-channels/channels) for insturctions on how to submit a channel proposal.
+Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
 
 # A Boilerplate repo for contributions
 
