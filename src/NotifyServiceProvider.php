@@ -16,6 +16,7 @@ class NotifyServiceProvider extends ServiceProvider
             ->needs(NotifyClient::class)
             ->give(function () {
                 $config = config('services.notify');
+
                 return new NotifyClient(new Client(), $config);
             });
     }

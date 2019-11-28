@@ -2,17 +2,17 @@
 
 namespace NotificationChannels\Notify\Test;
 
-use Mockery;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
 use Illuminate\Events\Dispatcher;
-use Orchestra\Testbench\TestCase;
+use Illuminate\Http\Response;
+use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Notify\NotifyClient;
+use Mockery;
 use NotificationChannels\Notify\NotifyChannel;
+use NotificationChannels\Notify\NotifyClient;
 use NotificationChannels\Notify\NotifyMessage;
-use Illuminate\Notifications\Events\NotificationFailed;
+use Orchestra\Testbench\TestCase;
 
 class NotifyChannelTest extends TestCase
 {
