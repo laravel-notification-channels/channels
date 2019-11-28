@@ -4,6 +4,7 @@ namespace NotificationChannels\Notify;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use NotificationChannels\Notify\Exceptions\InvalidConfiguration;
 use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
 use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
@@ -21,23 +22,24 @@ class NotifyClient
     protected $client;
 
     /**
-     * @var Config
+     * @var array
      */
     protected $config;
 
     /**
-     * @var endPointUrl
+     * @var string $endPointUrl
      */
     private $endpointUrl;
 
     /**
      * NotifyClient constructor.
      * @param Client $client
-     * @param Config $config
+     * @param array $config
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, array $config)
     {
         $this->client = $client;
+        $this->config = $config;
     }
 
     /**
@@ -55,7 +57,7 @@ class NotifyClient
             throw InvalidMessageObject::missingTransport();
         }
         if (empty($message->getTo())) {
-            throw InvalidMessageObject::missingRecipients();
+            throw InvalidMessageObject::missingRecipient();
         }
     }
 
@@ -66,18 +68,18 @@ class NotifyClient
      */
     public function send(NotifyMessage $message)
     {
-        $message->setClientId(config('services.notify.clientID'));
-        $message->setSecret(config('services.notify.secret'));
+        $message->setClientId($this->config[ 'clientID' ]);
+        $message->setSecret($this->config[ 'secret' ]);
         if (empty($message->getTransport())) {
-            $message->setTransport(config('services.notify.transport'));
+            $message->setTransport($this->config[ 'transport' ]);
         }
 
         $this->validateMessage($message);
-        $this->endpointUrl = config('services.notify.url') ? config('services.notify.url') : self::API_ENDPOINT;
+        $this->endpointUrl = isset($this->config[ 'url' ]) ? $this->config[ 'url' ] : self::API_ENDPOINT;
 
         try {
             $response = $this->client->request('POST', $this->endpointUrl, [
-                'body' => json_encode(new NotifyMessageResource($message)),
+                'body' => json_encode($message),
             ]);
 
             return $response;

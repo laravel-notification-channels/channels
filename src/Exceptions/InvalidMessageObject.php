@@ -30,4 +30,12 @@ class InvalidMessageObject extends Exception
         return new static('Notification was not sent. Add a routeNotificationForNotify
             method to your notifiable.');
     }
+
+    /**
+     * @return static
+     */
+    public static function misconfiguredRecipient()
+    {
+        return new static('Notification was not sent. The recipient needs to contain fields name & recipient');
+    }
 }

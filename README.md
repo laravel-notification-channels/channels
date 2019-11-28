@@ -1,4 +1,4 @@
-# Notify notifications channel for Laravel 5.6+
+# Notify notifications channel for Laravel 5.6+ & 6.x
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/notify.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/notify)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/notify/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/notify/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/notify.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/notify)
 
-This package makes it easy to send notifications using [Notify](https://app.notify.eu) with Laravel 5.6+
+This package makes it easy to send notifications using [Notify](https://app.notify.eu) with Laravel 5.6+ & 6.x
 
 ## Contents
 
@@ -36,7 +36,7 @@ $ composer require laravel-notification-channels/notify
 
 Add your ClientId, secret and transport to your `config/services.php`:
 
-NOTIFY_URL is not mandatory. Can be used when you want to overwrite the endpoint Notify is calling. (f.e. different url for Staging/production)
+`NOTIFY_URL` is not mandatory. Can be used when you want to overwrite the endpoint Notify is calling. (f.e. different url for Staging/production)
 
 ```php
 // config/services.php

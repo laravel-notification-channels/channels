@@ -4,7 +4,6 @@ namespace NotificationChannels\Notify;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
-use NotificationChannels\Notify\Exceptions\InvalidConfiguration;
 
 class NotifyServiceProvider extends ServiceProvider
 {
@@ -17,11 +16,7 @@ class NotifyServiceProvider extends ServiceProvider
             ->needs(NotifyClient::class)
             ->give(function () {
                 $config = config('services.notify');
-                if (is_null($config)) {
-                    throw InvalidConfiguration::configurationNotSet();
-                }
-
-                return new NotifyClient(new Client());
+                return new NotifyClient(new Client(), $config);
             });
     }
 

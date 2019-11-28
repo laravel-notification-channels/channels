@@ -60,8 +60,11 @@ class NotifyChannel
      */
     protected function getTo($notifiable)
     {
-        if ($notifiable->routeNotificationFor('notify')) {
-            return $notifiable->routeNotificationFor('notify');
+        if ($recipient = $notifiable->routeNotificationFor('notify')) {
+            if (is_array($recipient) && array_key_exists('name', $recipient) && array_key_exists('recipient', $recipient)) {
+                return $recipient;
+            }
+            throw InvalidMessageObject::misconfiguredRecipient();
         }
         throw InvalidMessageObject::missingRecipient();
     }

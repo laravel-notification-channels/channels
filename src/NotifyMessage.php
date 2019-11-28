@@ -2,7 +2,9 @@
 
 namespace NotificationChannels\Notify;
 
-class NotifyMessage
+use JsonSerializable;
+
+class NotifyMessage implements JsonSerializable
 {
     private $clientId;
     private $secret;
@@ -31,6 +33,7 @@ class NotifyMessage
 
     /**
      * @param mixed $clientId
+     * @return $this
      */
     public function setClientId($clientId)
     {
@@ -41,6 +44,7 @@ class NotifyMessage
 
     /**
      * @param mixed $secret
+     * @return $this
      */
     public function setSecret($secret)
     {
@@ -49,6 +53,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param array $params
+     * @return $this
+     */
     public function setParams(array $params)
     {
         $this->params = $params;
@@ -56,6 +64,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param $notificationType
+     * @return $this
+     */
     public function setNotificationType($notificationType)
     {
         $this->notificationType = $notificationType;
@@ -63,6 +75,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param $language
+     * @return $this
+     */
     public function setLanguage($language)
     {
         $this->language = $language;
@@ -70,6 +86,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param $transport
+     * @return $this
+     */
     public function setTransport($transport)
     {
         $this->transport = $transport;
@@ -77,6 +97,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param $cc
+     * @return $this
+     */
     public function setCc($cc)
     {
         $this->cc = $cc;
@@ -84,6 +108,10 @@ class NotifyMessage
         return $this;
     }
 
+    /**
+     * @param $bcc
+     * @return $this
+     */
     public function setBcc($bcc)
     {
         $this->bcc = $bcc;
@@ -166,11 +194,40 @@ class NotifyMessage
     /**
      * @param string $name
      * @param string $email
+     * @return $this
      */
     public function addRecipient($name, $email)
     {
         $this->to[] = ['name' => $name, 'recipient' => $email];
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'message' => [
+                'notificationType' => $this->getNotificationType(),
+                'language' => $this->getLanguage(),
+                'params' => $this->getParams(),
+                'customer' => [
+                    'clientId' => $this->getClientId(),
+                    'secretKey' => $this->getSecret(),
+                ],
+                'transport' => [
+                    [
+                        'type' => $this->getTransport(),
+                        'recipients' => [
+                            'to' => $this->getTo(),
+                            'cc' => $this->getCc(),
+                            'bcc' => $this->getBcc(),
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }
