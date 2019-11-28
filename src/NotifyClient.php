@@ -5,9 +5,9 @@ namespace NotificationChannels\Notify;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Notify\Exceptions\InvalidConfiguration;
 use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
-use NotificationChannels\Notify\Exceptions\CouldNotSendNotification;
 
 class NotifyClient
 {
@@ -27,7 +27,7 @@ class NotifyClient
     protected $config;
 
     /**
-     * @var string $endPointUrl
+     * @var string
      */
     private $endpointUrl;
 
@@ -68,14 +68,14 @@ class NotifyClient
      */
     public function send(NotifyMessage $message)
     {
-        $message->setClientId($this->config[ 'clientID' ]);
-        $message->setSecret($this->config[ 'secret' ]);
+        $message->setClientId($this->config['clientID']);
+        $message->setSecret($this->config['secret']);
         if (empty($message->getTransport())) {
-            $message->setTransport($this->config[ 'transport' ]);
+            $message->setTransport($this->config['transport']);
         }
 
         $this->validateMessage($message);
-        $this->endpointUrl = isset($this->config[ 'url' ]) ? $this->config[ 'url' ] : self::API_ENDPOINT;
+        $this->endpointUrl = isset($this->config['url']) ? $this->config['url'] : self::API_ENDPOINT;
 
         try {
             $response = $this->client->request('POST', $this->endpointUrl, [

@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Notify\Test;
 
-use Orchestra\Testbench\TestCase;
 use NotificationChannels\Notify\NotifyMessage;
+use Orchestra\Testbench\TestCase;
 
 class NotifyMessageTest extends TestCase
 {
