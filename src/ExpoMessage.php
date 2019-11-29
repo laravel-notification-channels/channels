@@ -211,11 +211,12 @@ class ExpoMessage
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
             'ttl'       =>  $this->ttl,
-            'data'      =>  $this->jsonData
+            'data'      =>  $this->jsonData,
         ];
-        if (!empty($this->channelId)) {
+        if (! empty($this->channelId)) {
             $message['channelId'] = $this->channelId;
         }
+
         return $message;
     }
 }
