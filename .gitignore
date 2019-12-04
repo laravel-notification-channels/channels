@@ -1,0 +1,8 @@
+/vendor
+/.idea
+/.vagrant
+/build
+composer.phar
+composer.lock
+.DS_Stor
+.phpunit.result.cache
