@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\Smspoh;
 
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Arr;
-use GuzzleHttp\Client as HttpClient;
 use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
 
 class SmspohApi
@@ -51,7 +51,6 @@ class SmspohApi
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws CouldNotSendNotification
-     *
      */
     public function send($message)
     {

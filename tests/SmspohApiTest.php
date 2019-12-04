@@ -23,7 +23,7 @@ class SmspohApiTest extends TestCase
 
     private function getExtendedSmspohApi($token)
     {
-        return new class($token) extends SmspohApi{
+        return new class($token) extends SmspohApi {
             public function getEndpoint(): string
             {
                 return $this->endpoint;

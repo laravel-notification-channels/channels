@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\Smspoh;
 
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
-use GuzzleHttp\Client as HttpClient;
 
 class SmspohServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,6 @@ class SmspohServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**
