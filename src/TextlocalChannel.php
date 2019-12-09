@@ -62,6 +62,10 @@ class TextlocalChannel
             $unicode = $notification->getUnicodeMode();
         }
 
+        if (method_exists($notification, 'getSenderId')) {
+            $this->sender = $notification->getSenderId();
+        }
+
         try {
             $response = $this->client
                 ->setUnicodeMode($unicode)
