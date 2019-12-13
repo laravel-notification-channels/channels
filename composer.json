@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/vodafone",
+    "description": "Send Laravel Notifications via the Vodafone SMS API",
+    "homepage": "https://github.com/laravel-notification-channels/vodafone",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Woodard",
+            "email": "design@simonwoodard.com.au",
+            "homepage": "https://www.simonwoodard.com.au",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/notifications": "~5.5 || ~6.0",
+        "illuminate/support": "~5.5 || ~6.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Vodafone\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Vodafone\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
