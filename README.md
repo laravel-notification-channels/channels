@@ -7,7 +7,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/vodafone/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/vodafone/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/vodafone.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/vodafone)
 
-This package makes it easy to send sms notifications using [Vodafone](https://www.vodafone.com.au/messaging/smser) with Laravel 5.5+ and 6.0
+This package makes it easy to send sms notifications using [Vodafone](https://www.vodafone.com.au/messaging/smser) with Laravel 5.5+ and 6.x
 
 Building on Laravel's Notification channel, this package allows you to send SMS notifications via the Vodafone SMS gateway service.
 
