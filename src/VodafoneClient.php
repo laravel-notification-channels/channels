@@ -5,7 +5,7 @@ namespace NotificationChannels\Vodafone;
 use GuzzleHttp\Client;
 use NotificationChannels\Vodafone\Exceptions\CouldNotSendNotification;
 
-class VodafoneClient 
+class VodafoneClient
 {
     /**
      * @var String Vodafone's API endpoint
@@ -14,10 +14,10 @@ class VodafoneClient
 
     /** @var String Vodafone SMS username */
     protected $username;
-    
+
     /** @var String Vodafone SMS password  */
     protected $password;
-    
+
     /**
      * VodafoneClient constructor.
      * @param $username
@@ -27,7 +27,7 @@ class VodafoneClient
     {
         $this->username = $username;
         $this->password = $password;
-        
+
         return $this;
     }
 
@@ -35,7 +35,7 @@ class VodafoneClient
      * @param $from
      * @param $to
      * @param $message
-     * @return mixed Guzzle result
+     * @return mixed Vodafone API result
      */
     public function send($from, $to, $message)
     {
@@ -52,7 +52,7 @@ class VodafoneClient
             ]
         ]);
 
-        if(!$res) {
+        if(! $res) {
             throw CouldNotSendNotification::serviceUnknownResponse();
         }
 
