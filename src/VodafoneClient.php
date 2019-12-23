@@ -8,14 +8,14 @@ use NotificationChannels\Vodafone\Exceptions\CouldNotSendNotification;
 class VodafoneClient
 {
     /**
-     * @var String Vodafone's API endpoint
+     * @var string Vodafone's API endpoint
      */
     protected $endpoint = 'https://www.smsertech.com/apisend';
 
-    /** @var String Vodafone SMS username */
+    /** @var string Vodafone SMS username */
     protected $username;
 
-    /** @var String Vodafone SMS password  */
+    /** @var string Vodafone SMS password  */
     protected $password;
 
     /**
@@ -49,10 +49,10 @@ class VodafoneClient
                 'from' => $from,
                 'format' => 'json',
                 'flash' => 0,
-            ]
+            ],
         ]);
 
-        if(! $res) {
+        if (! $res) {
             throw CouldNotSendNotification::serviceUnknownResponse();
         }
 

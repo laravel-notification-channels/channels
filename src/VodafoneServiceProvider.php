@@ -3,7 +3,6 @@
 namespace NotificationChannels\Vodafone;
 
 use Illuminate\Support\ServiceProvider;
-use NotificationChannels\Vodafone\VodafoneClient;
 
 class VodafoneServiceProvider extends ServiceProvider
 {
@@ -22,7 +21,7 @@ class VodafoneServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(VodafoneClient::class, function () {
-            return new VodafoneClient(config('services.vodafone.username'),config('services.vodafone.password'));
+            return new VodafoneClient(config('services.vodafone.username'), config('services.vodafone.password'));
         });
     }
 }
