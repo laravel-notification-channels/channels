@@ -2,15 +2,20 @@
 
 namespace NotificationChannels\Vodafone;
 
+use GuzzleHttp\Client;
+use NotificationChannels\Vodafone\VodafoneClient;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Vodafone\Exceptions\CouldNotSendNotification;
 
 class VodafoneChannel
 {
-    /**
-     * @var string Vodafone's API endpoint
-     */
-    protected $endpoint = 'https://www.smsertech.com/apisend';
+    /** $var Client */
+    private $client;
+
+    public function __construct(VodafoneClient $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * Send the given notification.
@@ -22,36 +27,22 @@ class VodafoneChannel
      */
     public function send($notifiable, Notification $notification)
     {
+        /** Confirm the toVodafone method exists before continuing */
+        if(!method_exists($notification, 'toVodafone')) {
+            throw CouldNotSendNotification::methodDoesNotExist();
+        }
+
         $message = $notification->toVodafone($notifiable, $notification);
 
-        $fields = [
-            'username' => urlencode(config('services.vodafone.username')),
-            'password' => urlencode(config('services.vodafone.password')),
-            'to' => urlencode($notifiable->routeNotificationFor('vodafone')),
-            'message' => urlencode($message->content),
-            'from' => urlencode($message->from),
-            'format' => urlencode('json'),
-            'flash' => urlencode(0),
-        ];
-
-        $fields_string = '';
-        foreach ($fields as $key => $value) {
-            $fields_string .= $key.'='.$value.'&';
+        /** Check notification uses correct class for this API */
+        if(!$message instanceof VodafoneMessage) {
+            throw CouldNotSendNotification::incorrectMessageClass();
         }
-        rtrim($fields_string, '&');
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, $this->endpoint);
-        curl_setopt($ch, CURLOPT_POST, count($fields));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        $response = json_decode($result)[0];
-
-        if ($response->status === 'ERROR') { // replace this by the code need to check for errors
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-        }
+        $this->client->send(
+            $message->from,
+            $notifiable->routeNotificationFor('vodafone'),
+            $message->content
+        );
     }
 }

@@ -2,6 +2,8 @@
 
 namespace NotificationChannels\Vodafone;
 
+use Illuminate\Support\Arr;
+
 class VodafoneMessage
 {
     /**
@@ -59,7 +61,7 @@ class VodafoneMessage
     public function unicode()
     {
         $this->type = 'unicode';
-
         return $this;
     }
+
 }
