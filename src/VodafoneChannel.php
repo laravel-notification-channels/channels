@@ -3,7 +3,6 @@
 namespace NotificationChannels\Vodafone;
 
 use GuzzleHttp\Client;
-use NotificationChannels\Vodafone\VodafoneClient;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Vodafone\Exceptions\CouldNotSendNotification;
 
@@ -27,15 +26,15 @@ class VodafoneChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        /** Confirm the toVodafone method exists before continuing */
-        if(!method_exists($notification, 'toVodafone')) {
+        /* Confirm the toVodafone method exists before continuing */
+        if(! method_exists($notification, 'toVodafone')) {
             throw CouldNotSendNotification::methodDoesNotExist();
         }
 
         $message = $notification->toVodafone($notifiable, $notification);
 
-        /** Check notification uses correct class for this API */
-        if(!$message instanceof VodafoneMessage) {
+        /* Check notification uses correct class for this API */
+        if(! $message instanceof VodafoneMessage) {
             throw CouldNotSendNotification::incorrectMessageClass();
         }
 
