@@ -15,7 +15,7 @@ class VodafoneClient
     /** @var string Vodafone SMS username */
     protected $username;
 
-    /** @var string Vodafone SMS password  */
+    /** @var string Vodafone SMS password */
     protected $password;
 
     /**
