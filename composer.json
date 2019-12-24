@@ -1,5 +1,5 @@
 {
-    "name": "laravel-notification-channels/notify",
+    "name": "laravel-notification-channels/notify-eu",
     "description": "Notify Notifications driver for Laravel",
     "keywords": [
         "laravel",
@@ -7,7 +7,7 @@
         "notification",
         "notify notifications channel"
     ],
-    "homepage": "https://github.com/laravel-notification-channels/notify",
+    "homepage": "https://github.com/laravel-notification-channels/notify-eu",
     "license": "MIT",
     "authors": [
         {

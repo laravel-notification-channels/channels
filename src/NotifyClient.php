@@ -47,7 +47,7 @@ class NotifyClient
      */
     public function validateMessage(NotifyMessage $message)
     {
-        if (empty($message->getClientId()) or empty($message->getSecret())) {
+        if (empty($message->getClientId()) || empty($message->getSecret())) {
             throw InvalidConfiguration::configurationNotSet();
         }
         if (empty($message->getNotificationType())) {

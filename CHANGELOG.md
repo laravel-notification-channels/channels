@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `laravel-notification-channels/notify` will be documented in this file
+All notable changes to `laravel-notification-channels/notify-eu` will be documented in this file
 
 ## 1.0.0 - 2019-08-05
 

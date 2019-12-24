@@ -16,9 +16,6 @@ class NotifyMessage implements JsonSerializable
     private $cc;
     private $bcc;
 
-    /**
-     * Message constructor.
-     */
     public function __construct()
     {
     }
