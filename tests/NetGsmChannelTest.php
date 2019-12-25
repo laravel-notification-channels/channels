@@ -2,14 +2,14 @@
 
 namespace NotificationChannels\NetGsm\Test;
 
-use Mockery;
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\NetGsm\NetGsmClient;
+use Mockery;
 use NotificationChannels\NetGsm\NetGsmChannel;
+use NotificationChannels\NetGsm\NetGsmClient;
 use NotificationChannels\NetGsm\NetGsmMessage;
+use PHPUnit\Framework\TestCase;
 
 class NetGsmChannelTest extends TestCase
 {

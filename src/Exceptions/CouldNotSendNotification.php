@@ -38,7 +38,4 @@ class CouldNotSendNotification extends \Exception
     {
         return new static('Unknown Error.');
     }
-
-
-
 }

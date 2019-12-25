@@ -2,11 +2,11 @@
 
 namespace NotificationChannels\Messagebird\Test;
 
-use Mockery;
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
+use Mockery;
 use NotificationChannels\NetGsm\NetGsmClient;
 use NotificationChannels\NetGsm\NetGsmMessage;
+use PHPUnit\Framework\TestCase;
 
 class NetGsmClientTest extends TestCase
 {

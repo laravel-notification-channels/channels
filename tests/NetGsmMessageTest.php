@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\NetGsm\Test;
 
-use PHPUnit\Framework\TestCase;
 use NotificationChannels\NetGsm\NetGsmMessage;
+use PHPUnit\Framework\TestCase;
 
 class NetGsmMessageTest extends TestCase
 {

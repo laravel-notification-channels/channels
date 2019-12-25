@@ -78,7 +78,7 @@ class NetGsmClient
             ]);
             $result = explode(' ', $response->getBody()->getContents());
 
-            if (!isset($result[0])) {
+            if (! isset($result[0])) {
                 throw CouldNotSendNotification::invalidResponse();
             }
 
@@ -95,7 +95,6 @@ class NetGsmClient
             } else {
                 throw CouldNotSendNotification::unknownError();
             }
-
         } catch (InvalidConfiguration $exception) {
             /// do nothing
         } catch (CouldNotSendNotification $exception) {

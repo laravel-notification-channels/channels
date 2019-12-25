@@ -21,5 +21,4 @@ class InvalidConfiguration extends Exception
     {
         return new static('Invalid API credentials');
     }
-
 }
