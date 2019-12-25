@@ -82,7 +82,7 @@ class NetGsmClient
                 throw CouldNotSendNotification::invalidResponse();
             }
 
-            if ($result[0] === '00' || $result[0] === '01' || $result[0] == '02') {
+            if ($result[0] === '00' || $result[0] === '01' || $result[0] === '02') {
                 return $result[1];
             } elseif ($result[0] === '20') {
                 throw CouldNotSendNotification::invalidMessageContent();
