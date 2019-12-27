@@ -16,9 +16,9 @@ class CouldNotSendNotification extends \Exception
     public static function workplaceRespondedWithAnError(ClientException $exception)
     {
         $statusCode = $exception->getResponse()->getStatusCode();
-        $description = 'no description given';
+        $description = 'No description given';
         if ($result = json_decode($exception->getResponse()->getBody())) {
-            $description = $result->description ?: $description;
+            $description = $result->description ?? $description;
         }
 
         return new static("Workplace responded with an error `{$statusCode} - {$description}`");

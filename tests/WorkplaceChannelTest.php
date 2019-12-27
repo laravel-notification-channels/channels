@@ -26,7 +26,7 @@ class WorkplaceChannelTest extends TestCase
     protected $httpHistory = [];
     protected $mockHandler;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         //$this->workplace = Mockery::mock(WorkplaceClient::class);
@@ -69,7 +69,7 @@ class WorkplaceChannelTest extends TestCase
     /** @test */
     public function it_throws_an_exception_when_it_could_not_send_the_notification_because_no_route_notification_defined()
     {
-        $this->setExpectedException(CouldNotSendNotification::class);
+        $this->expectException(CouldNotSendNotification::class);
         $this->channel->send(new TestNotifiableNoRouteNotificationDefined(), new TestNotification());
     }
 }
