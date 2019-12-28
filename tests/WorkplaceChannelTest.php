@@ -2,18 +2,18 @@
 
 namespace NotificationChannels\Workplace\Test;
 
-use Mockery;
 use GuzzleHttp\Client;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Workplace\WorkplaceClient;
-use NotificationChannels\Workplace\WorkplaceChannel;
-use NotificationChannels\Workplace\WorkplaceMessage;
+use Mockery;
 use NotificationChannels\Workplace\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Workplace\WorkplaceChannel;
+use NotificationChannels\Workplace\WorkplaceClient;
+use NotificationChannels\Workplace\WorkplaceMessage;
+use PHPUnit\Framework\TestCase;
 
 class WorkplaceChannelTest extends TestCase
 {

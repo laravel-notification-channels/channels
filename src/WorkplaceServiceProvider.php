@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Workplace;
 
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface;
 use Illuminate\Support\ServiceProvider;
 
 class WorkplaceServiceProvider extends ServiceProvider

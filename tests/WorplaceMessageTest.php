@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Workplace\Test;
 
-use PHPUnit\Framework\TestCase;
 use NotificationChannels\Workplace\WorkplaceMessage;
+use PHPUnit\Framework\TestCase;
 
 class WorplaceMessageTest extends TestCase
 {
