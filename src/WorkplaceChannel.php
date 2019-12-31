@@ -9,6 +9,8 @@ use NotificationChannels\Workplace\Exceptions\CouldNotSendNotification;
 
 class WorkplaceChannel
 {
+    const FORMATTING_MARKDOWN = 'MARKDOWN';
+
     /** @var ClientInterface Http client. */
     protected $httpClient;
 
@@ -33,9 +35,13 @@ class WorkplaceChannel
 
         $message = $notification->toWorkplace($notifiable);
 
+        if (is_string($message)) {
+            $message = new WorkplaceMessage($message);
+        }
+
         $body = [
             'message' => $message->getContent(),
-            'formatting' => ($message->isMarkdown() ? 'MARKDOWN' : null),
+            'formatting' => ($message->isMarkdown() ? static::FORMATTING_MARKDOWN : null),
         ];
 
         try {

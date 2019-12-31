@@ -29,7 +29,6 @@ class WorkplaceChannelTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        //$this->workplace = Mockery::mock(WorkplaceClient::class);
 
         $this->mockHandler = new MockHandler();
         $handler = HandlerStack::create($this->mockHandler);
@@ -44,8 +43,11 @@ class WorkplaceChannelTest extends TestCase
         $this->channel = new WorkplaceChannel($client);
     }
 
-    /** @test */
-    public function it_can_send_a_message()
+    /**
+     * @test
+     * Check if the WorkplaceChannel can send a WorkplaceMessage message
+     */
+    public function it_can_send_a_workplace_message()
     {
         $this->mockHandler->append(new Response(200));
         $this->channel->send(new TestNotifiable(), new TestNotification());
@@ -60,6 +62,31 @@ class WorkplaceChannelTest extends TestCase
         $this->assertSame(
             [
                 'message' => 'Laravel Notification Channels are awesome!',
+                'formatting' => 'MARKDOWN',
+            ],
+            $body
+        );
+    }
+
+    /**
+     * @test
+     * Check if the WorkplaceChannel can send a string message
+     */
+    public function it_can_send_a_string_message()
+    {
+        $this->mockHandler->append(new Response(200));
+        $this->channel->send(new TestNotifiable(), new TestStringNotification());
+
+        $this->assertCount(1, $this->httpHistory);
+
+        $request = $this->httpHistory[0]['request'];
+        $body = json_decode($request->getBody()->getContents(), true);
+
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://example.com/groupId', $request->getUri()->__toString());
+        $this->assertSame(
+            [
+                'message' => 'Laravel Notification Channels are awesome even in string!',
                 'formatting' => 'MARKDOWN',
             ],
             $body
@@ -99,5 +126,13 @@ class TestNotification extends Notification
     public function toWorkplace($notifiable)
     {
         return new WorkplaceMessage('Laravel Notification Channels are awesome!');
+    }
+}
+
+class TestStringNotification extends Notification
+{
+    public function toWorkplace($notifiable)
+    {
+        return 'Laravel Notification Channels are awesome even in string!';
     }
 }
