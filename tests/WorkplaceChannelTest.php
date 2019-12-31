@@ -11,7 +11,6 @@ use Illuminate\Notifications\Notification;
 use Mockery;
 use NotificationChannels\Workplace\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Workplace\WorkplaceChannel;
-use NotificationChannels\Workplace\WorkplaceClient;
 use NotificationChannels\Workplace\WorkplaceMessage;
 use PHPUnit\Framework\TestCase;
 
