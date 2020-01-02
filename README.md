@@ -114,7 +114,9 @@ A list of all available options
 -   `enableSound()`: Enables the notification sound.
 -   `disableSound()`: Mutes the notification sound.
 -   `badge(1)`: Accepts an integer value for the badge.
--   `ttl(60)`: Accepts an integer value for the time to live. -`jsonData('')`: Accepts a json string or an array for additional. -`channelID('')`: Accepts a string to set the channelId of the notification for Android devices.
+-   `ttl(60)`: Accepts an integer value for the time to live.
+-   `jsonData('')`: Accepts a json string or an array for additional.
+-   `channelID('')`: Accepts a string to set the channelId of the notification for Android devices.
 
 ### Managing Recipients
 
