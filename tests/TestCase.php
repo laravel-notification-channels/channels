@@ -6,7 +6,6 @@ use Mockery;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
-
     protected $testFiles = [
         'test-file.pdf',
         'test-file-1.pdf',
