@@ -23,21 +23,23 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         return [\NotificationChannels\Interfax\InterfaxServiceProvider::class];
     }
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
         $mpdf = new \Mpdf\Mpdf;
         $mpdf->WriteHTML('<h1>Test file contents</h1>');
 
-        foreach($this->testFiles as $file)
+        foreach ($this->testFiles as $file) {
             $mpdf->Output(app('filesystem')->path($file), \Mpdf\Output\Destination::FILE);
+        }
     }
 
     public function tearDown(): void
     {
-        foreach($this->testFiles as $file)
+        foreach ($this->testFiles as $file) {
             app('filesystem')->delete($file);
+        }
 
         parent::tearDown();
 
@@ -48,7 +50,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         Mockery::close();
     }
 
-    protected function addFile(string $filename) : void
+    protected function addFile(string $filename): void
     {
         $this->testFiles[] = $filename;
     }

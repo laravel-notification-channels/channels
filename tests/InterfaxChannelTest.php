@@ -64,20 +64,24 @@ class InterfaxChannelTest extends TestCase
     public function it_can_send_notification_pdf_as_stream()
     {
         $this->interfax->shouldReceive('deliver')
-            ->with(Mockery::on(function($output) {
-                if($output['faxNumber']!=='12345678901')
+            ->with(Mockery::on(function ($output) {
+                if ($output['faxNumber'] !== '12345678901') {
                     return false;
+                }
 
                 $file = $output['files'][0];
 
-                if($file[1]['name']!==app('filesystem')->path('test-file.pdf'))
+                if ($file[1]['name'] !== app('filesystem')->path('test-file.pdf')) {
                     return false;
+                }
 
-                if($file[1]['mime_type']!=='application/pdf')
+                if ($file[1]['mime_type'] !== 'application/pdf') {
                     return false;
+                }
 
-                if(!is_resource($file[0]))
+                if (! is_resource($file[0])) {
                     return false;
+                }
 
                 return true;
             }));
@@ -94,20 +98,24 @@ class InterfaxChannelTest extends TestCase
         app('filesystem')->put($filename, '<html><body><h1>Test file contents</h1></body></html>');
 
         $this->interfax->shouldReceive('deliver')
-            ->with(Mockery::on(function($output) {
-                if($output['faxNumber']!=='12345678901')
+            ->with(Mockery::on(function ($output) {
+                if ($output['faxNumber'] !== '12345678901') {
                     return false;
+                }
 
                 $file = $output['files'][0];
 
-                if($file[1]['name']!==app('filesystem')->path('test-file.html'))
+                if ($file[1]['name'] !== app('filesystem')->path('test-file.html')) {
                     return false;
+                }
 
-                if($file[1]['mime_type']!=='text/html')
+                if ($file[1]['mime_type'] !== 'text/html') {
                     return false;
+                }
 
-                if(!is_resource($file[0]))
+                if (! is_resource($file[0])) {
                     return false;
+                }
 
                 return true;
             }));
