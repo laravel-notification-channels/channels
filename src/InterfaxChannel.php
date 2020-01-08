@@ -25,7 +25,7 @@ class InterfaxChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $faxNumber = $notifiable->routeNotificationFor('Interfax')) {
+        if (! $faxNumber = $notifiable->routeNotificationFor('interfax')) {
             return;
         }
 
