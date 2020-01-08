@@ -65,12 +65,12 @@ use NotificationChannels\Interfax\InterfaxMessage;
 class DocumentWasSent extends Notification
 {
 
-  protected $files;
+    protected $files;
 
-  public function __construct(array $files)
-  {
+    public function __construct(array $files)
+    {
     $this->files = $files;
-  }
+    }
 
     /**
      * Get the notification's delivery channels.
@@ -105,7 +105,7 @@ public function routeNotificationForInterfax($notification)
 
 ### Available Message methods
 
-`file(string $file)` : Accepts the full path to a single file.  
+`file(string $file)` : Accepts the full path to a single file (full list of supported file types [found here](https://www.interfax.net/en/help/supported_file_types)).  
 `files(array $array)` : Accepts an array of file paths.  
 `stream(Filestream $stream, string $name)` : Accepts a file stream.
 
