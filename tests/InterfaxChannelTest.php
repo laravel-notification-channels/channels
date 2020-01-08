@@ -61,24 +61,58 @@ class InterfaxChannelTest extends TestCase
     }
 
     /** @test */
-    public function it_can_send_notification_as_stream()
+    public function it_can_send_notification_pdf_as_stream()
     {
         $this->interfax->shouldReceive('deliver')
-            ->once()
-            ->with([
-                'faxNumber' => '12345678901',
-                'files' => [
-                    [
-                        'test-file-contents',
-                        [
-                            'name' => 'test-file.pdf',
-                            'mime_type' => 'application/pdf',
-                        ],
-                    ],
-                ],
-            ]);
+            ->with(Mockery::on(function($output) {
+                if($output['faxNumber']!=='12345678901')
+                    return false;
 
-        $this->assertNull($this->channel->send(new TestNotifiable, new TestNotificationAsStream));
+                $file = $output['files'][0];
+
+                if($file[1]['name']!==app('filesystem')->path('test-file.pdf'))
+                    return false;
+
+                if($file[1]['mime_type']!=='application/pdf')
+                    return false;
+
+                if(!is_resource($file[0]))
+                    return false;
+
+                return true;
+            }));
+
+        $this->channel->send(new TestNotifiable, new TestNotificationAsStreamPdf);
+    }
+
+    /** @test */
+    public function it_can_send_notification_html_as_stream()
+    {
+        $filename = 'test-file.html';
+        $this->addFile($filename);
+
+        app('filesystem')->put($filename, '<html><body><h1>Test file contents</h1></body></html>');
+
+        $this->interfax->shouldReceive('deliver')
+            ->with(Mockery::on(function($output) {
+                if($output['faxNumber']!=='12345678901')
+                    return false;
+
+                $file = $output['files'][0];
+
+                if($file[1]['name']!==app('filesystem')->path('test-file.html'))
+                    return false;
+
+                if($file[1]['mime_type']!=='text/html')
+                    return false;
+
+                if(!is_resource($file[0]))
+                    return false;
+
+                return true;
+            }));
+
+        $this->channel->send(new TestNotifiable, new TestNotificationAsStreamHtml);
     }
 
     /** @test */
@@ -152,7 +186,7 @@ class TestNotificationWithFiles extends Notification
     }
 }
 
-class TestNotificationAsStream extends Notification
+class TestNotificationAsStreamPdf extends Notification
 {
     /**
      * @param $notifiable
@@ -161,9 +195,28 @@ class TestNotificationAsStream extends Notification
      */
     public function toInterfax($notifiable)
     {
+        $path = app('filesystem')->path('test-file.pdf');
+
         return (new InterfaxMessage)
                     ->user($notifiable)
-                    ->stream('test-file-contents', 'test-file.pdf');
+                    ->stream(fopen($path, 'r'), $path);
+    }
+}
+
+class TestNotificationAsStreamHtml extends Notification
+{
+    /**
+     * @param $notifiable
+     * @return InterfaxMessage
+     * @throws CouldNotSendNotification
+     */
+    public function toInterfax($notifiable)
+    {
+        $path = app('filesystem')->path('test-file.html');
+
+        return (new InterfaxMessage)
+                    ->user($notifiable)
+                    ->stream(fopen($path, 'r'), $path);
     }
 }
 

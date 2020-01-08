@@ -73,7 +73,7 @@ class InterfaxMessage
                     $this->stream,
                     [
                         'name' => $this->filename,
-                        'mime_type' => 'application/pdf',
+                        'mime_type' => app('filesystem')->mimeType(pathinfo($this->filename, PATHINFO_BASENAME)),
                     ],
                 ],
             ];
