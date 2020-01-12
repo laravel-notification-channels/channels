@@ -1,18 +1,19 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/aws-sns",
+    "description": "Amazon Simple Notification Service (AWS SNS) notification channel for Laravel.",
+    "homepage": "https://github.com/laravel-notification-channels/aws-sns",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Claudson Martins",
+            "email": "claudson@outlook.com",
+            "homepage": "https://claudsonmartins.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=7.2",
+        "aws/aws-sdk-php": "^3.0",
         "illuminate/notifications": "~5.5 || ~6.0",
         "illuminate/support": "~5.5 || ~6.0"
     },
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\AwsSns\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\AwsSns\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -36,5 +37,12 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\AwsSns\\SnsServiceProvider"
+            ]
+        }
     }
 }
