@@ -2,8 +2,10 @@
 
 namespace NotificationChannels\AwsSns;
 
-use NotificationChannels\AwsSns\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Notifications\Events\NotificationFailed;
+use NotificationChannels\AwsSns\Exceptions\CouldNotSendNotification;
 
 class SnsChannel
 {
@@ -13,28 +15,99 @@ class SnsChannel
     protected $sns;
 
     /**
-     * SnsChannel constructor.
-     * @param  Sns  $sns
+     * @var Dispatcher
      */
-    public function __construct(Sns $sns)
+    protected $events;
+
+    /**
+     * SnsChannel constructor.
+     * @param Sns        $sns
+     * @param Dispatcher $events
+     */
+    public function __construct(Sns $sns, Dispatcher $events)
     {
         $this->sns = $sns;
+        $this->events = $events;
     }
 
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
-     * @throws \NotificationChannels\AwsSns\Exceptions\CouldNotSendNotification
+     * @param  mixed                                  $notifiable
+     * @param  \Illuminate\Notifications\Notification $notification
+     * @return \Aws\Result
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
+        try {
+            $destination = $this->getDestination($notifiable);
+            $message = $this->getMessage($notifiable, $notification);
 
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+            return $this->sns->send($message, $destination);
+        } catch (\Exception $e) {
+            $event = new NotificationFailed(
+                $notifiable,
+                $notification,
+                'sns',
+                ['message' => $e->getMessage(), 'exception' => $e]
+            );
+            $this->events->dispatch($event);
+        }
+    }
+
+    /**
+     * Get the phone number to send a notification to.
+     *
+     * @param $notifiable
+     * @return mixed
+     * @throws CouldNotSendNotification
+     */
+    protected function getDestination($notifiable)
+    {
+        if ($to = $notifiable->routeNotificationFor('sns')) {
+            return $to;
+        }
+
+        return $this->guessDestination($notifiable);
+    }
+
+    /**
+     * Try to get the phone number from some commonly used attributes for that.
+     *
+     * @param $notifiable
+     * @return mixed
+     * @throws CouldNotSendNotification
+     */
+    protected function guessDestination($notifiable)
+    {
+        $commonAttributes = ['phone', 'phone_number', 'full_phone'];
+        foreach ($commonAttributes as $attribute) {
+            if (isset($notifiable->$attribute)) {
+                return $notifiable->$attribute;
+            }
+        }
+
+        throw CouldNotSendNotification::invalidReceiver();
+    }
+
+    /**
+     * Get the SNS Message object.
+     *
+     * @param $notifiable
+     * @param  Notification             $notification
+     * @return SnsMessage
+     * @throws CouldNotSendNotification
+     */
+    protected function getMessage($notifiable, Notification $notification): SnsMessage
+    {
+        $message = $notification->toSns($notifiable);
+        if (is_string($message)) {
+            return new SnsMessage($message);
+        }
+        if ($message instanceof SnsMessage) {
+            return $message;
+        }
+
+        throw CouldNotSendNotification::invalidMessageObject($message);
     }
 }
