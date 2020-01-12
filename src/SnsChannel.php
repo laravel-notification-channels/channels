@@ -7,9 +7,18 @@ use Illuminate\Notifications\Notification;
 
 class SnsChannel
 {
-    public function __construct()
+    /**
+     * @var Sns
+     */
+    protected $sns;
+
+    /**
+     * SnsChannel constructor.
+     * @param  Sns  $sns
+     */
+    public function __construct(Sns $sns)
     {
-        // Initialisation code here
+        $this->sns = $sns;
     }
 
     /**

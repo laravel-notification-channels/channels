@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\AwsSns;
 
+use Aws\Sns\SnsClient as SnsService;
 use Illuminate\Support\ServiceProvider;
 
 class SnsServiceProvider extends ServiceProvider
@@ -11,30 +12,17 @@ class SnsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Bootstrap code here.
-
-        /**
-         * Here's some example code we use for the pusher package.
-
-        $this->app->when(Channel::class)
-            ->needs(Pusher::class)
+        $this->app->when(SnsChannel::class)
+            ->needs(Sns::class)
             ->give(function () {
-                $pusherConfig = config('broadcasting.connections.pusher');
-
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
-                );
+                return new Sns($this->app->make(SnsService::class));
             });
-         */
 
-    }
+        $this->app->bind(SnsService::class, function() {
+            $snsConfig =  $this->app['config']['services.sns'];
+            $snsConfig['version'] = 'latest';
 
-    /**
-     * Register the application services.
-     */
-    public function register()
-    {
+            return new SnsService($snsConfig);
+        });
     }
 }
