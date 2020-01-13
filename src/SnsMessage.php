@@ -22,11 +22,6 @@ class SnsMessage
      */
     protected $body = '';
 
-    /**
-     * SnsMessage constructor.
-     *
-     * @param string|array $content
-     */
     public function __construct($content)
     {
         if (is_string($content)) {
