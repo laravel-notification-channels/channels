@@ -2,13 +2,12 @@
 
 namespace NotificationChannels\AwsSns\Test;
 
-use Mockery;
 use Aws\Sns\SnsClient as SnsService;
-use NotificationChannels\AwsSns\Sns;
 use Illuminate\Contracts\Events\Dispatcher;
-use NotificationChannels\AwsSns\SnsMessage;
+use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use NotificationChannels\AwsSns\Exceptions\CouldNotSendNotification;
+use NotificationChannels\AwsSns\Sns;
+use NotificationChannels\AwsSns\SnsMessage;
 
 class SnsTest extends MockeryTestCase
 {
@@ -27,7 +26,7 @@ class SnsTest extends MockeryTestCase
      */
     protected $sns;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

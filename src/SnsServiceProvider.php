@@ -18,7 +18,7 @@ class SnsServiceProvider extends ServiceProvider
                 return new Sns($this->app->make(SnsService::class));
             });
 
-        $this->app->bind(SnsService::class, function() {
+        $this->app->bind(SnsService::class, function () {
             return new SnsService($this->app['config']['services.sns']);
         });
     }

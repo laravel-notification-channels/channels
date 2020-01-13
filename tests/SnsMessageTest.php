@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\AwsSns\Test;
 
-use PHPUnit\Framework\TestCase;
 use NotificationChannels\AwsSns\SnsMessage;
+use PHPUnit\Framework\TestCase;
 
 class SnsMessageTest extends TestCase
 {

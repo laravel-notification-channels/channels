@@ -2,12 +2,12 @@
 
 namespace NotificationChannels\AwsSns\Test;
 
-use Mockery;
 use Aws\Sns\SnsClient as SnsService;
+use Illuminate\Contracts\Foundation\Application;
+use Mockery;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 use NotificationChannels\AwsSns\Sns;
 use NotificationChannels\AwsSns\SnsChannel;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Illuminate\Contracts\Foundation\Application;
 use NotificationChannels\AwsSns\SnsServiceProvider;
 
 class SnsServiceProviderTest extends MockeryTestCase
@@ -62,16 +62,14 @@ class SnsServiceProviderTest extends MockeryTestCase
 
         $this->app->shouldReceive('give')
             ->with(Mockery::on(function ($sns) {
-                    return $sns() instanceof Sns;
-                })
-            )
+                return $sns() instanceof Sns;
+            }))
             ->once();
 
         $this->app->shouldReceive('bind')
             ->with(SnsService::class, Mockery::on(function ($sns) {
-                    return $sns() instanceof SnsService;
-                })
-            )
+                return $sns() instanceof SnsService;
+            }))
             ->once()
             ->andReturn($this->app);
 
