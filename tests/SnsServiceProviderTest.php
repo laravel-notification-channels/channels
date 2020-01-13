@@ -37,6 +37,7 @@ class SnsServiceProviderTest extends MockeryTestCase
             'key' => 'aws-key-123',
             'secret' => 'aws-secret-ashd1i26312873asw',
             'region' => 'us-east-1',
+            'version' => 'latest',
         ];
 
         $this->app->shouldReceive('offsetGet')

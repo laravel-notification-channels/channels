@@ -19,10 +19,7 @@ class SnsServiceProvider extends ServiceProvider
             });
 
         $this->app->bind(SnsService::class, function() {
-            $snsConfig =  $this->app['config']['services.sns'];
-            $snsConfig['version'] = 'latest';
-
-            return new SnsService($snsConfig);
+            return new SnsService($this->app['config']['services.sns']);
         });
     }
 }

@@ -5,7 +5,7 @@ namespace NotificationChannels\AwsSns\Test;
 use PHPUnit\Framework\TestCase;
 use NotificationChannels\AwsSns\SnsMessage;
 
-class SmsMessageTest extends TestCase
+class SnsMessageTest extends TestCase
 {
     /** @test */
     public function it_can_accept_a_plain_string_when_constructing_a_message()
