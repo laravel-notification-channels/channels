@@ -12,10 +12,6 @@ class Sns
      */
     protected $snsService;
 
-    /**
-     * Sns constructor.
-     * @param SnsService $snsService
-     */
     public function __construct(SnsService $snsService)
     {
         $this->snsService = $snsService;

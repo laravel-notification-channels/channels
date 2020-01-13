@@ -36,15 +36,6 @@ You can install the package via composer:
 composer require laravel-notification-channels/aws-sns
 ```
 
-Add the service provider (only required on Laravel 5.4 or lower):
-
-```php
-// config/app.php
-'providers' => [
-    // ...
-    NotificationChannels\AwsSns\SnsServiceProvider::class,
-],
-```
 
 ### Setting up the AWS SNS service
 
@@ -123,8 +114,8 @@ public function routeNotificationForSns()
 
 ### Available SnsMessage methods
 
-- `create([])`: Accepts an array of key-values where the keys corresponds to the methods bellow and the values are passed as parameters.
-- `body('')`: Accepts a string value for the notification body. Messages with more than 140 characters will be splitted into many by SNS without breaking any words.
+- `create([])`: Accepts an array of key-values where the keys corresponds to the methods below and the values are passed as parameters.
+- `body('')`: Accepts a string value for the notification body. Messages with more than 140 characters will be split into multiple messages by SNS without breaking any words.
 - `promotional(bool)`: Sets the SMS attribute as the promotional delivery type (default). Optimizes the delivery for lower costs.
 - `transactional(bool)`: Sets the SMS attribute as the transactional delivery type. Optimizes the delivery to achieve the highest reliability (it also costs more). 
 

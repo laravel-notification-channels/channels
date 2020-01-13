@@ -19,11 +19,6 @@ class SnsChannel
      */
     protected $events;
 
-    /**
-     * SnsChannel constructor.
-     * @param Sns        $sns
-     * @param Dispatcher $events
-     */
     public function __construct(Sns $sns, Dispatcher $events)
     {
         $this->sns = $sns;
@@ -104,6 +99,7 @@ class SnsChannel
         if (is_string($message)) {
             return new SnsMessage($message);
         }
+
         if ($message instanceof SnsMessage) {
             return $message;
         }
