@@ -14,7 +14,7 @@ class Sns
 
     /**
      * Sns constructor.
-     * @param  SnsService  $snsService
+     * @param SnsService $snsService
      */
     public function __construct(SnsService $snsService)
     {
@@ -22,7 +22,7 @@ class Sns
     }
 
     /**
-     * @param  SnsMessage  $message
+     * @param SnsMessage $message
      * @param $destination
      * @return \Aws\Result
      * @throws AwsException
@@ -39,6 +39,7 @@ class Sns
                 ],
             ],
         ];
+
         return $this->snsService->publish($parameters);
     }
 }
