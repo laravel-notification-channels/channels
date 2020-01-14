@@ -2,13 +2,13 @@
 
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
-use Mockery;
+use ExponentPhpSDK\Exceptions\ExpoException;
 use ExponentPhpSDK\Expo;
 use Illuminate\Events\Dispatcher;
+use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use ExponentPhpSDK\Exceptions\ExpoException;
-use Illuminate\Notifications\Events\NotificationFailed;
+use Mockery;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\ExpoMessage;
 

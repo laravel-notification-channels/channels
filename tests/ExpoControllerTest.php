@@ -3,17 +3,17 @@
 namespace NotificationChannels\ExpoPushNotifications\Test;
 
 use ExponentPhpSDK\Expo;
-use Illuminate\Http\Request;
 use ExponentPhpSDK\ExpoRegistrar;
-use Illuminate\Events\Dispatcher;
 use ExponentPhpSDK\ExpoRepository;
+use ExponentPhpSDK\Repositories\ExpoFileDriver;
+use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Validation\Factory;
-use ExponentPhpSDK\Repositories\ExpoFileDriver;
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
-use NotificationChannels\ExpoPushNotifications\Models\Interest;
 use NotificationChannels\ExpoPushNotifications\Http\ExpoController;
+use NotificationChannels\ExpoPushNotifications\Models\Interest;
 use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 
 class ExpoControllerTest extends TestCase
