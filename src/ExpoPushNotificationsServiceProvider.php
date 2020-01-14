@@ -5,8 +5,8 @@ namespace NotificationChannels\ExpoPushNotifications;
 use ExponentPhpSDK\Expo;
 use ExponentPhpSDK\ExpoRegistrar;
 use ExponentPhpSDK\ExpoRepository;
-use Illuminate\Support\ServiceProvider;
 use ExponentPhpSDK\Repositories\ExpoFileDriver;
+use Illuminate\Support\ServiceProvider;
 use NotificationChannels\ExpoPushNotifications\Repositories\ExpoDatabaseDriver;
 
 class ExpoPushNotificationsServiceProvider extends ServiceProvider
