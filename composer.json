@@ -1,6 +1,6 @@
 {
     "name": "laravel-notification-channels/netgsm",
-    "description": "NetGSM notification channel for Laravel 5.3 - 5.7",
+    "description": "NetGSM notification channel for Laravel 5.5 & 6.x"
     "homepage": "https://github.com/laravel-notification-channels/netgsm",
     "license": "MIT",
     "authors": [
