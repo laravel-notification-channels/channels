@@ -70,7 +70,7 @@ class NetGsmClient
             '</mainbody>';
 
         try {
-            $response = $this->client->request('POST', self::URI, [
+            $response = $this->client->post(self::URI, [
                 'body' => $msg,
                 'headers' => [
                     'Content-Type', 'text/xml; charset=utf-8',
