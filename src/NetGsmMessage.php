@@ -8,6 +8,10 @@ class NetGsmMessage
     public $header = null;
     public $recipients = [];
 
+    /**
+     * @param  string  $body
+     * @return self
+     */
     public static function create($body = '')
     {
         return new static($body);
@@ -20,6 +24,10 @@ class NetGsmMessage
         }
     }
 
+    /**
+     * @param string $body
+     * @return self
+     */
     public function setBody($body)
     {
         $this->body = trim($body);
@@ -27,6 +35,10 @@ class NetGsmMessage
         return $this;
     }
 
+    /**
+     * @param $header
+     * @return self
+     */
     public function setHeader($header)
     {
         $this->header = $header;
@@ -34,6 +46,10 @@ class NetGsmMessage
         return $this;
     }
 
+    /**
+     * @param string|array $recipients
+     * @return self
+     */
     public function setRecipients($recipients)
     {
         if (! is_array($recipients)) {

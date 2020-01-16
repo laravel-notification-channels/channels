@@ -35,7 +35,6 @@ class NetGsmClient
     protected $msgHeader;
 
     /**
-     * NetGsmClient constructor.
      * @param  Client  $client
      * @param  string  $userCode
      * @param  string  $secret
@@ -52,11 +51,12 @@ class NetGsmClient
     /**
      * Send the Message.
      * @param  NetGsmMessage  $message
+     * @return void
+     * @throws Exception
      * @throws CouldNotSendNotification
      * @throws InvalidConfiguration
-     * @throws Exception
      */
-    public function send(NetGsmMessage $message)
+    public function send(NetGsmMessage $message): void
     {
         if (empty($message->recipients)) {
             throw CouldNotSendNotification::emptyRecipients();
@@ -96,9 +96,9 @@ class NetGsmClient
                 throw CouldNotSendNotification::unknownError();
             }
         } catch (InvalidConfiguration $exception) {
-            /// do nothing
+            throw $exception;
         } catch (CouldNotSendNotification $exception) {
-            /// do nothing
+            throw $exception;
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }
@@ -108,7 +108,7 @@ class NetGsmClient
      * @param  NetGsmMessage  $message
      * @return string
      */
-    protected function prepareBody(NetGsmMessage $message)
+    protected function prepareBody(NetGsmMessage $message): string
     {
         $recipients = implode("\n", array_map(function ($recipient) {
             return '<no>'.$recipient.'</no>';
@@ -125,7 +125,7 @@ class NetGsmClient
      * @param  NetGsmMessage  $message
      * @return string
      */
-    protected function prepareHeader(NetGsmMessage $message)
+    protected function prepareHeader(NetGsmMessage $message): string
     {
         return sprintf('<header>
                     <company dil=\'TR\'>NETGSM</company>
