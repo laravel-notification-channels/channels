@@ -29,12 +29,15 @@ class NetGsmChannel
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toNetGsm($notifiable);
+
         if (is_string($message)) {
             $message = NetGsmMessage::create($message);
         }
+
         if ($to = $notifiable->routeNotificationFor('netgsm')) {
             $message->setRecipients($to);
         }
+        
         $this->client->send($message);
     }
 }
