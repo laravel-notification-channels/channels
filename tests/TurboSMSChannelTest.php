@@ -29,10 +29,10 @@ class TurboSMSChannelTest extends TestCase
         $this->testConfig = [
             'login' => 'TEST_LOGIN',
             'password' => 'TEST_PASSWORD',
-            'wsdl_endpoint' => 'http://turbosms.in.ua/api/wsdl.html',
+            'wsdlEndpoint' => 'http://turbosms.in.ua/api/wsdl.html',
             'sender' => 'TEST_SENDER',
             'debug' => false,
-            'sandbox_mode' => false,
+            'sandboxMode' => false,
         ];
         $this->testChannel = Mockery::mock(TurboSMSChannel::class, [$this->testConfig])->makePartial()->shouldAllowMockingProtectedMethods();
 

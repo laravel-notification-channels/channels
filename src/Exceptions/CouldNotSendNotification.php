@@ -7,7 +7,7 @@ use Exception;
 class CouldNotSendNotification extends \Exception
 {
     /**
-     * Thrown when we're unable to communicate with smspoh.
+     * Thrown when we're unable to communicate with turbosms.
      *
      * @param Exception $exception
      *

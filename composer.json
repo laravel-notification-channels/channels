@@ -1,7 +1,7 @@
 {
-    "name": "gvital3230/turbosms-laravel-notification-channel",
-    "description": "turbosms-laravel-notification-channel",
-    "homepage": "https://github.com/gvital3230/turbosms-laravel-notification-channel",
+    "name": "laravel-notification-channels/turbosms",
+    "description": "Turbosms notification channel for Laravel",
+    "homepage": "http://laravel-notification-channels.com/",
     "license": "MIT",
     "authors": [
         {

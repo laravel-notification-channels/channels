@@ -9,29 +9,64 @@ use NotificationChannels\TurboSMS\Exceptions\CouldNotSendNotification;
 
 class TurboSMSChannel
 {
+    /**
+     * Login to API endpoint.
+     *
+     * @var string
+     */
     protected $login;
+
+    /**
+     * Password to API endpoint.
+     *
+     * @var string
+     */
     protected $password;
-    protected $wsdl_endpoint;
+
+    /**
+     * API endpoint wsdl url.
+     *
+     * @var string
+     */
+    protected $wsdlEndpoint;
+
+    /**
+     * Registered sender. Should be requested in TurboSMS user's page
+     *
+     * @var string
+     */
     protected $sender;
+
+    /**
+     * Debug flag. If true, messages send/result wil be stored in Laravel log
+     *
+     * @var string
+     */
     protected $debug;
-    protected $sandbox_mode;
+
+    /**
+     * Sandbox mode flag. If true, endpoint API will not be invoked, useful for dev purposes
+     *
+     * @var string
+     */
+    protected $sandboxMode;
 
     /**
      * @return mixed
      */
     public function getWsdlEndpoint()
     {
-        return $this->wsdl_endpoint;
+        return $this->wsdlEndpoint;
     }
 
     public function __construct(array $config = [])
     {
         $this->login = Arr::get($config, 'login');
         $this->password = Arr::get($config, 'password');
-        $this->wsdl_endpoint = Arr::get($config, 'wsdl_endpoint');
+        $this->wsdlEndpoint = Arr::get($config, 'wsdlEndpoint');
         $this->sender = Arr::get($config, 'sender');
         $this->debug = Arr::get($config, 'debug', false);
-        $this->sandbox_mode = Arr::get($config, 'sandbox_mode', false);
+        $this->sandboxMode = Arr::get($config, 'sandboxMode', false);
     }
 
     /**
@@ -41,7 +76,7 @@ class TurboSMSChannel
     protected function getClient()
     {
         try {
-            return new \SoapClient($this->wsdl_endpoint);
+            return new \SoapClient($this->wsdlEndpoint);
         } catch (\Exception $exception) {
             throw CouldNotSendNotification::couldNotCommunicateWithEndPoint($exception);
         }
@@ -60,14 +95,19 @@ class TurboSMSChannel
     {
         /** @var TurboSMSMessage $message */
         $message = $notification->toTurboSMS($notifiable);
+        if (is_string($message)) {
+            $message = new TurboSMSMessage($message);
+        }
         $message->to = $notifiable->routeNotificationFor('turbosms');
+
         $sms = [
             'sender' => $this->sender,
             'destination' => $message->to,
             'text' => $message->body,
         ];
+
         if ($this->debug) {
-            Log::info('TurboSMS sending sms - '.print_r($sms, true));
+            Log::info('TurboSMS sending sms - ' . print_r($sms, true));
         }
 
         $auth = [
@@ -75,17 +115,16 @@ class TurboSMSChannel
             'password' => $this->password,
         ];
 
-        $result = true;
+        if($this->sandboxMode){
+            return null;
+        }
 
-        if (!$this->sandbox_mode) {
+        $client = $this->getClient();
+        $client->Auth($auth);
+        $result = $client->SendSMS($sms);
 
-            $client = $this->getClient();
-            $client->Auth($auth);
-            $result = $client->SendSMS($sms);
-
-            if ($this->debug) {
-                Log::info('TurboSMS send result - '.print_r($result->SendSMSResult->ResultArray, true));
-            }
+        if ($this->debug) {
+            Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
         }
 
         return $result;

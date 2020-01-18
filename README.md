@@ -1,12 +1,12 @@
 # TurboSMS Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/gvital3230/turbosms-laravel-notification-channel.svg?style=flat-square)](https://packagist.org/packages/gvital3230/turbosms-laravel-notification-channel)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/turbosms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/turbosms)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/gvital3230/turbosms-laravel-notification-channel/master.svg?style=flat-square)](https://travis-ci.org/gvital3230/turbosms-laravel-notification-channel)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/turbosms/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/turbosms)
 [![StyleCI](https://styleci.io/repos/233038111/shield)](https://styleci.io/repos/233038111)
-[![Quality Score](https://img.shields.io/scrutinizer/g/gvital3230/turbosms-laravel-notification-channel.svg?style=flat-square)](https://scrutinizer-ci.com/g/gvital3230/turbosms-laravel-notification-channel)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/gvital3230/turbosms-laravel-notification-channel/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/gvital3230/turbosms-laravel-notification-channel/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/gvital3230/turbosms-laravel-notification-channel.svg?style=flat-square)](https://packagist.org/packages/gvital3230/turbosms-laravel-notification-channel)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/turbosms.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/turbosms)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/turbosms/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/turbosms/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/turbosms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/turbosms)
 
 This package makes it easy to send notifications using [TurboSMS](https://turbosms.ua) with Laravel 5.5+ and 6.0
 
@@ -28,7 +28,7 @@ This package makes it easy to send notifications using [TurboSMS](https://turbos
 
 You can install this package via composer:
 ``` bash
-composer require laravel-notification-channels/smspoh
+composer require laravel-notification-channels/turbosms
 ```
 
 ### Setting up the TurboSMS service
@@ -39,12 +39,12 @@ Add your TurboSMS sms gate login, password and default sender name to your confi
 // config/services.php
 ...
     'turbosms' => [
-        'wsdl_endpoint' => env('TURBOSMS_WSDLENDPOINT', 'http://turbosms.in.ua/api/wsdl.html'),
+        'wsdlEndpoint' => env('TURBOSMS_WSDLENDPOINT', 'http://turbosms.in.ua/api/wsdl.html'),
         'login' => env('TURBOSMS_LOGIN'),
         'password' => env('TURBOSMS_PASSWORD'),
         'sender' => env('TURBOSMS_SENDER'),
         'debug' => env('TURBOSMS_DEBUG', false) //will log sending attempts and results
-        'sandbox_mode' => env('TURBOSMS_SANDBOX_MODE', false) //will not invoke API call
+        'sandboxMode' => env('TURBOSMS_SANDBOX_MODE', false) //will not invoke API call
     ],
 ...
 ```
