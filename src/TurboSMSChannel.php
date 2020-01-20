@@ -31,23 +31,23 @@ class TurboSMSChannel
     protected $wsdlEndpoint;
 
     /**
-     * Registered sender. Should be requested in TurboSMS user's page
+     * Registered sender. Should be requested in TurboSMS user's page.
      *
      * @var string
      */
     protected $sender;
 
     /**
-     * Debug flag. If true, messages send/result wil be stored in Laravel log
+     * Debug flag. If true, messages send/result wil be stored in Laravel log.
      *
-     * @var string
+     * @var bool
      */
     protected $debug;
 
     /**
-     * Sandbox mode flag. If true, endpoint API will not be invoked, useful for dev purposes
+     * Sandbox mode flag. If true, endpoint API will not be invoked, useful for dev purposes.
      *
-     * @var string
+     * @var bool
      */
     protected $sandboxMode;
 
@@ -88,7 +88,7 @@ class TurboSMSChannel
      * @param mixed $notifiable
      *
      * @param Notification $notification
-     * @return array
+     * @return void|array
      * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
@@ -98,16 +98,15 @@ class TurboSMSChannel
         if (is_string($message)) {
             $message = new TurboSMSMessage($message);
         }
-        $message->to = $notifiable->routeNotificationFor('turbosms');
 
         $sms = [
             'sender' => $this->sender,
-            'destination' => $message->to,
+            'destination' => $notifiable->routeNotificationFor('turbosms'),
             'text' => $message->body,
         ];
 
         if ($this->debug) {
-            Log::info('TurboSMS sending sms - ' . print_r($sms, true));
+            Log::info('TurboSMS sending sms - '.print_r($sms, true));
         }
 
         $auth = [
@@ -115,8 +114,8 @@ class TurboSMSChannel
             'password' => $this->password,
         ];
 
-        if($this->sandboxMode){
-            return null;
+        if ($this->sandboxMode) {
+            return;
         }
 
         $client = $this->getClient();
@@ -124,7 +123,7 @@ class TurboSMSChannel
         $result = $client->SendSMS($sms);
 
         if ($this->debug) {
-            Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+            Log::info('TurboSMS send result - '.print_r($result->SendSMSResult->ResultArray, true));
         }
 
         return $result;

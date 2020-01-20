@@ -5,14 +5,7 @@ namespace NotificationChannels\TurboSMS;
 class TurboSMSMessage
 {
     /**
-     * Message receiver
-     *
-     * @var string
-     */
-    public $to;
-
-    /**
-     * Message body
+     * Message body.
      *
      * @var string
      */
