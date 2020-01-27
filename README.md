@@ -120,7 +120,22 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ``` bash
 $ composer test
 ```
+## Known Issues
 
+if you encounter these error
+```
+ certificate problem: unable to get local issuer certificate
+ ```
+for production we recommend to follow these link for fixing these issue
+
+https://ourcodeworld.com/articles/read/211/unirest-for-php-ssl-certificate-problem-unable-to-get-local-issuer-certificate
+
+but if you are in a rush and working only in local enviroment you can just replace the following
+
+1. go to <ProjectDir>\vendor\transmitmessage\php-client-sdk\src\Configuration.php
+2. replace ```https://api.transmitmessage.com/v1/``` with ```http://api.transmitmessage.com/v1/```
+    
+these will fixed the issue temporarily
 ## Security
 
 If you discover any security related issues, please email chito@burstsms.com instead of using the issue tracker.
