@@ -5,7 +5,6 @@ namespace NotificationChannels\TransmitMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\TransmitMessage\Exceptions\CouldNotSendNotification;
 use TransmitMessageLib\Models;
-use TransmitMessageLib\Exceptions;
 use TransmitMessageLib\TransmitMessageClient;
 
 class TransmitMessageChannel
@@ -30,24 +29,21 @@ class TransmitMessageChannel
     {
         $message = $notification->toTransmitMessage($notifiable);
 
-       
 
-        if( $sMSController = ($this->client)->getSMS()) {
+        if ($sMSController = ($this->client)->getSMS()) {
             $body = new Models\SMS;
             $body->sender = $message->sender;
             $body->recipient = $message->recipient;
             $body->message = $message->message;
             echo $message->recipient;
-    
+
             try {
                 $result = $sMSController->sendSMS($body);
                 return $result;
             } catch (TransmitMessageLib\APIException $e) {
-                
+
                 throw CouldNotSendNotification::serviceRespondedWithAnError($e);
             }
         }
-
-
     }
 }

@@ -5,8 +5,8 @@ namespace NotificationChannels\TransmitMessage\Test;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Mockery as m;
-use NotificationChannels\TransmitMessage\TransmitMessageMessage;
 use NotificationChannels\TransmitMessage\TransmitMessageChannel;
+use NotificationChannels\TransmitMessage\TransmitMessageMessage;
 use TransmitMessageLib\TransmitMessageClient;
 
 class TransmitMessageChannelTest extends TestCase
