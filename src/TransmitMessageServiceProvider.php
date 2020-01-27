@@ -12,17 +12,15 @@ class TransmitMessageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->app->when(TransmitMessageChannel::class)
             ->needs(TransmitMessageClient::class)
             ->give(function () {
                 $config = config('services.transmitmessage');
+
                 return new TransmitMessageClient(
                     $config['apiKey']
                 );
             });
-
-
     }
 
     /**
