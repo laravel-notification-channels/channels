@@ -1,17 +1,139 @@
-# New Notification Channels
+Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/transmitmessage.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/transmitmessage)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/transmitmessage/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/transmitmessage)
+[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/transmitmessage.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/transmitmessage)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/transmitmessage/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/transmitmessage/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/transmitmessage.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/transmitmessage)
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [TransmitMessage](https://developer.transmitmessage.com) with Laravel 5.5+ and 6.x
 
-## Workflow for new channels
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) & press "Use this template" to create a repo from the skeleton.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+## Contents
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+- [Installation](#installation)
+	- [Setting up the TransmitMessage service](#setting-up-the-TransmitMessage-service)
+- [Usage](#usage)
+	- [Available Message methods](#available-message-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
+
+
+## Installation
+
+You can install the package via composer:
+```
+composer require laravel-notification-channels/transmitmessage
+```
+### Setting up the TransmitMessage service
+
+Add the environment variables to your config/services.php:
+```
+// config/services.php
+...
+'transmitmessage' => [
+    'apiKey' => env('TRANSMITMESSAGE_APIKEY'),
+],
+...
+```
+Add your TransmitMessage API Key to your .env:
+```
+// .env
+...
+TRANSMITMESSAGE_APIKEY=
+],
+...
+```
+## Usage
+
+You can use the channel in your via() method inside the notification:
+
+```
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\TransmitMessage\TransmitMessageChannel;
+use NotificationChannels\TransmitMessage\TransmitMessageMessage;
+
+class SmsSend extends Notification
+{
+    use Queueable;
+
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return [TransmitMessageChannel::class];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toTransmitMessage($notifiable)
+    {
+        return (new TransmitMessageMessage())
+                    ->setMessage('The introduction to the notification.')
+                    ->setRecipient('639481234567')
+                    ->setSender('SHARKY');
+    }
+}
+```
+
+### Available Message methods
+
+A list of all available options
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email chito@burstsms.com instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Chito Cascante](https://github.com/codechito)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
