@@ -2,12 +2,11 @@
 
 namespace NotificationChannels\TransmitMessage\Test;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use Mockery as m;
 use NotificationChannels\TransmitMessage\TransmitMessageMessage;
 use NotificationChannels\TransmitMessage\TransmitMessageChannel;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Notifiable;
-use NotificationChannels\TransmitMessage\Test\TestCase;
-use Mockery as m;
 use TransmitMessageLib\TransmitMessageClient;
 
 class TransmitMessageChannelTest extends TestCase
@@ -35,8 +34,7 @@ class NotificationTransmitMessageChannelTestNotification extends Notification
     {
         return (new TransmitMessageMessage('this is my message'))
         ->setRecipient('63948123456')
-        ->setSender('12345')
-        ;
+        ->setSender('12345');
     }
 }
 
