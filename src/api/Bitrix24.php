@@ -34,7 +34,7 @@ class Bitrix24
             throw new ApiBitrix24Exception('Not found token in the config/bitrix24_notice');
         }
 
-        $this->fromUserId = (int)config('bitrix24_notice.fromUserId');
+        $this->fromUserId = (int) config('bitrix24_notice.fromUserId');
 
         if (empty($this->fromUserId)) {
             throw new ApiBitrix24Exception('Not found fromUserId in the config/bitrix24_notice');
@@ -48,7 +48,7 @@ class Bitrix24
     }
 
     /**
-     * Preparing and executing a request to the Bitrix24 API
+     * Preparing and executing a request to the Bitrix24 API.
      *
      * @param array $params
      * @return mixed
@@ -57,8 +57,8 @@ class Bitrix24
     public function send(array $params)
     {
         $headers = [
-            "Accept-Language: ru",
-            "Content-Type: application/json; charset=utf-8"
+            'Accept-Language: ru',
+            'Content-Type: application/json; charset=utf-8',
         ];
 
         $body = json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -67,7 +67,7 @@ class Bitrix24
             'http' => [
                 'method' => 'POST',
                 'header' => $headers,
-                'content' => $body
+                'content' => $body,
             ],
         ]);
 
@@ -75,21 +75,18 @@ class Bitrix24
             $result = file_get_contents($this->geuUrlForSend(), 0, $streamOptions);
 
             return $result;
-
         } catch (\Exception $e) {
-
             throw new ApiBitrix24Exception($e->getMessage());
         }
     }
 
     /**
-     * Service address for sending JSON requests (case-sensitive)
+     * Service address for sending JSON requests (case-sensitive).
      *
      * @return string
-     *
      */
     private function geuUrlForSend(): string
     {
-        return 'https://' . $this->domain . '.bitrix24.ru/rest/' . $this->fromUserId . '/' . $this->token . '/im.message.add.json';
+        return 'https://'.$this->domain.'.bitrix24.ru/rest/'.$this->fromUserId.'/'.$this->token.'/im.message.add.json';
     }
 }

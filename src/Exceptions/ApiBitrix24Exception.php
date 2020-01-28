@@ -6,5 +6,4 @@ use Exception;
 
 class ApiBitrix24Exception extends Exception
 {
-
 }

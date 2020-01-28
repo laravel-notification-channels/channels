@@ -6,5 +6,4 @@ use Exception;
 
 class NoticeBitrix24Exception extends Exception
 {
-
 }

@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Bitrix24;
 
+use Illuminate\Notifications\Notification;
 use NotificationChannels\Bitrix24\Api\Bitrix24;
 use NotificationChannels\Bitrix24\Exceptions\NoticeBitrix24Exception;
-use Illuminate\Notifications\Notification;
 
 class Bitrix24Channel
 {
@@ -50,7 +50,7 @@ class Bitrix24Channel
 
         $params = [
             $typeOfChat => $notifiable,
-            'MESSAGE' => $message->message
+            'MESSAGE' => $message->message,
         ];
 
         $this->bitrix24->send($params);

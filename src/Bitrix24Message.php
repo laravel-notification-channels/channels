@@ -17,7 +17,7 @@ class Bitrix24Message
     public $toUser = false;
 
     /**
-     * Create a message based on the Blade template
+     * Create a message based on the Blade template.
      *
      * @param string $view view of template
      * @param array $data parameters for the template
@@ -32,7 +32,7 @@ class Bitrix24Message
     }
 
     /**
-     * Send a string as a message
+     * Send a string as a message.
      *
      * @param string $message
      * @return $this
@@ -45,7 +45,7 @@ class Bitrix24Message
     }
 
     /**
-     * The message is intended for the user, not for the chat
+     * The message is intended for the user, not for the chat.
      *
      * @return $this
      */

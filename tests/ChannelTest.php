@@ -2,13 +2,13 @@
 
 namespace NotificationChannels\Bitrix24\Test;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use Mockery;
 use NotificationChannels\Bitrix24\Api\Bitrix24;
 use NotificationChannels\Bitrix24\Bitrix24Channel;
 use NotificationChannels\Bitrix24\Bitrix24Message;
-use Mockery;
 use PHPUnit\Framework\TestCase;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
 
 class ChannelTest extends TestCase
 {
@@ -32,7 +32,7 @@ class ChannelTest extends TestCase
     {
         $this->bitrix24->shouldReceive('send')->with([
             'USER_ID' => 56,
-            'MESSAGE' => 'message'
+            'MESSAGE' => 'message',
         ])->once();
 
         $this->channel->send(new TestNotifiable(), new TestNotification());
