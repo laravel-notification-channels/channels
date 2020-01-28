@@ -90,3 +90,4 @@ class Bitrix24
         return 'https://'.$this->domain.'.bitrix24.ru/rest/'.$this->fromUserId.'/'.$this->token.'/im.message.add.json';
     }
 }
+
