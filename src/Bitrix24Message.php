@@ -56,3 +56,4 @@ class Bitrix24Message
         return $this;
     }
 }
+
