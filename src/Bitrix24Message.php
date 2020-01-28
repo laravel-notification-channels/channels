@@ -5,22 +5,22 @@ namespace NotificationChannels\Bitrix24;
 class Bitrix24Message
 {
     /**
-     * @var string отправляемое сообщение
+     * @var string send messages
      */
     public $message;
 
     /**
-     * @var bool кому пишем:
-     * true - пользователю по ID пользователя,
-     * false - именно в чат по ID чата
+     * @var bool who we write to:
+     * true - user by him ID,
+     * false - to chat by chat ID
      */
     public $toUser = false;
 
     /**
-     * Сформируем сообщение на основании шаблона Blade
+     * Create a message based on the Blade template
      *
-     * @param string $view view шаблон
-     * @param array $data массив параметров для шаблона
+     * @param string $view view of template
+     * @param array $data parameters for the template
      * @return $this
      * @throws \Throwable
      */
@@ -32,7 +32,7 @@ class Bitrix24Message
     }
 
     /**
-     * Отправим простую строку в качестве сообщения
+     * Send a string as a message
      *
      * @param string $message
      * @return $this
@@ -45,7 +45,7 @@ class Bitrix24Message
     }
 
     /**
-     * Сообщение предназначено для пользователя, а не для чата
+     * The message is intended for the user, not for the chat
      *
      * @return $this
      */

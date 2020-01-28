@@ -4,25 +4,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | ID пользователя, от имени которого отправляются уведомления
+    | ID the user on whose behalf notifications are sent
     |--------------------------------------------------------------------------
     |
-    | В Битрикс24 при работе с вебхуками, сообщения создаются от лица конкретного пользователя, чей id и надо передавать
-    | Внимание! id пользователя тесно связано с токеном, т.к. вебхука создается под определенным пользователем
+    | In Bitrix24, when working with webhook, messages are created on behalf of a specific user whose id should be passed
+    | Attention! the user id is closely related to the token, since the webhack is created under a specific user
     |
     */
     'fromUserId' => null,
 
     /*
-    | OAuth-токен вебхука
+    | OAuth-token of webhook
     |
     */
     'token' => '',
 
     /*
-    | Поддомен Вашей компании
+    | Your company's subdomain
     |
-    | Пример дан для компании https://example.bitrix24.ru/
+    | An example is given for the company https://example.bitrix24.ru/
     |
      */
     'domain' => 'example',

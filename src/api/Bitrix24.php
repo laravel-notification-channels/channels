@@ -17,7 +17,7 @@ class Bitrix24
     private $fromUserId;
 
     /**
-     * @var string Домен компании в Битрикс24
+     * @var string Company domain in Bitrix24
      */
     private $domain;
 
@@ -48,7 +48,7 @@ class Bitrix24
     }
 
     /**
-     * Подготовка и выполнение запроса к API Битрикс24
+     * Preparing and executing a request to the Bitrix24 API
      *
      * @param array $params
      * @return mixed
@@ -83,7 +83,7 @@ class Bitrix24
     }
 
     /**
-     * Адрес сервиса для отправки JSON-запросов (регистрозависимый)
+     * Service address for sending JSON requests (case-sensitive)
      *
      * @return string
      *
