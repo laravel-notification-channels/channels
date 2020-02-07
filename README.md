@@ -142,6 +142,25 @@ class InvoicePaid extends Notification
     }
 ```
 
+### Notifiable
+
+Make sure the notifiable model has the following method:
+
+``` php
+/**
+ * Route notifications for the notify channel.
+ *
+ * @return string
+ */
+public function routeNotificationForNotify()
+{
+    return [
+        'name' => $this->name,
+        'recipient' => $this->email,
+    ];
+}
+```
+
 ### All available methods
 
 - `notificationType('')`: Accepts a string value.
@@ -150,6 +169,82 @@ class InvoicePaid extends Notification
 - `params($array)`: Accepts an array of key/value parameters
 - `Cc($array)`: Accepts an array of arrays of 'name'/'recipient' keys
 - `Bcc($array)`: Accepts an array of arrays of 'name'/'recipient' keys
+
+## Events
+Following events are triggered by Notification. By default:
+- Illuminate\Notifications\Events\NotificationSending
+- Illuminate\Notifications\Events\NotificationSent
+
+and this channel triggers one when a call to Notify fails for any reason:
+- Illuminate\Notifications\Events\NotificationFailed
+
+To listen to those events create event listeners in `app/Listeners`:
+
+```php
+
+namespace App\Listeners;
+	
+use Illuminate\Notifications\Events\NotificationFailed;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
+use NotificationChannels\Notify\NotifyChannel;
+	
+class NotificationFailedListener
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Notification failed event handler
+     *
+     * @param  NotificationFailed  $event
+     * @return void
+     */
+    public function handle(NotificationFailed $event)
+    {
+        // Handle fail event for Notify
+        //
+        if($event->channel == NotifyChannel::class) {
+	            
+            $logData = [
+            	'notifiable'    => $event->notifiable->id,
+            	'notification'  => get_class($event->notification),
+            	'channel'       => $event->channel,
+            	'data'      => $event->data
+            	];
+            	
+            Log::error('Notification Failed', $logData);
+         }
+    }
+}
+```
+ 
+ 
+ 
+Then register listeners in `app/Providers/EventServiceProvider.php`
+```php
+...
+protected $listen = [
+
+	'Illuminate\Notifications\Events\NotificationFailed' => [
+		'App\Listeners\NotificationFailedListener',
+	],
+
+	'Illuminate\Notifications\Events\NotificationSent' => [
+		'App\Listeners\NotificationSentListener',
+	],
+];
+...
+```
+
 
 ## Changelog
 

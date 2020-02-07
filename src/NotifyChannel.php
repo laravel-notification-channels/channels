@@ -3,7 +3,6 @@
 namespace NotificationChannels\Notify;
 
 use Exception;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Notify\Exceptions\InvalidMessageObject;
@@ -13,13 +12,9 @@ class NotifyChannel
     /** @var \NotificationChannels\Notify\NotifyClient */
     protected $client;
 
-    /** @var Dispatcher */
-    protected $events;
-
-    public function __construct(NotifyClient $client, Dispatcher $events)
+    public function __construct(NotifyClient $client)
     {
         $this->client = $client;
-        $this->events = $events;
     }
 
     /**
@@ -44,10 +39,10 @@ class NotifyChannel
             $event = new NotificationFailed(
                 $notifiable,
                 $notification,
-                'notify',
-                ['message' => $exception->getMessage(), 'exception' => $exception]
+                get_class($this),
+                ['message' => $exception->getMessage()]
             );
-            $this->events->fire($event);
+            event($event);
         }
     }
 
