@@ -7,6 +7,8 @@
  */
 
 return [
+    'debug' => env('EXPONENT_PUSH_NOTIFICATION_DEBUG', false),
+
     'interests' => [
         'driver' => env('EXPONENT_PUSH_NOTIFICATION_INTERESTS_STORAGE_DRIVER', 'file'),
 
