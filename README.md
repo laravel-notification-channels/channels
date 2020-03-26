@@ -42,8 +42,8 @@ In order to send messages using bots, you need to [setup a webhook for a room](h
 Now you can use the channel in your `via()` method inside the notification:
 
 ``` php
-use NotificationChannels\GoogleHangoutsChat\HangoutsChatChannel;
-use NotificationChannels\GoogleHangoutsChat\HangoutsChatMessage;
+use NotificationChannels\HangoutsChatChannel;
+use NotificationChannels\HangoutsChatMessage;
 use Illuminate\Notifications\Notification;
 
 class ProjectCreated extends Notification
