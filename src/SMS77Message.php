@@ -19,6 +19,18 @@ class SMS77Message
     }
 
     /**
+     * Get the payload value for a given key.
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     */
+    public function getPayloadValue(string $key)
+    {
+        return $this->payload[$key] ?? null;
+    }
+
+    /**
      * Return new SMS77Message object.
      * 
      * @param string $message
@@ -82,57 +94,58 @@ class SMS77Message
     }
 
     /**
-     * If set to true, no SMS is being sent.
+     * Set notification delay.
      * 
-     * @param int $debug
+     * @param string $timestamp
      */
-    public function debug(bool $debug): self
+    public function delay(string $timestamp): self
     {
-        $this->payload['debug'] = (int) $debug;
+        $this->payload['delay'] = $timestamp;
         return $this;
     }
 
     /**
-     * If set to true, SMS is sent as unifcode.
-     * 
-     * @param int $unicode
+     * Disable reload lock.
      */
-    public function unicode(bool $unicode): self
+    public function noReload(): self
     {
-        $this->payload['unicode'] = (int) $unicode;
+        $this->payload['no_reload'] = 1;
         return $this;
     }
 
     /**
-     * If set to true, SMS is sent as flash message.
-     * 
-     * @param int $flash
+     * Activate debug mode.
      */
-    public function flash(bool $flash): self
+    public function debug(): self
     {
-        $this->payload['flash'] = (int) $flash;
+        $this->payload['debug'] = 1;
+        return $this;
+    }
+
+    /**
+     * Set encoding to unicode.
+     */
+    public function unicode(): self
+    {
+        $this->payload['unicode'] = 1;
+        return $this;
+    }
+
+    /**
+     * SMS is sent as flash message.
+     */
+    public function flash(): self
+    {
+        $this->payload['flash'] = 1;
         return $this;
     }
 
     /**
      * The API returns more details about the SMS sent.
-     * 
-     * @param int $details
      */
-    public function details(bool $details): self
+    public function details(): self
     {
-        $this->payload['details'] = (int) $details;
-        return $this;
-    }
-
-    /**
-     * The API response is json formatted.
-     * 
-     * @param int $json
-     */
-    public function json(bool $json): self
-    {
-        $this->payload['json'] = (int) $json;
+        $this->payload['details'] = 1;
         return $this;
     }
 }
