@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\SMS77;
 
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;
 
 class SMS77ServiceProvider extends ServiceProvider
@@ -11,24 +12,15 @@ class SMS77ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Bootstrap code here.
-
-        /**
-         * Here's some example code we use for the pusher package.
-
-        $this->app->when(Channel::class)
-            ->needs(Pusher::class)
+        $this->app->when(SMS77Channel::class)
+            ->needs(SMS77::class)
             ->give(function () {
-                $pusherConfig = config('broadcasting.connections.pusher');
-
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
+                $api_key = config('services.sms77.api_key');
+                return new SMS77(
+                    $api_key,
+                    new HttpClient()
                 );
             });
-         */
-
     }
 
     /**
