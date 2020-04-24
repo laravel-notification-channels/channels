@@ -2,12 +2,11 @@
 
 namespace NotificationChannels\SMS77;
 
-use NotificationChannels\SMS77\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\SMS77\Exceptions\CouldNotSendNotification;
 
 class SMS77Channel
 {
-
     /**
      * @var SMS77
      */
@@ -31,19 +30,19 @@ class SMS77Channel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message  = $notification->toSms77($notifiable);
+        $message = $notification->toSms77($notifiable);
 
         // No SMS77Message object was returned
         if (is_string($message)) {
             $message = SMS77Message::create($message);
         }
 
-        if (!$message->toIsset()) {
-            if (!$to = $notifiable->phone_number) {
+        if (! $message->toIsset()) {
+            if (! $to = $notifiable->phone_number) {
                 $to = $notifiable->routeNotificationFor('sms');
             }
 
-            if (!$to) {
+            if (! $to) {
                 throw CouldNotSendNotification::phoneNumberNotProvided();
             }
 
@@ -55,7 +54,7 @@ class SMS77Channel
         if ($message instanceof SMS77Message) {
             $response = $this->sms77->sendMessage($params);
         } else {
-            return null;
+            return;
         }
 
         return json_decode($response->getBody()->getContents(), true);

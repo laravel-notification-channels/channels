@@ -39,7 +39,7 @@ class SMS77
 
     /**
      * Get API key.
-     * 
+     *
      * @return string
      */
     public function getApiKey(): string
@@ -49,7 +49,7 @@ class SMS77
 
     /**
      * Set API key.
-     * 
+     *
      * @param string $api_key
      */
     public function setApiKey(string $api_key)
@@ -69,7 +69,7 @@ class SMS77
 
     /**
      * Send text message.
-     * 
+     *
      * <code>
      * $params = [
      *      'to'                    => '',
@@ -90,9 +90,9 @@ class SMS77
      *      'performance_tracking'  => ''
      * ];
      * </code>
-     * 
+     *
      * @link https://www.sms77.io/en/docs/gateway/http-api/sms-disptach/
-     * 
+     *
      * @param array $params
      */
     public function sendMessage(array $params)
@@ -106,14 +106,14 @@ class SMS77
             throw CouldNotSendNotification::apiKeyNotProvided();
         }
 
-        $request_url = $this->api_url . $endpoint;
+        $request_url = $this->api_url.$endpoint;
 
         try {
             return $this->httpClient()->post($request_url, [
                 'headers' => [
-                    'Authorization' => 'basic ' . $this->api_key
+                    'Authorization' => 'basic '.$this->api_key,
                 ],
-                'form_params' => $params
+                'form_params' => $params,
             ]);
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
