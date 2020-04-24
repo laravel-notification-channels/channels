@@ -1,11 +1,11 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace;
+namespace NotificationChannels\SMS77;
 
-use NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification;
+use NotificationChannels\SMS77\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 
-class :service_nameChannel
+class SMS77Channel
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class :service_nameChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @throws \NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\SMS77\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {

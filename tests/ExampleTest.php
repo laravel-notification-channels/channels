@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace\Test;
+namespace NotificationChannels\SMS77\Test;
 
 use PHPUnit\Framework\TestCase;
 
