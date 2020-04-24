@@ -15,6 +15,7 @@ class SMS77Message
     public function __construct(string $message = '')
     {
         $this->payload['text'] = $message;
+        $this->payload['json'] = 1;
     }
 
     /**
