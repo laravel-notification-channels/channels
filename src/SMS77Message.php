@@ -12,7 +12,7 @@ class SMS77Message
     /**
      * @param string $message
      */
-    public function __construct(string $message)
+    public function __construct(string $message = '')
     {
         $this->payload['text'] = $message;
     }
