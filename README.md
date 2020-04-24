@@ -11,13 +11,9 @@ Please see [this repo](https://github.com/laravel-notification-channels/channels
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.5+, 6.x and 7.x
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
+This package makes it easy to send notifications using [SMS77](https://www.sms77.io/) with Laravel 5.5+, 6.x and 7.x
 
 This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
 
 
 ## Contents
@@ -36,19 +32,64 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+This package can be installed via composer:
 
-### Setting up the :service_name service
+```composer require laravel-notification-channels/sms77```
 
-Optionally include a few steps how users can set up the service.
+### Setting up the SMS77 service
+
+1. Create an account and get the API key [here](https://www.sms77.io/de/)
+
+2. Add the API key to the `services,php` config file:
+
+	```php
+	// config/services.php
+	...
+	'sms77' => [
+		'api_key' => env('SMS77_API_KEY', 'YOUR API KEY HERE')
+	],
+	...
+	```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can use this channel by adding `SMS77Channel::class` to the array in the `via()` method of your Notification class. You have to add the `toSms77()` method which should return a `SMS77Message` object.
+
+```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use NotificationChannels\SMS77\SMS77Channel;
+use NotificationChannels\SMS77\SMS77Message;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [SMS77Channel::class];
+    }
+
+    public function toSms77() {
+        return (new SMS77Message('Hallo!'))
+        ->from('Max')
+        ->debug();
+    }
+}
+```
 
 ### Available Message methods
 
-A list of all available options
+- `getPayloadValue($key)`: Returns payload value for a given key.
+- `content(string $message)`: Sets SMS message text.
+- `to(string $number)`: Set recipients number. 
+- `from(string $from)`: Set senders name.
+- `delay(string $timestamp)`: Delays message to given timestamp.
+- `noReload()`: Disables reload lock.
+- `debug()`: Enables debug mode.
+- `unicode()`: Sets message encoding to unicode.
+- `flash()`: Sends SMS as flash message.
 
 ## Changelog
 
@@ -62,7 +103,7 @@ $ composer test
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email mail@mxschll.com instead of using the issue tracker.
 
 ## Contributing
 
@@ -70,7 +111,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Maximilian Schöll](https://github.com/mxschll)
 - [All Contributors](../../contributors)
 
 ## License
