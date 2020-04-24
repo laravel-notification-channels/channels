@@ -1,7 +1,5 @@
 # SMS77 notifications channel for Laravel
 
-# SMS77 notifications channel for Laravel
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/sms77/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/sms77)
