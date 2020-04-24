@@ -7,9 +7,18 @@ use Illuminate\Notifications\Notification;
 
 class SMS77Channel
 {
-    public function __construct()
+
+    /**
+     * @var SMS77
+     */
+    protected $sms77;
+
+    /**
+     * @param SMS77 $sms77
+     */
+    public function __construct(SMS77 $sms77)
     {
-        // Initialisation code here
+        $this->sms77 = $sms77;
     }
 
     /**
@@ -22,10 +31,33 @@ class SMS77Channel
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
+        $message  = $notification->toSms77();
 
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+        // No SMS77Message object was returned
+        if (is_string($message)) {
+            $message = SMS77Message::create($message);
+        }
+
+        if (!$message->toIsset()) {
+            if (!$to = $notifiable->phone_number) {
+                $to = $notifiable->routeNotificationFor('sms');
+            }
+
+            if (!$to) {
+                throw CouldNotSendNotification::phoneNumberNotProvided();
+            }
+
+            $message->to($to);
+        }
+
+        $params = $message->toArray();
+
+        if ($message instanceof SMS77Message) {
+            $response = $this->sms77->sendMessage($params);
+        } else {
+            return null;
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 }
