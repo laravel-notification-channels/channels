@@ -1,6 +1,6 @@
 Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
 
-# A Boilerplate repo for contributions
+# SMS77 notifications channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -11,10 +11,7 @@ Please see [this repo](https://github.com/laravel-notification-channels/channels
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 
-This package makes it easy to send notifications using [SMS77](https://www.sms77.io/) with Laravel 5.5+, 6.x and 7.x
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
+This package makes it easy to send notifications using [SMS77](https://www.sms77.io/) with Laravel.
 
 ## Contents
 
@@ -40,7 +37,7 @@ This package can be installed via composer:
 
 1. Create an account and get the API key [here](https://www.sms77.io/de/)
 
-2. Add the API key to the `services,php` config file:
+2. Add the API key to the `services.php` config file:
 
 	```php
 	// config/services.php
@@ -53,7 +50,7 @@ This package can be installed via composer:
 
 ## Usage
 
-You can use this channel by adding `SMS77Channel::class` to the array in the `via()` method of your Notification class. You have to add the `toSms77()` method which should return a `SMS77Message` object.
+You can use this channel by adding `SMS77Channel::class` to the array in the `via()` method of your notification class. You need to add the `toSms77()` method which should return a `new SMS77Message()` object.
 
 ```php
 <?php
