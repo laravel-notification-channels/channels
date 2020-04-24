@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SMS77 notifications channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
