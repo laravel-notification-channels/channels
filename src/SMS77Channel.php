@@ -31,7 +31,7 @@ class SMS77Channel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message  = $notification->toSms77();
+        $message  = $notification->toSms77($notifiable);
 
         // No SMS77Message object was returned
         if (is_string($message)) {
