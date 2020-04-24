@@ -19,7 +19,7 @@ This is where your description should go. Add a little code example so build can
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+	- [Setting up the SMS77 service](#setting-up-the-SMS77-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
