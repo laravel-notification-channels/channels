@@ -2,14 +2,8 @@
 
 namespace NotificationChannels\SMS77\Test;
 
-use Mockery;
-use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
-use NotificationChannels\SMS77\SMS77;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
-use NotificationChannels\SMS77\SMS77Channel;
 use NotificationChannels\SMS77\SMS77Message;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SMS77ChannelTest.
@@ -55,7 +49,7 @@ class SMS77MessageTest extends TestCase
             'to' => '123456789',
             'text' => 'This is my message.',
             'flash' => 1,
-            'debug' => 1
+            'debug' => 1,
         ];
 
         $this->assertEquals($expected, $message->toArray());
