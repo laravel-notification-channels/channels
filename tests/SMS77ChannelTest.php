@@ -17,6 +17,16 @@ use PHPUnit\Framework\TestCase;
 class SMS77ChannelTest extends TestCase
 {
     /**
+     * @var Mockery\Mock
+     */
+    protected $sms77;
+
+    /**
+     * @var SMS77
+     */
+    protected $channel;
+
+    /**
      * @var array
      */
     protected $expected_response = [
@@ -30,22 +40,32 @@ class SMS77ChannelTest extends TestCase
         ],
     ];
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->sms77 = Mockery::mock(SMS77::class);
+        $this->channel = new SMS77Channel($this->sms77);
+    }
+
+    public function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
+    }
+
     public function testSmsIsSent()
     {
         $notification = new TestSmsNotification;
         $notifiable = new TestNotifiable;
 
-        $sms77 = Mockery::mock(SMS77::class);
-        $channel = new SMS77Channel($sms77);
-
-        $sms77->shouldReceive('sendMessage')->once()->with([
+        $this->sms77->shouldReceive('sendMessage')->once()->with([
             'json' => 1,
             'text' => 'This is my message.',
             'to' => '5555555555',
         ])
             ->andReturns(new Response(200, [], json_encode($this->expected_response)));
 
-        $actual_response = $channel->send($notifiable, $notification);
+        $actual_response = $this->channel->send($notifiable, $notification);
 
         self::assertSame($this->expected_response, $actual_response);
     }
@@ -55,10 +75,7 @@ class SMS77ChannelTest extends TestCase
         $notification = new TestSmsNotificationWithCustomFrom;
         $notifiable = new TestNotifiable;
 
-        $sms77 = Mockery::mock(SMS77::class);
-        $channel = new SMS77Channel($sms77);
-
-        $sms77->shouldReceive('sendMessage')->once()
+        $this->sms77->shouldReceive('sendMessage')->once()
             ->with([
                 'json' => 1,
                 'unicode' => 1,
@@ -68,7 +85,7 @@ class SMS77ChannelTest extends TestCase
             ])
             ->andReturns(new Response(200, [], json_encode($this->expected_response)));
 
-        $actual_response = $channel->send($notifiable, $notification);
+        $actual_response = $this->channel->send($notifiable, $notification);
 
         self::assertSame($this->expected_response, $actual_response);
     }
@@ -78,10 +95,7 @@ class SMS77ChannelTest extends TestCase
         $notification = new TestSmsNotificationWithDebiggung;
         $notifiable = new TestNotifiable;
 
-        $sms77 = Mockery::mock(SMS77::class);
-        $channel = new SMS77Channel($sms77);
-
-        $sms77->shouldReceive('sendMessage')->once()
+        $this->sms77->shouldReceive('sendMessage')->once()
             ->with([
                 'json' => 1,
                 'debug' => 1,
@@ -91,7 +105,7 @@ class SMS77ChannelTest extends TestCase
             ])
             ->andReturns(new Response(200, [], json_encode($this->expected_response)));
 
-        $actual_response = $channel->send($notifiable, $notification);
+        $actual_response = $this->channel->send($notifiable, $notification);
 
         self::assertSame($this->expected_response, $actual_response);
     }
@@ -101,10 +115,7 @@ class SMS77ChannelTest extends TestCase
         $notification = new TestSmsNotificationWithAllMessageOptions;
         $notifiable = new TestNotifiable;
 
-        $sms77 = Mockery::mock(SMS77::class);
-        $channel = new SMS77Channel($sms77);
-
-        $sms77->shouldReceive('sendMessage')->once()
+        $this->sms77->shouldReceive('sendMessage')->once()
             ->with([
                 'from' => '987654321',
                 'to' => '123456789',
@@ -119,7 +130,7 @@ class SMS77ChannelTest extends TestCase
             ])
             ->andReturns(new Response(200, [], json_encode($this->expected_response)));
 
-        $actual_response = $channel->send($notifiable, $notification);
+        $actual_response = $this->channel->send($notifiable, $notification);
 
         self::assertSame($this->expected_response, $actual_response);
     }
