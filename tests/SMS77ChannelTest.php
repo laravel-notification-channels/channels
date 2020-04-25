@@ -55,9 +55,8 @@ class SMS77ChannelTest extends TestCase
         $notification = new TestSmsNotificationWithCustomFrom;
         $notifiable = new TestNotifiable;
 
-        $channel = new SMS77Channel(
-            $sms77 = Mockery::mock(SMS77::class)
-        );
+        $sms77 = Mockery::mock(SMS77::class)
+        $channel = new SMS77Channel($sms77);
 
         $sms77->shouldReceive('sendMessage')->once()
             ->with([
@@ -79,9 +78,8 @@ class SMS77ChannelTest extends TestCase
         $notification = new TestSmsNotificationWithDebiggung;
         $notifiable = new TestNotifiable;
 
-        $channel = new SMS77Channel(
-            $sms77 = Mockery::mock(SMS77::class)
-        );
+        $sms77 = Mockery::mock(SMS77::class)
+        $channel = new SMS77Channel($sms77);
 
         $sms77->shouldReceive('sendMessage')->once()
             ->with([
@@ -102,10 +100,9 @@ class SMS77ChannelTest extends TestCase
     {
         $notification = new TestSmsNotificationWithAllMessageOptions;
         $notifiable = new TestNotifiable;
-
-        $channel = new SMS77Channel(
-            $sms77 = Mockery::mock(SMS77::class)
-        );
+        
+        $sms77 = Mockery::mock(SMS77::class)
+        $channel = new SMS77Channel($sms77);
 
         $sms77->shouldReceive('sendMessage')->once()
             ->with([
