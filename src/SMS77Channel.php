@@ -37,7 +37,7 @@ class SMS77Channel
             $message = SMS77Message::create($message);
         }
 
-        if (! $message->toIsset()) {
+        if (! $message->hasToNumber()) {
             if (! $to = $notifiable->phone_number) {
                 $to = $notifiable->routeNotificationFor('sms');
             }

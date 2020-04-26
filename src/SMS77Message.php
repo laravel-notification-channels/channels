@@ -43,7 +43,7 @@ class SMS77Message
      *
      * @return bool
      */
-    public function toIsset(): bool
+    public function hasToNumber(): bool
     {
         return isset($this->payload['to']);
     }
