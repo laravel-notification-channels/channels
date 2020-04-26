@@ -41,7 +41,7 @@ This package can be installed via composer:
 	// config/services.php
 	...
 	'sms77' => [
-		'api_key' => env('SMS77_API_KEY', 'YOUR API KEY HERE')
+		'api_key' => env('SMS77_API_KEY')
 	],
 	...
 	```
