@@ -106,12 +106,10 @@ class SMS77
             throw CouldNotSendNotification::apiKeyNotProvided();
         }
 
-        $request_url = $this->api_url.$endpoint;
-
         try {
-            return $this->httpClient()->post($request_url, [
+            return $this->httpClient()->post($this->api_url . $endpoint, [
                 'headers' => [
-                    'Authorization' => 'basic '.$this->api_key,
+                    'Authorization' => 'basic ' . $this->api_key,
                 ],
                 'form_params' => $params,
             ]);
