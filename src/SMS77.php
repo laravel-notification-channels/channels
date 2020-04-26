@@ -15,7 +15,7 @@ class SMS77
     /**
      * @var string SMS77 API URL.
      */
-    protected string $api_url = 'https://gateway.sms77.io/api/';
+    protected string $apiUrl = 'https://gateway.sms77.io/api/';
 
     /**
      * @var HttpClient HTTP Client.
@@ -25,15 +25,15 @@ class SMS77
     /**
      * @var null|string SMS77 API Key.
      */
-    protected $api_key;
+    protected $apiKey;
 
     /**
-     * @param string $api_key
+     * @param string $apiKey
      * @param HttpClient $http
      */
-    public function __construct(string $api_key = null, HttpClient $http = null)
+    public function __construct(string $apiKey = null, HttpClient $http = null)
     {
-        $this->api_key = $api_key;
+        $this->apiKey = $apiKey;
         $this->http = $http;
     }
 
@@ -44,17 +44,17 @@ class SMS77
      */
     public function getApiKey(): string
     {
-        return $this->api_key;
+        return $this->apiKey;
     }
 
     /**
      * Set API key.
      *
-     * @param string $api_key
+     * @param string $apiKey
      */
-    public function setApiKey(string $api_key)
+    public function setApiKey(string $apiKey)
     {
-        $this->api_key = $api_key;
+        $this->apiKey = $apiKey;
     }
 
     /**
@@ -102,14 +102,14 @@ class SMS77
 
     public function sendRequest(string $endpoint, array $params)
     {
-        if (empty($this->api_key)) {
+        if (empty($this->apiKey)) {
             throw CouldNotSendNotification::apiKeyNotProvided();
         }
 
         try {
-            return $this->httpClient()->post($this->api_url . $endpoint, [
+            return $this->httpClient()->post($this->apiUrl . $endpoint, [
                 'headers' => [
-                    'Authorization' => 'basic ' . $this->api_key,
+                    'Authorization' => 'basic ' . $this->apiKey,
                 ],
                 'form_params' => $params,
             ]);

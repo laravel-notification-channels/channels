@@ -27,7 +27,7 @@ class SMS77ChannelTest extends TestCase
     /**
      * @var array
      */
-    protected $expected_response = [
+    protected $expectedResponse = [
         'success' => '100',
         'debug' =>  'true',
         'sms_type' => 'direct',
@@ -61,11 +61,11 @@ class SMS77ChannelTest extends TestCase
             'text' => 'This is my message.',
             'to' => '5555555555',
         ])
-            ->andReturns(new Response(200, [], json_encode($this->expected_response)));
+            ->andReturns(new Response(200, [], json_encode($this->expectedResponse)));
 
-        $actual_response = $this->channel->send($notifiable, $notification);
+        $actualResponse = $this->channel->send($notifiable, $notification);
 
-        self::assertSame($this->expected_response, $actual_response);
+        self::assertSame($this->expectedResponse, $actualResponse);
     }
 
     public function testSmsIsSentWithCustomFrom()
@@ -81,11 +81,11 @@ class SMS77ChannelTest extends TestCase
                 'to' => '5555555555',
                 'text' => 'This is my message.',
             ])
-            ->andReturns(new Response(200, [], json_encode($this->expected_response)));
+            ->andReturns(new Response(200, [], json_encode($this->expectedResponse)));
 
-        $actual_response = $this->channel->send($notifiable, $notification);
+        $actualResponse = $this->channel->send($notifiable, $notification);
 
-        self::assertSame($this->expected_response, $actual_response);
+        self::assertSame($this->expectedResponse, $actualResponse);
     }
 
     public function testSmsSentWithDebugging()
@@ -101,11 +101,11 @@ class SMS77ChannelTest extends TestCase
                 'to' => '5555555555',
                 'text' => 'This is my message.',
             ])
-            ->andReturns(new Response(200, [], json_encode($this->expected_response)));
+            ->andReturns(new Response(200, [], json_encode($this->expectedResponse)));
 
-        $actual_response = $this->channel->send($notifiable, $notification);
+        $actualResponse = $this->channel->send($notifiable, $notification);
 
-        self::assertSame($this->expected_response, $actual_response);
+        self::assertSame($this->expectedResponse, $actualResponse);
     }
 
     public function testSmsSendWithAllMessageOptions()
@@ -126,11 +126,11 @@ class SMS77ChannelTest extends TestCase
                 'details' => 1,
                 'json' => 1,
             ])
-            ->andReturns(new Response(200, [], json_encode($this->expected_response)));
+            ->andReturns(new Response(200, [], json_encode($this->expectedResponse)));
 
-        $actual_response = $this->channel->send($notifiable, $notification);
+        $actualResponse = $this->channel->send($notifiable, $notification);
 
-        self::assertSame($this->expected_response, $actual_response);
+        self::assertSame($this->expectedResponse, $actualResponse);
     }
 }
 
@@ -140,7 +140,7 @@ class TestNotifiable
 
     public $phone_number = '5555555555';
 
-    public function routeNotificationForNexmo($notification)
+    public function routeNotificationForSms($notification)
     {
         return $this->phone_number;
     }

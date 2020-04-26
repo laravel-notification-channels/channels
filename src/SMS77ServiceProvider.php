@@ -15,10 +15,10 @@ class SMS77ServiceProvider extends ServiceProvider
         $this->app->when(SMS77Channel::class)
             ->needs(SMS77::class)
             ->give(function () {
-                $api_key = config('services.sms77.api_key');
+                $apiKey = config('services.sms77.api_key');
 
                 return new SMS77(
-                    $api_key,
+                    $apiKey,
                     new HttpClient()
                 );
             });
