@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\SMS77;
 
-
 class SMS77Message
 {
     protected $payload = [];

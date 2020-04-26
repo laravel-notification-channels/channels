@@ -11,7 +11,6 @@ use NotificationChannels\SMS77\SMS77Channel;
 use NotificationChannels\SMS77\SMS77Message;
 use PHPUnit\Framework\TestCase;
 
-
 class SMS77ChannelTest extends TestCase
 {
     /**
