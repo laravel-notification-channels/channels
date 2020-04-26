@@ -5,9 +5,7 @@ namespace NotificationChannels\SMS77\Test;
 use NotificationChannels\SMS77\SMS77Message;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class SMS77ChannelTest.
- */
+
 class SMS77MessageTest extends TestCase
 {
     public function testPassMessageToConstructor()
