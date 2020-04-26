@@ -107,9 +107,9 @@ class SMS77
         }
 
         try {
-            return $this->httpClient()->post($this->apiUrl . $endpoint, [
+            return $this->httpClient()->post($this->apiUrl.$endpoint, [
                 'headers' => [
-                    'Authorization' => 'basic ' . $this->apiKey,
+                    'Authorization' => 'basic '.$this->apiKey,
                 ],
                 'form_params' => $params,
             ]);
