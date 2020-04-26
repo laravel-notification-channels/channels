@@ -33,7 +33,7 @@ This package can be installed via composer:
 
 ### Setting up the SMS77 service
 
-1. Create an account and get the API key [here](https://www.sms77.io/de/)
+1. Create an account and get the API key [here](https://www.sms77.io)
 
 2. Add the API key to the `services.php` config file:
 
