@@ -14,6 +14,13 @@ class Interest extends Model
     protected $table;
 
     /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -37,6 +44,8 @@ class Interest extends Model
      */
     public function __construct(array $attributes = [])
     {
+        $this->dispatchesEvents = config('exponent-push-notifications.interests.database.events');
+
         $this->table = config('exponent-push-notifications.interests.database.table_name');
 
         parent::__construct($attributes);
