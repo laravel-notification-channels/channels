@@ -52,7 +52,7 @@ class ExpoChannel
             $this->expo->notify(
                 $interest,
                 $notification->toExpoPush($notifiable)->toArray(),
-                true
+                config('exponent-push-notifications.debug')
             );
         } catch (ExpoException $e) {
             $this->events->dispatch(
