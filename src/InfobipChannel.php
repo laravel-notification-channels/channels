@@ -42,7 +42,6 @@ class InfobipChannel
             $sentMessageInfo = $response->getMessages()[0];
 
             $this->events->fire(new NotificationSent($notifiable, $notification, $sentMessageInfo));
-
         } catch (\Exception $exception) {
             $this->events->fire(new NotificationFailed($notifiable, $notification, $exception));
         }
