@@ -1,0 +1,42 @@
+{
+    "name": "laravel-notification-channels/infobip",
+    "description": "Infobip notification channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/infobip",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomson Maguru",
+            "email": "cliff@magurutechnologies.com",
+            "homepage": "httsp://magurutechnologies.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/notifications": "~5.5 || ~6.0 || ~7.0",
+        "illuminate/support": "~5.5 || ~6.0 || ~7.0",
+        "infobip/infobip-api-php-client": "dev-master"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^5.3",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Infobip\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Infobip\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
