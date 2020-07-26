@@ -49,7 +49,7 @@ class InfobipChannel
     }
 
     /**
-     * Get message recipient
+     * Get message recipient.
      *
      * @param $notifiable
      * @return mixed

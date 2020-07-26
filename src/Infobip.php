@@ -36,7 +36,7 @@ class Infobip
     }
 
     /**
-     * Send sms message to recipient
+     * Send sms message to recipient.
      *
      * @param InfobipMessage $message
      * @param $recipient
@@ -62,7 +62,7 @@ class Infobip
     }
 
     /**
-     * Send sms message to recipient using Infobip SMSTextualRequest
+     * Send sms message to recipient using Infobip SMSTextualRequest.
      *
      * @param InfobipMessage $message
      * @param $recipient
@@ -81,7 +81,7 @@ class Infobip
     }
 
     /**
-     * Send sms advanced to recipient using SMSAdvancedTextualRequest
+     * Send sms advanced to recipient using SMSAdvancedTextualRequest.
      *
      * @param InfobipSmsAdvancedMessage $message
      * @param $recipient
@@ -108,7 +108,7 @@ class Infobip
     }
 
     /**
-     * Get message from phone number from message or config
+     * Get message from phone number from message or config.
      *
      * @param InfobipMessage $message
      * @return mixed
@@ -124,7 +124,7 @@ class Infobip
     }
 
     /**
-     * Get sms notify url
+     * Get sms notify url.
      *
      * @param InfobipSmsAdvancedMessage $message
      * @return mixed

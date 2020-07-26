@@ -36,7 +36,7 @@ class InfobipMessage
     }
 
     /**
-     * Set the phone number this message is sent from
+     * Set the phone number this message is sent from.
      *
      * @param $from
      * @return $this
@@ -49,7 +49,7 @@ class InfobipMessage
     }
 
     /**
-     * Get the phone number this message is sent from
+     * Get the phone number this message is sent from.
      *
      * @return string
      */

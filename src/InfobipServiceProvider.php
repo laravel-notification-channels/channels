@@ -11,7 +11,7 @@ class InfobipServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(InfobipConfig::class, function() {
+        $this->app->bind(InfobipConfig::class, function () {
             return new InfobipConfig($this->app['config']['services.infobip']);
         });
     }
