@@ -40,7 +40,7 @@ class InfobipChannel
 
             $this->events->fire(new NotificationSent($notifiable, $notification, $sentMessageInfo));
         } catch (\Exception $exception) {
-            dd($exception);
+            $this->events->fire(new NotificationFailed($notifiable, $notification, $exception));
         }
     }
 
