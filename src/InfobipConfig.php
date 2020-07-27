@@ -4,9 +4,6 @@ namespace NotificationChannels\Infobip;
 
 class InfobipConfig
 {
-    /**
-     * @var array
-     */
     public $config;
 
     /**

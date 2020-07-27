@@ -13,14 +13,8 @@ use NotificationChannels\Infobip\Exceptions\CouldNotSendNotification;
 
 class Infobip
 {
-    /**
-     * @var InfobipConfig
-     */
     public $config;
 
-    /**
-     * @var InfobipMessage
-     */
     public $message;
 
     /**
@@ -116,7 +110,7 @@ class Infobip
      */
     public function getFrom(InfobipMessage $message)
     {
-        if (! $from = $message->getFrom() ?: $this->config['from']) {
+        if (! $from = $message->from() ?: $this->config['from']) {
             throw CouldNotSendNotification::missingFrom();
         }
 
@@ -132,7 +126,7 @@ class Infobip
      */
     public function getNotifyUrl(InfobipSmsAdvancedMessage $message)
     {
-        if (! $notifyUrl = $message->getNotifyUrl() ?: $this->config['notify_url']) {
+        if (! $notifyUrl = $message->notifyUrl() ?: $this->config['notify_url']) {
             throw CouldNotSendNotification::missingNotifyUrl();
         }
 

@@ -33,20 +33,6 @@ You can install the package via composer:
 composer require laravel-notification-channels/infobip
 ```
 
-This package will register itself automatically with Laravel 5.5 and up trough Package auto-discovery.
-
-### Manual installation
-
-You can install the service provider for Laravel 5.4 and below:
-
-```php
-// config/app.php
-'providers' => [
-    ...
-    NotificationChannels\Infobip\InfobipServiceProvider::class,
-],
-```
-
 ## Setting up your Infobip account
 
 Add your Infobip Product Token and default originator (name or number of sender) to your `config/services.php`:

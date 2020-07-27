@@ -9,9 +9,6 @@ use NotificationChannels\Infobip\Exceptions\CouldNotSendNotification;
 
 class InfobipChannel
 {
-    /**
-     * @var Infobip
-     */
     public $infobip;
 
     /**
@@ -43,7 +40,7 @@ class InfobipChannel
 
             $this->events->fire(new NotificationSent($notifiable, $notification, $sentMessageInfo));
         } catch (\Exception $exception) {
-            $this->events->fire(new NotificationFailed($notifiable, $notification, $exception));
+            dd($exception);
         }
     }
 

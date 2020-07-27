@@ -4,14 +4,8 @@ namespace NotificationChannels\Infobip;
 
 class InfobipMessage
 {
-    /**
-     * @var string
-     */
     public $content;
 
-    /**
-     * @var string
-     */
     public $from;
 
     /**

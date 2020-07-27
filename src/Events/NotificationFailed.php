@@ -8,14 +8,8 @@ class NotificationFailed
 {
     private $notifiable;
 
-    /**
-     * @var Notification
-     */
     private $notification;
 
-    /**
-     * @var \Exception
-     */
     private $exception;
 
     /**

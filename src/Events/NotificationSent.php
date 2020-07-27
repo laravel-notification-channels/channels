@@ -9,12 +9,8 @@ class NotificationSent
 {
     protected $notifiable;
 
-    /** @var \Illuminate\Notifications\Notification */
     protected $notification;
 
-    /**
-     * @var SMSResponseDetails
-     */
     private $sentMessageInfo;
 
     /**
