@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
 {
-  // @var NotificationChannels\Signal\SignalMessage
+  /** @var NotificationChannels\Signal\SignalMessage */
   protected $message;
 
   // @test
