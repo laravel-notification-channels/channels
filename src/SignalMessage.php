@@ -26,11 +26,11 @@ class SignalMessage
      *
      * @param  string $message
      *
-     * @return static
+     * @return static string
      */
-    public static function create($message = '')
+    public static function create(string $message = '')
     {
-        return new static($message);
+        return new static(string $message);
     }
 
     /**

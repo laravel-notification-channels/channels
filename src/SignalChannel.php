@@ -27,33 +27,25 @@ class SignalChannel
 
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toSignal($notifiable);
+        $collection = collect($notification->toSignal($notifiable));
 
-        $message = Arr::flatten($message);
-
-        $username = $message[0];
-        $recipient = $message[2];
-        $message = $message[1];
+        $recipient = $collection->get('recipient');
+        $message = $collection->get('message');
 
         //Run signal-cli via Symfony Process.
         $result = new Process(
-            ['/path/to/signal-cli/bin', '--username',$username,'send','--message',$message,$recipient],
+            [config('signal-notification-channel.signal_cli'), '--username',config('signal-notification-channel.username'),'send','--message',$message,$recipient],
             //Pass JAVA_HOME to Symfony so signal-cli can run.
             null,
-            ['JAVA_HOME' => '/path/to/java']
+            ['JAVA_HOME' => config('signal-notification-channel.java_location')]
         );
 
-        $result->run(); //run once
+        $result->run();
 
-        while ($result->isRunning()) {
-           //Waiting...
+         if (!$result->isSuccessful()) {
+           throw new ProcessFailedException($result);
          }
 
-        if (!$result->isSuccessful()) {
-            $symfonyerror = new ProcessFailedException($result);
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-        }
-
-        return $result->getOutput();
+        return $result;
     }
 }
