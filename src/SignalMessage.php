@@ -38,9 +38,9 @@ class SignalMessage
     *
     * @param  string  $message
     */
-    public function __construct($message = '')
+    public function __construct(string $message = '')
     {
-      $this->message = $message;
+      $this->message = string $message;
     }
 
     /**
@@ -50,9 +50,9 @@ class SignalMessage
     *
     * @return $this
     */
-    public function message($message)
+    public function message(string $message)
     {
-      $this->message = $message;
+      $this->message = string $message;
 
       return $this;
     }
@@ -64,9 +64,9 @@ class SignalMessage
     *
     * @return $this
     */
-    public function recipient($recipient)
+    public function recipient(string $recipient)
     {
-      $this->recipient = $recipient;
+      $this->recipient = string $recipient;
 
       return $this;
     }
