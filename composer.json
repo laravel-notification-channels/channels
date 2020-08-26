@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/signal",
+    "description": "Provides notifications over Signal",
+    "homepage": "https://github.com/laravel-notification-channels/signal",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "CJ Barlow",
+            "email": "cjbarlow@protonmail.com",
+            "homepage": "https://github.com/laravel-notification-channels/signal",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/notifications": "~5.5 || ~6.0 || ~7.0",
+        "illuminate/support": "~5.5 || ~6.0 || ~7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Signal\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Signal\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
