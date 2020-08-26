@@ -43,7 +43,7 @@ class MessageTest extends TestCase
   {
     $this->message('Test message');
 
-    $this->assertEquals('Test message', $this->message());
+    $this->assertEquals('Test message', $this->message);
   }
 
 }
