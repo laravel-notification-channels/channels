@@ -10,6 +10,6 @@ class Signal
       *  @var string phone number for recipient;
       * ex: +12345556789, +442012345678
       **/
-        $this->sender => env('SIGNAL_USERNAME', false);
+        $this->sender => config('signal-notification-channel.username');
     }
 }

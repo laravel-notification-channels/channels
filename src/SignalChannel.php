@@ -34,7 +34,10 @@ class SignalChannel
 
         //Run signal-cli via Symfony Process.
         $result = new Process(
-            [config('signal-notification-channel.signal_cli'), '--username',config('signal-notification-channel.username'),'send','--message',$message,$recipient],
+            [config('signal-notification-channel.signal_cli'),
+            '--username',config('signal-notification-channel.username'),
+            'send','--message',$message,
+            $recipient],
             //Pass JAVA_HOME to Symfony so signal-cli can run.
             null,
             ['JAVA_HOME' => config('signal-notification-channel.java_location')]
@@ -42,9 +45,9 @@ class SignalChannel
 
         $result->run();
 
-         if (!$result->isSuccessful()) {
-           throw new ProcessFailedException($result);
-         }
+        if (!$result->isSuccessful()) {
+          throw new ProcessFailedException($result);
+        }
 
         return $result;
     }

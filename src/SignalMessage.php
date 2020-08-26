@@ -22,53 +22,53 @@ class SignalMessage
     public $message;
 
     /**
-     * Create a new message instance.
-     *
-     * @param  string $message
-     *
-     * @return static string
-     */
+    * Create a new message instance.
+    *
+    * @param  string $message
+    *
+    * @return static string
+    */
     public static function create(string $message = '')
     {
-        return new static(string $message);
+      return new static(string $message);
     }
 
     /**
-     * Create a new message instance.
-     *
-     * @param  string  $message
-     */
+    * Create a new message instance.
+    *
+    * @param  string  $message
+    */
     public function __construct($message = '')
     {
-        $this->message = $message;
+      $this->message = $message;
     }
 
     /**
-     * Set the message.
-     *
-     * @param  string  $message
-     *
-     * @return $this
-     */
+    * Set the message.
+    *
+    * @param  string  $message
+    *
+    * @return $this
+    */
     public function message($message)
     {
-        $this->message = $message;
+      $this->message = $message;
 
-        return $this;
+      return $this;
     }
 
     /**
-     * Set the phone number the message should be sent to.
-     *
-     * @param  string  $recipient
-     *
-     * @return $this
-     */
+    * Set the phone number the message should be sent to.
+    *
+    * @param  string  $recipient
+    *
+    * @return $this
+    */
     public function recipient($recipient)
     {
-        $this->recipient = $recipient;
+      $this->recipient = $recipient;
 
-        return $this;
+      return $this;
     }
 
     /**
