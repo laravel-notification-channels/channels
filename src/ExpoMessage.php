@@ -206,13 +206,13 @@ class ExpoMessage
     }
 
     /**
-     *  Set the priority of the notification for Android devices, must be one of [default, normal, high].
+     *  Set the priority of the notification, must be one of [default, normal, high].
      *
      * @param string $priority
      *
      * @return $this
      */
-    public function setPriority(string $priority)
+    public function priority(string $priority)
     {
         $this->priority = $priority;
 
