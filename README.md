@@ -119,6 +119,7 @@ A list of all available options
 -   `ttl(60)`: Accepts an integer value for the time to live.
 -   `jsonData('')`: Accepts a json string or an array for additional.
 -   `channelID('')`: Accepts a string to set the channelId of the notification for Android devices.
+-   `priority('default')`: Accepts a string to set the priority of the notification, must be one of [default, normal, high].
 
 ### Managing Recipients
 

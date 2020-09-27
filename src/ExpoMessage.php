@@ -57,6 +57,13 @@ class ExpoMessage
     protected $jsonData = '{}';
 
     /**
+     * The priority of notification message for Android devices.
+     *
+     * @var string
+     */
+    protected $priority = 'default';
+
+    /**
      * Create a message with given body.
      *
      * @param string $body
@@ -199,6 +206,20 @@ class ExpoMessage
     }
 
     /**
+     *  Set the priority of the notification, must be one of [default, normal, high].
+     *
+     * @param string $priority
+     *
+     * @return $this
+     */
+    public function priority(string $priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
      * Get an array representation of the message.
      *
      * @return array
@@ -212,6 +233,7 @@ class ExpoMessage
             'badge'     =>  $this->badge,
             'ttl'       =>  $this->ttl,
             'data'      =>  $this->jsonData,
+            'priority'  =>  $this->priority,
         ];
         if (! empty($this->channelId)) {
             $message['channelId'] = $this->channelId;
