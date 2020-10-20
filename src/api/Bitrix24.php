@@ -66,7 +66,6 @@ class Bitrix24
             curl_setopt($curl, CURLOPT_HTTPHEADER, $this->getHeaders());
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-
         } catch (\Exception $e) {
             throw CouldNotSendNotification::notConnect($e->getMessage());
         }

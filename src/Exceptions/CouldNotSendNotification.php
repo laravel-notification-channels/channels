@@ -9,7 +9,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function notChatId()
     {
-        return new static("Сhat id was not transferred.");
+        return new static('Сhat id was not transferred.');
     }
 
     /**
@@ -17,7 +17,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function notToken()
     {
-        return new static("Not found token in the config/bitrix24_notice.");
+        return new static('Not found token in the config/bitrix24_notice.');
     }
 
     /**
@@ -25,7 +25,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function notUserId()
     {
-        return new static("Not found fromUserId in the config/bitrix24_notice.");
+        return new static('Not found fromUserId in the config/bitrix24_notice.');
     }
 
     /**
@@ -33,7 +33,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function notDomain()
     {
-        return new static("Not found domain in the config/bitrix24_notice.");
+        return new static('Not found domain in the config/bitrix24_notice.');
     }
 
     /**

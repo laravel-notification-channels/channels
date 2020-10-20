@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Bitrix24;
 
-use NotificationChannels\Bitrix24\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Bitrix24\Api\Bitrix24;
+use NotificationChannels\Bitrix24\Exceptions\CouldNotSendNotification;
 
 class Bitrix24Channel
 {

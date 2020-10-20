@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\Bitrix24;
 
-use Illuminate\Support\Arr;
-
 class Bitrix24Message
 {
     /**
