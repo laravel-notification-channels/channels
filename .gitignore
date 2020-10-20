@@ -1,0 +1,13 @@
+.idea
+/vendor
+build
+.DS_Store
+.phpunit.result.cache
+Thumbs.db
+
+composer.phar
+composer.lock
+
+phpunit.phar
+/phpunit.xml
+
