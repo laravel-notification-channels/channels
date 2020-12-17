@@ -8,7 +8,7 @@
 
 return [
     'middleware' => [
-        //'auth:sanctum', <- Only use this middleware if you're using Sanctum
+        //'auth:sanctum', //<- Use only this middleware if you're using Sanctum
         'auth:api', 
         'bindings'
     ],
