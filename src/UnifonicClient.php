@@ -64,7 +64,7 @@ class UnifonicClient
         $parameters = array_merge(array_filter(['Body' => $mesage_body, 'Recipient' => $recipient]), [
             'AppSid' => $this->appsId,
         ]);
-        
+
         return $parameters;
     }
 }

@@ -21,7 +21,7 @@ class UnifonicServiceProvider extends ServiceProvider
                 if (is_null($appsId = config('services.unifonic.appsId'))) {
                     throw InvalidConfiguration::configurationNotSet();
                 }
-                
+
                 return new UnifonicClient(new GuzzleClient(), $appsId);
             });
     }
