@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Unifonic;
 
-
 class UnifonicMessage
 {
     /**
@@ -11,7 +10,6 @@ class UnifonicMessage
      * @var string
      */
     public $body;
-
 
     /**
      * @param string $body
@@ -32,13 +30,11 @@ class UnifonicMessage
 
         return $this;
     }
-
     
     /**
-     * get the content message
+     * get the content message.
      * 
      * @return string $body
-     * 
      */
     public function getContent(): string
     {
@@ -54,6 +50,4 @@ class UnifonicMessage
     {
         return new static($body);
     }
-
-
 }

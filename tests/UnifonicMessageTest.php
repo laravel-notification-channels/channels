@@ -14,7 +14,7 @@ class UnifonicMessageTest extends TestCase
 
         $this->assertInstanceOf(UnifonicMessage::class, $message);
     }
-    
+
     /** @test */
     public function it_supports_create_method()
     {
@@ -23,5 +23,4 @@ class UnifonicMessageTest extends TestCase
         $this->assertInstanceOf(UnifonicMessage::class, $message);
         $this->assertEquals('Foo', $message->getContent());
     }
-
 }

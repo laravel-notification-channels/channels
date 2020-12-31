@@ -3,23 +3,20 @@
 namespace NotificationChannels\Unifonic\Test;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\HandlerStack;
 use Mockery;
+use NotificationChannels\Unifonic\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Unifonic\UnifonicClient;
 use NotificationChannels\Unifonic\UnifonicMessage;
-use NotificationChannels\Unifonic\Exceptions\CouldNotSendNotification;
 use Orchestra\Testbench\TestCase;
 
 class UnifonicClientTest extends TestCase
 {
-
     public function setUp(): void
     {
         parent::setUp();
         $this->appsId = '1335b3f7-ba23-4316-b2dd-202448bd8904';
-        $this->guzzle =Mockery::mock(new Client());
+        $this->guzzle = Mockery::mock(new Client());
         $this->client = Mockery::mock(new UnifonicClient($this->guzzle, $this->appsId));
         $this->message = UnifonicMessage::create('Message body');
     }
@@ -49,7 +46,6 @@ class UnifonicClientTest extends TestCase
             ->andReturn(new Response(200, [], ''));
         $this->client->send($this->message, '212679');
     }
-
 
     /** @test */
     public function it_throws_exception_on_error_response()

@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Unifonic;
 
-use NotificationChannels\Unifonic\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 
 class UnifonicChannel
@@ -25,8 +24,6 @@ class UnifonicChannel
         $this->client = $client;
     }
 
-
-
     /**
      * Send the given notification.
      *
@@ -37,7 +34,7 @@ class UnifonicChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$recipient = $notifiable->routeNotificationFor('Unifonic')) {
+        if (! $recipient = $notifiable->routeNotificationFor('Unifonic')) {
             return;
         }
 

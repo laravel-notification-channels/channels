@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NotificationChannels\Unifonic;
 
-use NotificationChannels\Unifonic\Exceptions\InvalidConfiguration;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\ServiceProvider;
+use NotificationChannels\Unifonic\Exceptions\InvalidConfiguration;
 
 class UnifonicServiceProvider extends ServiceProvider
 {
@@ -22,8 +23,5 @@ class UnifonicServiceProvider extends ServiceProvider
                 }
                 return new UnifonicClient(new GuzzleClient(), $appsId);
             });
-         
-
     }
-
 }

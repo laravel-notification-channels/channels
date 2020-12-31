@@ -2,23 +2,21 @@
 
 namespace NotificationChannels\Unifonic;
 
-use NotificationChannels\Unifonic\Exceptions\CouldNotSendNotification;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
+use NotificationChannels\Unifonic\Exceptions\CouldNotSendNotification;
 
 class UnifonicClient
 {
     const GATEWAY_URL = 'https://api.unifonic.com/rest/Messages/Send';
 
     /**
-     * 
      *  @var GuzzleClient
      * */
     protected $client;
 
     /**
-     * 
-     *  @var string $appsId
+     *  @var string
      * */
     protected $appsId;
 
@@ -38,7 +36,6 @@ class UnifonicClient
      *
      * @throws CouldNotSendNotification
      */
-    
     public function send(UnifonicMessage $message, string $recipient)
     {
         $response = $this->client->request('POST', static::GATEWAY_URL, [
@@ -50,7 +47,7 @@ class UnifonicClient
 
         $body = $response->getBody()->getContents();
         $array_body = json_decode($body, true);
-        if (Arr::get($array_body, 'success') === "false") {
+        if (Arr::get($array_body, 'success') === 'false') {
             throw CouldNotSendNotification::serviceRespondedWithAnError($body);
         }
     }
@@ -61,12 +58,11 @@ class UnifonicClient
      *
      * @return array $parameters
      */
-
-    private function buildMessageParameters (UnifonicMessage $message, string $recipient): array
+    private function buildMessageParameters(UnifonicMessage $message, string $recipient): array
     {
         $mesage_body = $message->getContent();
         $parameters = array_merge(array_filter(['Body' => $mesage_body, 'Recipient' => $recipient]), [
-            'AppSid' => $this->appsId
+            'AppSid' => $this->appsId,
         ]);
 
         return $parameters;
