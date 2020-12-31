@@ -5,11 +5,10 @@ namespace NotificationChannels\Unifonic\Test;
 use GuzzleHttp\Client;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Config;
 use Mockery;
-use NotificationChannels\Unifonic\UnifonicMessage;
 use NotificationChannels\Unifonic\UnifonicChannel;
 use NotificationChannels\Unifonic\UnifonicClient;
+use NotificationChannels\Unifonic\UnifonicMessage;
 use PHPUnit\Framework\TestCase;
 
 class UnifonicChannelTest extends TestCase

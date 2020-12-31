@@ -30,10 +30,10 @@ class UnifonicMessage
 
         return $this;
     }
-    
+
     /**
      * get the content message.
-     * 
+     *
      * @return string $body
      */
     public function getContent(): string
