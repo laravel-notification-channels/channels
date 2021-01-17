@@ -44,6 +44,7 @@ You will need to [Register](http://bongasms.com) and then go to your [Developer 
 BONGA_CLIENT=""
 BONGA_KEY=""
 BONGA_SECRET=""
+BONGA_SERVICE=""
 ```
 
 To load them, add this to your `config/services.php` . This will load the Bonga  data from the `.env` file.file:
@@ -53,6 +54,7 @@ To load them, add this to your `config/services.php` . This will load the Bonga 
     'client'        => env('BONGA_CLIENT'),
     'key'           => env('BONGA_KEY'),
     'secret'        => env('BONGA_SECRET'),
+    'service'       => env('BONGA_SERVICE'),
 ]
 ```
 

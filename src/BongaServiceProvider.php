@@ -22,6 +22,7 @@ class BongaServiceProvider extends ServiceProvider
                 $client = config('services.bonga.client');
                 $key    = config('services.bonga.key');
                 $secret = config('services.bonga.secret');
+                $service = config('services.bonga.service');
                 
                 if (is_null($client) || is_null($key)) {
                     throw InvalidConfiguration::configurationNotSet();
@@ -30,7 +31,8 @@ class BongaServiceProvider extends ServiceProvider
                 $bonga = new Sms(
                     $client,
                     $secret,
-                    $key
+                    $key,
+                    $service
                 );
 
                 return $bonga;
