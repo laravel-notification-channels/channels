@@ -1,0 +1,49 @@
+{
+    "authors": [
+        {
+            "email": "hi@osen.co.ke",
+            "homepage": "https://osen.co.ke",
+            "name": "Osen concepts",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Bonga\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Bonga\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "description": "BongaSMS Laravel Notifications Package",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Bonga\\BongaServiceProvider"
+            ]
+        }
+    },
+    "homepage": "https://github.com/laravel-notification-channels/bonga",
+    "license": "MIT",
+    "name": "laravel-notification-channels/bonga",
+    "require": {
+        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/support": "~6.0 || ~7.0 || ~8.0",
+        "osenco/bongasms": "^0.1.19",
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "~5.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    }
+}
