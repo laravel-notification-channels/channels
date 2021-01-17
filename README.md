@@ -6,7 +6,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/bonga.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/bonga)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/bonga.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/bonga)
 
-This package makes it easy to send notifications using [Bonga](https://build.at-labs.io/docs/sms%2Fsending) with Laravel.
+This package makes it easy to send notifications using [Bonga](http://bongasms.com) with Laravel.
 
 ## Contents
 
@@ -38,7 +38,7 @@ The service provider gets loaded automatically.
 
 ### Setting up the Bonga Service
 
-You will need to [Register](https://account.bonga.com/auth/register/) and then go to your sandbox app [Go To SandBox App](https://account.bonga.com/apps/sandbox). [Click on settings](https://account.bonga.com/apps/sandbox/settings/key) Within this page, you will generate your `Client and key`. Place them inside your `.env` file. Remember to add your Sender ID that you will be using to send the messages. 
+You will need to [Register](http://bongasms.com) and then go to your [Developer Hub](https://app.bongasms.co.ke/clients/developer). On the right, [ Generate New Key/Secret Pair](https://app.bongasms.co.ke/clients/developer). Place your API credentias inside your `.env` file.
 
 ```bash
 BONGA_CLIENT=""
@@ -99,7 +99,6 @@ use NotificationChannels\Bonga\BongaMessage;
 
 class SendOtp extends Notification
 {
-
     /**
      * Get the notification's delivery channels.
      *
@@ -129,7 +128,7 @@ $ composer test
 
 ## Security
 
-If you discover any security-related issues, please email osaigbovoemmanuel1@gmail.com instead of using the issue tracker.
+If you discover any security-related issues, please email hi@osen.co.ke instead of using the issue tracker.
 
 ## Contributing
 
@@ -137,14 +136,9 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Osaigbovo Emmanuel](https://github.com/ossycodes)
 - [Osen Concepts](https://github.com/osenco)
 - [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## How do I say Thank you?
-
-Leave a star and follow me on [Twitter](https://twitter.com/ossycodes) .
