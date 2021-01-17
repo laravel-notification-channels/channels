@@ -1,0 +1,41 @@
+{
+    "name": "laravel-notification-channels/bonga",
+    "description": ":package_description",
+    "homepage": "https://github.com/laravel-notification-channels/bonga",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Osen concepts",
+            "email": "hi@osen.co.ke",
+            "homepage": "https://osen.co.ke",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/support": "~6.0 || ~7.0 || ~8.0",
+        "osenco/bongasms": "^0.1.19"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Bonga\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Bonga\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

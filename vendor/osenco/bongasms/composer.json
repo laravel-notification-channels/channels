@@ -1,0 +1,31 @@
+{
+    "authors": [
+        {
+            "email": "hi@osen.co.ke",
+            "homepage": "https://osen.co.ke",
+            "name": "Osen Concepts",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Osen\\Bonga\\": "src/"
+        }
+    },
+    "description": "PHP SDK For Bonga SMS",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "name": "osenco/bongasms",
+    "readme": "README.md",
+    "require": {
+        "php": ">=7.4"
+    },
+    "support": {
+        "email": "hi@osen.co.ke",
+        "issues": "https://github.com/osenco/bongasms/issues"
+    },
+    "type": "library"
+}
