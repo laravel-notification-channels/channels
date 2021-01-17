@@ -1,6 +1,6 @@
 {
     "name": "laravel-notification-channels/bonga",
-    "description": ":package_description",
+    "description": "BongaSMS Laravel Notifications Package",
     "homepage": "https://github.com/laravel-notification-channels/bonga",
     "license": "MIT",
     "authors": [
