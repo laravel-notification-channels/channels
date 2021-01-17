@@ -11,6 +11,13 @@
             "role": "Developer"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Bonga\\BongaServiceProvider"
+            ]
+        }
+    },
     "require": {
         "php": ">=7.2",
         "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
