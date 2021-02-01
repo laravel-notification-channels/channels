@@ -7,7 +7,7 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
     }

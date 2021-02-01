@@ -12,7 +12,7 @@ class MessageTest extends TestCase
      */
     protected $message;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

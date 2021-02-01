@@ -38,7 +38,7 @@ class ExpoControllerTest extends TestCase
         return [$expoController, $expoChannel];
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -48,7 +48,7 @@ class ExpoControllerTest extends TestCase
         Auth::shouldReceive('user')->andReturn(new User());
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         \Mockery::close();
 
