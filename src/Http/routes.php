@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'api/exponent/devices', "middleware" => config("exponent-push-notifications")["middleware"]], function () {
+Route::group(['prefix' => 'api/exponent/devices', "middleware" => 'expo.middleware'], function () {
     Route::post('subscribe', [
         'as'    =>  'register-interest',
         'uses'  =>  'NotificationChannels\ExpoPushNotifications\Http\ExpoController@subscribe',
