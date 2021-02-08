@@ -9,8 +9,8 @@
 return [
     'middleware' => [
         //'auth:sanctum', //<- Use only this middleware if you're using Sanctum
-        'auth:api', 
-        'bindings'
+        'auth:api',
+        'bindings',
     ],
     'debug' => env('EXPONENT_PUSH_NOTIFICATION_DEBUG', true),
 
