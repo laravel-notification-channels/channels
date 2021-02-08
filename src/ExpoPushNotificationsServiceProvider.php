@@ -16,7 +16,7 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(\Illuminate\Routing\Router $router)
+    public function boot()
     {
         $this->setupConfig();
 
@@ -29,8 +29,9 @@ class ExpoPushNotificationsServiceProvider extends ServiceProvider
             ->give(function () use ($repository) {
                 return new Expo(new ExpoRegistrar($repository));
             });
-            
-        $router->middlewareGroup('expo.middleware', config("exponent-push-notifications")["middleware"]);
+
+        $router = $this->app['router'];            
+        $router->middlewareGroup('expo.middleware', config('exponent-push-notifications')['middleware']);
 
         $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
     }
