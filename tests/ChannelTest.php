@@ -54,7 +54,7 @@ class ChannelTest extends TestCase
         $this->notifiable = new TestNotifiable;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
 

@@ -48,7 +48,7 @@ class ExpoControllerTest extends TestCase
         Auth::shouldReceive('user')->andReturn(new User());
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         \Mockery::close();
 
