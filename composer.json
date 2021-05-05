@@ -1,0 +1,48 @@
+{
+    "name": "laravel-notification-channels/google-chat",
+    "description": "Google Chat Notification Channel for Laravel (fka. Hangouts Chat)",
+    "homepage": "https://github.com/laravel-notification-channels/google-chat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank Dixon",
+            "email": "frank@thetreehouse.family",
+            "homepage": "https://thetreehouse.family",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "guzzlehttp/guzzle": "^6.3 || ^7.0",
+        "illuminate/notifications": "~8.0",
+        "illuminate/support": "~8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\GoogleChat\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\GoogleChat\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra" : {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\GoogleChat\\GoogleChatServiceProvider"
+            ]
+        }
+    }
+}
