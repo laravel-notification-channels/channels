@@ -8,14 +8,14 @@ use Illuminate\Support\Str;
 abstract class AbstractWidget implements Arrayable
 {
     /**
-     * The widget payload
+     * The widget payload.
      *
      * @var array
      */
     protected array $payload = [];
 
     /**
-     * Serialize the widget to an array representation
+     * Serialize the widget to an array representation.
      *
      * @return array
      */

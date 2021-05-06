@@ -5,7 +5,7 @@ namespace NotificationChannels\GoogleChat\Widgets;
 class TextParagraph extends AbstractWidget
 {
     /**
-     * Append text content to the widget
+     * Append text content to the widget.
      *
      * @param string $message
      * @return self
@@ -18,7 +18,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append bold text context
+     * Append bold text context.
      *
      * @param string $message
      * @return self
@@ -29,7 +29,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append italic text context
+     * Append italic text context.
      *
      * @param string $message
      * @return self
@@ -40,7 +40,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append underline text context
+     * Append underline text context.
      *
      * @param string $message
      * @return self
@@ -51,7 +51,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append strikethrough text context
+     * Append strikethrough text context.
      *
      * @param string $message
      * @return self
@@ -62,7 +62,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append strikethrough text context
+     * Append strikethrough text context.
      *
      * @param string $message
      * @return self
@@ -73,7 +73,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append colored text context
+     * Append colored text context.
      *
      * @param string $message
      * @param string $hex
@@ -85,7 +85,7 @@ class TextParagraph extends AbstractWidget
     }
 
     /**
-     * Append a text link
+     * Append a text link.
      *
      * @param string $link
      * @param string|null $displayText
@@ -93,17 +93,17 @@ class TextParagraph extends AbstractWidget
      */
     public function link(string $link, string $displayText = null): TextParagraph
     {
-        return $this->text("<a href=\"{$link}\">".($displayText ?? $link)."</a>");
+        return $this->text("<a href=\"{$link}\">".($displayText ?? $link).'</a>');
     }
 
     /**
-     * Append a line break
+     * Append a line break.
      *
      * @return self
      */
     public function break(): TextParagraph
     {
-        return $this->text("<br>");
+        return $this->text('<br>');
     }
 
     /**

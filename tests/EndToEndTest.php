@@ -1,10 +1,9 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature;
+namespace NotificationChannels\GoogleChat\Tests;
 
 use Illuminate\Support\Facades\Notification;
 use NotificationChannels\GoogleChat\Tests\Fixtures\TestEndToEndNotification;
-use NotificationChannels\GoogleChat\Tests\TestCase;
 
 class EndToEndTest extends TestCase
 {
@@ -16,7 +15,7 @@ class EndToEndTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        
+
         $this->notification = new TestEndToEndNotification;
     }
 

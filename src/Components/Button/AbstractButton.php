@@ -8,14 +8,14 @@ use Illuminate\Support\Str;
 abstract class AbstractButton implements Arrayable
 {
     /**
-     * The button payload
+     * The button payload.
      *
      * @var array
      */
     protected array $payload = [];
 
     /**
-     * Set the onClick url
+     * Set the onClick url.
      *
      * @param string $url
      * @return self
@@ -32,7 +32,7 @@ abstract class AbstractButton implements Arrayable
     }
 
     /**
-     * Return the array representation of this button
+     * Return the array representation of this button.
      *
      * @return array
      */

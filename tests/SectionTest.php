@@ -1,10 +1,9 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature;
+namespace NotificationChannels\GoogleChat\Tests;
 
 use NotificationChannels\GoogleChat\Exceptions\CouldNotSendNotification;
 use NotificationChannels\GoogleChat\Section;
-use NotificationChannels\GoogleChat\Tests\TestCase;
 use NotificationChannels\GoogleChat\Widgets\TextParagraph;
 use stdClass;
 
@@ -26,7 +25,7 @@ class SectionTest extends TestCase
     public function test_it_rejects_non_widgets()
     {
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Cannot pass object of type: stdClass");
+        $this->expectExceptionMessage('Cannot pass object of type: stdClass');
 
         Section::create(new stdClass);
     }

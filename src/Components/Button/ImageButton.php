@@ -5,14 +5,14 @@ namespace NotificationChannels\GoogleChat\Components\Button;
 class ImageButton extends AbstractButton
 {
     /**
-     * Set the button icon
+     * Set the button icon.
      *
      * @param string $icon
      * @return self
      */
     public function icon(string $icon): ImageButton
     {
-        strpos($icon, "://") === false
+        strpos($icon, '://') === false
             ? $this->setIconByName($icon)
             : $this->setIconByUrl($icon);
 
@@ -20,7 +20,7 @@ class ImageButton extends AbstractButton
     }
 
     /**
-     * Set an icon by its name
+     * Set an icon by its name.
      *
      * @param string $icon
      * @return self
@@ -34,7 +34,7 @@ class ImageButton extends AbstractButton
     }
 
     /**
-     * Set an icon by url
+     * Set an icon by url.
      *
      * @param string $url
      * @return self
@@ -48,7 +48,7 @@ class ImageButton extends AbstractButton
     }
 
     /**
-     * Create a new image button instance
+     * Create a new image button instance.
      *
      * @param string|null $url
      * @param string|null $icon Either an icon name or URL to the icon image

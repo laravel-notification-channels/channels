@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature;
+namespace NotificationChannels\GoogleChat\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -12,16 +12,15 @@ use NotificationChannels\GoogleChat\Exceptions\CouldNotSendNotification;
 use NotificationChannels\GoogleChat\GoogleChatChannel;
 use NotificationChannels\GoogleChat\Tests\Fixtures\TestNotifiable;
 use NotificationChannels\GoogleChat\Tests\Fixtures\TestNotification;
-use NotificationChannels\GoogleChat\Tests\TestCase;
 
 class GoogleChatChannelTest extends TestCase
 {
     public function test_it_rejects_sending_when_to_google_chat_method_undefined()
     {
         $notification = $this->createMock(Notification::class);
-        
+
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Notification of class: ".get_class($notification)." must define a `toGoogleChat()` method in order to send via the Google Chat Channel");
+        $this->expectExceptionMessage('Notification of class: '.get_class($notification).' must define a `toGoogleChat()` method in order to send via the Google Chat Channel');
 
         $this->newChannel()->send('foo', $notification);
     }
@@ -33,10 +32,10 @@ class GoogleChatChannelTest extends TestCase
         ->method('toGoogleChat')
         ->withAnyParameters()
         ->willReturn('This value is invalid, as it is not an instance of Google Chat Message');
-        
+
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage("Expected a message instance of type NotificationChannels\GoogleChat\GoogleChatMessage - Actually received string");
-        
+
         $this->newChannel()->send('foo', $notification);
     }
 
@@ -49,7 +48,7 @@ class GoogleChatChannelTest extends TestCase
         };
 
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("No webhook URL was available when sending the Google Chat notification");
+        $this->expectExceptionMessage('No webhook URL was available when sending the Google Chat notification');
 
         $this->newChannel()->send($notifiable, $notification);
     }
@@ -84,7 +83,7 @@ class GoogleChatChannelTest extends TestCase
         config(['google-chat.space' => 'https://chat.googleapis.com/default-space']);
 
         $notifiable = $this->newNotifiable('https://chat.googleapis.com/notifiable-space');
-        
+
         $notification = $this->newNotification();
 
         $response = $this->createMock(Response::class);
@@ -177,7 +176,7 @@ class GoogleChatChannelTest extends TestCase
         $notification = $this->newNotification();
 
         $exception = new ClientException(
-            "Example 400 level HTTP exception",
+            'Example 400 level HTTP exception',
             $this->createMock(Request::class),
             tap($this->createMock(Response::class), function ($mock) {
                 $mock->method('getStatusCode')->willReturn(400);
@@ -191,7 +190,7 @@ class GoogleChatChannelTest extends TestCase
             ->willThrowException($exception);
 
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Failed to send Google Chat message, encountered client error: `400 - Example 400 level HTTP exception`");
+        $this->expectExceptionMessage('Failed to send Google Chat message, encountered client error: `400 - Example 400 level HTTP exception`');
 
         $this->newChannel($client)->send($notifiable, $notification);
     }
@@ -211,7 +210,7 @@ class GoogleChatChannelTest extends TestCase
             ->willThrowException($exception);
 
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Failed to send Google Chat message, unexpected exception encountered: `Example unexpected exception`");
+        $this->expectExceptionMessage('Failed to send Google Chat message, unexpected exception encountered: `Example unexpected exception`');
 
         $this->newChannel($client)->send($notifiable, $notification);
     }

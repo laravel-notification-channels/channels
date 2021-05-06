@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature\Widgets;
+namespace NotificationChannels\GoogleChat\Tests\Widgets;
 
 use NotificationChannels\GoogleChat\Components\Button\ImageButton;
 use NotificationChannels\GoogleChat\Components\Button\TextButton;

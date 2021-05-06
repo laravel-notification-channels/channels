@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature\Components;
+namespace NotificationChannels\GoogleChat\Tests\Components;
 
 use NotificationChannels\GoogleChat\Components\Button\ImageButton;
 use NotificationChannels\GoogleChat\Enums\Icon;

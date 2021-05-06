@@ -1,12 +1,11 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature;
+namespace NotificationChannels\GoogleChat\Tests;
 
 use NotificationChannels\GoogleChat\Card;
 use NotificationChannels\GoogleChat\Enums\ImageStyle;
 use NotificationChannels\GoogleChat\Exceptions\CouldNotSendNotification;
 use NotificationChannels\GoogleChat\Section;
-use NotificationChannels\GoogleChat\Tests\TestCase;
 use stdClass;
 
 class CardTest extends TestCase
@@ -38,7 +37,7 @@ class CardTest extends TestCase
     public function test_it_rejects_non_sections()
     {
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Cannot pass object of type: stdClass");
+        $this->expectExceptionMessage('Cannot pass object of type: stdClass');
 
         Card::create(new stdClass);
     }

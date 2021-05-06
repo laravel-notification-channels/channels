@@ -13,7 +13,7 @@ class TestNotification extends Notification
     public function setSpace(string $space)
     {
         $this->space = $space;
-        
+
         return $this;
     }
 

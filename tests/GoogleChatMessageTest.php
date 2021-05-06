@@ -1,11 +1,10 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature;
+namespace NotificationChannels\GoogleChat\Tests;
 
 use NotificationChannels\GoogleChat\Card;
 use NotificationChannels\GoogleChat\Exceptions\CouldNotSendNotification;
 use NotificationChannels\GoogleChat\GoogleChatMessage;
-use NotificationChannels\GoogleChat\Tests\TestCase;
 
 class GoogleChatMessageTest extends TestCase
 {
@@ -186,7 +185,7 @@ class GoogleChatMessageTest extends TestCase
     public function test_it_rejects_non_cards()
     {
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage("Cannot pass object of type: stdClass");
+        $this->expectExceptionMessage('Cannot pass object of type: stdClass');
 
         GoogleChatMessage::create()->card(new \stdClass);
     }

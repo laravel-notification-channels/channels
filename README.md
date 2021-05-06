@@ -32,18 +32,20 @@ class InvoicePaidNotification extends Notification
             ->to('sales_team'); // ... and route it to specific rooms
     }
 
-    // ...Or, you can be **extra** and go full-fancy
+    // ...You can even make a fancy card!
     public function toGoogleChat($notifiable)
     {
         return GoogleChatMessage::create()
-            ->text('Invoice Paid! Here\'s the deets:')
-            ->card(Card::create(
-                Section::create(
-                    KeyValue::create('Amount', '$520.99', '#10004756')
-                        ->onClick(route('invoices'))
-                        ->button(TextButton::create(route('invoices'), 'View'))
+            ->text('Invoice Paid! Here\'s the details:')
+            ->card(
+                Card::create(
+                    Section::create(
+                        KeyValue::create('Amount', '$520.99', '#10004756')
+                            ->onClick(route('invoices'))
+                            ->button(TextButton::create(route('invoices'), 'View'))
+                    )
                 )
-            ))
+            )
     }
 }
 ````
@@ -54,21 +56,17 @@ class InvoicePaidNotification extends Notification
 - [Installation](#installation)
 	- [Generating a Webhook](#generating-a-webhook)
 - [Configuring & Using Webhooks in Your Application](#configuring-&-using-webhooks-in-your-application)
-	- [Alternate Rooms](#alternate-rooms)
+	- [Default Room](#default-room)
+	- [Alternate Rooms (Preferred)](#alternate-rooms-preferred)
 	- [Explicit Webhook Routing](#explicit-webhook-routing)
 - [Usage](#usage)
 	- [Simple Messages](#simple-messages)
 	- [Card Messages](#card-messages)
 - [API Overview](#api-overview)
-	- [NotificationChannels\GoogleChat\GoogleChatMessage](#notificationchannelsgooglechatgooglechatmessage)
-	- [NotificationChannels\GoogleChat\Card](#notificationchannelsgooglechatcard)
-	- [NotificationChannels\GoogleChat\Section](#notificationchannelsgooglechatsection)
-	- [NotificationChannels\GoogleChat\Widgets\TextParagraph](#notificationchannelsgooglechatwidgetstextparagraph)
-	- [NotificationChannels\GoogleChat\Widgets\KeyValue](#notificationchannelsgooglechatwidgetskeyvalue)
-	- [NotificationChannels\GoogleChat\Widgets\Image](#notificationchannelsgooglechatwidgetsimage)
-	- [NotificationChannels\GoogleChat\Widgets\Buttons](#notificationchannelsgooglechatwidgetsbuttons)
-	- [NotificationChannels\GoogleChat\Components\Button\TextButton](#notificationchannelsgooglechatcomponentsbuttontextbutton)
-	- [NotificationChannels\GoogleChat\Components\Button\ImageButton](#notificationchannelsgooglechatcomponentsbuttonimagebutton)
+	- [Google Chat Message](#google-chat-message)
+    - [Card Layout](#card-layout)
+    - [Widgets](#widgets)
+    - [Components](#components)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Security](#security)
@@ -91,16 +89,7 @@ This package makes use of Google Chat's convenient 'Webhooks' feature, which all
 
 You can learn how to create a room, and generate a new Webhook on [Google's documentation](https://developers.google.com/hangouts/chat/how-tos/webhooks).
 
-In short, you'll need to:
-1. Create a 'room'
-2. Visit the 'Manage Webhooks' settings pane for that room
-3. Create and configure a new Webhook
-
-You can create a webhook in the various rooms you have access to, in order to better organize your messages. For instances, you might create a 'Sales Alert' webhook in your 'Sales' room, which includes team members who wish to be notified about sales events in your app. Likewise, you can create a 'DevOps' room which includes technical team members wanting to be notified when something technical happens in your app, and create a separate 'Dev Alerts' webhook in there.
-
-Next, we'll look at how we can use the webhook(s) in the Google Chat notification channel
-
-> Through Google's own documentation, the term 'Space' is used to reference conversations generally across Google Chat. A user can be involved in a one-to-one conversation with a co-worker or another bot, or be a member of a 'room' containing many people/bots.
+> Throughout Google's own documentation, the term 'space' is used to reference conversations generally across Google Chat, whether that be a one-on-one chat between co-workers, or a 'room' with conversations between multiple people.
 > 
 > Although this package only has the ability to send messages into 'rooms', **we still refer to a room as a 'space' for consistency** between this package's documentation, and Google's.
 
@@ -112,7 +101,9 @@ Firstly, let's publish the configuration file used by the Google Chat notificati
 $ php artisan vendor:publish --tag google-chat-config
 ````
 
-Next, if we only have a single room / webhook we want to post into, we can simply configure the `space` key which defines the default conversation notifications sent via the Google Chat channel will be posted to.
+### Default Room
+
+If we only have a single room / webhook we want to post into, we can simply configure the `space` key which defines the default conversation notifications sent via the Google Chat channel will be posted to.
 
 ````php
 // config/google-chat.php
@@ -126,7 +117,7 @@ Notifications that have not otherwise been directed to another room will now be 
 
 **CAUTION!** If your application sends sensitive notifications via Google Chat, we recommend you configure the `space` key to `NULL`, so that notifications must be explicitly directed to an endpoint.
 
-### Alternate Rooms
+### Alternate Rooms (Preferred)
 
 You can also define alternate webhooks under the `spaces` (plural) key, and reference these more easily throughout your application:
 
@@ -218,11 +209,11 @@ use NotificationChannels\GoogleChat\GoogleChatMessage;
 public function toGoogleChat($notifiable)
 {
     return GoogleChatMessage::create()
-        ->bold('Hey Awesome Team Member!')
-        ->line('This is a daily reminder that you\'re ')
-        ->italic('awesome. ')
-        ->text('I mean like ')
-        ->link('https://giphy.com/search/you-are-awesome', 'really awesome.');
+        ->bold('Heads Up!')
+        ->line('An error was encountered whilst communicating with an external service:')
+        ->monospaceBlock($this->errorMessage)
+        ->italic('Want to know more? ')
+        ->link('https://status.example.com/logs', 'Check Out the Logs.');
 }
 ````
 
@@ -268,24 +259,30 @@ public function toGoogleChat($notifiable)
 }
 ````
 
-Card messages have the following structure
+**Visual learner?** Us too. Here's a visual overview of the card structure:
 
 ````
 cards
 |
 |---card
 |   |
-|   |---header
+|   |---header (complex)
+|   |   ...
 |   |
 |   |---sections
 |   |   |
 |   |   |---section
 |   |   |   |
+|   |   |   |---header (simple)
+|   |   |   |   ...
+|   |   |   |
 |   |   |   |---widgets
 |   |   |   |   |
 |   |   |   |   |---widget
+|   |   |   |   |   ...
 |   |   |   |   |
 |   |   |   |   |---widget
+|   |   |   |   |   ...
 |   |   |
 |   |   |---section
 |   |   |   ...
@@ -296,7 +293,9 @@ cards
 
 ## API Overview
 
-### NotificationChannels\GoogleChat\GoogleChatMessage
+### Google Chat Message
+
+Namespace: `NotificationChannels\GoogleChat\GoogleChatMessage`
 
 The `GoogleChatMessage` class encompasses an entire message that will be sent to the Google Chat room.
 
@@ -316,7 +315,15 @@ The `GoogleChatMessage` class encompasses an entire message that will be sent to
 - `mentionAll(?string $prependText, ?string $appendText)` Appends a mention-all text, optionally with text before and after the block
 - `card(Card|Card[] $card)` Add one or more complex card UIs to the message
 
-### NotificationChannels\GoogleChat\Card
+### Card Layout
+
+The layout is split into two concepts: The card, and the section. The card can be thought of as the container, whilst the sections can be thought of as rows within the card itself. The card can have a complex, overarching header, whilst each section can contain a simple text based header.
+
+You can add multiple sections to a card, in order to group related pieces of information.
+
+#### Card
+
+Namespace: `NotificationChannels\GoogleChat\Card`
 
 The `Card` class represents the top level layout definition for a Card UI to be sent in a message. Cards define one or more sections, and may optionally define header information
 
@@ -324,7 +331,9 @@ The `Card` class represents the top level layout definition for a Card UI to be 
 - `header(string $title, ?string $subtitle, ?string $imageUrl, ?string $imageStyle)` Optional - Configures the header UI for the card. Note that `$imageStyle` is one of the constants defined in `NotificationChannels\GoogleChat\Enums\ImageStyle`
 - `section(Section|Section[] $section)` Add one or more sections to the card
 
-### NotificationChannels\GoogleChat\Section
+#### Section
+
+Namespace: `NotificationChannels\GoogleChat\Section`
 
 The `Section` class defines the intermediary layout definition of a card. From a UI perspective, it groups related widgets.
 
@@ -332,7 +341,15 @@ The `Section` class defines the intermediary layout definition of a card. From a
 - `header(string $text)` Optionally defines the simple header displayed at the top of the section
 - `widget(AbstractWidget|AbstractWidgets[] $widget)` Adds one or more widgets to the section
 
-### NotificationChannels\GoogleChat\Widgets\TextParagraph
+### Widgets
+
+Widgets are the meaningful pieces of UI displayed throughout a single card. There are different types of widgets, in order to display information more appropriately to the user.
+
+Widgets are added to a section, and a section can contain multiple widgets of various types.
+
+#### Text Paragraph
+
+Namespace: `NotificationChannels\GoogleChat\Widgets\TextParagraph`
 
 The `TextParagraph` widget defines rich text. This widget can define more complex text formats than permissible in a simple message.
 
@@ -347,7 +364,9 @@ The `TextParagraph` widget defines rich text. This widget can define more comple
 - `link(string $link, ?string $displayText)` Appends a textual link, optionally with the provided display text
 - `break()` Appends a line break
 
-### NotificationChannels\GoogleChat\Widgets\KeyValue
+#### Key Value
+
+Namespace: `NotificationChannels\GoogleChat\Widgets\KeyValue`
 
 The `KeyValue` widget defines a table like element that can segment information and provide an external click through
 
@@ -360,7 +379,9 @@ The `KeyValue` widget defines a table like element that can segment information 
 - `icon(string $icon)` Defines the glyph icon displayed with the text content; One of the constants defined in `NotificationChannels\GoogleChat\Enums\Icon`
 - `button(AbstractButton $button)` Optionally defines a button displayed alongside the text content
 
-### NotificationChannels\GoogleChat\Widgets\Image
+#### Image
+
+Namespace: `NotificationChannels\GoogleChat\Widgets\Image`
 
 The `Image` widget defines a simple image to be displayed in the card. Optionally, a click through URL can be configured for when a user clicks/taps on the image.
 
@@ -368,14 +389,24 @@ The `Image` widget defines a simple image to be displayed in the card. Optionall
 - `imageUrl(string $url)` Defines the image URL where the image can be sourced
 - `onClick(string $url)` Defines a URL the user will be taken to if they click/tap on the image
 
-### NotificationChannels\GoogleChat\Widgets\Buttons
+#### Buttons
+
+Namespace: `NotificationChannels\GoogleChat\Widgets\Buttons`
 
 The `Buttons` widget acts as a container for one or more buttons, laid out horizontally. This widget accepts instances of `NotificationChannels\GoogleChat\Components\Button\AbstractButton` and can accept buttons of different types.
 
 - `static create(AbstractButton|AbstractButton[]|null $buttons)` Instantiates and returns a new `Buttons` instance, optionally pre-configuring it with the provided buttons
 - `button(AbstractButton|AbstractButton[] $button)` Adds one or more buttons
 
-### NotificationChannels\GoogleChat\Components\Button\TextButton
+### Components
+
+Components are structures that are nestled within widgets. For simplicity, the Google Chat notification channel only supports button components.
+
+Both the Text Button and Image Button can be nested within the `Buttons` widget, as well as in the button properties of the `KeyValue` and `ImageWidget`.
+
+#### Text Button
+
+Namespace: `NotificationChannels\GoogleChat\Components\Button\TextButton`
 
 The `TextButton` defines a simple text button, and can be accepted anywhere that an `AbstractButton` is accepted.
 
@@ -383,7 +414,9 @@ The `TextButton` defines a simple text button, and can be accepted anywhere that
 - `url(string $url)` Defines the target endpoint for the button
 - `text(string $text)` Defines the display text for the button
 
-### NotificationChannels\GoogleChat\Components\Button\ImageButton
+#### Image Button
+
+Namespace: `NotificationChannels\GoogleChat\Components\Button\ImageButton`
 
 The `ImageButton` defines a clickable icon or image, and can be accepted anywhere that an `AbstractButton` is accepted. The icon can either be a default icon (one of the constants defined in `NotificationChannels\GoogleChat\Enums\Icon`) or an external image url.
 
@@ -400,6 +433,14 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ``` bash
 $ composer test
 ```
+
+The test suite also includes one end-to-end test. In order for this test to pass, a `GOOGLE_CHAT_TEST_SPACE` environment variable should be set, containing a webhook to a test room.
+
+Alternatively, you can exclude this test with PHPUnit during local development:
+
+````bash
+$ ./vendor/bin/phpunit --exclude-group external
+````
 
 ## Security
 

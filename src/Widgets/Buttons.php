@@ -11,7 +11,7 @@ class Buttons extends AbstractWidget
     use ValidatesCardComponents;
 
     /**
-     * Add one or more buttons
+     * Add one or more buttons.
      *
      * @param \NotificationChannels\GoogleChat\Components\Button\AbstractButton|\NotificationChannels\GoogleChat\Components\Button\AbstractButton[] $button
      * @return self

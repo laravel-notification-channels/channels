@@ -5,7 +5,7 @@ namespace NotificationChannels\GoogleChat\Widgets;
 class Image extends AbstractWidget
 {
     /**
-     * Set the image url
+     * Set the image url.
      *
      * @param string $url
      * @return self
@@ -18,7 +18,7 @@ class Image extends AbstractWidget
     }
 
     /**
-     * Make the widget clickable through to the provided link
+     * Make the widget clickable through to the provided link.
      *
      * @param string $url
      * @return self

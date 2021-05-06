@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\GoogleChat\Tests\Feature\Widgets;
+namespace NotificationChannels\GoogleChat\Tests\Widgets;
 
 use NotificationChannels\GoogleChat\Tests\TestCase;
 use NotificationChannels\GoogleChat\Widgets\TextParagraph;

@@ -53,7 +53,7 @@ interface Icon
     public const STORE = 'STORE';
 
     public const TICKET = 'TICKET';
-    
+
     public const TRAIN = 'TRAIN';
 
     public const VIDEO_CAMERA = 'VIDEO_CAMERA';

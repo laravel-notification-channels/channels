@@ -12,7 +12,7 @@ class Section implements Arrayable
     use ValidatesCardComponents;
 
     /**
-     * The section payload
+     * The section payload.
      *
      * @var array
      */
@@ -21,7 +21,7 @@ class Section implements Arrayable
     ];
 
     /**
-     * Set the section header text
+     * Set the section header text.
      *
      * @param string $text
      * @return self
@@ -29,12 +29,12 @@ class Section implements Arrayable
     public function header(string $text): Section
     {
         $this->payload['header'] = $text;
-        
+
         return $this;
     }
 
     /**
-     * Add one or more widgets to this section
+     * Add one or more widgets to this section.
      *
      * @param \NotificationChannels\GoogleChat\Widgets\AbstractWidget|\NotificationChannels\GoogleChat\Widgets\AbstractWidget[] $widget
      * @return self
@@ -51,7 +51,7 @@ class Section implements Arrayable
     }
 
     /**
-     * Serialize the section to an array representation
+     * Serialize the section to an array representation.
      *
      * @return array
      */

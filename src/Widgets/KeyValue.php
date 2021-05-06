@@ -7,7 +7,7 @@ use NotificationChannels\GoogleChat\Components\Button\AbstractButton;
 class KeyValue extends AbstractWidget
 {
     /**
-     * Set the top label text
+     * Set the top label text.
      *
      * @param string $message
      * @return self
@@ -15,12 +15,12 @@ class KeyValue extends AbstractWidget
     public function topLabel(string $message): KeyValue
     {
         $this->payload['topLabel'] = $message;
-        
+
         return $this;
     }
 
     /**
-     * Set the content text
+     * Set the content text.
      *
      * @param string $message
      * @return self
@@ -33,7 +33,7 @@ class KeyValue extends AbstractWidget
     }
 
     /**
-     * Set the bottom label text
+     * Set the bottom label text.
      *
      * @param string $message
      * @return self
@@ -46,7 +46,7 @@ class KeyValue extends AbstractWidget
     }
 
     /**
-     * Set the content multiline property
+     * Set the content multiline property.
      *
      * @param bool $value
      * @return self
@@ -59,7 +59,7 @@ class KeyValue extends AbstractWidget
     }
 
     /**
-     * Make the widget clickable through to the provided link
+     * Make the widget clickable through to the provided link.
      *
      * @param string $url
      * @return self
@@ -76,7 +76,7 @@ class KeyValue extends AbstractWidget
     }
 
     /**
-     * Set the icon of this widget
+     * Set the icon of this widget.
      *
      * @param string $icon
      * @return self
@@ -89,7 +89,7 @@ class KeyValue extends AbstractWidget
     }
 
     /**
-     * Set the button of the widget
+     * Set the button of the widget.
      *
      * @param \NotificationChannels\GoogleChat\Components\Button\AbstractButton $button
      * @return self

@@ -11,13 +11,13 @@ use NotificationChannels\GoogleChat\Exceptions\CouldNotSendNotification;
 class GoogleChatChannel
 {
     /**
-     * The Http Client
+     * The Http Client.
      * @var \GuzzleHttp\Client
      */
     protected $client;
 
     /**
-     * Initialise a new Google Chat Channel instance
+     * Initialise a new Google Chat Channel instance.
      *
      * @param \GuzzleHttp\Client $client
      * @return void

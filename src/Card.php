@@ -11,7 +11,7 @@ class Card implements Arrayable
     use ValidatesCardComponents;
 
     /**
-     * The card payload
+     * The card payload.
      *
      * @var array
      */
@@ -20,7 +20,7 @@ class Card implements Arrayable
     ];
 
     /**
-     * Configure the header content of the card
+     * Configure the header content of the card.
      *
      * @param string $title The title of the card, usually the bot or service name
      * @param string|null $subtitle Secondary text displayed below the title
@@ -52,7 +52,7 @@ class Card implements Arrayable
     }
 
     /**
-     * Add one or more sections to the card
+     * Add one or more sections to the card.
      *
      * @param \NotificationChannels\GoogleChat\Section|\NotificationChannels\GoogleChat\Section[]
      * @return self
@@ -69,7 +69,7 @@ class Card implements Arrayable
     }
 
     /**
-     * Serialize the card to an array representation
+     * Serialize the card to an array representation.
      *
      * @return array
      */

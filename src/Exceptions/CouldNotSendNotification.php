@@ -18,14 +18,14 @@ class CouldNotSendNotification extends \Exception
     public static function undefinedMethod($notification)
     {
         return new static(
-            "Notification of class: ".get_class($notification)
-            ." must define a `toGoogleChat()` method in order to send via the Google Chat Channel"
+            'Notification of class: '.get_class($notification)
+            .' must define a `toGoogleChat()` method in order to send via the Google Chat Channel'
         );
     }
 
     /**
      * Thrown if a notification instance's toGoogleChat() method returns a value other than
-     * an instance of \NotificationChannels\GoogleChat\GoogleChatMessage
+     * an instance of \NotificationChannels\GoogleChat\GoogleChatMessage.
      *
      * @param mixed $actual
      * @return static
@@ -33,18 +33,18 @@ class CouldNotSendNotification extends \Exception
     public static function invalidMessage($actual)
     {
         return new static(
-            "Expected a message instance of type ".GoogleChatMessage::class
-            ." - Actually received "
+            'Expected a message instance of type '.GoogleChatMessage::class
+            .' - Actually received '
             .(
                 is_object($actual)
-                ? "instance of: ".get_class($actual)
+                ? 'instance of: '.get_class($actual)
                 : gettype($actual)
             )
         );
     }
 
     /**
-     * Thrown if a message could not be built to an invalid argument being passed
+     * Thrown if a message could not be built to an invalid argument being passed.
      *
      * @param string $method
      * @param string $expected
@@ -54,10 +54,10 @@ class CouldNotSendNotification extends \Exception
     public static function invalidArgument($method, $expected, $actual)
     {
         return new static(
-            "Cannot pass "
+            'Cannot pass '
             .(
                 is_object($actual)
-                ? "object of type: " . get_class($actual)
+                ? 'object of type: '.get_class($actual)
                 : gettype($actual)
             )
             ." to $method, expected: $expected"
@@ -78,13 +78,13 @@ class CouldNotSendNotification extends \Exception
     public static function webhookUnavailable()
     {
         return new static(
-            "No webhook URL was available when sending the Google Chat notification."
+            'No webhook URL was available when sending the Google Chat notification.'
         );
     }
 
     /**
      * Thrown if a 400-level Http error was encountered whilst attempting to deliver the
-     * notification
+     * notification.
      *
      * @param \GuzzleHttp\Exception\ClientException $exception
      * @return static
@@ -113,7 +113,7 @@ class CouldNotSendNotification extends \Exception
     public static function unexpectedException(Exception $exception)
     {
         return new static(
-            "Failed to send Google Chat message, unexpected exception encountered: `".$exception->getMessage()."`",
+            'Failed to send Google Chat message, unexpected exception encountered: `'.$exception->getMessage().'`',
             0,
             $exception
         );

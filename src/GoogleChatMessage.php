@@ -11,14 +11,14 @@ class GoogleChatMessage implements Arrayable
     use ValidatesCardComponents;
 
     /**
-     * The configured message payload
+     * The configured message payload.
      *
      * @var array
      */
     protected array $payload = [];
 
     /**
-     * The Space's webhook URL where this message should be sent
+     * The Space's webhook URL where this message should be sent.
      *
      * @var string|null
      */
@@ -38,7 +38,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append text content as a simple text message
+     * Append text content as a simple text message.
      *
      * @param string $message
      * @return self
@@ -51,7 +51,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append simple text content on a new line
+     * Append simple text content on a new line.
      *
      * @param string $message
      * @return self
@@ -64,7 +64,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append bold text
+     * Append bold text.
      *
      * @param string $message
      * @return self
@@ -77,7 +77,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append italic text
+     * Append italic text.
      *
      * @param string $message
      * @return self
@@ -90,7 +90,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append strikethrough text
+     * Append strikethrough text.
      *
      * @param string $message
      * @return self
@@ -103,7 +103,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append strikethrough text
+     * Append strikethrough text.
      *
      * @param string $message
      * @return self
@@ -114,7 +114,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append monospace text
+     * Append monospace text.
      *
      * @param string $message
      * @return self
@@ -127,7 +127,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append monospace text
+     * Append monospace text.
      *
      * @param string $message
      * @return self
@@ -138,7 +138,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append monospace block text
+     * Append monospace block text.
      *
      * @param string $message
      * @return self
@@ -151,7 +151,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append a text link
+     * Append a text link.
      *
      * @param string $link
      * @param string|null $displayText
@@ -169,7 +169,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append mention text
+     * Append mention text.
      *
      * @param string $userId
      * @return self
@@ -182,7 +182,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Append mention-all text
+     * Append mention-all text.
      *
      * @param string|null $prependText
      * @param string|null $appendText
@@ -196,7 +196,7 @@ class GoogleChatMessage implements Arrayable
     }
 
     /**
-     * Add a one or more cards to the message
+     * Add a one or more cards to the message.
      *
      * @param \NotificationChannels\GoogleChat\Card|\NotificationChannels\GoogleChat\Card[] $card
      * @return self
@@ -214,17 +214,17 @@ class GoogleChatMessage implements Arrayable
 
     /**
      * Return the configured webhook URL of the recipient space, or null if this has
-     * not been configured
+     * not been configured.
      *
      * @return string|null
      */
-    public function getSpace():? string
+    public function getSpace(): ?string
     {
         return $this->endpoint;
     }
 
     /**
-     * Serialize the message to an array representation
+     * Serialize the message to an array representation.
      *
      * @return array
      */
@@ -235,7 +235,7 @@ class GoogleChatMessage implements Arrayable
 
     /**
      * Recursively attempt to cast arrayable values within an array to their
-     * primitive representation
+     * primitive representation.
      *
      * @param mixed $value
      * @return mixed
@@ -257,7 +257,7 @@ class GoogleChatMessage implements Arrayable
 
     /**
      * Return a new Google Chat Message instance. Optionally, configure it as a simple
-     * text message using the provided message string
+     * text message using the provided message string.
      *
      * @param string|null $text
      * @return self
