@@ -31,5 +31,5 @@ class OnewaysmsServiceProvider extends ServiceProvider
             });
         });
     }
-    
+
 }
