@@ -27,7 +27,8 @@ class OnewaysmsApiTest extends TestCase
 
     private function getExtendedOnewaysmsApi($user, $pwd)
     {
-        return new class($user, $pwd) extends OnewaysmsApi {
+        return new class($user, $pwd) extends OnewaysmsApi
+        {
             public function getEndpoint(): string
             {
                 return $this->endpoint;

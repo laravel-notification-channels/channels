@@ -45,4 +45,5 @@ class CouldNotSendNotification extends Exception
     {
         return new static("The communication with OneWaySMS failed. Reason: {$exception->getMessage()}", $exception->getCode(), $exception);
     }
+    
 }

@@ -38,6 +38,7 @@ class OnewaysmsMessage
     public function content($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -50,6 +51,8 @@ class OnewaysmsMessage
     public function sender($sender)
     {
         $this->sender = $sender;
+
         return $this;
     }
+    
 }

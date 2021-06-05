@@ -36,7 +36,6 @@ class OnewaysmsApi
      */
     protected $pwd;
 
-
     public function __construct($user = null, $pwd = null, HttpClient $httpClient = null)
     {
         $this->user = $user;
@@ -58,8 +57,7 @@ class OnewaysmsApi
      */
     public function send($message)
     {
-        try
-        {
+        try {
             $response = $this->client->request('GET', $this->endpoint, [
                 'query' => [
                     'apiusername' => Arr::get($message, 'user'),
@@ -67,7 +65,7 @@ class OnewaysmsApi
                     'mobileno' => Arr::get($message, 'to'), 
                     'senderid' => Arr::get($message, 'sender'),                    
                     'languagetype' => Arr::get($message, 'language', 1),
-                    'message' => Arr::get($message, 'message')
+                    'message' => Arr::get($message, 'message'),
                 ],
             ]);
 
@@ -78,14 +76,11 @@ class OnewaysmsApi
             }
 
             return $response;
-        }
-        catch (ClientException $e)
-        {
+        } catch (ClientException $e) {
             throw CouldNotSendNotification::OnewaysmsRespondedWithAnError($e);
-        }
-        catch (GuzzleException $e)
-        {
+        } catch (GuzzleException $e) {
             throw CouldNotSendNotification::couldNotCommunicateWithOnewaysms($e);
         }
     }
+
 }

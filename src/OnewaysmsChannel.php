@@ -62,7 +62,7 @@ class OnewaysmsChannel
         return $this->onewaysms->send([
             'sender' => $message->sender ?: $this->sender,
             'to' => $to,
-            'message' => trim($message->content)
+            'message' => trim($message->content),
         ]);
     }
 }

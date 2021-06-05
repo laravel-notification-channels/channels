@@ -25,7 +25,7 @@ class OnewaysmsChannelTest extends TestCase
         $ows->shouldReceive('send')->with([
             'sender' => '5554443333',
             'to' => '5555555555',
-            'message' => 'this is my message'
+            'message' => 'this is my message',
         ])->once();
 
         $channel->send(new TestNotifiable(), new TestNotification());
