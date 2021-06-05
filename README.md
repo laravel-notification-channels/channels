@@ -1,17 +1,119 @@
-# New Notification Channels
+# OneWaySMS Notifications Channel for Laravel
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/onewaysms)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/onewaysms/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/onewaysms)
+[![StyleCI](https://styleci.io/repos/229822475/shield)](https://styleci.io/repos/:style_ci_id)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/onewaysms)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/onewaysms/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/onewaysms/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/onewaysms)
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [OneWaySMS](https://www.onewaysms.com.my/) with Laravel
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [Installation](#installation)
+	- [Setting up the OneWaySMS](#setting-up-the-onewaysms-service)
+- [Usage](#usage)
+	- [Available Message methods](#available-message-methods)
+	- [On-Demand Notifications](#on-demand-notifications)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+You can install this package via composer:
+``` bash
+composer require laravel-notification-channels/onewaysms
+```
+
+### Setting up the OneWaySMS service
+
+Add your OneWaySMS username, password, default sender id to your config/services.php :
+
+```php
+// config/services.php
+...
+'onewaysms' => [
+    'endpoint' => env('SMS_ENDPOINT', 'https://gateway.onewaysms.com.my/api.aspx'),
+    'user' => env('SMS_USER', 'YOUR USERNAME HERE'),
+    'pwd' => env('SMS_PWD', 'YOUR PASSWORD HERE'),
+    'sender' => env('SMS_SENDER', 'YOUR SENDER HERE')
+],
+...
+```
+
+## Usage
+
+You can use the channel in your via() method inside the notification:
+
+```php
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Onewaysms\OnewaysmsMessage;
+
+class AccountApproved extends Notification
+{
+    public function via($notifiable)
+    {
+        return ["onewaysms"];
+    }
+
+    public function toOnewaysms($notifiable)
+    {
+        return (new OnewaysmsMessage)->content("Your account has been successfully approved !");
+    }
+}
+```
+
+In your notifiable model, make sure to include a routeNotificationForOnewaysms() method, which returns a phone number or an array of phone numbers.
+
+```php
+public function routeNotificationForOnewaysms()
+{
+    return $this->phone;
+}
+```
+### On-Demand Notifications
+Sometimes you may need to send a notification to someone who is not stored as a "user" of your application. Using the Notification::route method, you may specify ad-hoc notification routing information before sending the notification :
+
+```php
+Notification::route('onewaysms', '0123456789')                      
+            ->notify(new InvoicePaid($invoice));
+```
+### Available Message methods
+
+`sender()`: Sets the sender's name (sender id).
+
+`content()`: Set a content of the notification message. This parameter should be no longer than 459 chars (3 message parts),
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email mr.putera@gmail.com instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Zulkifli Mohamed](https://github.com/putera)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
