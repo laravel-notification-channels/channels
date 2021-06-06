@@ -2,34 +2,37 @@
 
 namespace NotificationChannels\Onewaysms;
 
-use GuzzleHttp\Client as HttpClient;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\ServiceProvider;
+use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 
 class OnewaysmsServiceProvider extends ServiceProvider
 {
     /**
-     * Register the application services.
+     * Bootstrap the application services.
      */
+    public function boot()
+    {
+        $this->app->when(OnewaysmsChannel::class)
+            ->needs(OnewaysmsClient::class)
+            ->give(function () {
+                $config = config('services.onewaysms');
+
+                if (is_null($config)) {
+                    throw OnewaysmsException::configurationNotSet();
+                }
+
+                return new OnewaysmsClient();
+            });
+    }
+
     public function register()
     {
-        $this->app->singleton(OnewaysmsApi::class, static function ($app) {
-            return new OnewaysmsApi(
-                config('services.onewaysms.user'),
-                config('services.onewaysms.pwd'),
-                new HttpClient()
-            );
-        });
-
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('onewaysms', function ($app) {
-                return new OnewaysmsChannel(
-                    $app[OnewaysmsApi::class],
-                    $this->app['config']['services.onewaysms.sender']
-                );
+                return new OnewaysmsChannel(new OnewaysmsClient);
             });
         });
     }
-
 }

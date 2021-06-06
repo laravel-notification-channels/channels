@@ -8,7 +8,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/onewaysms/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/onewaysms/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/onewaysms)
 
-This package makes it easy to send notifications using [OneWaySMS](https://www.onewaysms.com.my/) with Laravel 5.5+, 6.x, 7.x and 8.x
+📲  This package makes it easy to send notifications (SMS) using [OneWaySMS](https://www.onewaysms.com.my/) with Laravel 5.5+, 6.x, 7.x and 8.x
 
 ## Contents
 
@@ -34,18 +34,18 @@ composer require laravel-notification-channels/onewaysms
 
 ### Setting up the OneWaySMS service
 
-Add your OneWaySMS username, password, default sender id to your config/services.php :
+Add your OneWaySMS API account and settings to your `config/services.php` :
 
 ```php
 // config/services.php
-...
+
 'onewaysms' => [
+    'username' => env('SMS_USERNAME', 'YOUR USERNAME HERE'),
+    'password' => env('SMS_PASSWORD', 'YOUR PASSWORD HERE'),
     'endpoint' => env('SMS_ENDPOINT', 'https://gateway.onewaysms.com.my/api.aspx'),
-    'user' => env('SMS_USER', 'YOUR USERNAME HERE'),
-    'pwd' => env('SMS_PWD', 'YOUR PASSWORD HERE'),
-    'sender' => env('SMS_SENDER', 'YOUR SENDER HERE')
+    'sender' => env('SMS_SENDER', 'YOUR SENDER ID')
 ],
-...
+
 ```
 
 ## Usage
@@ -82,12 +82,14 @@ public function routeNotificationForOnewaysms()
 Sometimes you may need to send a notification to someone who is not stored as a "user" of your application. Using the Notification::route method, you may specify ad-hoc notification routing information before sending the notification :
 
 ```php
-Notification::route('onewaysms', '0123456789')                      
+Notification::route('onewaysms', '+60123456789')                      
             ->notify(new InvoicePaid($invoice));
 ```
 ### Available Message methods
 
-`sender()`: Sets the sender's name (sender id).
+`to()`: Sets the recipient's mobile no.
+
+`from()`: Sets the sender id.
 
 `content()`: Set a content of the notification message. This parameter should be no longer than 459 chars (3 message parts),
 

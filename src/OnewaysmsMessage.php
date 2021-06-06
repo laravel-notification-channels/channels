@@ -4,55 +4,34 @@ namespace NotificationChannels\Onewaysms;
 
 class OnewaysmsMessage
 {
-    /**
-     * The message content.
-     *
-     * @var string
-     */
+    public $to;
+    public $from;
     public $content;
+    public $language;
 
-    /**
-     * The sender id.
-     *
-     * @var string
-     */
-    public $sender;
-
-    /**
-     * Create a new message instance.
-     *
-     * @param string $content
-     * @return void
-     */
     public function __construct($content = '')
     {
         $this->content = $content;
     }
 
-    /**
-     * Set the message content.
-     *
-     * @param string $content
-     * @return $this
-     */
-    public function content($content)
+    public function content($value)
     {
-        $this->content = $content;
+        $this->content = $value;
 
         return $this;
     }
 
-    /**
-     * Set the sender id.
-     *
-     * @param string $sender
-     * @return $this
-     */
-    public function sender($sender)
+    public function from($value)
     {
-        $this->sender = $sender;
+        $this->from = $value;
 
         return $this;
     }
-    
+
+    public function to($value)
+    {
+        $this->to = $value;
+
+        return $this;
+    }
 }

@@ -2,67 +2,44 @@
 
 namespace NotificationChannels\Onewaysms;
 
+use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Onewaysms\Exceptions\CouldNotSendNotification;
 
 class OnewaysmsChannel
 {
-    /**
-     * The Onewaysms client instance.
-     *
-     * @var OnewaysmsApi
-     */
-    protected $onewaysms;
+    private $client;
 
-    /**
-     * The sender id.
-     *
-     * @var string
-     */
-    protected $sender;
-
-    /**
-     * @var int
-     * 
-     * The message body content count should be no longer than 3 message parts (459).
-     */
-    protected $character_limit_count = 459;
-
-    public function __construct(OnewaysmsApi $onewaysms, $sender)
+    public function __construct(OnewaysmsClient $client)
     {
-        $this->onewaysms = $onewaysms;
-        $this->sender = $sender;
+        $this->client = $client;
     }
 
-    /**
-     * Send the given notification.
-     *
-     * @param mixed $notifiable
-     * @param Notification $notification
-     *
-     * @return mixed|\Psr\Http\Message\ResponseInterface|void
-     * @throws CouldNotSendNotification
-     */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('onewaysms', $notification)) {
-            return;
-        }
-
         $message = $notification->toOnewaysms($notifiable);
+
+        if ($to = $notifiable->routeNotificationFor('onewaysms')) {
+            $message->to($to);
+        }
 
         if (is_string($message)) {
             $message = new OnewaysmsMessage($message);
         }
 
-        if (mb_strlen($message->content) > $this->character_limit_count) {
-            throw CouldNotSendNotification::contentLengthLimitExceeded($this->character_limit_count);
-        }
+        $response = $this->client->send($message);
 
-        return $this->onewaysms->send([
-            'sender' => $message->sender ?: $this->sender,
-            'to' => $to,
-            'message' => trim($message->content),
-        ]);
+        if ($response == '-100') {
+            throw OnewaysmsException::invalidAPIAccount();
+        } else if ($response == '-200') {
+            throw OnewaysmsException::invalidSenderID();
+        } else if ($response == '-300') {
+            throw OnewaysmsException::invalidMobileNo();
+        } else if ($response == '-400') {
+            throw OnewaysmsException::invalidLanguageType();
+        } else if ($response == '-500') {
+            throw OnewaysmsException::invalidCharactersInMessage();
+        } else if ($response == '-600') {
+            throw OnewaysmsException::invalidInsufficientCreditBalance();
+        }
     }
 }
