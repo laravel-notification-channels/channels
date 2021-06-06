@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Onewaysms;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\ServiceProvider;
 use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 
 class OnewaysmsServiceProvider extends ServiceProvider

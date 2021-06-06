@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\Onewaysms;
 
-use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
+use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 
 class OnewaysmsClient
 {

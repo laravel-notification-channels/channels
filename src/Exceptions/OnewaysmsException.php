@@ -15,12 +15,12 @@ class OnewaysmsException extends Exception
 
     public static function respondedWithAnError(ClientException $e)
     {
-        return new static('OneWaySMS responded with an error (' . $e->getCode() . ' : ' . $e->getMessage() . ')');
+        return new static('OneWaySMS responded with an error ('.$e->getCode().' : '.$e->getMessage().')');
     }
 
     public static function couldNotCommunicate(GuzzleException $e)
     {
-        return new static('OneWaySMS : The communication with OneWaySMS failed. (' . $e->getCode() . ' : ' . $e->getMessage() . ')');
+        return new static('OneWaySMS : The communication with OneWaySMS failed. ('.$e->getCode().' : '.$e->getMessage().')');
     }
 
     public static function invalidAPIAccount()

@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Onewaysms;
 
-use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Onewaysms\Exceptions\OnewaysmsException;
 
 class OnewaysmsChannel
 {
@@ -30,15 +30,15 @@ class OnewaysmsChannel
 
         if ($response == '-100') {
             throw OnewaysmsException::invalidAPIAccount();
-        } else if ($response == '-200') {
+        } elseif ($response == '-200') {
             throw OnewaysmsException::invalidSenderID();
-        } else if ($response == '-300') {
+        } elseif ($response == '-300') {
             throw OnewaysmsException::invalidMobileNo();
-        } else if ($response == '-400') {
+        } elseif ($response == '-400') {
             throw OnewaysmsException::invalidLanguageType();
-        } else if ($response == '-500') {
+        } elseif ($response == '-500') {
             throw OnewaysmsException::invalidCharactersInMessage();
-        } else if ($response == '-600') {
+        } elseif ($response == '-600') {
             throw OnewaysmsException::invalidInsufficientCreditBalance();
         }
     }
