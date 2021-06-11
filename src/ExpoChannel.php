@@ -3,11 +3,11 @@
 namespace NotificationChannels\Expo;
 
 use Exception;
-use GuzzleHttp\Exception\GuzzleException;
-use NotificationChannels\Expo\Exceptions\CouldNotSendNotification;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Expo\Exceptions\CouldNotSendNotification;
 
 class ExpoChannel
 {
@@ -51,14 +51,14 @@ class ExpoChannel
             throw CouldNotSendNotification::couldNotCreateMessage($notification);
         }
 
-        if(!is_array($to)){
+        if (! is_array($to)) {
             $to = [$to];
         }
 
         $messages = array_map(
             function ($recipient) use ($message) {
                 return array_merge(['to' => $recipient], $message->toArray());
-                },
+            },
             $to
         );
 
@@ -74,7 +74,6 @@ class ExpoChannel
             }
 
             return $response;
-
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::clientError($exception);
         } catch (Exception $exception) {

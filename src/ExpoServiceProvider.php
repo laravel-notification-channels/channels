@@ -16,9 +16,9 @@ class ExpoServiceProvider extends ServiceProvider
             ->needs(GuzzleClient::class)
             ->give(function () {
                 $accessToken = config('expo.access_token');
-                if($accessToken) {
+                if ($accessToken) {
                     return new GuzzleClient(['headers' => ['Authorization' => "Bearer $accessToken"]]);
-                }else{
+                } else {
                     return new GuzzleClient();
                 }
             });

@@ -1,6 +1,7 @@
 <?php
 
 namespace NotificationChannels\Expo;
+
 use NotificationChannels\Expo\Exceptions\CouldNotSendNotification;
 
 class ExpoMessage

@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\ClientException;
 class CouldNotSendNotification extends \Exception
 {
     /**
-     * Expo responded with an error
+     * Expo responded with an error.
      *
      * @param $response
      * @return static
@@ -39,14 +39,14 @@ class CouldNotSendNotification extends \Exception
     public static function undefinedMethod($notification)
     {
         return new static(
-            'Notification of class: ' . get_class($notification)
-            . ' must define a `toExpo()` method in order to send via Expo'
+            'Notification of class: '.get_class($notification)
+            .' must define a `toExpo()` method in order to send via Expo'
         );
     }
 
     /**
      * Thrown if a notification instance's `toExpo()` method,
-     * does not return an instance of `\NotificationChannels\Expo\ExpoMessage`
+     * does not return an instance of `\NotificationChannels\Expo\ExpoMessage`.
      *
      * @param mixed $notification
      * @return static
@@ -54,8 +54,8 @@ class CouldNotSendNotification extends \Exception
     public static function couldNotCreateMessage($notification)
     {
         return new static(
-            'Notification of class: ' . get_class($notification)
-            . ' `toExpo()` method did not return an instance of `\NotificationChannels\Expo\ExpoMessage`'
+            'Notification of class: '.get_class($notification)
+            .' `toExpo()` method did not return an instance of `\NotificationChannels\Expo\ExpoMessage`'
         );
     }
 
@@ -69,8 +69,8 @@ class CouldNotSendNotification extends \Exception
     public static function noValidDestination($notifiable)
     {
         return new static(
-            'Notifiable of class: ' . get_class($notifiable)
-            . ' `routeNotificationFor()` method did not return a valid Expo Push Token'
+            'Notifiable of class: '.get_class($notifiable)
+            .' `routeNotificationFor()` method did not return a valid Expo Push Token'
         );
     }
 

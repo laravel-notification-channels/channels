@@ -10,7 +10,6 @@ use NotificationChannels\Expo\ExpoChannel;
 
 class ExpoChannelTest extends TestCase
 {
-
     /** @test */
     public function can_send_notification_to_notifible()
     {
@@ -43,5 +42,4 @@ class ExpoChannelTest extends TestCase
         $this->assertTrue($json->data[0]->status === 'ok');
         $this->assertTrue($json->data[1]->status === 'ok');
     }
-
 }
