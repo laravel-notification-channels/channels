@@ -1,0 +1,50 @@
+{
+    "name": "laravel-notification-channels/expo",
+    "description": "Expo Notifications driver for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/expo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick Pratley",
+            "email": "nick@npratley.net",
+            "homepage": "https://devlan.io/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4 | ^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/support": "~6.0 || ~7.0 || ~8.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^6.18",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Expo\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Expo\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra" : {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Expo\\ExpoServiceProvider"
+            ]
+        }
+    }
+}
