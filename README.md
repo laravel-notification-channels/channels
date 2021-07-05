@@ -79,7 +79,7 @@ In order to let your Notification know which phone numer you are targeting, add 
 
 ```php
 // app/Models/User.php
-public function routeNotificationForCmsms()
+public function routeNotificationForUnifonic()
 {
     return '+21267064497';
 }
