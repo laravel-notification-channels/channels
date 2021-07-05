@@ -44,6 +44,18 @@ class UnifonicChannel
             $message = UnifonicMessage::create($message);
         }
 
+        $recipient = $this->unifonicRecipientNumberValidation($recipient);
         $this->client->send($message, $recipient);
+    }
+
+    /**
+     * Remove + from the internation phone number
+     * @param string $recipient
+     *
+     * @return string
+     */
+    private function unifonicRecipientNumberValidation($recipient)
+    {
+        return preg_replace('/^\+?1|\|1|\D/', '', $recipient);
     }
 }
