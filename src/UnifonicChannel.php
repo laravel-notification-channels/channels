@@ -49,7 +49,7 @@ class UnifonicChannel
     }
 
     /**
-     * Remove + from the internation phone number
+     * Remove + from the internation phone number.
      * @param string $recipient
      *
      * @return string
