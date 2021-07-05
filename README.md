@@ -1,4 +1,3 @@
-
 # UNIFONIC notification channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/unifonic.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/unifonic)
@@ -12,34 +11,31 @@
 
 This package makes it easy to send notifications using [Unifonic Api](https://unifonic.docs.apiary.io/#reference/messages/send) with Laravel 5.5+, 6.x, 7.x and 8.x
 
-
-
 ## Contents
-- [Requierements](#requirements)
-- [Installation](#installation)
-	- [Setting up the Unifonic service](#setting-up-the-Unifonic-service)
-- [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
 
+-   [Requierements](#requirements)
+-   [Installation](#installation)
+    -   [Setting up the Unifonic service](#setting-up-the-Unifonic-service)
+-   [Usage](#usage)
+    -   [Available Message methods](#available-message-methods)
+-   [Changelog](#changelog)
+-   [Testing](#testing)
+-   [Security](#security)
+-   [Contributing](#contributing)
+-   [Credits](#credits)
+-   [License](#license)
 
 ## Requierements
-- Before start you have to create an account on [Unifonic](https://unifonic.com).
+
+-   Before start you have to create an account on [Unifonic](https://unifonic.com).
 
 ## Installation
 
 1. You can install the package via composer:
 
-``` bash
+```bash
 composer require laravel-notification-channels/unifonic
 ```
-This package will register itself automatically if your Laravel 5.5+, trough Package auto-discovery.
-
 
 ### Setting up the Unifonic service
 
@@ -56,10 +52,9 @@ Add your Unifonic AppsId to your `config/services.php`:
 
 ## Usage
 
-
 Now you can use the channel in your `via()` method inside the notification:
 
-``` php
+```php
 use NotificationChannels\Unifonic\UnifonicChannel;
 use NotificationChannels\Unifonic\UnifonicMessage;
 use Illuminate\Notifications\Notification;
@@ -80,16 +75,15 @@ class InvoicePaid extends Notification
 
 In order to let your Notification know which phone numer you are targeting, add the `routeNotificationForUnifonic` method to your Notifiable model.
 
-**Important note**: Unifonic requires the recipients phone number to be without `+` like this format. 21267064497
+**Important note**: Unifonic requires the recipients phone number to be [E.164](https://developers.omnisend.com/guides/e164-phone-number-formatting)
 
 ```php
 // app/Models/User.php
 public function routeNotificationForCmsms()
 {
-    return '21267064497';
+    return '+21267064497';
 }
 ```
-
 
 ## Changelog
 
@@ -97,7 +91,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
@@ -111,8 +105,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [imad](https://github.com/darbaoui)
-- [All Contributors](../../contributors)
+-   [imad](https://github.com/darbaoui)
+-   [All Contributors](../../contributors)
 
 ## License
 
