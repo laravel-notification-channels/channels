@@ -39,10 +39,7 @@ class UnifonicClient
     public function send(UnifonicMessage $message, string $recipient)
     {
         $response = $this->client->request('POST', static::GATEWAY_URL, [
-            'form_params'    => $this->buildMessageParameters($message, $recipient),
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded',
-            ],
+            'form_params'    => $this->buildMessageParameters($message, $recipient)
         ]);
 
         $body = $response->getBody()->getContents();
