@@ -48,9 +48,11 @@ class ExpoChannel
         $interest = $notifiable->routeNotificationFor('ExpoPushNotifications')
             ?: $this->interestName($notifiable);
 
+        $interests = [ $interest ];
+
         try {
             $this->expo->notify(
-                $interest,
+                $interests,
                 $notification->toExpoPush($notifiable)->toArray(),
                 config('exponent-push-notifications.debug')
             );
