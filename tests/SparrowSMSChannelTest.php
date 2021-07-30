@@ -39,6 +39,7 @@ class SparrowSMSChannelTest extends TestCase
 
         $this->assertIsArray($testChannel->send(new TestNotifiable(), new TestNotification()));
     }
+
 }
 
 class TestNotifiable
