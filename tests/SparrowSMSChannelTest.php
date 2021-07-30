@@ -16,7 +16,7 @@ class SparrowSMSChannelTest extends TestCase
             'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
             'token'    => 'TEST_TOKEN',
             'from'     => 'TEST_FROM',
-	    ];
+        ];
 
         $instance = new SparrowSMSChannel($testConfig);
 
@@ -30,7 +30,7 @@ class SparrowSMSChannelTest extends TestCase
             'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
             'token'    => 'TEST_TOKEN',
             'from'     => 'TEST_FROM',
-	    ];
+        ];
 
         $testChannel = Mockery::mock(SparrowSMSChannel::class, $testConfig);
 
