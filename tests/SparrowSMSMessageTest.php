@@ -13,5 +13,4 @@ class SparrowSMSMessageTest extends TestCase
 
         $this->assertInstanceOf(SparrowSMSMessage::class, $instance);
     }
-
 }

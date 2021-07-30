@@ -27,7 +27,7 @@ class SparrowSMSChannelTest extends TestCase
     public function it_can_send_a_sms_notification()
     {
         $testConfig = [
-	        'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
+            'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
             'token'    => 'TEST_TOKEN',
             'from'     => 'TEST_FROM',
 	    ];
