@@ -1,0 +1,47 @@
+{
+    "name": "laravel-notification-channels/sparrowsms",
+    "description": "SparrowSMS notification channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/sparrowsms",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Padam Shankhadev",
+            "email": "shankhadev123@gmail.com",
+            "homepage": "https://github.com/shankhadevpadam",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/notifications": "~7.0 || ~8.0",
+        "illuminate/support": "~7.0 || ~8.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\SparrowSMS\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\SparrowSMS\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\SparrowSMS\\SparrowSMSServiceProvider"
+            ]
+        }
+    }
+}
