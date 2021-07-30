@@ -3,8 +3,8 @@
 namespace NotificationChannels\SparrowSMS;
 
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification;
 
 class SparrowSMSChannel
@@ -27,7 +27,7 @@ class SparrowSMSChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
+     * @param mixed                                  $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
      * @throws \NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification
@@ -41,9 +41,9 @@ class SparrowSMSChannel
         }
 
         $response = Http::post($this->endpoint, [
-            'token' => $this->token,
-            'from '=> $this->from,
-            'to' => $notifiable->routeNotificationFor('sparrowsms'),
+            'token'   => $this->token,
+            'from'    => $this->from,
+            'to'      => $notifiable->routeNotificationFor('sparrowsms'),
             'message' => $message->content
         ]);
 

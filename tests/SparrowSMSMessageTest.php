@@ -3,7 +3,6 @@
 namespace NotificationChannels\SparrowSMS;
 
 use PHPUnit\Framework\TestCase;
-
 class SparrowSMSMessageTest extends TestCase
 {
     /** @test */

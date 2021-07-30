@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\SparrowSMS;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\ServiceProvider;
 
 class SparrowSMSServiceProvider extends ServiceProvider
 {
