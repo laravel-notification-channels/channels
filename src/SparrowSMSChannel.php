@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\SparrowSMS;
 
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Notifications\Notification;
 use NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification;
 
 class SparrowSMSChannel
