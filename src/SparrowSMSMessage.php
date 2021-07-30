@@ -1,6 +1,7 @@
 <?php
 
 namespace NotificationChannels\SparrowSMS;
+
 class SparrowSMSMessage
 {
     public string $content;

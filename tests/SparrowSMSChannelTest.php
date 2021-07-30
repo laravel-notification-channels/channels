@@ -13,7 +13,7 @@ class SparrowSMSChannelTest extends TestCase
     public function it_can_be_instantiate()
     {
         $testConfig = [
-	        'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
+            'endpoint' => 'http://api.sparrowsms.com/v2/sms/?',
 	        'token'    => 'TEST_TOKEN',
 	        'from'     => 'TEST_FROM',
 	    ];

@@ -44,7 +44,7 @@ class SparrowSMSChannel
             'token'   => $this->token,
             'from'    => $this->from,
             'to'      => $notifiable->routeNotificationFor('sparrowsms'),
-            'message' => $message->content
+            'message' => $message->content,
         ]);
 
         if ($response->status() === 403) {
