@@ -28,7 +28,7 @@ class ExpoDatabaseDriver implements ExpoRepository
     /**
      * Retrieves an Expo token with a given identifier.
      *
-     * @param string $key
+     * @param  string  $key
      *
      * @return array
      */
@@ -40,8 +40,8 @@ class ExpoDatabaseDriver implements ExpoRepository
     /**
      * Removes an Expo token with a given identifier.
      *
-     * @param string $key
-     * @param string $value
+     * @param  string  $key
+     * @param  string  $value
      *
      * @return bool
      */

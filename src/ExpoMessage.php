@@ -66,7 +66,7 @@ class ExpoMessage
     /**
      * Create a message with given body.
      *
-     * @param string $body
+     * @param  string  $body
      *
      * @return static
      */
@@ -78,7 +78,7 @@ class ExpoMessage
     /**
      * ExpoMessage constructor.
      *
-     * @param string $body
+     * @param  string  $body
      */
     public function __construct(string $body = '')
     {
@@ -88,7 +88,7 @@ class ExpoMessage
     /**
      * Set the message title.
      *
-     * @param string $value
+     * @param  string  $value
      *
      * @return $this
      */
@@ -102,7 +102,7 @@ class ExpoMessage
     /**
      * Set the message body.
      *
-     * @param string $value
+     * @param  string  $value
      *
      * @return $this
      */
@@ -140,7 +140,7 @@ class ExpoMessage
     /**
      * Set the message badge (iOS).
      *
-     * @param int $value
+     * @param  int  $value
      *
      * @return $this
      */
@@ -154,7 +154,7 @@ class ExpoMessage
     /**
      * Set the time to live of the notification.
      *
-     * @param int $ttl
+     * @param  int  $ttl
      *
      * @return $this
      */
@@ -168,7 +168,7 @@ class ExpoMessage
     /**
      * Set the channelId of the notification for Android devices.
      *
-     * @param string $channelId
+     * @param  string  $channelId
      *
      * @return $this
      */
@@ -182,7 +182,7 @@ class ExpoMessage
     /**
      * Set the json Data attached to the message.
      *
-     * @param array|string $data
+     * @param  array|string  $data
      *
      * @return $this
      *
@@ -208,7 +208,7 @@ class ExpoMessage
     /**
      *  Set the priority of the notification, must be one of [default, normal, high].
      *
-     * @param string $priority
+     * @param  string  $priority
      *
      * @return $this
      */
