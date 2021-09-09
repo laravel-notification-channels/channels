@@ -19,7 +19,7 @@ class ExpoController extends Controller
     /**
      * ExpoController constructor.
      *
-     * @param ExpoChannel $expoChannel
+     * @param  ExpoChannel  $expoChannel
      */
     public function __construct(ExpoChannel $expoChannel)
     {
@@ -29,7 +29,7 @@ class ExpoController extends Controller
     /**
      * Handles subscription endpoint for an expo token.
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -72,7 +72,7 @@ class ExpoController extends Controller
     /**
      * Handles removing subscription endpoint for the authenticated interest.
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return JsonResponse
      */

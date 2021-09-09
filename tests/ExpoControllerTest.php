@@ -26,7 +26,7 @@ class ExpoControllerTest extends TestCase
     /**
      * Sets up the expo controller with the given expo channel.
      *
-     * @param ExpoRepository $expoRepository
+     * @param  ExpoRepository  $expoRepository
      *
      * @return array
      */
@@ -250,7 +250,7 @@ class ExpoControllerTest extends TestCase
     }
 
     /**
-     * @param bool $fails
+     * @param  bool  $fails
      *
      * @return \Mockery\MockInterface
      */

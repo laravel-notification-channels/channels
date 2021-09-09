@@ -24,8 +24,8 @@ class ExpoChannel
     /**
      * ExpoChannel constructor.
      *
-     * @param Expo $expo
-     * @param Dispatcher $events
+     * @param  Expo  $expo
+     * @param  Dispatcher  $events
      */
     public function __construct(Expo $expo, Dispatcher $events)
     {
@@ -36,8 +36,8 @@ class ExpoChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      *
      * @throws CouldNotSendNotification
      *
