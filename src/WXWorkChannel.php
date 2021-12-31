@@ -7,7 +7,6 @@ namespace NotificationChannels\WXWork;
 use GuzzleHttp\Client;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\WXWork\Exceptions\CouldNotSendNotification;
-use Illuminate\Support\Facades\RateLimiter;
 
 final class WXWorkChannel
 {
@@ -55,18 +54,17 @@ final class WXWorkChannel
         Notification $notification
     ): \GuzzleHttp\Psr7\Response {
         $token = $notifiable->routeNotificationFor('wxwork');
-        if (!$token) {
+        if (! $token) {
             $token = $this->token;
         }
 
         $message = $notification->toWXWork($notifiable);
 
         $response = $this->client->post($this->url, ['body' => $message]);
-       
+
         $this->checkWXWorkResponseError($response);
+
         return $response;
-
-
     }
 
     protected function checkWXWorkResponseError(
