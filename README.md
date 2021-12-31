@@ -1,17 +1,125 @@
-# New Notification Channels
+# WXWork Notifications Channel for Laravel
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/wxwork.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/wxwork)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/wxwork/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/wxwork)
+[![StyleCI](https://styleci.io/repos/443232385/shield)](https://styleci.io/repos/443232385)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/wxwork.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/wxwork)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/wxwork/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/wxwork/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/wxwork.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/wxwork)
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [WXWork]([link to service](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)) with Laravel 5.5+, 6.x, 7.x and 8.x
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [WXWork Notifications Channel for Laravel](#wxwork-notifications-channel-for-laravel)
+	- [Contents](#contents)
+	- [Installation](#installation)
+		- [Setting up the WXWork service](#setting-up-the-wxwork-service)
+	- [Usage](#usage)
+		- [Text Notification](#text-notification)
+		- [Markdown Notification](#markdown-notification)
+		- [Available Message methods](#available-message-methods)
+	- [Changelog](#changelog)
+	- [Testing](#testing)
+	- [Security](#security)
+	- [Contributing](#contributing)
+	- [Credits](#credits)
+	- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require laravel-notification-channels/wxwork
+```
+
+### Setting up the WXWork service
+
+```php
+# config/services.php
+
+'wxwork-bot-api' => [
+    'token' => env('WXWORK_BOT_TOKEN', 'YOUR BOT TOKEN HERE'),
+	'base_uri' => env('WXWORK_BOT_BASE_URI', 'YOUR BASE URI HERE')
+],
+```
+
+## Usage
+
+You can now use the channel in your `via()` method inside the Notification class.
+
+### Text Notification
+
+```php
+use NotificationChannels\WXWork\WXWorkMessage;
+use NotificationChannels\WXWork\WXWorkChannel;
+use Illuminate\Notifications\Notification;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [WXWorkChannel::class];
+    }
+
+	public function toWXWork($notifiable)
+    {
+        return WXWorkMessage::create()->content("Hello there!\nYour invoice has been *PAID*")->toText();
+    }
+}
+```
+
+### Markdown Notification
+
+```php
+use NotificationChannels\WXWork\WXWorkMessage;
+use NotificationChannels\WXWork\WXWorkChannel;
+use Illuminate\Notifications\Notification;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [WXWorkChannel::class];
+    }
+
+	public function toWXWork($notifiable)
+    {
+        return WXWorkMessage::create()->content("Hello there!\nYour invoice has been *PAID*")->toMarkDown();
+    }
+}
+```
+
+### Available Message methods
+
+A list of all available options
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email :author_email instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Dong Lei](https://github.com/:author_username)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
