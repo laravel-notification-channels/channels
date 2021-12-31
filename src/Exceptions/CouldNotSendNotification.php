@@ -23,5 +23,4 @@ final class CouldNotSendNotification extends \Exception
             $code
         );
     }
-
 }

@@ -43,7 +43,7 @@ class ChannelTest extends TestCase
             )->andReturn($response);
         $channel = new WXWorkChannel($client, 'Test_Token');
         $actualResponse = $channel->send(new TestNotifiable(), new TestTextNotification());
-        
+
         self::assertSame($response, $actualResponse);
     }
 }
