@@ -65,9 +65,6 @@ class BulkGateChannel
                 throw CouldNotSendNotification::serviceRespondedWithAnError($response);
             }
 
-            $event = new BulkGateSmsSent($notifiable, $notification, $response);
-            $this->dispatcher->dispatch($event);
-
             return $response;
         } catch (Exception $exception) {
             $this->notifyFail($notifiable, $notification, $exception);
