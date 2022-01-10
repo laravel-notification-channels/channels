@@ -1,0 +1,51 @@
+{
+    "name": "laravel-notification-channels/bulkgate",
+    "description": "Provides BulkGate SMS notification channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/bulkgate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Vlcek",
+            "email": "martin@dontfreakout.eu",
+            "homepage": "https://github.com/dontfreakout",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "bulkgate/sms": "^2.1",
+        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/support": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/events": "~6.0 || ~7.0 || ~8.0",
+        "illuminate/queue": "^6.0 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": ">= v4.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\BulkGate\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\BulkGate\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\BulkGate\\BulkGateServiceProvider"
+            ]
+        }
+    }
+}
