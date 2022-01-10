@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\BulkGate\Events\BulkGateSmsSent;
 use NotificationChannels\BulkGate\Exceptions\CouldNotSendNotification;
 
 class BulkGateChannel
