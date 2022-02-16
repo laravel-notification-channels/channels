@@ -2,11 +2,10 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/webex.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/webex)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/webex/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/webex)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/webex.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/webex)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/webex/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/webex/?branch=master)
+[![Build Status](https://img.shields.io/github/workflow/status/askmrsinh/channels/PHPUnit%20tests.svg?style=flat-square)](https://github.com/askmrsinh/channels/actions/workflows/tests.yml)
+[![StyleCI](https://styleci.io/repos/459859200/shield)](https://styleci.io/repos/459859200)
+[![Quality Score](https://img.shields.io/scrutinizer/quality/g/askmrsinh/channels.svg?style=flat-square)](https://scrutinizer-ci.com/g/askmrsinh/channels/?branch=master)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/askmrsinh/channels.svg?style=flat-square)](https://scrutinizer-ci.com/g/askmrsinh/channels/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/webex.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/webex)
 
 This package makes it easy to send notifications using [Webex](https://www.webex.com/) with Laravel
