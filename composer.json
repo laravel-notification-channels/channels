@@ -1,20 +1,18 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/arkesel-sms",
+    "description": "Arkesel Notification Channel For Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/arkesel-sms",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Parables Boltnoel",
+            "email": "parables95@gmail.com",
+            "homepage": "https://github.com/parables",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
-        "illuminate/support": "~6.0 || ~7.0 || ~8.0"
+        "php": ">=7.2"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
@@ -22,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\ArkeselSms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\ArkeselSms\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -36,5 +34,12 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\ArkeselSms\\ArkeselServiceProvider"
+            ]
+        }
     }
 }
