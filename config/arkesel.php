@@ -15,7 +15,6 @@ return [
 
     'api_key' => env('ARKESEL_SMS_API_KEY'),
 
-
     /*
     |--------------------------------------------------------------------------
     | SMS API Version
@@ -29,7 +28,6 @@ return [
 
     'api_version' => env('ARKESEL_API_VERSION', 'v2'),
 
-
     /*
     |--------------------------------------------------------------------------
     | API Key
@@ -40,7 +38,6 @@ return [
     |
     */
     'sms_url' => env('ARKESEL_SMS_URL', 'https://sms.arkesel.com/api/v2/sms/send'),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +52,6 @@ return [
 
     'sms_sender' => env('ARKESEL_SMS_SENDER', config('app.name')),
 
-
     /*
     |--------------------------------------------------------------------------
     | Callback URL
@@ -68,7 +64,6 @@ return [
     */
 
     'sms_callback_url' => env('ARKESEL_SMS_CALLBACK_URL'),
-
 
     /*
     |--------------------------------------------------------------------------
