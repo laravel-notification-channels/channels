@@ -77,7 +77,6 @@ class ArkeselChannel
                 'sandbox' => $message->sandbox ?? $this->smsSandbox,
             ]);
 
-
         try {
             $response = $this->client->request(
                 method: $this->apiVersion === 'v1' ? 'GET' : 'POST',

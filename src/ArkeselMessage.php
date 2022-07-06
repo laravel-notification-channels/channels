@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\ArkeselSms;
 
-use Illuminate\Support\Arr;
-
 class ArkeselMessage
 {
     /**
@@ -16,7 +14,7 @@ class ArkeselMessage
     public string $message;
 
     /**
-     * Arkesel SMS API Key
+     * Arkesel SMS API Key.
      *
      * @var string
      */
@@ -26,6 +24,7 @@ class ArkeselMessage
      * schedule when the message should be sent.
      *
      * @var string
+     *
      * @see https://developers.arkesel.com/#operation/send_schedule_sms_v1
      * @see https://developers.arkesel.com/#operation/send_sms
      */
@@ -70,7 +69,6 @@ class ArkeselMessage
      * new ArkeselMessage instance.
      *
      * @param  string  $message
-     *
      */
     public function __construct(
         string $message = '',
@@ -99,6 +97,7 @@ class ArkeselMessage
     public function message(string $message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -112,6 +111,7 @@ class ArkeselMessage
     public function apiKey(string $apiKey)
     {
         $this->apiKey = $apiKey;
+
         return $this;
     }
 
@@ -120,6 +120,7 @@ class ArkeselMessage
      *  set/schedule when the message should be sent.
      *
      * @var string
+
      * @see https://developers.arkesel.com/#operation/send_schedule_sms_v1
      * @see https://developers.arkesel.com/#operation/send_sms
      *
@@ -129,6 +130,7 @@ class ArkeselMessage
     public function schedule(string $schedule)
     {
         $this->schedule = $schedule;
+
         return $this;
     }
 
@@ -141,6 +143,7 @@ class ArkeselMessage
     public function sender(string $sender)
     {
         $this->sender = $sender;
+
         return $this;
     }
 
@@ -159,6 +162,7 @@ class ArkeselMessage
     public function recipients(string|array $recipients)
     {
         $this->recipients = $recipients;
+
         return $this;
     }
 
@@ -173,6 +177,7 @@ class ArkeselMessage
     public function callbackUrl(string $callbackUrl)
     {
         $this->callbackUrl = $callbackUrl;
+
         return $this;
     }
 
@@ -181,12 +186,13 @@ class ArkeselMessage
      * if true, sms messages are not forwarded to the mobile network providers for delivery,
      * hence you are not billed for the operation. Use this to test your application.
      *
-     * @param  boolean  sandbox
+     * @param  bool  sandbox
      * @return $this
      */
     public function sandbox(bool $sandbox)
     {
         $this->sandbox = $sandbox;
+
         return $this;
     }
 }
