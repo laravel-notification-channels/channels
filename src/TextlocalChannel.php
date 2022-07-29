@@ -3,6 +3,8 @@
 namespace NotificationChannels\Textlocal;
 
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Textlocal\Contracts\INotificationUsesTextlocalClientConfig;
+use NotificationChannels\Textlocal\Contracts\IUsesTextlocalClientConfig;
 use NotificationChannels\Textlocal\Exceptions\CouldNotSendNotification;
 
 /**
@@ -66,8 +68,10 @@ class TextlocalChannel
             $this->sender = $notification->getSenderId();
         }
 
+        $client = $this->getClient($notifiable, $notification);
+
         try {
-            $response = $this->client
+            $response = $client
                 ->setUnicodeMode($unicode)
                 ->sendSms($numbers, $message, $this->sender);
 
@@ -75,5 +79,26 @@ class TextlocalChannel
         } catch (\Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception, $message);
         }
+    }
+
+    public function getClient($notifiable, Notification $notification)
+    {
+        $client = $this->client;
+
+        if ($notifiable instanceof IUsesTextlocalClientConfig) {
+
+            [$username, $hash, $apiKey, $country] = $notification->getTextlocalClientConfig($notification);
+
+            $client = new Textlocal($username, $hash, $apiKey, $country);
+        }
+
+        if ($notification instanceof INotificationUsesTextlocalClientConfig) {
+
+            [$username, $hash, $apiKey, $country] = $notification->getTextlocalClientConfig($notifiable);
+
+            $client = new Textlocal($username, $hash, $apiKey, $country);
+        }
+
+        return $client;
     }
 }

@@ -22,12 +22,7 @@ class Textlocal
     const REQUEST_TIMEOUT = 60;
     const REQUEST_HANDLER = 'curl';
 
-    private $request_url;
-    private $country;
-
-    private $username;
-    private $hash;
-    private $apiKey;
+    private string $request_url;
 
     private $errorReporting = false;
 
@@ -40,20 +35,14 @@ class Textlocal
     /**
      * Instantiate the object.
      *
-     * @param $username
-     * @param $hash
+     * @param string|null $username
+     * @param string|null $hash
      * @param string|null $apiKey
+     * @param string $country
      */
-    public function __construct($username, $hash, $apiKey = null)
+    public function __construct(private $username, private $hash, private $apiKey, private string $country)
     {
-        $this->username = $username;
-        $this->hash = $hash;
-        if (! is_null($apiKey)) {
-            $this->apiKey = $apiKey;
-        }
-
-        $this->country = config('textlocal.country');
-        $this->request_url = config('textlocal.request_urls')[$this->country];
+        $this->request_url = config('textlocal.request_urls')[$country];
     }
 
     /**

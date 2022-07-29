@@ -9,6 +9,9 @@ Supports Laravel 5.5 to 9.x
 This package makes it easy to send notifications using [textlocal](https://www.textlocal.in/) with Laravel 5.3.+
 
 
+To use version ^2.3.0 onwards will require PHP 8.0
+
+for other PHP version use upto ^2.2.0
 
 ## Contents
 
@@ -48,9 +51,14 @@ return [
 		'UK' => 'https://api.txtlocal.com/'
 	],
 	'country'   => env('TEXTLOCAL_COUNTRY', 'IN'),
+    'extra' => [
+        // extra config define keys as desired for use within the textlocal client config
+        // if you want to use the custom client config for each notification or notifiable 
+        // INotificationUsesTextlocalClientConfig
+    ]
 ];
 ```
-### Configuring .env 
+### Configuring .env
 ```
     TEXTLOCAL_USERNAME=Your email id or api key
     TEXTLOCAL_HASH=get it from url '/docs/' under your API KEYS section
