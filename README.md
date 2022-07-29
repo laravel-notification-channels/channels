@@ -69,6 +69,39 @@ Currently, only textlocal of two country is supported IN(India) and UK(United Ki
 
 Implement this method `routeNotificationForTextlocal()` in your notifiable class/model which will return array of mobile numbers. Please make sure the mobile number contains the dial code as well (e.g +91 for India). And lastly implement `toSms()` method in the notification class which will return the (string) sms or template that is defined in textlocal account that needs to be send.
 
+
+## Usage
+
+You can use the channel in your `via()` method inside the notification:
+
+```php
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Textlocal\TextlocalChannel;
+
+class TestOTPNotification extends Notification
+{
+    public function via($notifiable)
+    {
+        return [TextlocalChannel::class];
+    }
+
+    public function toSms($notifiable)
+    {
+        return SmscRuMessage::create("Task #{$notifiable->id} is complete!");
+    }
+}
+```
+
+In your notifiable model, make sure to include a `routeNotificationForTextlocal()` method, which returns a phone number or multiple numbers in array
+or an array of phone numbers.
+
+```php
+public function routeNotificationForTextlocal(): array
+{
+    return [$this->mobile_no];
+}
+```
+
 ### Available Message methods
 
 A list of all available options
@@ -95,6 +128,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 - [Manash Jyoti Sonowal](https://github.com/msonowal)
 - [Mr Ejang](https://github.com/tomonsoejang)
+- [Sinadh](https://github.com/tsainadh)
 - [All Contributors](../../contributors)
 
 ## License
