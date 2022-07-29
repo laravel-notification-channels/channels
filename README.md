@@ -104,6 +104,20 @@ public function routeNotificationForTextlocal(): array
 
 ### Available Message methods
 
+And if you want to have a specific sender based on Notification, e.g. like you are sending promotional notification using one and another for transaction then you can just define this method in your notification class which will return your sender id for that notification only
+```
+public function getSenderId()
+{
+	return 'YOUR_SENDER_ID';
+}
+```
+
+Unicode support
+If you want to send the notification content to have unicode support set define this method in your notification which will return boolean based on which the sms will set the unicode mode in textlocal API
+```
+getUnicodeMode
+```
+
 A list of all available options
 
 ## Changelog
