@@ -1,6 +1,6 @@
 This package allows to send SMS using Textlocal API using laravel notifications
 
-Supports Laravel 5.5 to 8.x
+Supports Laravel 5.5 to 9.x
 
 # Found any bugs or improvement open an issue or send me a PR
 
@@ -34,7 +34,7 @@ Create an account in textlocal then create an API key or hash(password).
 
 ### Setting up the textlocal service
 
-default textlocal config update as desired
+default config `textlocal.php` update where desired
 ```
 return [
 	'username'  => env('TEXTLOCAL_USERNAME'),
@@ -55,7 +55,7 @@ return [
     TEXTLOCAL_HASH=get it from url '/docs/' under your API KEYS section
     TEXTLOCAL_API_KEY get it from url '/docs/' under your API KEYS section
     TEXTLOCAL_SENDER=Name of the Sender that will be displayed to the recipient (max 6 Characters).
-    TEXTLOCAL_COUNTRY=Your Two letter(ISO-3166-alpha-2) Country Code. It should be the Country of the TEXTLOCAL account.
+    TEXTLOCAL_COUNTRY=Your Two letter(ISO-3166-alpha-2) Country Code. It should be the Country of the TEXTLOCAL account. defaults to IN
 ```
 
 ### Publish Config
