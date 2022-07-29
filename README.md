@@ -108,14 +108,17 @@ And if you want to have a specific sender based on Notification, e.g. like you a
 ```
 public function getSenderId()
 {
-	return 'YOUR_SENDER_ID';
+     return 'YOUR_SENDER_ID';
 }
 ```
 
 Unicode support
-If you want to send the notification content to have unicode support set define this method in your notification which will return boolean based on which the sms will set the unicode mode in textlocal API
+If you want to send the notification content to have unicode support. Define this method in your notification which will return boolean based on which the sms will set the unicode mode in textlocal API
 ```
-getUnicodeMode
+public function getUnicodeMode()
+{
+     return true;
+}
 ```
 
 A list of all available options
