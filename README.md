@@ -87,7 +87,7 @@ class TestOTPNotification extends Notification
 
     public function toSms($notifiable)
     {
-        return SmscRuMessage::create("Task #{$notifiable->id} is complete!");
+        return 'Use 1234 as OTP for resetting your password.';
     }
 }
 ```
