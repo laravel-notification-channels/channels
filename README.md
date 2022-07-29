@@ -1,8 +1,6 @@
-This package allows to send SMS using Textlocal API using laravel notifications
+This package allows to send SMS using Textlocal API using laravel notifications channel textlocal sms
 
 Supports Laravel 5.5 to 9.x
-
-# Found any bugs or improvement open an issue or send me a PR
 
 [![Latest Stable Version](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/v/stable)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
 [![License](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/license)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
@@ -35,12 +33,15 @@ Create an account in textlocal then create an API key or hash(password).
 ### Setting up the textlocal service
 
 default config `textlocal.php` update where desired
+
+Important Either specify a Key OR a Hash - don't enter both!
+
 ```
 return [
 	'username'  => env('TEXTLOCAL_USERNAME'),
 	'password'  => env('TEXTLOCAL_PASSWORD'),
-	'hash'      => env('TEXTLOCAL_HASH'),
-	'api_key'   => env('TEXTLOCAL_API_KEY'),
+	'hash'      => env('TEXTLOCAL_HASH'),  //optional if api_key is set
+	'api_key'   => env('TEXTLOCAL_API_KEY'), //optional if hash is set
 	'sender'    => env('TEXTLOCAL_SENDER'),
 	'request_urls' => [
 		'IN' => 'https://api.textlocal.in/',
@@ -102,6 +103,12 @@ public function routeNotificationForTextlocal(): array
 }
 ```
 
+Annoynmous Notifable when say mobile no is not added to a notifiable model you can directly send to mobile no by using that
+
+```php
+Notification::route('Textlocal', $mobileNo')->notify(new VerifyMobileNotification($otp));
+```
+
 ### Available Message methods
 
 And if you want to have a specific sender based on Notification, e.g. like you are sending promotional notification using one and another for transaction then you can just define this method in your notification class which will return your sender id for that notification only
@@ -136,6 +143,8 @@ $ composer test
 ## Security
 
 If you discover any security related issues, please email manash149@gmail.com instead of using the issue tracker.
+
+# Found any bugs or improvement open an issue or send me a PR
 
 ## Contributing
 
