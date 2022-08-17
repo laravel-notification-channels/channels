@@ -55,9 +55,7 @@ return [
         // extra config define keys as desired for use within the textlocal client config
         // if you want to use the custom client config for each notification or notifiable 
         // INotificationUsesTextlocalClientConfig
-    ]
-];
-```
+    ]public function getSenderId($notifiable)
 ### Configuring .env
 ```
     TEXTLOCAL_USERNAME=Your email id or api key
@@ -121,11 +119,12 @@ Notification::route('Textlocal', $mobileNo')->notify(new VerifyMobileNotificatio
 
 And if you want to have a specific sender based on Notification, e.g. like you are sending promotional notification using one and another for transaction then you can just define this method in your notification class which will return your sender id for that notification only
 ```
-public function getSenderId()
+public function getSenderId($notifiable)
 {
      return 'YOUR_SENDER_ID';
 }
 ```
+
 
 Unicode support
 If you want to send the notification content to have unicode support. Define this method in your notification which will return boolean based on which the sms will set the unicode mode in textlocal API

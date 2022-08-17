@@ -65,7 +65,7 @@ class TextlocalChannel
         }
 
         if (method_exists($notification, 'getSenderId')) {
-            $this->sender = $notification->getSenderId();
+            $this->sender = $notification->getSenderId($notifiable);
         }
 
         $client = $this->getClient($notifiable, $notification);
