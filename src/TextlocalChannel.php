@@ -14,7 +14,6 @@ use NotificationChannels\Textlocal\Exceptions\CouldNotSendNotification;
  */
 class TextlocalChannel
 {
-    private $client;
     private $sender;
 
     /**
@@ -22,9 +21,8 @@ class TextlocalChannel
      *
      * @param Textlocal $client
      */
-    public function __construct(Textlocal $client)
+    public function __construct(private Textlocal $client)
     {
-        $this->client = $client;
         $this->sender = config('textlocal.sender');
     }
 
@@ -87,12 +85,20 @@ class TextlocalChannel
 
         if ($notifiable instanceof IUsesTextlocalClientConfig) {
 
-            [$username, $hash, $apiKey, $country] = $notification->getTextlocalClientConfig($notification);
+            if (! $notifiable->shouldUseCustomTextlocalConfig($notification)) {
+                return $client;
+            }
+
+            [$username, $hash, $apiKey, $country] = $notifiable->getTextlocalClientConfig($notification);
 
             $client = new Textlocal($username, $hash, $apiKey, $country);
         }
 
         if ($notification instanceof INotificationUsesTextlocalClientConfig) {
+
+            if (! $notification->shouldUseCustomTextlocalConfig($notification)) {
+                return $client;
+            }
 
             [$username, $hash, $apiKey, $country] = $notification->getTextlocalClientConfig($notifiable);
 
