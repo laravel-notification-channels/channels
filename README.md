@@ -1,17 +1,68 @@
-# New Notification Channels
+# WhatsApp notification channel for Laravel
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/whatsapp.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/whatsapp)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/whatsapp/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/whatsapp)
+[![StyleCI](https://styleci.io/repos/535096163/shield)](https://styleci.io/repos/535096163)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/whatsapp.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/whatsapp)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/whatsapp/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/whatsapp/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/whatsapp.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/whatsapp)
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/) with Laravel.
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [Installation](#installation)
+	- [Setting up the WhatsApp service](#setting-up-the-WhatsApp-service)
+- [Usage](#usage)
+	- [Available Message methods](#available-message-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+Please also include the steps for any third-party service setup that's required for this package.
+
+### Setting up the WhatsApp service
+
+Optionally include a few steps how users can set up the service.
+
+## Usage
+
+Some code examples, make it clear how to use the package
+
+### Available Message methods
+
+A list of all available options
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email alex@netflie.es instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Álex Albarca](https://github.com/netflie)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
