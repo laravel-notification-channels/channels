@@ -2,13 +2,10 @@
 
 namespace NotificationChannels\MstatGr;
 
-use NotificationChannels\MstatGr\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\MstatGr\Exceptions\InvalidParameter;
 
 class MstatGrChannel
 {
-
     public function __construct(protected MstatGrClient $client)
     {
     }
