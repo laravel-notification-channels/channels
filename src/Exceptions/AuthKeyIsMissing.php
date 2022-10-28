@@ -6,6 +6,6 @@ class AuthKeyIsMissing extends \Exception
 {
     public static function serviceRespondedWithAnError()
     {
-        return new static("Auth Key is empty.");
+        return new static('Auth Key is empty.');
     }
 }

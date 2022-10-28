@@ -6,6 +6,6 @@ class AuthKeyIsInvalid extends \Exception
 {
     public static function serviceRespondedWithAnError()
     {
-        return new static("Auth Key is invalid.");
+        return new static('Auth Key is invalid.');
     }
 }
