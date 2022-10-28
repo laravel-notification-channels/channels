@@ -30,7 +30,7 @@ class MstatGrMessage
             throw new InvalidParameter('From should be up to 15 numerice characters.');
         }
 
-        if (!is_numeric($value) && str($value)->length() > 11) {
+        if (! is_numeric($value) && str($value)->length() > 11) {
             throw new InvalidParameter('From should be up to 11 alphanumeric characters.');
         }
 
@@ -45,5 +45,4 @@ class MstatGrMessage
 
         return $this;
     }
-
 }

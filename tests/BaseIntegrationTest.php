@@ -3,18 +3,16 @@
 namespace NotificationChannels\MstatGr\Tests\Integration;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use NotificationChannels\MstatGr\Exceptions\InvalidParameter;
-use NotificationChannels\MstatGr\MstatGrChannels;
 use NotificationChannels\MstatGr\MstatGrClient;
 use NotificationChannels\MstatGr\MstatGrMessage;
 use Orchestra\Testbench\TestCase;
-use Illuminate\Notifications\Notifiable;
 
 class BaseIntegrationTest extends TestCase
 {
-
     /** @test */
     public function it_returns_correct_message_only_with_content()
     {
@@ -61,7 +59,7 @@ class BaseIntegrationTest extends TestCase
     public function it_returns_correct_exceptions_after_send()
     {
         Http::fake([
-            'https://corpsms-api.m-stat.gr/http/sms.php' => Http::response("test 12", 500),
+            'https://corpsms-api.m-stat.gr/http/sms.php' => Http::response('test 12', 500),
         ]);
 
         $this->assertThrows(function () {
@@ -70,7 +68,7 @@ class BaseIntegrationTest extends TestCase
         }, \Exception::class);
 
         Http::fake([
-            'https://corpsms-api.m-stat.gr/http/sms.php' => Http::response("test 12", 200),
+            'https://corpsms-api.m-stat.gr/http/sms.php' => Http::response('test 12', 200),
         ]);
 
         $this->assertThrows(function () {

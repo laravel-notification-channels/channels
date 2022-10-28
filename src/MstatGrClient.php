@@ -21,7 +21,7 @@ class MstatGrClient
             'message' => $notificationData->content,
         ];
 
-        if (!$params['to']) {
+        if (! $params['to']) {
             $params['to'] = $notifiable->routeNotificationFor('MstatGr');
         }
 
@@ -64,7 +64,7 @@ class MstatGrClient
             throw new InsufficientBalance();
         }
 
-        if (!$response->ok()) {
+        if (! $response->ok()) {
             throw new \Exception('An error occurred.');
         }
 
