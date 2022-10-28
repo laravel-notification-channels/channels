@@ -1,0 +1,45 @@
+{
+    "name": "laravel-notification-channels/mstatgr",
+    "description": "M-Stat Laravel Notification Channel",
+    "homepage": "https://github.com/laravel-notification-channels/mstatgr",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikolas Chatzidakis",
+            "email": "nikolas@chatzidakis.eu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/notifications": "~9.0",
+        "illuminate/support": "~9.0",
+        "illuminate/config": "~9.0",
+        "illuminate/database": "~9.0",
+        "illuminate/http": "~9.0",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^7.8",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\MstatGr\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\MstatGr\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover",
+        "post-autoload-dump": ["@php ./vendor/bin/testbench package:discover --ansi"]
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
