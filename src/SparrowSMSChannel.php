@@ -3,7 +3,6 @@
 namespace NotificationChannels\SparrowSMS;
 
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification;
 
@@ -27,8 +26,8 @@ class SparrowSMSChannel
     /**
      * Send the given notification.
      *
-     * @param mixed                                  $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      *
      * @throws \NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification
      */
@@ -40,19 +39,22 @@ class SparrowSMSChannel
             $message = new SparrowSMSMessage($message);
         }
 
-        $response = Http::post($this->endpoint, [
-            'token'   => $this->token,
-            'from'    => $this->from,
-            'to'      => $notifiable->routeNotificationFor('sparrowsms'),
-            'message' => $message->content,
-        ]);
+        $url = $this->endpoint.
+            http_build_query([
+                'token' => $this->token,
+                'from' => $this->from,
+                'to' => $notifiable->routeNotificationFor('sparrowsms'),
+                'text' => $message->content,
+            ]);
 
-        if ($response->status() === 403) {
-            Log::error($response->body());
+        $response = json_decode(file_get_contents($url));
 
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response->json());
+        if ($response->status !== 200) {
+            Log::error($response);
+
+            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
         }
 
-        return $response->ok();
+        return true;
     }
 }
