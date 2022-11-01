@@ -26,7 +26,7 @@ class SparrowSMSChannel
     /**
      * Send the given notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed                                   $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
      *
      * @throws \NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification
@@ -42,9 +42,9 @@ class SparrowSMSChannel
         $url = $this->endpoint.
             http_build_query([
                 'token' => $this->token,
-                'from' => $this->from,
-                'to' => $notifiable->routeNotificationFor('sparrowsms'),
-                'text' => $message->content,
+                'from'  => $this->from,
+                'to'    => $notifiable->routeNotificationFor('sparrowsms'),
+                'text'  => $message->content,
             ]);
 
         $response = json_decode(file_get_contents($url));
