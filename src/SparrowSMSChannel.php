@@ -26,8 +26,8 @@ class SparrowSMSChannel
     /**
      * Send the given notification.
      *
-     * @param  mixed                                   $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed                                   $notifiable
+     * @param \Illuminate\Notifications\Notification  $notification
      *
      * @throws \NotificationChannels\SparrowSMS\Exceptions\CouldNotSendNotification
      */
