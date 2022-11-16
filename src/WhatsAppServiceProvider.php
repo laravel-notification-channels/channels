@@ -3,38 +3,22 @@
 namespace NotificationChannels\WhatsApp;
 
 use Illuminate\Support\ServiceProvider;
+use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 
 class WhatsAppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
-    {
-        // Bootstrap code here.
-
-        /**
-         * Here's some example code we use for the pusher package.
-
-        $this->app->when(Channel::class)
-            ->needs(Pusher::class)
-            ->give(function () {
-                $pusherConfig = config('broadcasting.connections.pusher');
-
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
-                );
-            });
-         */
-
-    }
-
     /**
      * Register the application services.
      */
     public function register()
     {
+        $config = [
+            'from_phone_number_id' => $this->app->make('config')->get('services.whatsapp.from-phone-number-id'),
+            'access_token' => $this->app->make('config')->get('services.whatsapp.token'),
+            'graph_version' => $this->app->make('config')->get('services.whatsapp.graph_version', WhatsAppCloudApi::DEFAULT_GRAPH_VERSION),
+            'timeout' => $this->app->make('config')->get('services.whatsapp.timeout'),
+        ];
+
+        $this->app->bind(WhatsAppCloudApi::class, static fn () => new WhatsAppCloudApi($config));
     }
 }
