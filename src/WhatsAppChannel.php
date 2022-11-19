@@ -2,30 +2,52 @@
 
 namespace NotificationChannels\WhatsApp;
 
-use NotificationChannels\WhatsApp\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use Netflie\WhatsAppCloudApi\Response;
+use Netflie\WhatsAppCloudApi\Response\ResponseException;
+use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
+use NotificationChannels\WhatsApp\Exceptions\CouldNotSendNotification;
 
 class WhatsAppChannel
 {
-    public function __construct()
+    /*
+     * HTTP WhatsApp Cloud API wrapper
+     */
+    private WhatsAppCloudApi $whatsapp;
+
+    public function __construct(WhatsAppCloudApi $whatsapp)
     {
-        // Initialisation code here
+        $this->whatsapp = $whatsapp;
     }
 
     /**
      * Send the given notification.
-     *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
-     * @throws \NotificationChannels\WhatsApp\Exceptions\CouldNotSendNotification
      */
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification): ?Response
     {
-        //$response = [a call to the api of your notification send]
+        // @phpstan-ignore-next-line
+        $message = $notification->toWhatsApp($notifiable);
 
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+        if (!$message->hasRecipient()) {
+            $to = $notifiable->routeNotificationFor('whatsapp', $notification)
+                ?? $notifiable->routeNotificationFor(self::class, $notification);
+
+            if (!$to) {
+                return null;
+            }
+
+            $message->to($to);
+        }
+
+        try {
+            return $this->whatsapp->sendTemplate(
+                $message->recipient(),
+                $message->configuredName(),
+                $message->configuredLanguage(),
+                $message->components()
+            );
+        } catch (ResponseException $e) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($e->response()->body());
+        }
     }
 }

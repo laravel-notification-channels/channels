@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\WhatsApp\Exceptions;
 
-class CouldNotSendNotification extends \Exception
+final class CouldNotSendNotification extends \Exception
 {
-    public static function serviceRespondedWithAnError($response)
+    public static function serviceRespondedWithAnError($responseBody)
     {
-        return new static("Descriptive error message.");
+        return new self($responseBody);
     }
 }
