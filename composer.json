@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
@@ -47,7 +48,8 @@
       },
     "scripts": {
         "test": "phpunit",
-        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover",
+        "analyse": "phpstan analyse"
     },
     "config": {
         "sort-packages": true
