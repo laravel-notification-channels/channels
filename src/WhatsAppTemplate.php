@@ -7,15 +7,31 @@ use NotificationChannels\WhatsApp\Component\Component;
 
 class WhatsAppTemplate
 {
-    private string $to;
+    /**
+     * WhatsApp ID or phone number for the person you want to send a message to.
+     */
+    protected string $to;
 
-    private string $name;
+    /**
+     * Name of the template.
+     *
+     * @link https://business.facebook.com/wa/manage/message-templates/ Dashboard to manage (create, edit and delete) templates.
+     */
+    protected string $name;
 
-    private string $language;
+    /**
+     * @link https://developers.facebook.com/docs/whatsapp/api/messages/message-templates#supported-languages See supported language codes.
+     */
+    protected string $language;
 
-    private array $components;
+    /**
+     * Template header, body and buttons can be personalized with custom variable values.
+     *
+     * @link https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates See how you can personalized your templates.
+     */
+    protected array $components;
 
-    private function __construct($to = '', $name = '', $language = 'en_US')
+    protected function __construct($to = '', $name = '', $language = 'en_US')
     {
         $this->to = $to;
         $this->name = $name;
