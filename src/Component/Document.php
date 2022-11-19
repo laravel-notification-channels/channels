@@ -10,7 +10,7 @@ class Document extends Component
 
     /**
      * Link to the document; e.g. https://URL
-     * Only PDF documents are supported
+     * Only PDF documents are supported.
      */
     protected string $link;
 
@@ -22,7 +22,7 @@ class Document extends Component
 
         $extension = pathinfo($link, PATHINFO_EXTENSION);
 
-        if (!in_array($extension, static::SUPPORTED_EXTENSIONS)) {
+        if (! in_array($extension, static::SUPPORTED_EXTENSIONS)) {
             throw new UnsupportedMediaValue($link, 'document', 'Only PDF documents are supported.');
         }
 

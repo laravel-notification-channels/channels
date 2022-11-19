@@ -5,7 +5,7 @@ namespace NotificationChannels\WhatsApp\Component;
 class Video extends Component
 {
     /**
-     * Link to the video; e.g. https://URL
+     * Link to the video; e.g. https://URL.
      */
     protected string $link;
 

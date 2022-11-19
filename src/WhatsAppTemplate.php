@@ -107,6 +107,6 @@ class WhatsAppTemplate
 
     public function hasRecipient(): bool
     {
-        return !empty($this->to);
+        return ! empty($this->to);
     }
 }

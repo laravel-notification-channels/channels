@@ -28,11 +28,11 @@ class WhatsAppChannel
         // @phpstan-ignore-next-line
         $message = $notification->toWhatsApp($notifiable);
 
-        if (!$message->hasRecipient()) {
+        if (! $message->hasRecipient()) {
             $to = $notifiable->routeNotificationFor('whatsapp', $notification)
                 ?? $notifiable->routeNotificationFor(self::class, $notification);
 
-            if (!$to) {
+            if (! $to) {
                 return null;
             }
 

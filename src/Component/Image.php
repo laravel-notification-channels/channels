@@ -5,7 +5,7 @@ namespace NotificationChannels\WhatsApp\Component;
 class Image extends Component
 {
     /**
-     * Link to the image; e.g. https://URL
+     * Link to the image; e.g. https://URL.
      */
     protected string $link;
 
