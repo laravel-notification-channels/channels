@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/clicksend/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/clicksend/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clicksend.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clicksend)
 -->
-This package makes it easy to send notification via [SMS using ClickSend API](https://developers.clicksend.com/docs/rest/v3/?php) with Laravel 5.5+, 6.x, 7.x, 8.x & 9.x
+This package makes it easy to send notification via [SMS using ClickSend API](https://developers.clicksend.com/docs/rest/v3/?php) with Laravel 6.x, 7.x, 8.x & 9.x
 
 ## Contents
 
