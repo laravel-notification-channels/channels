@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="9" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="1.490965">
+    <testsuite name="Unit" tests="6" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.334244">
+      <testsuite name="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" tests="6" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.334244">
+        <testcase name="testSmsIsSentViaClickSend" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="21" assertions="1" time="0.332520"/>
+        <testcase name="testSmsIsSentViaClickSendWithCustomClient" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="46" assertions="2" time="0.000437"/>
+        <testcase name="testSmsIsSentViaClickSendWithCustomFrom" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="74" assertions="1" time="0.000163"/>
+        <testcase name="testSmsIsSentViaClickSendWithCustomFromAndClient" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="99" assertions="2" time="0.000581"/>
+        <testcase name="testSmsIsSentViaClickSendWithCustomFromAndCustomString" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="128" assertions="1" time="0.000186"/>
+        <testcase name="testSmsIsSentViaClickSendWithCustomClientFromAndClientRef" class="NotificationChannels\ClickSend\Test\Unit\Channels\ClickSendSmsChannelTest" classname="NotificationChannels.ClickSend.Test.Unit.Channels.ClickSendSmsChannelTest" file="/app/tests/Unit/Channels/ClickSendSmsChannelTest.php" line="154" assertions="2" time="0.000356"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="3" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="1.156721">
+      <testsuite name="NotificationChannels\ClickSend\Test\Feature\ClientAPICredentialsTest" file="/app/tests/Feature/ClientAPICredentialsTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.054659">
+        <testcase name="testClientCreatedWithBasicAPICredentials" class="NotificationChannels\ClickSend\Test\Feature\ClientAPICredentialsTest" classname="NotificationChannels.ClickSend.Test.Feature.ClientAPICredentialsTest" file="/app/tests/Feature/ClientAPICredentialsTest.php" line="15" assertions="1" time="1.054659"/>
+      </testsuite>
+      <testsuite name="NotificationChannels\ClickSend\Test\Feature\ClientAccountCredentialsTest" file="/app/tests/Feature/ClientAccountCredentialsTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.058399">
+        <testcase name="testClientCreatedWithBasicAPICredentials" class="NotificationChannels\ClickSend\Test\Feature\ClientAccountCredentialsTest" classname="NotificationChannels.ClickSend.Test.Feature.ClientAccountCredentialsTest" file="/app/tests/Feature/ClientAccountCredentialsTest.php" line="15" assertions="1" time="0.058399"/>
+      </testsuite>
+      <testsuite name="NotificationChannels\ClickSend\Test\Feature\NoClickSendConfigurationTest" file="/app/tests/Feature/NoClickSendConfigurationTest.php" tests="1" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.043664">
+        <testcase name="testWhenNoConfigurationIsGivenExceptionIsRaised" class="NotificationChannels\ClickSend\Test\Feature\NoClickSendConfigurationTest" classname="NotificationChannels.ClickSend.Test.Feature.NoClickSendConfigurationTest" file="/app/tests/Feature/NoClickSendConfigurationTest.php" line="15" assertions="2" time="0.043664"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
