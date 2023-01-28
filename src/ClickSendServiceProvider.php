@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\ClickSend;
 
+use ClickSend\Api\SMSApi as Client;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
-use ClickSend\Api\SMSApi as Client;
 use RuntimeException;
 
 class ClickSendServiceProvider extends ServiceProvider

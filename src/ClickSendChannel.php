@@ -2,12 +2,12 @@
 
 namespace NotificationChannels\ClickSend;
 
-use NotificationChannels\ClickSend\Exceptions\CouldNotSendNotification;
 use ClickSend\Api\SMSApi as ClickSendClient;
-use Illuminate\Notifications\Notification;
-use ClickSend\Model\SmsMessageCollection;
-use ClickSend\Model\SmsMessage;
 use ClickSend\ApiException;
+use ClickSend\Model\SmsMessage;
+use ClickSend\Model\SmsMessageCollection;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\ClickSend\Exceptions\CouldNotSendNotification;
 
 class ClickSendChannel
 {
@@ -28,9 +28,8 @@ class ClickSendChannel
     /**
      * Create a new ClickSend channel instance.
      *
-     * @param ClickSendClient $client
-     * @param  string $from
-     *
+     * @param  ClickSendClient  $client
+     * @param  string  $from
      * @return void
      */
     public function __construct(ClickSendClient $client, $from)
@@ -43,7 +42,7 @@ class ClickSendChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param Notification $notification
+     * @param  Notification  $notification
      * @return mixed
      */
     public function send($notifiable, Notification $notification): void
@@ -64,15 +63,14 @@ class ClickSendChannel
                 'body' => trim($message->content),
                 'from' => $message->from ?: $this->from,
                 'source' => 'laravel',
-                'custom_string' => $message->reference
-            ])
+                'custom_string' => $message->reference,
+            ]),
         ]);
 
         try {
-            ( $message->client ?? $this->client )->smsSendPost( $sms_messages );
-        }
-        catch (ApiException $e) {
+            ($message->client ?? $this->client)->smsSendPost($sms_messages);
+        } catch (ApiException $e) {
             throw CouldNotSendNotification::ClickSendApiException($e);
-        };
+        }
     }
 }

@@ -2,18 +2,17 @@
 
 namespace NotificationChannels\ClickSend\Test\Unit\Channels;
 
-use ClickSend\Api\SMSApi;
+use ClickSend\Api\SMSApi as Client;
+use ClickSend\Model\SmsMessage as SMS;
+use ClickSend\Model\SmsMessageCollection;
+use Hamcrest\Core\IsEqual;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Mockery as m;
 use NotificationChannels\ClickSend\ClickSendChannel;
 use NotificationChannels\ClickSend\ClickSendMessage;
-use Illuminate\Notifications\Notification;
-use ClickSend\Model\SmsMessageCollection;
-use Illuminate\Notifications\Notifiable;
-use ClickSend\Model\SmsMessage as SMS;
-use ClickSend\Api\SMSApi as Client;
 use PHPUnit\Framework\TestCase;
-use Hamcrest\Core\IsEqual;
-use Mockery as m;
 
 class ClickSendSmsChannelTest extends TestCase
 {
@@ -33,8 +32,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'to' => '5555555555',
                 'from' =>'4444444444',
                 'body' => 'this is my message',
-                'source' => 'laravel'
-            ])
+                'source' => 'laravel',
+            ]),
         ]);
 
         $clickSend->shouldReceive('smsSendPost')
@@ -51,8 +50,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'to' => '5555555555',
                 'from' =>'4444444444',
                 'body' => 'this is my message',
-                'source' => 'laravel'
-            ])
+                'source' => 'laravel',
+            ]),
         ]);
 
         $customClickSend = m::mock(Client::class);
@@ -86,8 +85,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'to' => '5555555555',
                 'from' =>'5554443333',
                 'body' => 'this is my message',
-                'source' => 'laravel'
-            ])
+                'source' => 'laravel',
+            ]),
         ]);
 
         $clickSend->shouldReceive('smsSendPost')
@@ -106,8 +105,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'to' => '5555555555',
                 'from' =>'5554443333',
                 'body' => 'this is my message',
-                'source' => 'laravel'
-            ])
+                'source' => 'laravel',
+            ]),
         ]);
 
         $customClickSend->shouldReceive('smsSendPost')
@@ -141,8 +140,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'from' =>'5554443333',
                 'body' => 'this is my message',
                 'source' => 'laravel',
-                'custom_string' => '11'
-            ])
+                'custom_string' => '11',
+            ]),
         ]);
 
         $clickSend->shouldReceive('smsSendPost')
@@ -162,8 +161,8 @@ class ClickSendSmsChannelTest extends TestCase
                 'from' =>'5554443333',
                 'body' => 'this is my message',
                 'source' => 'laravel',
-                'custom_string' => '11'
-            ])
+                'custom_string' => '11',
+            ]),
         ]);
 
         $customClickSend->shouldReceive('smsSendPost')

@@ -16,7 +16,7 @@ class ClientAccountCredentialsTest extends FeatureTestCase
     {
         $credentials = $this->app->make(Client::class)->getConfig();
 
-        $this->assertEquals([ 'my_username', 'my_account_password' ],
-            [ $credentials->getUsername(), $credentials->getPassword() ]);
+        $this->assertEquals(['my_username', 'my_account_password'],
+            [$credentials->getUsername(), $credentials->getPassword()]);
     }
 }

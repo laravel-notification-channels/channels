@@ -16,7 +16,7 @@ class ClientAPICredentialsTest extends FeatureTestCase
     {
         $credentials = $this->app->make(Client::class)->getConfig();
 
-        $this->assertEquals([ 'my_username', 'my_api_key' ],
-            [ $credentials->getUsername(), $credentials->getPassword() ]);
+        $this->assertEquals(['my_username', 'my_api_key'],
+            [$credentials->getUsername(), $credentials->getPassword()]);
     }
 }

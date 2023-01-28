@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\ClickSend;
 
-use Psr\Http\Client\ClientInterface;
 use ClickSend\Api\SMSApi as Client;
 use ClickSend\Configuration;
+use Psr\Http\Client\ClientInterface;
 use RuntimeException;
 
 class ClickSend
@@ -27,8 +27,7 @@ class ClickSend
      * Create a new ClickSend instance.
      *
      * @param  array  $config
-     * @param ClientInterface|null $client
-     *
+     * @param  ClientInterface|null  $client
      * @return void
      */
     public function __construct(array $config = [], ?ClientInterface $client = null)
@@ -41,8 +40,7 @@ class ClickSend
      * Create a new ClickSend instance.
      *
      * @param  array  $config
-     * @param ClientInterface|null  $client
-     *
+     * @param  ClientInterface|null  $client
      * @return static
      */
     public static function make(array $config, ?ClientInterface $client = null)
@@ -57,15 +55,15 @@ class ClickSend
      *
      * @throws \RuntimeException
      */
-    public function client() : Client
+    public function client(): Client
     {
         [$username, $password] = $this->firstComboOrFail([
             'apiCredentials' => [
-                $this->config['api_username'], $this->config['api_key']
+                $this->config['api_username'], $this->config['api_key'],
             ],
             'accountCredentials' => [
-                $this->config['account_username'], $this->config['account_password']
-            ]
+                $this->config['account_username'], $this->config['account_password'],
+            ],
         ]);
 
         $credentials = Configuration::getDefaultConfiguration()
@@ -78,9 +76,11 @@ class ClickSend
     private function firstComboOrFail(array $combos)
     {
         $credentials = collect($combos)
-            ->first( function($pair) { return ! in_array(null, $pair,true); });
+            ->first(function ($pair) {
+                return ! in_array(null, $pair, true);
+            });
 
-        if(! $credentials) {
+        if (! $credentials) {
             throw new RuntimeException('Please provide your ClickSend API credentials.
             Possible combinations: api_username + api_key OR account_username + account_password.');
         }

@@ -44,7 +44,7 @@ class ClickSendMessage
     /**
      * Create a new message instance.
      *
-     * @param string $content
+     * @param  string  $content
      * @return void
      */
     public function __construct($content = '')
@@ -55,7 +55,7 @@ class ClickSendMessage
     /**
      * Set the message content.
      *
-     * @param string $content
+     * @param  string  $content
      * @return ClickSendMessage
      */
     public function content($content)
@@ -68,7 +68,7 @@ class ClickSendMessage
     /**
      * Set the phone number the message should be sent from.
      *
-     * @param string $from
+     * @param  string  $from
      * @return $this
      */
     public function from($from)
@@ -81,7 +81,7 @@ class ClickSendMessage
     /**
      * Set the client reference (up to 40 characters).
      *
-     * @param string $string
+     * @param  string  $string
      * @return $this
      */
     public function reference($string)
@@ -91,11 +91,10 @@ class ClickSendMessage
         return $this;
     }
 
-
     /**
      * Set the ClickSend SMS client instance.
      *
-     * @param SMSApi $client
+     * @param  SMSApi  $client
      * @return $this
      */
     public function usingClient($client)
@@ -103,4 +102,5 @@ class ClickSendMessage
         $this->client = $client;
 
         return $this;
-    }}
+    }
+}
