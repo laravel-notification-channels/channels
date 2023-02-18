@@ -1,6 +1,6 @@
 This package allows to send SMS using Textlocal API using laravel notifications channel textlocal sms
 
-Supports Laravel 5.5 to 9.x
+Supports Laravel 5.5 upto 10.x
 
 [![Latest Stable Version](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/v/stable)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
 [![License](https://poser.pugx.org/msonowal/laravel-notification-channel-textlocal/license)](https://packagist.org/packages/msonowal/laravel-notification-channel-textlocal)
