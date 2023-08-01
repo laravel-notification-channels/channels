@@ -1,0 +1,49 @@
+{
+    "name": "laravel-notification-channels/kchat",
+    "description": "A Laravel Notification Channel for Infomaniak's kChat",
+    "homepage": "https://github.com/laravel-notification-channels/kchat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "karac web Sàrl",
+            "email": "info@karac.ch",
+            "homepage": "https://karac.ch",
+            "role": "Agency"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": ">=7.3",
+        "guzzlehttp/guzzle": "^6.3 || ^7.0",
+        "illuminate/notifications": "~6.0 || ~7.0 || ~8.0 || ~9.0 || ~10.0",
+        "illuminate/support": "~6.0 || ~7.0 || ~8.0 || ~9.0 || ~10.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\KChat\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\KChat\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\KChat\\KChatServiceProvider"
+            ]
+        }
+    }
+}
