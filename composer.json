@@ -13,7 +13,7 @@
     ],
     "require": {
         "ext-json": "*",
-        "php": ">=7.2",
+        "php": ">=7.3",
         "guzzlehttp/guzzle": "^6.3 || ^7.0",
         "illuminate/notifications": "~6.0 || ~7.0 || ~8.0 || ~9.0 || ~10.0",
         "illuminate/support": "~6.0 || ~7.0 || ~8.0 || ~9.0 || ~10.0"
