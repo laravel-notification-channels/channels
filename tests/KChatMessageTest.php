@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\KChat\Test;
 
-use NotificationChannels\KChat\Exceptions\CouldNotSendNotification;
 use NotificationChannels\KChat\KChatMessage;
 use PHPUnit\Framework\TestCase;
 

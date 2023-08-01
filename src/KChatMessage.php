@@ -10,8 +10,7 @@ class KChatMessage
     protected $payload = [];
 
     /**
-     * @param string $content
-     *
+     * @param  string  $content
      * @return self
      */
     public static function create(string $content = ''): self
@@ -25,8 +24,7 @@ class KChatMessage
     }
 
     /**
-     * @param string $channel_id
-     *
+     * @param  string  $channel_id
      * @return self
      */
     public function to(string $channel_id): self
@@ -40,8 +38,7 @@ class KChatMessage
     }
 
     /**
-     * @param string $content
-     *
+     * @param  string  $content
      * @return self
      */
     public function content(string $content): self
@@ -52,8 +49,7 @@ class KChatMessage
     }
 
     /**
-     * @param string $root_id
-     *
+     * @param  string  $root_id
      * @return self
      */
     public function commentTo(string $root_id): self
@@ -78,8 +74,7 @@ class KChatMessage
     /**
      * Get payload value for given key.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return mixed|null
      */
     public function getPayloadValue(string $key)

@@ -8,7 +8,8 @@ use GuzzleHttp\Exception\ClientException;
 use NotificationChannels\KChat\Exceptions\CouldNotSendNotification;
 use Psr\Http\Message\ResponseInterface;
 
-class KChat {
+class KChat
+{
     /**
      * kChat API base URL.
      *
@@ -31,8 +32,9 @@ class KChat {
     protected $token;
 
     /**
-     * @param \GuzzleHttp\Client $http
-     * @param string $token
+     * @param  \GuzzleHttp\Client  $http
+     * @param  string  $baseUrl
+     * @param  string  $token
      */
     public function __construct(HttpClient $http, $baseUrl, $token)
     {
@@ -42,21 +44,11 @@ class KChat {
     }
 
     /**
-     * Send a message to a Discord channel.
-     *
-     * @param string $channel
-     * @param array $data
-     *
-     * @return array
-     */
-
-    /**
      * Send a message to a kChat channel.
      *
-     * @param string $verb
-     * @param string $endpoint
-     * @param array $data
-     *
+     * @param  string  $verb
+     * @param  string  $endpoint
+     * @param  array  $data
      * @return array
      *
      * @throws \NotificationChannels\KChat\Exceptions\CouldNotSendNotification

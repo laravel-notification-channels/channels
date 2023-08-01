@@ -11,7 +11,7 @@ class KChatServiceProvider extends ServiceProvider
     {
         $this->app->when(KChatChannel::class)
             ->needs(KChat::class)
-            ->give(function() {
+            ->give(function () {
                 $token = $this->app->make('config')->get('services.infomaniak_kchat.token');
                 $base_url = $this->app->make('config')->get('services.infomaniak_kchat.base_url');
 

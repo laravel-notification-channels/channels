@@ -15,7 +15,7 @@ class KChatChannel
     /**
      * Channel constructor.
      *
-     * @param KChat $kChat
+     * @param  KChat  $kChat
      */
     public function __construct(KChat $kChat)
     {
@@ -25,8 +25,8 @@ class KChatChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      */
     public function send($notifiable, Notification $notification)
     {
@@ -36,7 +36,7 @@ class KChatChannel
         if ($message->toNotGiven()) {
             $to = $notifiable->routeNotificationFor('kChat', $notification);
 
-            if(is_null($to)) {
+            if (is_null($to)) {
                 throw CouldNotSendNotification::channelMissing();
             }
             $message->to($to);

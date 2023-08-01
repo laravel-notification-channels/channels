@@ -15,27 +15,31 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class MicrosoftTeamsChannelTest.
  */
-class KChatChannelTest extends TestCase {
+class KChatChannelTest extends TestCase
+{
     /** @var Mockery\Mock */
     protected $kChat;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
         $this->kChat = Mockery::mock(KChat::class);
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         Mockery::close();
         parent::tearDown();
     }
 
     /** @test */
-    public function it_can_send_a_notification() {
+    public function it_can_send_a_notification()
+    {
         $this->kChat->shouldReceive('send')
             ->with(
                 [
                     'channel_id' => '123456789',
-                    'message' => 'This is my content.'
+                    'message' => 'This is my content.',
                 ])
             ->once()
             ->andReturn(new Response(200));
@@ -62,7 +66,7 @@ class KChatChannelTest extends TestCase {
             ->with(
                 [
                     'channel_id' => '123456789',
-                    'message' => 'This is my content.'
+                    'message' => 'This is my content.',
                 ])
             ->once()
             ->andReturn(new Response(200));
@@ -113,8 +117,7 @@ class TestNotification extends Notification
 class TestNotificationNoChannelID extends Notification
 {
     /**
-     * @param $notifiable
-     *
+     * @param  $notifiable
      * @return KChatMessage
      */
     public function toKChat($notifiable): KChatMessage
@@ -130,8 +133,7 @@ class TestNotificationNoChannelID extends Notification
 class TestNotificationWithToParam extends Notification
 {
     /**
-     * @param $notifiable
-     *
+     * @param  $notifiable
      * @return KChatMessage
      */
     public function toKChat($notifiable): KChatMessage
