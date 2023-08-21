@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\LaravelZenviaChannel\Exceptions;
 
-use NotificationChannels\LaravelZenviaChannel\ZenviaMessage;
 use GuzzleHttp\Exception\ClientException;
+use NotificationChannels\LaravelZenviaChannel\ZenviaMessage;
 
 class CouldNotSendNotification extends \Exception
 {
@@ -46,7 +46,7 @@ class CouldNotSendNotification extends \Exception
      */
     public static function serviceRespondedWithAnError(ClientException $exception): self
     {
-        $statusCode  = $exception->getResponse()->getStatusCode();
+        $statusCode = $exception->getResponse()->getStatusCode();
         $description = 'no description given';
 
         if ($result = json_decode($exception->getResponse()->getBody())) {

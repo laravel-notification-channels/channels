@@ -2,11 +2,11 @@
 
 namespace NotificationChannels\LaravelZenviaChannel;
 
+use GuzzleHttp\Client as ZenviaService;
+use GuzzleHttp\Psr7\Response as ZenviaServiceResponse;
 use Illuminate\Support\Str;
 use NotificationChannels\LaravelZenviaChannel\Enums\CallbackOptionEnum;
 use NotificationChannels\LaravelZenviaChannel\Exceptions\CouldNotSendNotification;
-use GuzzleHttp\Client as ZenviaService;
-use GuzzleHttp\Psr7\Response as ZenviaServiceResponse;
 
 class Zenvia
 {
@@ -26,23 +26,24 @@ class Zenvia
      * Send a ZenviaMessage to the a phone number.
      *
      * @param ZenviaMessage $message
-     * @param string|null $to
+     * @param string|null   $to
+     *
+     * @throws CouldNotSendNotification
      *
      * @return mixed
-     * @throws CouldNotSendNotification
      */
     public function sendMessage(ZenviaMessage $message, ?string $to)
     {
-        if($message instanceof ZenviaSmsMessage) {
+        if ($message instanceof ZenviaSmsMessage) {
             return $this->sendSmsMessage($message, $to);
         }
 
         throw CouldNotSendNotification::invalidMessageObject($message);
     }
 
-    protected function sendSmsMessage(ZenviaSmsMessage $message, ?string $to) : ZenviaServiceResponse
+    protected function sendSmsMessage(ZenviaSmsMessage $message, ?string $to): ZenviaServiceResponse
     {
-        if(empty($message->content)) {
+        if (empty($message->content)) {
             throw CouldNotSendNotification::contentNotProvided();
         }
 
