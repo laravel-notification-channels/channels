@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'account' => env('ZENVIA_ACCOUNT'),
+    'account'  => env('ZENVIA_ACCOUNT'),
     'password' => env('ZENVIA_PASSWORD'),
-    'from' => env('ZENVIA_FROM'),
+    'from'     => env('ZENVIA_FROM'),
 ];

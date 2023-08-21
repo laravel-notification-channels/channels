@@ -34,10 +34,11 @@ class ZenviaSmsMessage extends ZenviaMessage
     /**
      * Set the message schedule.
      *
-     * @param  string $schedule
+     * @param string $schedule
+     *
      * @return $this
      */
-    public function schedule(string $schedule) : self
+    public function schedule(string $schedule): self
     {
         $this->schedule = $schedule;
 
@@ -47,10 +48,11 @@ class ZenviaSmsMessage extends ZenviaMessage
     /**
      * Set the message callback option.
      *
-     * @param  string $callbackOption
+     * @param string $callbackOption
+     *
      * @return $this
      */
-    public function callbackOption(CallbackOptionEnum $callbackOption) : self
+    public function callbackOption(CallbackOptionEnum $callbackOption): self
     {
         $this->callbackOption = $callbackOption;
 
@@ -60,10 +62,11 @@ class ZenviaSmsMessage extends ZenviaMessage
     /**
      * Set the message ID.
      *
-     * @param  string $id
+     * @param string $id
+     *
      * @return $this
      */
-    public function id(string $id) : self
+    public function id(string $id): self
     {
         $this->id = $id;
 
@@ -73,10 +76,11 @@ class ZenviaSmsMessage extends ZenviaMessage
     /**
      * Set the message aggregate ID.
      *
-     * @param  string $aggregateId
+     * @param string $aggregateId
+     *
      * @return $this
      */
-    public function aggregateId(string $aggregateId) : self
+    public function aggregateId(string $aggregateId): self
     {
         $this->aggregateId = $aggregateId;
 
@@ -86,14 +90,14 @@ class ZenviaSmsMessage extends ZenviaMessage
     /**
      * Set the message flash sms service use.
      *
-     * @param  bool $flashSms
+     * @param bool $flashSms
+     *
      * @return $this
      */
-    public function flashSms(bool $flashSms) : self
+    public function flashSms(bool $flashSms): self
     {
         $this->flashSms = $flashSms;
 
         return $this;
     }
-
 }

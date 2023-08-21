@@ -2,12 +2,12 @@
 
 namespace NotificationChannels\LaravelZenviaChannel;
 
+use GuzzleHttp\Client as ZenviaService;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use NotificationChannels\LaravelZenviaChannel\Exceptions\InvalidConfigException;
-use GuzzleHttp\Client as ZenviaService;
 
 class ZenviaServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -16,7 +16,6 @@ class ZenviaServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function boot()
     {
-
     }
 
     /**
@@ -41,11 +40,11 @@ class ZenviaServiceProvider extends ServiceProvider implements DeferrableProvide
             if ($config->usingAccountPasswordAuth()) {
                 return new ZenviaService([
                     'base_uri' => 'https://api-rest.zenvia.com',
-                    'headers' => [
+                    'headers'  => [
                         'Content-Type'  => 'application/json',
                         'Accept'        => 'application/json',
-                        'Authorization' => 'Basic ' . base64_encode($config->getAccount() . ':' . $config->getPassword())
-                    ]
+                        'Authorization' => 'Basic '.base64_encode($config->getAccount().':'.$config->getPassword()),
+                    ],
                 ]);
             }
 
