@@ -1,17 +1,73 @@
-# New Notification Channels
+Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+# Ntfy
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [ntfy](link to service) with Laravel 5.5+, 6.x and 7.x
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [Installation](#installation)
+    - [Setting up the ntfy service](#setting-up-the-ntfy-service)
+- [Usage](#usage)
+    - [Available Message methods](#available-message-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require laravel-notification-channels/ntfy
+```
+```php
+// config/services.php
+'providers' => [
+    // ...
+    NotificationChannels\Ntfy\NtfyServiceProvider::class,
+],
+```
+
+### Setting up the ntfy service
+
+Optionally include a few steps how users can set up the service.
+
+## Usage
+
+Some code examples, make it clear how to use the package
+
+### Available Message methods
+
+A list of all available options
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email onkal.cengiz@gmail.com instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Cengiz Onkal](https://github.com/cengizonkal)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
