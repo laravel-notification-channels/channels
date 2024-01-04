@@ -3,7 +3,6 @@
 namespace NotificationChannels\Ntfy;
 
 
-use GuzzleHttp\Client;
 use NotificationChannels\Ntfy\Exceptions\CouldNotSendNotification;
 
 class Ntfy
@@ -27,27 +26,28 @@ class Ntfy
     public function send(NtfyMessage $message)
     {
         try {
-
-            $response = $this->client->request('POST', $this->host.':'.$this->port . '/' . $message->topic, [
+            $request = new \GuzzleHttp\Psr7\Request('POST', $this->host . ':' . $this->port, [
                 'auth' => [$this->username, $this->password],
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
+                    "topic" => $message->topic,
                     "message" => $message->content,
                     "title" => $message->title,
                     "priority" => $message->priority,
-
+                    "tags" => [],
+                    "attach" => "",
+                    "filename" => "",
+                    "click" => "",
+                    "actions" => [],
                 ],
             ]);
-
-
+            $response = $this->client->sendRequest($request);
         } catch (\Exception $e) {
             throw new CouldNotSendNotification($e->getMessage());
         }
-
         return $response;
     }
-
 
 }

@@ -2,7 +2,7 @@ Please see [this repo](https://github.com/laravel-notification-channels/channels
 
 # Ntfy
 
-This package makes it easy to send notifications using [ntfy](link to service) with Laravel 5.5+, 6.x and 7.x
+This package makes it easy to send notifications using [ntfy](https://ntfy.sh/) with Laravel 5.5+, 6.x and 7.x
 
 ## Contents
 
@@ -10,10 +10,7 @@ This package makes it easy to send notifications using [ntfy](link to service) w
     - [Setting up the ntfy service](#setting-up-the-ntfy-service)
 - [Usage](#usage)
     - [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
 - [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
 
@@ -35,19 +32,47 @@ composer require laravel-notification-channels/ntfy
 
 ### Setting up the ntfy service
 
-Optionally include a few steps how users can set up the service.
+Configure ntft service in `config/boardcasting.php`:
 
+```php
+ 'ntfy' => [
+            'driver' => 'ntfy',
+            'host' => env('NTFY_HOST'),
+            'port' => env('NTFY_PORT'),
+            'username' => env('NTFY_USERNAME'),
+            'password' => env('NTFY_PASSWORD'),
+        ],
+```
 ## Usage
 
-Some code examples, make it clear how to use the package
+Now you can use the channel in your `via()` method inside the notification:
+
+```php
+ public function via(object $notifiable): array
+    {
+        return [NtfyChannel::class];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toNtfy(object $notifiable)
+    {
+       return (new NtfyMessage())
+           ->topic('test')
+            ->title('Test Notification')
+            ->body('This is a test notification from Ntfy');
+    }
+```
 
 ### Available Message methods
 
-A list of all available options
+- `topic('')`: Accepts a string value for the topic of the notification.
+- `title('')`: Accepts a string value for the title of the notification.
+- `body('')`: Accepts a string value for the body of the notification.
+- `priority('')`: Accepts a string value for the priority of the notification.(1=Min priority, 2=Low priority, 3=Default priority, 4=High priority, 5=Max priority)
+- 
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
 
@@ -55,18 +80,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ composer test
 ```
 
-## Security
-
-If you discover any security related issues, please email onkal.cengiz@gmail.com instead of using the issue tracker.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
 ## Credits
 
 - [Cengiz Onkal](https://github.com/cengizonkal)
-- [All Contributors](../../contributors)
 
 ## License
 
