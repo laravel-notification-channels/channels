@@ -2,7 +2,7 @@ Please see [this repo](https://github.com/laravel-notification-channels/channels
 
 # Ntfy
 
-This package makes it easy to send notifications using [ntfy](https://ntfy.sh/) with Laravel 5.5+, 6.x and 7.x
+This package makes it easy to send notifications using [ntfy](https://ntfy.sh/) with Laravel 10
 
 ## Contents
 
