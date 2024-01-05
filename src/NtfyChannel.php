@@ -8,12 +8,12 @@ use Illuminate\Notifications\Notification;
 class NtfyChannel
 {
     private $service;
-    
+
     public function __construct(Ntfy $service)
     {
         $this->service = $service;
     }
-    
+
     /**
      * Send the given notification.
      *
@@ -24,11 +24,10 @@ class NtfyChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
+        //make sure that the $notification object has a toNtfy() method
+        if (!method_exists($notification, 'toNtfy')) {
+            throw CouldNotSendNotification::missingNtfyMethod();
+        }
         $this->service->send($notification->toNtfy($notifiable));
-
-//        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
     }
 }

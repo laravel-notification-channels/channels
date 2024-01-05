@@ -8,4 +8,9 @@ class CouldNotSendNotification extends \Exception
     {
         return new static($response);
     }
+
+    public static function missingNtfyMethod()
+    {
+        return new static('Notification is missing toNtfy() method.');
+    }
 }
