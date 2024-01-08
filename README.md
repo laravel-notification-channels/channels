@@ -1,17 +1,89 @@
-# New Notification Channels
+Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+# Ntfy
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+This package makes it easy to send notifications using [ntfy](https://ntfy.sh/) with Laravel 10
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [Installation](#installation)
+    - [Setting up the ntfy service](#setting-up-the-ntfy-service)
+- [Usage](#usage)
+    - [Available Message methods](#available-message-methods)
+- [Testing](#testing)
+- [Credits](#credits)
+- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require laravel-notification-channels/ntfy
+```
+```php
+// config/services.php
+'providers' => [
+    // ...
+    NotificationChannels\Ntfy\NtfyServiceProvider::class,
+],
+```
+
+### Setting up the ntfy service
+
+Configure ntft service in `config/boardcasting.php`:
+
+```php
+ 'ntfy' => [
+            'driver' => 'ntfy',
+            'host' => env('NTFY_HOST'),
+            'port' => env('NTFY_PORT'),
+            'username' => env('NTFY_USERNAME'),
+            'password' => env('NTFY_PASSWORD'),
+        ],
+```
+## Usage
+
+Now you can use the channel in your `via()` method inside the notification:
+
+```php
+ public function via(object $notifiable): array
+    {
+        return [NtfyChannel::class];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toNtfy(object $notifiable)
+    {
+       return (new NtfyMessage())
+           ->topic('test')
+            ->title('Test Notification')
+            ->body('This is a test notification from Ntfy');
+    }
+```
+
+### Available Message methods
+
+- `topic('')`: Accepts a string value for the topic of the notification.
+- `title('')`: Accepts a string value for the title of the notification.
+- `body('')`: Accepts a string value for the body of the notification.
+- `priority('')`: Accepts a string value for the priority of the notification.(1=Min priority, 2=Low priority, 3=Default priority, 4=High priority, 5=Max priority)
+- 
+
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Credits
+
+- [Cengiz Onkal](https://github.com/cengizonkal)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
