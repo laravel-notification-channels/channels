@@ -1,12 +1,10 @@
 <?php
 
-
 use NotificationChannels\Ntfy\NtfyMessage;
 use PHPUnit\Framework\TestCase;
 
 class NtfyMessageTest extends TestCase
 {
-
     public function testBody()
     {
         $message = new NtfyMessage();

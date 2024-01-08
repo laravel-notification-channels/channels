@@ -15,6 +15,7 @@ class NtfyServiceProvider extends ServiceProvider
             ->needs(Ntfy::class)
             ->give(function () {
                 $ntfyConfig = config('broadcasting.connections.ntfy');
+
                 return new Ntfy(
                     $ntfyConfig['host'],
                     $ntfyConfig['port'],
@@ -24,5 +25,4 @@ class NtfyServiceProvider extends ServiceProvider
                 );
             });
     }
-
 }

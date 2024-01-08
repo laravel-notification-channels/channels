@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\Ntfy;
 
-use Illuminate\Support\Arr;
-
 class NtfyMessage
 {
     public $title;
@@ -18,18 +16,21 @@ class NtfyMessage
     public function title(string $title): NtfyMessage
     {
         $this->title = $title;
+
         return $this;
     }
 
     public function content(string $content): NtfyMessage
     {
         $this->content = $content;
+
         return $this;
     }
 
     public function priority(int $priority): NtfyMessage
     {
         $this->priority = $priority;
+
         return $this;
     }
 
@@ -41,16 +42,14 @@ class NtfyMessage
     public function topic(string $topic): NtfyMessage
     {
         $this->topic = $topic;
+
         return $this;
     }
 
     public function actions($actions): NtfyMessage
     {
         $this->actions = $actions;
+
         return $this;
     }
-
-
-
-
 }
