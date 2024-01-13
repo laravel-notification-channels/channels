@@ -1,31 +1,20 @@
-Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
-
-# A Boilerplate repo for contributions
+# Pr0gramm Laravel Notifications Channel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pr0gramm.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pr0gramm)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/pr0gramm/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/pr0gramm)
 [![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/pr0gramm.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pr0gramm)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/pr0gramm/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pr0gramm/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pr0gramm.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pr0gramm)
 
-This package makes it easy to send notifications using [Pr0gramm](link to service) with Laravel 5.5+, 6.x and 7.x
-
-**Note:** Replace ```Pr0gramm``` ```Pr0gramm``` ```Marcel Wagner``` ```Tschucki``` ```:https://www.marcelwagner.dev/``` ```info@marcelwagner.dev``` ```pr0gramm``` ```Laravel notification driver for Pr0gramm.``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
+This package makes it easy to send notifications to [Pr0gramm](https://pr0gramm.com/) users with Laravel.
 
 ## Contents
 
 - [Installation](#installation)
 	- [Setting up the Pr0gramm service](#setting-up-the-Pr0gramm-service)
 - [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Security](#security)
@@ -36,19 +25,73 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
+
+```bash
+composer require laravel-notification-channels/pr0gramm
+```
+
+Next, you must load the service provider if you don't use auto-discovery:
+
+```php
+// config/app.php
+'providers' => [
+    // ...
+    NotificationChannels\Pr0gramm\Pr0grammServiceProvider::class,
+],
+```
 
 ### Setting up the Pr0gramm service
 
-Optionally include a few steps how users can set up the service.
+It is recommended to use the credentials of a bot account, as you will not be able to solve the required captcha. You can read more about the Pr0gramm-API and how to get your credentials [here](https://github.com/pr0gramm-com/api-docs/).
+
+Next, you must add your Pr0gramm Credentials in `config/services.php`:
+
+```php
+// config/services.php
+'pr0gramm' => [
+	'username' => env('PR0GRAMM_USERNAME'),
+	'password' => env('PR0GRAMM_PASSWORD'),
+],
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+In every model you wish to be notifiable via Pr0gramm, you must add a `getPr0grammName` method that returns the name of the user on Pr0gramm.
 
-### Available Message methods
+```php
+// app/Models/User.php
+public function getPr0grammName(): string
+{
+	return $this->pr0grammName;
+}
+```
 
-A list of all available options
+You can now use the channel in your `via()` method inside the notification (You can also use `'pr0gramm'` as channel name)):
+
+```php
+use NotificationChannels\Pr0gramm\Pr0grammChannel;
+
+public function via($notifiable)
+{
+	return [Pr0grammChannel::class];
+}
+```
+
+Next, you must add a `toPr0gramm` method to your notification containing the message you wish to send to the user:
+
+```php
+public function toPr0gramm($notifiable): string
+{
+	return 'Message from Laravel';
+}
+```
+
+> **NOTE - RATE LIMIT**: As the rate limit for sending messages is quite low, you will probably run into the `Pr0grammRateLimitReached`-Exception.
+>
+> You can handle this exception through your try catch block or when using the queue driver by adding a `failed`-method to your notification and release the job again.
+
+That's it, you're ready to go!
 
 ## Changelog
 
