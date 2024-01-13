@@ -3,8 +3,8 @@
 namespace NotificationChannels\Pr0gramm;
 
 use Illuminate\Http\Client\RequestException;
-use NotificationChannels\Pr0gramm\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Pr0gramm\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Pr0gramm\Exceptions\Pr0grammRateLimitReached;
 use Tschucki\Pr0grammApi\Facades\Pr0grammApi;
 
@@ -22,9 +22,9 @@ class Pr0grammChannel
      * Send the given notification.
      *
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param Notification $notification
      *
-     * @throws \NotificationChannels\Pr0gramm\Exceptions\CouldNotSendNotification
+     * @throws CouldNotSendNotification
      * @throws RequestException
      * @throws Pr0grammRateLimitReached
      */
@@ -52,6 +52,5 @@ class Pr0grammChannel
         if ($response->status() === 429) {
             throw Pr0grammRateLimitReached::rateLimitReached();
         }
-
     }
 }

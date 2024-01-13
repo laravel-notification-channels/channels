@@ -16,13 +16,12 @@ class Pr0grammServiceProvider extends ServiceProvider
             ->give(function () {
                 return Pr0grammApi::class;
             });
-
     }
 
     public function register(): void
     {
         Notification::resolved(static function (ChannelManager $service) {
-            $service->extend('pr0gramm', static fn ($app) => $app->make(Pr0grammChannel::class));
+            $service->extend('pr0gramm', static fn($app) => $app->make(Pr0grammChannel::class));
         });
     }
 }

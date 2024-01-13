@@ -13,7 +13,7 @@ This package makes it easy to send notifications to [Pr0gramm](https://pr0gramm.
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the Pr0gramm service](#setting-up-the-Pr0gramm-service)
+    - [Setting up the Pr0gramm service](#setting-up-the-Pr0gramm-service)
 - [Usage](#usage)
 - [Changelog](#changelog)
 - [Testing](#testing)
@@ -21,7 +21,6 @@ This package makes it easy to send notifications to [Pr0gramm](https://pr0gramm.
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
-
 
 ## Installation
 
@@ -43,7 +42,8 @@ Next, you must load the service provider if you don't use auto-discovery:
 
 ### Setting up the Pr0gramm service
 
-It is recommended to use the credentials of a bot account, as you will not be able to solve the required captcha. You can read more about the Pr0gramm-API and how to get your credentials [here](https://github.com/pr0gramm-com/api-docs/).
+It is recommended to use the credentials of a bot account, as you will not be able to solve the required captcha. You
+can read more about the Pr0gramm-API and how to get your credentials [here](https://github.com/pr0gramm-com/api-docs/).
 
 Next, you must add your Pr0gramm Credentials in `config/services.php`:
 
@@ -57,7 +57,8 @@ Next, you must add your Pr0gramm Credentials in `config/services.php`:
 
 ## Usage
 
-In every model you wish to be notifiable via Pr0gramm, you must add a `getPr0grammName` method that returns the name of the user on Pr0gramm.
+In every model you wish to be notifiable via Pr0gramm, you must add a `getPr0grammName` method that returns the name of
+the user on Pr0gramm.
 
 ```php
 // app/Models/User.php
@@ -67,7 +68,8 @@ public function getPr0grammName(): string
 }
 ```
 
-You can now use the channel in your `via()` method inside the notification (You can also use `'pr0gramm'` as channel name)):
+You can now use the channel in your `via()` method inside the notification (You can also use `'pr0gramm'` as channel
+name)):
 
 ```php
 use NotificationChannels\Pr0gramm\Pr0grammChannel;
@@ -87,9 +89,11 @@ public function toPr0gramm($notifiable): string
 }
 ```
 
-> **NOTE - RATE LIMIT**: As the rate limit for sending messages is quite low, you will probably run into the `Pr0grammRateLimitReached`-Exception.
+> **NOTE - RATE LIMIT**: As the rate limit for sending messages is quite low, you will probably run into
+> the `Pr0grammRateLimitReached`-Exception.
 >
-> You can handle this exception through your try catch block or when using the queue driver by adding a `failed`-method to your notification and release the job again.
+> You can handle this exception through your try catch block or when using the queue driver by adding a `failed`-method
+> to your notification and release the job again.
 
 That's it, you're ready to go!
 

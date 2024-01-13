@@ -2,11 +2,9 @@
 
 namespace NotificationChannels\Pr0gramm\Exceptions;
 
-use Spatie\Ignition\Contracts\BaseSolution;
-use Spatie\Ignition\Contracts\ProvidesSolution;
-use Spatie\Ignition\Contracts\Solution;
+use Exception;
 
-class Pr0grammRateLimitReached extends \Exception
+class Pr0grammRateLimitReached extends Exception
 {
     public static function rateLimitReached(): static
     {
