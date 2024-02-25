@@ -1,0 +1,58 @@
+{
+    "name": "laravel-notification-channels/webex",
+    "description": "A Laravel Notification Channel for Webex.",
+    "homepage": "https://github.com/laravel-notification-channels/webex",
+    "keywords": [
+        "webex notification",
+        "webex notifications channel",
+        "notification",
+        "webex",
+        "laravel"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ashesh Singh",
+            "email": "ask@mrsinh.com",
+            "homepage": "https://askmrsinh.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-json": "*",
+        "egulias/email-validator": "*",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/notifications": "~10.0",
+        "illuminate/support": "~10.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^10.0",
+        "scrutinizer/ocular": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Webex\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Webex\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Webex\\WebexServiceProvider"
+            ]
+        }
+    }
+}
