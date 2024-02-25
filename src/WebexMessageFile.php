@@ -83,7 +83,7 @@ class WebexMessageFile implements Arrayable
     public function toArray(): array
     {
         $arr = [
-            'name'     => 'files',
+            'name' => 'files',
             'contents' => Utils::tryFopen($this->path, 'r'),
         ];
 

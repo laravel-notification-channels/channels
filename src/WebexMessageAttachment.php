@@ -64,9 +64,9 @@ class WebexMessageAttachment implements Arrayable, JsonSerializable, Jsonable
     public function toArray(): array
     {
         return [
-            'name'     => 'attachments',
+            'name' => 'attachments',
             'contents' => json_encode($this->jsonSerialize()),
-            'headers'  => ['Content-Type' => 'application/json'],
+            'headers' => ['Content-Type' => 'application/json'],
         ];
     }
 
@@ -81,7 +81,7 @@ class WebexMessageAttachment implements Arrayable, JsonSerializable, Jsonable
     {
         return [
             'contentType' => $this->contentType,
-            'content'     => $this->content,
+            'content' => $this->content,
         ];
     }
 
