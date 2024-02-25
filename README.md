@@ -9,7 +9,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/webex.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/webex)
 
 This package makes it easy to send notifications using [Webex](https://www.webex.com/) with Laravel
-5.5+, 6.x, 7.x, 8.x, and 9.0.
+10.x.
 
 ```php
     /**

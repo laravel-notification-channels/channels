@@ -64,24 +64,24 @@ class WebexChannelTest extends TestCase
         $this->webexChannel->send(new WebexChannelTestNotifiable, $notification);
     }
 
-    public function payloadDataProvider(): array
+    public static function payloadDataProvider(): array
     {
         return [
-            'payload_with_text' => $this->getPayloadWithText(),
-            'payload_with_markdown' => $this->getPayloadWithMarkdown(),
-            'payload_with_file' => $this->getPayloadWithFile(),
-            'payload_with_attachment' => $this->getPayloadWithAttachment(),
-            'payload_with_text_markdown' => $this->getPayloadWithTextMarkdown(),
-            'payload_with_text_file' => $this->getPayloadWithTextFile(),
-            'payload_with_text_attachment' => $this->getPayloadWithTextAttachment(),
-            'payload_with_markdown_file' => $this->getPayloadWithMarkdownFile(),
-            'payload_with_markdown_attachment' => $this->getPayloadWithMarkdownAttachment(),
-            'payload_with_text_markdown_file' => $this->getPayloadWithTextMarkdownFile(),
-            'payload_with_text_markdown_attachment' => $this->getPayloadWithTextMarkdownAttachment(),
+            'payload_with_text' => static::getPayloadWithText(),
+            'payload_with_markdown' => static::getPayloadWithMarkdown(),
+            'payload_with_file' => static::getPayloadWithFile(),
+            'payload_with_attachment' => static::getPayloadWithAttachment(),
+            'payload_with_text_markdown' => static::getPayloadWithTextMarkdown(),
+            'payload_with_text_file' => static::getPayloadWithTextFile(),
+            'payload_with_text_attachment' => static::getPayloadWithTextAttachment(),
+            'payload_with_markdown_file' => static::getPayloadWithMarkdownFile(),
+            'payload_with_markdown_attachment' => static::getPayloadWithMarkdownAttachment(),
+            'payload_with_text_markdown_file' => static::getPayloadWithTextMarkdownFile(),
+            'payload_with_text_markdown_attachment' => static::getPayloadWithTextMarkdownAttachment(),
         ];
     }
 
-    private function getPayloadWithText(): array
+    private static function getPayloadWithText(): array
     {
         return [
             new WebexChannelTextTestNotification,
@@ -95,7 +95,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithMarkdown(): array
+    private static function getPayloadWithMarkdown(): array
     {
         return [
             new WebexChannelMarkdownTestNotification,
@@ -109,7 +109,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithFile(): array
+    private static function getPayloadWithFile(): array
     {
         return [
             new WebexChannelFileTestNotification,
@@ -129,7 +129,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithAttachment(): array
+    public static function getPayloadWithAttachment(): array
     {
         return [
             new WebexChannelAttachmentTestNotification,
@@ -166,7 +166,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithTextMarkdown(): array
+    public static function getPayloadWithTextMarkdown(): array
     {
         return [
             new WebexChannelTextMarkdownTestNotification,
@@ -181,7 +181,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithTextFile(): array
+    private static function getPayloadWithTextFile(): array
     {
         return [
             new WebexChannelTextFileTestNotification,
@@ -205,7 +205,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithTextAttachment(): array
+    private static function getPayloadWithTextAttachment(): array
     {
         return [
             new WebexChannelTextAttachmentTestNotification,
@@ -242,7 +242,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithMarkdownFile(): array
+    public static function getPayloadWithMarkdownFile(): array
     {
         return [
             new WebexChannelMarkdownFileTestNotification,
@@ -266,7 +266,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithMarkdownAttachment(): array
+    public static function getPayloadWithMarkdownAttachment(): array
     {
         return [
             new WebexChannelMarkdownAttachmentTestNotification,
@@ -303,7 +303,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithTextMarkdownFile(): array
+    public static function getPayloadWithTextMarkdownFile(): array
     {
         return [
             new WebexChannelTextMarkdownFileTestNotification,
@@ -331,7 +331,7 @@ class WebexChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithTextMarkdownAttachment(): array
+    public static function getPayloadWithTextMarkdownAttachment(): array
     {
         return [
             new WebexChannelTextMarkdownAttachmentTestNotification,

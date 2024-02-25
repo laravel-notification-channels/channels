@@ -1,6 +1,6 @@
+/.phpunit.cache
+/build
 /vendor
-build
 composer.phar
 composer.lock
 .DS_Store
-.phpunit.result.cache
