@@ -1,17 +1,108 @@
-# New Notification Channels
+# Spryng Notification Channel
 
-### Suggesting a new channel
-Have a suggestion or working on a new channel? Please create a new issue for that service.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/spryng.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/spryng)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/spryng/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/spryng)
+[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/spryng.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/spryng)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/spryng/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/spryng/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/spryng.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/spryng)
 
-### I'm working on a new channel
-Please create an issue for it if it does not already exist, then PR you code for review.
+📲  [Spryng](https://www.spryng.nl/en/) Notifications Channel for Laravel
 
-## Workflow for new channels
+## Contents
 
-1) Head over to the [skeleton repo](https://github.com/laravel-notification-channels/skeleton) download a ZIP copy. This is important, to ensure you start from a fresh commit history.
-2) Use find/replace to replace all of the placeholders with the correct values (package name, author name, email, etc).
-3) Implement to logic for the channel & add tests.
-4) Fork this repo, add it as a remote and push your new channel to a branch.
-5) Submit a new PR against this repo for review.
+- [Installation](#installation)
+	- [Setting up the Spryng service](#setting-up-the-Spryng-service)
+- [Usage](#usage)
+	- [Available Message methods](#available-message-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
 
-Take a look at our [FAQ](http://laravel-notification-channels.com/) to see our small list of rules, to provide top-notch notification channels.
+
+## Installation
+
+```bash
+composer require laravel-notification-channels/spryng
+```
+
+Add the configuration to your `services.php` config file:
+
+```php
+'spryng' => [
+    'key' => env('SPRYNG_API_KEY'),
+]
+```
+
+### Setting up the Spryng service
+
+You'll need a Spryng account. Head over to their [website](https://www.spryng.nl/en/) and create or login to your account.
+
+Head to your `Profile` and then `Security` in the sidebar to generate a set of API keys.
+
+## Usage
+
+You can use the channel in your `via()` method inside the notification:
+
+```php
+use Illuminate\Notifications\Notification;
+use \NotificationChannels\Spryng\SpryngMessage;
+use \NotificationChannels\Spryng\SpryngChannel;
+
+class AccountApproved extends Notification
+{
+    public function via($notifiable)
+    {
+        return [SpryngChannel::class];
+    }
+
+    public function toSpryng($notifiable)
+    {
+        return (new SpryngMessage)
+			->setBody("Task #{$notifiable->id} is complete!")
+			->setRecipients($notifiable->phone_number)
+			->setOriginator(config('app.name'));
+    }
+}
+```
+
+Make sure your Notifiable model has a `phone_number` attribute, which will be used to send the SMS. Also make sure it's a valid phone number.
+
+### Available Message methods
+
+- `setBody('')`: Accepts a string value for the message body.
+- `setRecipients('')`: Accepts a string or array value for the recipient(s) phone number.
+- `setOriginator('')`: Accepts a string value for the sender name.
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
+## Security
+
+If you discover any security related issues, please email hello@baspa.dev instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Bas van Dinther](https://github.com/Baspa)
+- [Spryng](https://www.spryng.nl/en/)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
