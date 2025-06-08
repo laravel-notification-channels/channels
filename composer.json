@@ -1,0 +1,52 @@
+{
+    "name": "laravel-notification-channels/persian-sms",
+    "description": "Laravel Notification Channel for sending SMS via various Iranian SMS providers (e.g., IPPanel, Kavenegar).",
+    "homepage": "https://github.com/your-github-username/persian-sms",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ali Abdi",
+            "email": "abdi9074@gmail.com",
+            "homepage": "https://github.com/saman9074",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "illuminate/notifications": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^7.0 || ^8.0 || ^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\PersianSms\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\PersianSms\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\PersianSms\\PersianSmsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
