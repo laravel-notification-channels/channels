@@ -1,0 +1,40 @@
+{
+    "name": "laravel-notification-channels/nextcloud-talk",
+    "description": "A Laravel notification channel for Nextcloud Talk",
+    "homepage": "https://github.com/laravel-notification-channels/nextcloud-talk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vishnu Koothattu",
+            "email": "vishnu@koothattu.com",
+            "homepage": "https://vishnu.koothattu.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "illuminate/notifications": "~10.0 || ~11.0",
+        "illuminate/support": "~10.0 || ~11.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\NextcloudTalk\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\NextcloudTalk\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
