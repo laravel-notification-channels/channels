@@ -5,19 +5,18 @@ namespace NotificationChannels\NextcloudTalk;
 class NextcloudTalkMessage
 {
     /**
-     * Channel token
+     * Channel token.
      *
      * @var string
      */
     protected $channel = null;
 
     /**
-     * Message content
+     * Message content.
      *
      * @var string
      */
     protected $content;
-
 
     public function __construct(string $content = '')
     {
@@ -27,7 +26,7 @@ class NextcloudTalkMessage
     /**
      * Create a new instance of RocketChatMessage.
      *
-     * @param  string $content
+     * @param  string  $content
      * @return static
      */
     public static function create(string $content = ''): self
@@ -38,7 +37,7 @@ class NextcloudTalkMessage
     /**
      * Set the nextcloud channel token the message should be sent to.
      *
-     * @param  string $channel
+     * @param  string  $channel
      * @return $this
      */
     public function to(string $channel): self
@@ -49,11 +48,11 @@ class NextcloudTalkMessage
     }
 
     /**
-    * Set the content of the message.
-    *
-    * @param  string  $content
-    * @return $this
-    */
+     * Set the content of the message.
+     *
+     * @param  string  $content
+     * @return $this
+     */
     public function content(string $content): self
     {
         $this->content = $content;
@@ -62,7 +61,7 @@ class NextcloudTalkMessage
     }
 
     /**
-     * Get channel token
+     * Get channel token.
      *
      * @return string|null
      */
@@ -72,7 +71,7 @@ class NextcloudTalkMessage
     }
 
     /**
-     * Get message content
+     * Get message content.
      *
      * @return string|null
      */
@@ -80,7 +79,4 @@ class NextcloudTalkMessage
     {
         return $this->content;
     }
-
-
-
 }

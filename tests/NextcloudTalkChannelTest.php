@@ -2,17 +2,17 @@
 
 namespace NotificationChannels\NextcloudTalk\Test;
 
-use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Mockery;
+use NotificationChannels\NextcloudTalk\Exceptions\CouldNotSendNotification;
 use NotificationChannels\NextcloudTalk\NextcloudTalk;
 use NotificationChannels\NextcloudTalk\NextcloudTalkChannel;
 use NotificationChannels\NextcloudTalk\NextcloudTalkMessage;
-use NotificationChannels\NextcloudTalk\Exceptions\CouldNotSendNotification;
+use PHPUnit\Framework\TestCase;
 
 class NextcloudTalkChannelTest extends TestCase
 {
@@ -30,6 +30,7 @@ class NextcloudTalkChannelTest extends TestCase
         $this->client = Mockery::mock(Client::class);
         $this->nextcloudTalk = new NextcloudTalk($this->client, $this->defaultChannel, $this->onetooneChannel);
     }
+
     public function tearDown(): void
     {
         Mockery::close();
@@ -47,11 +48,11 @@ class NextcloudTalkChannelTest extends TestCase
         ->with(
             $this->basePath.'/v4/room',
             [
-            'json' => [
+                'json' => [
                     'roomType' => 1,
-                    'invite'   => $user,
+                    'invite' => $user,
                     'roomName' => $this->onetooneChannel,
-                ]
+                ],
             ]
         )
             ->andReturn(new Response(
@@ -64,10 +65,9 @@ class NextcloudTalkChannelTest extends TestCase
         ->shouldReceive('post')
         ->once()
         ->with($this->basePath.'/v1/chat/'.$token, [
-                'json' => ['message' => 'hello']
-            ])
+            'json' => ['message' => 'hello'],
+        ])
         ->andReturn(new Response(200));
-
 
         $channel = new NextcloudTalkChannel($this->nextcloudTalk);
         $response = $channel->send(new TestNotifiable(), new TestNotificationToUser());
@@ -76,15 +76,13 @@ class NextcloudTalkChannelTest extends TestCase
 
     public function test_it_can_send_notification_to_specified_channel(): void
     {
-
         $this->client
         ->shouldReceive('post')
         ->once()
         ->with($this->basePath.'/v1/chat/channel', [
-                'json' => ['message' => 'hello']
-            ])
+            'json' => ['message' => 'hello'],
+        ])
         ->andReturn(new Response(200));
-
 
         $channel = new NextcloudTalkChannel($this->nextcloudTalk);
         $response = $channel->send(new TestNotifiableWithNoRoute(), new TestNotificationToChannel());
@@ -93,15 +91,13 @@ class NextcloudTalkChannelTest extends TestCase
 
     public function test_it_can_send_notification_to_default_channel(): void
     {
-
         $this->client
         ->shouldReceive('post')
         ->once()
         ->with($this->basePath.'/v1/chat/'.$this->defaultChannel, [
-                'json' => ['message' => 'hello']
-            ])
+            'json' => ['message' => 'hello'],
+        ])
         ->andReturn(new Response(200));
-
 
         $channel = new NextcloudTalkChannel($this->nextcloudTalk);
         $response = $channel->send(new TestNotifiableWithNoRoute(), new TestNotificationToDefaultChannel());
@@ -161,7 +157,6 @@ class NextcloudTalkChannelTest extends TestCase
     }
 }
 
-
 class TestNotifiable
 {
     use Notifiable;
@@ -175,7 +170,6 @@ class TestNotifiable
 class TestNotifiableWithNoRoute
 {
     use Notifiable;
-
 }
 
 class TestNotificationToChannel extends Notification
@@ -185,7 +179,6 @@ class TestNotificationToChannel extends Notification
         return NextcloudTalkMessage::create('hello')->to('channel');
     }
 }
-
 
 class TestNotificationToUser extends Notification
 {

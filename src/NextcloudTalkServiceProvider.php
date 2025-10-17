@@ -5,8 +5,6 @@ namespace NotificationChannels\NextcloudTalk;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use NotificationChannels\NextcloudTalk\NextcloudTalk;
-use NotificationChannels\NextcloudTalk\NextcloudTalkChannel;
 
 class NextcloudTalkServiceProvider extends ServiceProvider
 {
@@ -15,7 +13,6 @@ class NextcloudTalkServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->app->when(NextcloudTalkChannel::class)
         ->needs(NextcloudTalk::class)
         ->give(function () {
@@ -35,7 +32,6 @@ class NextcloudTalkServiceProvider extends ServiceProvider
                 Config::get('services.nextcloudtalk.one_to_one_channel_name'),
             );
         });
-
     }
 
     /**

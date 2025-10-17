@@ -24,24 +24,22 @@ class NextcloudTalkServiceProviderTest extends \Orchestra\Testbench\TestCase
     {
         tap($app['config'], function (Repository $config) {
             $config->set('services.nextcloudtalk', [
-                'url'   => 'https://localhost:8080',
+                'url' => 'https://localhost:8080',
                 'username' => 'bot',
-                'password'   => 'botpassword',
-                'default_channel'   => '4uzqkoqa',
-                'one_to_one_channel_name'   => 'Chat with bot',
+                'password' => 'botpassword',
+                'default_channel' => '4uzqkoqa',
+                'one_to_one_channel_name' => 'Chat with bot',
             ]);
-
         });
     }
 
     public function test_binding_works(): void
     {
-        $channel =  $this->app->make(NextcloudTalkChannel::class);
+        $channel = $this->app->make(NextcloudTalkChannel::class);
         $reflection = new \ReflectionClass($channel);
         $property = $reflection->getProperty('nextcloudTalk');
         $property->setAccessible(true);
         $nextcloudTalk = $property->getValue($channel);
         $this->assertInstanceOf(NextcloudTalk::class, $nextcloudTalk);
-
     }
 }
