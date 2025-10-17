@@ -1,22 +1,10 @@
-Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
-
-# A Boilerplate repo for contributions
+# Nextcloud talk notification channel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/nextcloud-talk.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/nextcloud-talk)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/nextcloud-talk/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/nextcloud-talk)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/nextcloud-talk.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/nextcloud-talk)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/nextcloud-talk/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/nextcloud-talk/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/nextcloud-talk.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/nextcloud-talk)
 
-This package makes it easy to send notifications using [NextcloudTalk](link to service) with Laravel 10.x.
-
-**Note:** Replace `NextcloudTalk` `NextcloudTalk` `Vishnu Koothattu` `vish404` `https://vishnu.koothattu.com` `vishnu@koothattu.com` `nextcloud-talk` `A Laravel notification channel for Nextcloud Talk` `:style_ci_id` `:sensio_labs_id` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
+This package makes it easy to send notifications using [NextcloudTalk](https://nextcloud.com/) with Laravel 10.x, 11.x and 12.x.
 
 ## Contents
 
@@ -33,19 +21,74 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install this package via composer:
+
+```bash
+composer require laravel-notification-channels/nextcloud-talk
+```
 
 ### Setting up the NextcloudTalk service
 
-Optionally include a few steps how users can set up the service.
+Add your NextcloudTalk config to config/services.php:
+
+```php
+// config/services.php
+...
+    'nextcloudtalk' => [
+        'url' => env('NEXTCLOUD_URL'),
+        'username' => env('NEXTCLOUD_USERNAME'),
+        'password' => env('NEXTCLOUD_PASSWORD'),
+        'default_channel' => env('NEXTCLOUD_DEFAULT_CHANNEL'),
+        'one_to_one_channel_name' => env('NEXTCLOUD_ONE_TO_ONE_CHANNEL_NAME'),
+    ],
+...
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can use the channel in your via() method inside the notification:
+
+```php
+use Illuminate\Notifications\Notification;
+use NotificationChannels\NextcloudTalk\NextcloudTalkChannel;
+use NotificationChannels\NextcloudTalk\NextcloudTalkMessage;
+
+class NextcloudNotification extends Notification
+{
+
+    public function via(object $notifiable): array
+    {
+        return [NextcloudTalkChannel::class];
+    }
+
+    public function toNextcloudTalk()
+    {
+        return NextcloudTalkMessage::create('Hello');
+    }
+
+}
+```
+
+If you want the bot to make a channel with the user and send message (one to one), add `routeNotificationForNextcloudTalk` to your notifiable model:
+
+```php
+public function routeNotificationForNextcloudTalk($notification): string
+    {
+        return $this->username;
+    }
+```
+
+Channel selection order:
+
+1. Channel specified using `NextcloudTalkMessage::to()`.
+2. `routeNotificationForNextcloudTalk()`
+3. `default_channel` specified in the config
 
 ### Available Message methods
 
-A list of all available options
+`to()`: To specify a nextcloud channel token, example groups etc.
+
+`content()`: Sets a content of the notification message.
 
 ## Changelog
 
