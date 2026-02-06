@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
 use Zilmoney\OnlineCheckWriter\Exceptions\OnlineCheckWriterException;
 use Zilmoney\OnlineCheckWriter\Message\OnlineCheckWriterDocumentMail;
-use Zilmoney\OnlineCheckWriter\Message\OnlineCheckWriterMailCheck;
 use Zilmoney\OnlineCheckWriter\Message\OnlineCheckWriterMessage;
 use Zilmoney\OnlineCheckWriter\OnlineCheckWriterClient;
 
@@ -19,16 +18,13 @@ class OnlineCheckWriterChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param Notification $notification
-     * @return array|null
      * @throws OnlineCheckWriterException
      */
     public function send(mixed $notifiable, Notification $notification): ?array
     {
         $message = $notification->toOnlineCheckWriter($notifiable);
 
-        if (!$message instanceof OnlineCheckWriterMessage) {
+        if (! $message instanceof OnlineCheckWriterMessage) {
             return null;
         }
 
@@ -41,7 +37,7 @@ class OnlineCheckWriterChannel
         // Apply default sender if this is a DocumentMail
         if ($message instanceof OnlineCheckWriterDocumentMail) {
             $defaultSender = Config::get('onlinecheckwriter.default_sender', []);
-            if (!empty($defaultSender)) {
+            if (! empty($defaultSender)) {
                 $message->from($defaultSender);
             }
         }

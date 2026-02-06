@@ -5,17 +5,29 @@ namespace Zilmoney\OnlineCheckWriter\Message;
 class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
 {
     protected ?string $filePath = null;
+
     protected ?string $attachmentUrl = null;
+
     protected ?string $documentTitle = null;
+
     protected ?string $name = null;
+
     protected ?string $company = null;
+
     protected ?string $address1 = null;
+
     protected ?string $address2 = null;
+
     protected ?string $city = null;
+
     protected ?string $state = null;
+
     protected ?string $zip = null;
+
     protected ?string $phone = null;
+
     protected ?string $email = null;
+
     protected int $shippingTypeId = 3; // Default shipping type
 
     /**
@@ -23,7 +35,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
      */
     public static function create(): static
     {
-        return new static();
+        return new static;
     }
 
     /**
@@ -32,6 +44,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function file(string $filePath): static
     {
         $this->filePath = $filePath;
+
         return $this;
     }
 
@@ -41,6 +54,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function attachmentUrl(string $url): static
     {
         $this->attachmentUrl = $url;
+
         return $this;
     }
 
@@ -50,6 +64,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function documentTitle(string $title): static
     {
         $this->documentTitle = $title;
+
         return $this;
     }
 
@@ -59,6 +74,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function name(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -68,6 +84,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function company(string $company): static
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -77,6 +94,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function address1(string $address1): static
     {
         $this->address1 = $address1;
+
         return $this;
     }
 
@@ -86,6 +104,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function address2(string $address2): static
     {
         $this->address2 = $address2;
+
         return $this;
     }
 
@@ -95,6 +114,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function city(string $city): static
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -104,6 +124,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function state(string $state): static
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -113,6 +134,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function zip(string $zip): static
     {
         $this->zip = $zip;
+
         return $this;
     }
 
@@ -122,6 +144,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function phone(string $phone): static
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -131,6 +154,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function email(string $email): static
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -144,6 +168,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
     public function shippingType(int $shippingTypeId): static
     {
         $this->shippingTypeId = $shippingTypeId;
+
         return $this;
     }
 
@@ -222,7 +247,7 @@ class OnlineCheckWriterDocumentMail extends OnlineCheckWriterMessage
             ],
         ];
 
-        if (!empty($this->metadata)) {
+        if (! empty($this->metadata)) {
             $data['metadata'] = $this->metadata;
         }
 

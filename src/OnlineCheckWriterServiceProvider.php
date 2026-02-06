@@ -15,11 +15,11 @@ class OnlineCheckWriterServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/onlinecheckwriter.php' => config_path('onlinecheckwriter.php'),
+            __DIR__.'/../config/onlinecheckwriter.php' => config_path('onlinecheckwriter.php'),
         ], 'onlinecheckwriter-config');
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/onlinecheckwriter.php',
+            __DIR__.'/../config/onlinecheckwriter.php',
             'onlinecheckwriter'
         );
     }

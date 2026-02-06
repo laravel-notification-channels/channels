@@ -15,6 +15,7 @@ class OnlineCheckWriterException extends Exception
     {
         $exception = new static($message, $code);
         $exception->response = $response;
+
         return $exception;
     }
 

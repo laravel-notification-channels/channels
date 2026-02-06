@@ -5,6 +5,7 @@ namespace Zilmoney\OnlineCheckWriter\Message;
 abstract class OnlineCheckWriterMessage
 {
     protected array $sender = [];
+
     protected array $metadata = [];
 
     /**
@@ -13,6 +14,7 @@ abstract class OnlineCheckWriterMessage
     public function from(array $address): static
     {
         $this->sender = $address;
+
         return $this;
     }
 
@@ -22,6 +24,7 @@ abstract class OnlineCheckWriterMessage
     public function metadata(array $metadata): static
     {
         $this->metadata = array_merge($this->metadata, $metadata);
+
         return $this;
     }
 
@@ -40,7 +43,7 @@ abstract class OnlineCheckWriterMessage
      */
     protected function getSender(): array
     {
-        if (!empty($this->sender)) {
+        if (! empty($this->sender)) {
             return $this->sender;
         }
 

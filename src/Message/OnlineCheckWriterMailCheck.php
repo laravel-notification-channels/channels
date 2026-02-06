@@ -5,20 +5,35 @@ namespace Zilmoney\OnlineCheckWriter\Message;
 class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
 {
     protected ?string $bankAccountId = null;
+
     protected string $accountType = 'bankaccount';
+
     protected float $amount = 0;
+
     protected ?string $memo = null;
+
     protected ?string $note = null;
+
     protected ?string $issueDate = null;
+
     protected ?string $recipientName = null;
+
     protected ?string $recipientCompany = null;
+
     protected ?string $recipientAddress1 = null;
+
     protected ?string $recipientAddress2 = null;
+
     protected ?string $recipientCity = null;
+
     protected ?string $recipientState = null;
+
     protected ?string $recipientZip = null;
+
     protected ?string $recipientPhone = null;
+
     protected ?string $recipientEmail = null;
+
     protected int $shippingTypeId = 1;
 
     /**
@@ -26,7 +41,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
      */
     public static function create(): static
     {
-        return new static();
+        return new static;
     }
 
     /**
@@ -35,6 +50,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function bankAccount(string $bankAccountId): static
     {
         $this->bankAccountId = $bankAccountId;
+
         return $this;
     }
 
@@ -44,6 +60,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function accountType(string $accountType): static
     {
         $this->accountType = $accountType;
+
         return $this;
     }
 
@@ -53,6 +70,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function amount(float $amount): static
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -62,6 +80,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function memo(string $memo): static
     {
         $this->memo = $memo;
+
         return $this;
     }
 
@@ -71,6 +90,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function note(string $note): static
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -80,6 +100,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function issueDate(string $date): static
     {
         $this->issueDate = $date;
+
         return $this;
     }
 
@@ -89,6 +110,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function name(string $name): static
     {
         $this->recipientName = $name;
+
         return $this;
     }
 
@@ -98,6 +120,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function company(string $company): static
     {
         $this->recipientCompany = $company;
+
         return $this;
     }
 
@@ -107,6 +130,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function address1(string $address1): static
     {
         $this->recipientAddress1 = $address1;
+
         return $this;
     }
 
@@ -116,6 +140,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function address2(string $address2): static
     {
         $this->recipientAddress2 = $address2;
+
         return $this;
     }
 
@@ -125,6 +150,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function city(string $city): static
     {
         $this->recipientCity = $city;
+
         return $this;
     }
 
@@ -134,6 +160,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function state(string $state): static
     {
         $this->recipientState = $state;
+
         return $this;
     }
 
@@ -143,6 +170,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function zip(string $zip): static
     {
         $this->recipientZip = $zip;
+
         return $this;
     }
 
@@ -152,6 +180,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function phone(string $phone): static
     {
         $this->recipientPhone = $phone;
+
         return $this;
     }
 
@@ -161,6 +190,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function email(string $email): static
     {
         $this->recipientEmail = $email;
+
         return $this;
     }
 
@@ -171,6 +201,7 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
     public function shippingType(int $shippingTypeId): static
     {
         $this->shippingTypeId = $shippingTypeId;
+
         return $this;
     }
 
@@ -213,13 +244,13 @@ class OnlineCheckWriterMailCheck extends OnlineCheckWriterMessage
                 'phone' => $this->recipientPhone,
                 'email' => $this->recipientEmail,
                 'shippingTypeId' => $this->shippingTypeId,
-            ], fn($value) => $value !== null),
+            ], fn ($value) => $value !== null),
             'payment_details' => array_filter([
                 'amount' => $this->amount,
                 'memo' => $this->memo,
                 'note' => $this->note,
                 'issueDate' => $this->issueDate,
-            ], fn($value) => $value !== null),
+            ], fn ($value) => $value !== null),
         ];
 
         // Ensure shippingTypeId is always set

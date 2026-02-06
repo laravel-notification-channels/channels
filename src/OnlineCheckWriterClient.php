@@ -14,6 +14,7 @@ use Zilmoney\OnlineCheckWriter\Message\OnlineCheckWriterMessage;
 class OnlineCheckWriterClient
 {
     protected Client $client;
+
     protected Client $multipartClient;
 
     public function __construct(
@@ -22,20 +23,20 @@ class OnlineCheckWriterClient
         protected int $timeout = 30
     ) {
         $this->client = new Client([
-            'base_uri' => rtrim($this->baseUrl, '/') . '/',
+            'base_uri' => rtrim($this->baseUrl, '/').'/',
             'timeout' => $this->timeout,
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->apiKey,
+                'Authorization' => 'Bearer '.$this->apiKey,
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
         ]);
 
         $this->multipartClient = new Client([
-            'base_uri' => rtrim($this->baseUrl, '/') . '/',
+            'base_uri' => rtrim($this->baseUrl, '/').'/',
             'timeout' => $this->timeout,
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->apiKey,
+                'Authorization' => 'Bearer '.$this->apiKey,
                 'Accept' => 'application/json',
             ],
         ]);
@@ -66,7 +67,7 @@ class OnlineCheckWriterClient
         $attachmentUrl = $documentMail->getAttachmentUrl();
 
         // If we have a file path but no attachment URL, upload the document first
-        if (!$attachmentUrl && $documentMail->getFilePath()) {
+        if (! $attachmentUrl && $documentMail->getFilePath()) {
             $uploadResponse = $this->uploadDocumentForMailing(
                 $documentMail->getFilePath(),
                 $documentMail->getDocumentTitle()
@@ -75,14 +76,14 @@ class OnlineCheckWriterClient
             // Extract the attachment URL from upload response
             $attachmentUrl = $uploadResponse['data']['file_url'] ?? null;
 
-            if (!$attachmentUrl) {
+            if (! $attachmentUrl) {
                 throw new OnlineCheckWriterException(
-                    'Failed to get attachment URL from upload response: ' . json_encode($uploadResponse)
+                    'Failed to get attachment URL from upload response: '.json_encode($uploadResponse)
                 );
             }
         }
 
-        if (!$attachmentUrl) {
+        if (! $attachmentUrl) {
             throw new OnlineCheckWriterException(
                 'No attachment URL or file path provided for document mail'
             );
@@ -97,7 +98,7 @@ class OnlineCheckWriterClient
      *
      * @throws OnlineCheckWriterException
      */
-    public function uploadDocumentForMailing(string $filePath, string $documentTitle = null, string $idempotencyKey = null): array
+    public function uploadDocumentForMailing(string $filePath, ?string $documentTitle = null, ?string $idempotencyKey = null): array
     {
         try {
             $multipart = [
@@ -168,7 +169,7 @@ class OnlineCheckWriterClient
      *
      * @throws OnlineCheckWriterException
      */
-    public function uploadDocument(string $filePath, string $fileName = null): array
+    public function uploadDocument(string $filePath, ?string $fileName = null): array
     {
         return $this->uploadDocumentForMailing($filePath, $fileName);
     }

@@ -32,8 +32,8 @@ class ChannelTest extends TestCase
 
         $channel = new OnlineCheckWriterChannel($client);
 
-        $notifiable = new TestNotifiable();
-        $notification = new TestDocumentMailNotification();
+        $notifiable = new TestNotifiable;
+        $notification = new TestDocumentMailNotification;
 
         $result = $channel->send($notifiable, $notification);
 
@@ -52,8 +52,8 @@ class ChannelTest extends TestCase
 
         $channel = new OnlineCheckWriterChannel($client);
 
-        $notifiable = new TestNotifiable();
-        $notification = new TestMailCheckNotification();
+        $notifiable = new TestNotifiable;
+        $notification = new TestMailCheckNotification;
 
         $result = $channel->send($notifiable, $notification);
 
@@ -70,8 +70,8 @@ class ChannelTest extends TestCase
 
         $channel = new OnlineCheckWriterChannel($client);
 
-        $notifiable = new TestNotifiable();
-        $notification = new TestInvalidNotification();
+        $notifiable = new TestNotifiable;
+        $notification = new TestInvalidNotification;
 
         $result = $channel->send($notifiable, $notification);
 
@@ -86,14 +86,15 @@ class ChannelTest extends TestCase
             ->once()
             ->withArgs(function ($message) {
                 $array = $message->toArray();
+
                 return $array['name'] === 'Route Name' && $array['city'] === 'Route City';
             })
             ->andReturn(['success' => true]);
 
         $channel = new OnlineCheckWriterChannel($client);
 
-        $notifiable = new TestNotifiableWithRoute();
-        $notification = new TestDocumentMailNotificationWithoutRecipient();
+        $notifiable = new TestNotifiableWithRoute;
+        $notification = new TestDocumentMailNotificationWithoutRecipient;
 
         $channel->send($notifiable, $notification);
     }
@@ -106,14 +107,15 @@ class ChannelTest extends TestCase
             ->once()
             ->withArgs(function ($message) {
                 $array = $message->toArray();
+
                 return $array['name'] === 'Postal Name' && $array['city'] === 'Postal City';
             })
             ->andReturn(['success' => true]);
 
         $channel = new OnlineCheckWriterChannel($client);
 
-        $notifiable = new TestNotifiableWithPostalAddress();
-        $notification = new TestDocumentMailNotificationWithoutRecipient();
+        $notifiable = new TestNotifiableWithPostalAddress;
+        $notification = new TestDocumentMailNotificationWithoutRecipient;
 
         $channel->send($notifiable, $notification);
     }
@@ -126,6 +128,7 @@ class TestNotifiable
     use Notifiable;
 
     public string $name = 'Test User';
+
     public string $email = 'test@example.com';
 }
 
