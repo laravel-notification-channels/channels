@@ -1,0 +1,15 @@
+/vendor/
+composer.lock
+.phpunit.result.cache
+.phpunit.cache/
+.claude/
+CLAUDE.md
+docs/
+.env
+.env.*
+napkin.md
+*.log
+.idea/
+.vscode/
+PRD.md
+PLAN.md
