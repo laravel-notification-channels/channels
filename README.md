@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/telnect-sms/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/telnect-sms)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/telnect-sms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/telnect-sms)
 
-This package makes it easy to send notifications using [TelnectSms](link to service) with Laravel 10.x.
+This package makes it easy to send notifications using [TelnectSms](link to service) with Laravel 10.x. Tested on PHP 8.4 and PHP 8.5.
 
 **Note:** Replace ```TelnectSms``` ```TelnectSms``` ```Karabin AB``` ```KarabinSE``` ```https://karabin.se``` ```info@karabin.se``` ```TelnectSms``` ```Send SMS text message using Telnect API``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
 
