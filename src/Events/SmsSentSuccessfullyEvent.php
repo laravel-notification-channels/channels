@@ -8,5 +8,8 @@ class SmsSentSuccessfullyEvent
 {
     use Dispatchable;
 
-    public function __construct(public string $payload) {}
+    public function __construct(public string $payload)
+    {
+        //
+    }
 }

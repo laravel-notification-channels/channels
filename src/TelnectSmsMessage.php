@@ -7,7 +7,9 @@ class TelnectSmsMessage
     public function __construct(
         protected string $body = '',
         protected string $sender = ''
-    ) {}
+    ) {
+        //
+    }
 
     /**
      * Creates a new instance of the message.

@@ -8,7 +8,9 @@ class TelnectSmsChannel
 {
     public function __construct(
         protected TelnectSmsClient $client,
-    ) {}
+    ) {
+        //
+    }
 
     public function send($notifiable, Notification $notification): void
     {

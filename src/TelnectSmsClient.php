@@ -15,7 +15,9 @@ class TelnectSmsClient
     public function __construct(
         protected GuzzleClient $client,
         protected string $apiKey,
-    ) {}
+    ) {
+        //
+    }
 
     public function send(TelnectSmsMessage $message, string $destination)
     {

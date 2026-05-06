@@ -8,5 +8,8 @@ class SmsSendingFailedEvent
 {
     use Dispatchable;
 
-    public function __construct(public string $response) {}
+    public function __construct(public string $response)
+    {
+        //
+    }
 }
