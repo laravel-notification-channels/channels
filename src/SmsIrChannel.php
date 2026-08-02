@@ -21,10 +21,9 @@ class SmsIrChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
+     * @return mixed
      *
      * @throws CouldNotSendNotification
-     *
-     * @return mixed
      */
     public function send($notifiable, Notification $notification)
     {
@@ -79,10 +78,9 @@ class SmsIrChannel
      * single mobile — while plain text is sent to the whole list in one request.
      *
      * @param  string[]  $recipients
+     * @return mixed
      *
      * @throws CouldNotSendNotification
-     *
-     * @return mixed
      */
     protected function sendMessage(array $recipients, SmsIrMessage $message)
     {
