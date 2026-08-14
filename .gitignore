@@ -1,0 +1,9 @@
+.idea
+.phpunit.cache
+.phpunit.result.cache
+build
+composer.lock
+coverage
+phpstan.neon
+phpunit.xml
+vendor
