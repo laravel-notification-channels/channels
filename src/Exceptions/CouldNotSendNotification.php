@@ -92,12 +92,21 @@ class CouldNotSendNotification extends Exception
         // message. Redact here, at the single choke point every transport
         // failure passes through, so every consumer of this exception -
         // including future call sites we haven't written yet - is protected.
+        //
+        // Deliberately NOT passed as the previous exception below: Laravel's
+        // exception handler and Monolog's formatters both recurse into
+        // getPrevious()->getMessage() when logging/reporting an exception,
+        // unconditionally. Attaching the raw Guzzle exception there would put
+        // the unredacted, credential-bearing message right back within reach
+        // of report($e) - the exact call this package's README recommends -
+        // defeating the redaction above. The original exception's class name
+        // is folded into the outer message instead, so the failure type is
+        // still diagnosable without resurrecting the leak.
         $reason = static::redactCredentials($exception->getMessage());
 
         return new self(
-            "The communication with OneWaySMS failed. Reason: {$reason}",
+            sprintf('The communication with OneWaySMS failed (%s). Reason: %s', $exception::class, $reason),
             (int) $exception->getCode(),
-            $exception,
         );
     }
 
