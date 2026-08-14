@@ -121,6 +121,10 @@ public function routeNotificationForOneWaySms()
 | `unicode()` | Force Unicode encoding (`languagetype=2`). |
 | `text()` | Force plain text encoding (`languagetype=1`). |
 
+`languageType()` and `encodedContent()` are also public, but they exist for the
+channel to build the outgoing request — the channel calls them for you, so you
+won't normally need to call them yourself.
+
 ### Unicode
 
 Encoding is chosen automatically: any non-ASCII character switches the message to
@@ -197,18 +201,64 @@ Route::get('/onewaysms/dn', function (Request $request) {
 ```
 
 To match delivery notifications against the request that sent them, you need
-the MT IDs the gateway returned. `Notification::send()` / `$notifiable->notify()`
-don't hand those back to the caller — Laravel discards each channel's return
-value. Call the channel directly instead:
+the MT IDs the gateway returned. `$notifiable->notify(...)` doesn't return them
+directly — Laravel discards the plain return value — but it does hand them to
+your notification through two other routes.
+
+Define `afterSending()` on the notification and Laravel calls it with the
+channel's response, which for this channel is the MT ID array (or `null` when
+the notifiable had no route):
 
 ```php
-use NotificationChannels\OneWaySms\OneWaySmsChannel;
+class OrderShipped extends Notification
+{
+    // ...
 
-$mtIds = app(OneWaySmsChannel::class)->send($user, new OrderShipped());
+    public function afterSending($notifiable, string $channel, mixed $response): void
+    {
+        if ($channel === 'one_way_sms') {
+            // $response is an array<int, string> of MT IDs, or null.
+            Log::info('OneWaySMS MT IDs', ['ids' => $response]);
+        }
+    }
+}
 ```
 
-Or bypass notifications entirely and use `OneWaySmsApi::send()`, which returns
-the same array of MT IDs.
+The same value is available on the `NotificationSent` event as `$response`, if
+you'd rather handle it with a listener:
+
+```php
+use Illuminate\Notifications\Events\NotificationSent;
+
+Event::listen(function (NotificationSent $event) {
+    if ($event->channel === 'one_way_sms') {
+        // $event->response is an array<int, string> of MT IDs, or null.
+    }
+});
+```
+
+To send outside the notification system and get the MT IDs back as an ordinary
+return value, call the channel through Laravel's notification driver resolver:
+
+```php
+use Illuminate\Support\Facades\Notification;
+
+$mtIds = Notification::driver('one_way_sms')->send($user, new OrderShipped());
+```
+
+Or bypass notifications entirely and call `OneWaySmsApi::send()` yourself. Its
+signature takes the sender explicitly, so it needs no container wiring:
+
+```php
+use NotificationChannels\OneWaySms\OneWaySmsApi;
+
+$mtIds = app(OneWaySmsApi::class)->send([
+    'to' => '60121234567',
+    'sender' => config('services.onewaysms.sender'),
+    'languagetype' => 1,
+    'message' => 'Your order has shipped.',
+]);
+```
 
 ## Changelog
 
