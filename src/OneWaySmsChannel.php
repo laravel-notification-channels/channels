@@ -14,7 +14,8 @@ class OneWaySmsChannel
     public function __construct(
         protected OneWaySmsApi $api,
         protected ?string $sender = null,
-    ) {}
+    ) {
+    }
 
     /**
      * Send the given notification.

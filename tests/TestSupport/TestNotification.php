@@ -7,7 +7,9 @@ use NotificationChannels\OneWaySms\OneWaySmsMessage;
 
 class TestNotification extends Notification
 {
-    public function __construct(protected ?OneWaySmsMessage $message = null) {}
+    public function __construct(protected ?OneWaySmsMessage $message = null)
+    {
+    }
 
     /** @return array<int, string> */
     public function via(mixed $notifiable): array

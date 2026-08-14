@@ -20,7 +20,8 @@ class OneWaySmsApi
         protected string $endpoint = self::DEFAULT_ENDPOINT,
         protected ?string $username = null,
         protected ?string $password = null,
-    ) {}
+    ) {
+    }
 
     /**
      * Send one MT request.
