@@ -144,3 +144,8 @@ it('throws rather than reading a non-numeric balance body as zero', function () 
     expect(fn () => oneWaySmsApi([new Response(200, [], '<html>error</html>')])->checkBalance())
         ->toThrow(CouldNotSendNotification::class, 'unexpected response body');
 });
+
+it('does not apply send-specific error codes to the balance endpoint', function () {
+    expect(fn () => oneWaySmsApi([new Response(200, [], '-200')])->checkBalance())
+        ->toThrow(CouldNotSendNotification::class, 'undocumented error code');
+});
