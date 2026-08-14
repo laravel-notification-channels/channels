@@ -41,7 +41,7 @@ class OneWaySmsApi
             'message' => Arr::get($message, 'message'),
         ]);
 
-        $ids = explode(',', $body);
+        $ids = array_map('trim', explode(',', $body));
 
         if (! is_numeric($ids[0])) {
             throw CouldNotSendNotification::unexpectedResponse($body);
@@ -92,8 +92,18 @@ class OneWaySmsApi
     protected function request(string $path, array $query): string
     {
         try {
+            // DEFAULT_ENDPOINT's host and non-standard port are inferred, not
+            // vendor-documented, so a blackholed TCP connect is the single
+            // most likely first-run failure. Guzzle otherwise defaults to no
+            // timeout at all (connect_timeout: 0, timeout: 0, i.e. cURL's own
+            // 300s), which would hang the request - or a queue worker - for
+            // minutes instead of failing fast. Set request-level rather than
+            // client-level so this survives an application-bound HttpClient
+            // without overriding that client's other configured defaults.
             $response = $this->client->request('GET', rtrim($this->endpoint, '/').$path, [
                 'query' => $query,
+                'connect_timeout' => 10,
+                'timeout' => 30,
             ]);
         } catch (GuzzleException $exception) {
             throw CouldNotSendNotification::couldNotCommunicateWithOneWaySms($exception);

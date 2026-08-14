@@ -24,13 +24,14 @@ it('records an undocumented gateway code', function () {
         ->and($exception->getMessage())->toContain('-999');
 });
 
-it('has no gateway code for locally raised failures', function (CouldNotSendNotification $exception) {
+it('has no gateway code when the failure carried no gateway error code', function (CouldNotSendNotification $exception) {
     expect($exception->gatewayCode())->toBeNull();
 })->with([
     fn () => CouldNotSendNotification::emptyMessage(),
     fn () => CouldNotSendNotification::missingSender(),
     fn () => CouldNotSendNotification::tooManyRecipients(11, 10),
     fn () => CouldNotSendNotification::unexpectedResponse('<html>'),
+    fn () => CouldNotSendNotification::couldNotCommunicateWithOneWaySms(new RuntimeException('Connection refused')),
 ]);
 
 it('states the recipient limit and the offending count', function () {

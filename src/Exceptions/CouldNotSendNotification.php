@@ -8,8 +8,9 @@ use Throwable;
 class CouldNotSendNotification extends Exception
 {
     /**
-     * The raw error code returned by the gateway, or null when the failure was
-     * raised locally before any request was made.
+     * The raw error code returned by the gateway, or null when the failure
+     * carried no gateway error code - a pre-flight validation failure, a
+     * transport failure, or an unparseable response.
      */
     protected ?int $gatewayCode = null;
 
@@ -111,16 +112,19 @@ class CouldNotSendNotification extends Exception
     }
 
     /**
-     * Redact OneWaySMS gateway credentials (apiusername/apipassword) from a
-     * string that may contain the request URL, without disturbing anything
-     * else in the string. Parameter order and URL-encoded characters in the
+     * Redact OneWaySMS gateway request parameters (apiusername, apipassword,
+     * mobileno, message) from a string that may contain the request URL,
+     * without disturbing anything else in the string. Beyond the credentials,
+     * the same query string also carries the recipient's MSISDN and the SMS
+     * body - personal data and message content that must not reach report()
+     * or a log file either. Parameter order and URL-encoded characters in the
      * value are both handled, since the value is matched up to the next
      * delimiter rather than assumed to be plain text.
      */
     protected static function redactCredentials(string $text): string
     {
         return preg_replace(
-            '/(apiusername|apipassword)=[^&\s"\'`]+/i',
+            '/(apiusername|apipassword|mobileno|message)=[^&\s"\'`]+/i',
             '$1=***REDACTED***',
             $text,
         ) ?? $text;

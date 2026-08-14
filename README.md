@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/onewaysms)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![run-tests](https://github.com/laravel-notification-channels/onewaysms/actions/workflows/run-tests.yml/badge.svg)](https://github.com/laravel-notification-channels/onewaysms/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/onewaysms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/onewaysms)
 
 Send SMS notifications through [OneWaySMS](https://www.onewaysms.com.my), a Malaysian SMS gateway.
@@ -56,6 +57,10 @@ Add the credentials to `config/services.php`:
 and `/bulkcredit.aspx`. The gateway listens on port 10001 or port 80. If your
 account's URLs differ, set `ONEWAYSMS_ENDPOINT` to match.
 
+The default, `https://gateway.onewaysms.com.my:10001`, is **inferred** — the
+vendor's own documentation never prints a literal host. Confirm the URLs shown
+in your account's API section rather than assuming the default is correct.
+
 Sender IDs may contain at most 11 alphanumeric characters. OneWaySMS notes that
 sender IDs are no longer honoured in Malaysia; using `INFO` yields a 5-digit
 number beginning with 6.
@@ -81,6 +86,13 @@ class OrderShipped extends Notification
     }
 }
 ```
+
+`via()` must return the string `'one_way_sms'`, as above — not
+`OneWaySmsChannel::class`. The class name also resolves, via Laravel's
+container autowiring, but it silently sends nothing: it bypasses the
+`one_way_sms` driver registered in the service provider, so there is no
+matching `routeNotificationForOneWaySms()` lookup and the configured sender
+is never applied.
 
 Returning a plain string works too:
 
@@ -179,8 +191,9 @@ try {
 | `-500` | Message contains invalid characters |
 | `-600` | Insufficient credit balance |
 
-`gatewayCode()` returns `null` for failures raised locally before any request —
-an empty message, a missing sender, or more than 10 recipients.
+`gatewayCode()` returns `null` when the failure carried no gateway error code —
+a pre-flight validation failure (an empty message, a missing sender, or more
+than 10 recipients), a transport failure, or an unparseable response.
 
 ## Delivery notifications
 
@@ -205,9 +218,23 @@ the MT IDs the gateway returned. `$notifiable->notify(...)` doesn't return them
 directly — Laravel discards the plain return value — but it does hand them to
 your notification through two other routes.
 
-Define `afterSending()` on the notification and Laravel calls it with the
-channel's response, which for this channel is the MT ID array (or `null` when
-the notifiable had no route):
+The value is available on the `NotificationSent` event as `$response`. This
+works on every Laravel version this package supports, so it's the reliable
+option:
+
+```php
+use Illuminate\Notifications\Events\NotificationSent;
+
+Event::listen(function (NotificationSent $event) {
+    if ($event->channel === 'one_way_sms') {
+        // $event->response is an array<int, string> of MT IDs, or null.
+    }
+});
+```
+
+Laravel 12.51+ and 13.x also let you define `afterSending()` directly on the
+notification, and Laravel calls it with the channel's response, which for
+this channel is the MT ID array (or `null` when the notifiable had no route):
 
 ```php
 class OrderShipped extends Notification
@@ -224,18 +251,12 @@ class OrderShipped extends Notification
 }
 ```
 
-The same value is available on the `NotificationSent` event as `$response`, if
-you'd rather handle it with a listener:
-
-```php
-use Illuminate\Notifications\Events\NotificationSent;
-
-Event::listen(function (NotificationSent $event) {
-    if ($event->channel === 'one_way_sms') {
-        // $event->response is an array<int, string> of MT IDs, or null.
-    }
-});
-```
+> **Version note:** `afterSending()` was added to `laravel/framework` in
+> 12.51.0 and is present in all 13.x releases. It is **absent** on 10.x, 11.x,
+> and 12.x before 12.51 — which this package's `composer.json` also supports
+> — so on those versions the method above compiles and runs but is never
+> called. Use the `NotificationSent` listener above if you need to support
+> earlier versions.
 
 To send outside the notification system and get the MT IDs back as an ordinary
 return value, call the channel through Laravel's notification driver resolver:
@@ -247,7 +268,7 @@ $mtIds = Notification::driver('one_way_sms')->send($user, new OrderShipped());
 ```
 
 Or bypass notifications entirely and call `OneWaySmsApi::send()` yourself. Its
-signature takes the sender explicitly, so it needs no container wiring:
+signature takes the sender explicitly, so it needs no sender configuration:
 
 ```php
 use NotificationChannels\OneWaySms\OneWaySmsApi;
@@ -257,6 +278,23 @@ $mtIds = app(OneWaySmsApi::class)->send([
     'sender' => config('services.onewaysms.sender'),
     'languagetype' => 1,
     'message' => 'Your order has shipped.',
+]);
+```
+
+Called this way, `OneWaySmsApi::send()` sends `message` to the gateway
+exactly as given — it does not perform the automatic text/Unicode selection
+or hex encoding that `OneWaySmsMessage` and the channel do for you. If you
+pass `languagetype => 2` (Unicode) directly, you must hex-encode `message`
+yourself, or build both values with `OneWaySmsMessage`:
+
+```php
+$text = OneWaySmsMessage::create('Ujian 测试')->unicode();
+
+$mtIds = app(OneWaySmsApi::class)->send([
+    'to' => '60121234567',
+    'sender' => config('services.onewaysms.sender'),
+    'languagetype' => $text->languageType(),
+    'message' => $text->encodedContent(),
 ]);
 ```
 
@@ -271,6 +309,14 @@ composer test
 ```
 
 ## Security
+
+OneWaySMS authenticates via query parameters (`apiusername`/`apipassword`)
+rather than a header — this is inherent to the vendor's API, not a choice this
+package makes. That means credentials appear in the request URL and can reach
+proxy access logs, any Guzzle logging middleware your application binds, and
+similar places a header wouldn't. It's also why `CouldNotSendNotification`
+redacts credentials, the recipient number, and the message body from its
+exception messages before they can reach `report()` or your logs.
 
 If you discover any security related issues, please email hafiqiqmal93@gmail.com
 instead of using the issue tracker.
