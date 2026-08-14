@@ -52,3 +52,33 @@ it('wraps a transport exception as the previous exception', function () {
     expect($exception->getPrevious())->toBe($previous)
         ->and($exception->getMessage())->toContain('Connection refused');
 });
+
+it('redacts gateway credentials from a wrapped transport exception regardless of parameter order', function () {
+    $previous = new RuntimeException(
+        'cURL error 7: Failed to connect for https://gateway.test/bulkcredit.aspx?apipassword=p%40ss123&apiusername=my-secret-user&keepme=visible'
+    );
+
+    $exception = CouldNotSendNotification::couldNotCommunicateWithOneWaySms($previous);
+
+    expect($exception->getMessage())
+        ->not->toContain('p%40ss123')
+        ->not->toContain('my-secret-user')
+        ->toContain('apipassword=***REDACTED***')
+        ->toContain('apiusername=***REDACTED***')
+        ->toContain('keepme=visible')
+        ->toContain('cURL error 7')
+        ->toContain('gateway.test/bulkcredit.aspx');
+});
+
+it('redacts credentials from an unexpected response body that echoes the request URL', function () {
+    $exception = CouldNotSendNotification::unexpectedResponse(
+        'Bad request for /bulkcredit.aspx?apiusername=my-secret-user&apipassword=p%40ss123'
+    );
+
+    expect($exception->getMessage())
+        ->not->toContain('my-secret-user')
+        ->not->toContain('p%40ss123')
+        ->toContain('apiusername=***REDACTED***')
+        ->toContain('apipassword=***REDACTED***')
+        ->toContain('/bulkcredit.aspx');
+});

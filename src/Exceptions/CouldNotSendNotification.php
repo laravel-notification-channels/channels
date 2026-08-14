@@ -63,7 +63,11 @@ class CouldNotSendNotification extends Exception
 
     public static function unexpectedResponse(string $body): self
     {
-        return new self("OneWaySMS returned an unexpected response body: \"{$body}\".");
+        // The gateway authenticates via query parameter, so the request URL (with
+        // credentials) is technically already gone by the time we only have a
+        // response body. This redaction is a defensive backstop in case a proxy,
+        // WAF, or gateway error page echoes the requested URL back in its body.
+        return new self('OneWaySMS returned an unexpected response body: "'.static::redactCredentials($body).'".');
     }
 
     public static function tooManyRecipients(int $count, int $max): self
@@ -83,10 +87,33 @@ class CouldNotSendNotification extends Exception
 
     public static function couldNotCommunicateWithOneWaySms(Throwable $exception): self
     {
+        // OneWaySMS authenticates via query parameter (apiusername/apipassword),
+        // and Guzzle transport exceptions embed the full request URI in their
+        // message. Redact here, at the single choke point every transport
+        // failure passes through, so every consumer of this exception -
+        // including future call sites we haven't written yet - is protected.
+        $reason = static::redactCredentials($exception->getMessage());
+
         return new self(
-            "The communication with OneWaySMS failed. Reason: {$exception->getMessage()}",
+            "The communication with OneWaySMS failed. Reason: {$reason}",
             (int) $exception->getCode(),
             $exception,
         );
+    }
+
+    /**
+     * Redact OneWaySMS gateway credentials (apiusername/apipassword) from a
+     * string that may contain the request URL, without disturbing anything
+     * else in the string. Parameter order and URL-encoded characters in the
+     * value are both handled, since the value is matched up to the next
+     * delimiter rather than assumed to be plain text.
+     */
+    protected static function redactCredentials(string $text): string
+    {
+        return preg_replace(
+            '/(apiusername|apipassword)=[^&\s"\'`]+/i',
+            '$1=***REDACTED***',
+            $text,
+        ) ?? $text;
     }
 }

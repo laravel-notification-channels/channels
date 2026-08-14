@@ -94,6 +94,30 @@ it('wraps a non-200 response as a transport failure', function () {
         ->toThrow(CouldNotSendNotification::class, 'The communication with OneWaySMS failed');
 });
 
+it('redacts gateway credentials from a wrapped transport failure message', function () {
+    $message = 'cURL error 7: Failed to connect to 127.0.0.1:9 Connection refused for '
+        .'https://127.0.0.1:9/bulkcredit.aspx?apiusername=secret-user&apipassword=secret-pass';
+
+    $api = oneWaySmsApi([
+        new ConnectException($message, new Request('GET', 'https://127.0.0.1:9/bulkcredit.aspx?apiusername=secret-user&apipassword=secret-pass')),
+    ]);
+
+    try {
+        $api->send(oneWaySmsPayload());
+        test()->fail('Expected CouldNotSendNotification to be thrown.');
+    } catch (CouldNotSendNotification $exception) {
+        expect($exception->getMessage())
+            ->not->toContain('secret-user')
+            ->not->toContain('secret-pass')
+            ->toContain('apiusername=***REDACTED***')
+            ->toContain('apipassword=***REDACTED***')
+            ->toContain('cURL error 7')
+            ->toContain('127.0.0.1:9')
+            ->toContain('/bulkcredit.aspx')
+            ->toContain('Connection refused');
+    }
+});
+
 it('sends hex encoded content unchanged', function () {
     $history = [];
     $api = oneWaySmsApi([new Response(200, [], '1')], $history);
