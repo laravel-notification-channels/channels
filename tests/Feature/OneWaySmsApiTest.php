@@ -105,3 +105,42 @@ it('sends hex encoded content unchanged', function () {
     expect($query['message'])->toBe('00680065006C006C006F')
         ->and($query['languagetype'])->toBe('2');
 });
+
+it('requests the balance from the credit path', function () {
+    $history = [];
+    $api = oneWaySmsApi([new Response(200, [], '1250.5')], $history);
+
+    $api->checkBalance();
+
+    $request = $history[0]['request'];
+    parse_str($request->getUri()->getQuery(), $query);
+
+    expect($request->getUri()->getPath())->toBe('/bulkcredit.aspx')
+        ->and($query)->toBe([
+            'apiusername' => 'test-user',
+            'apipassword' => 'test-pass',
+        ]);
+});
+
+it('returns the credit balance', function () {
+    expect(oneWaySmsApi([new Response(200, [], '1250.5')])->checkBalance())->toBe(1250.5);
+});
+
+it('treats a zero balance as a valid balance, not a failure', function () {
+    expect(oneWaySmsApi([new Response(200, [], '0')])->checkBalance())->toBe(0.0);
+});
+
+it('throws when the balance credentials are rejected', function () {
+    expect(fn () => oneWaySmsApi([new Response(200, [], '-100')])->checkBalance())
+        ->toThrow(CouldNotSendNotification::class, 'rejected the API username or password');
+});
+
+it('maps an undocumented balance error code to the unknown-code exception', function () {
+    expect(fn () => oneWaySmsApi([new Response(200, [], '-777')])->checkBalance())
+        ->toThrow(CouldNotSendNotification::class, 'undocumented error code');
+});
+
+it('throws rather than reading a non-numeric balance body as zero', function () {
+    expect(fn () => oneWaySmsApi([new Response(200, [], '<html>error</html>')])->checkBalance())
+        ->toThrow(CouldNotSendNotification::class, 'unexpected response body');
+});

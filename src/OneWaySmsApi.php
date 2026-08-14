@@ -55,6 +55,34 @@ class OneWaySmsApi
     }
 
     /**
+     * Read the account's SMS credit balance.
+     *
+     * A non-numeric body throws rather than casting to zero: silently reading a
+     * gateway error page as "no credit" would be worse than failing loudly.
+     *
+     * @throws CouldNotSendNotification
+     */
+    public function checkBalance(): float
+    {
+        $body = $this->request(self::CREDIT_PATH, [
+            'apiusername' => $this->username,
+            'apipassword' => $this->password,
+        ]);
+
+        if (! is_numeric($body)) {
+            throw CouldNotSendNotification::unexpectedResponse($body);
+        }
+
+        if ((float) $body < 0) {
+            throw (int) $body === -100
+                ? CouldNotSendNotification::invalidCredentials()
+                : CouldNotSendNotification::unknownErrorCode((int) $body);
+        }
+
+        return (float) $body;
+    }
+
+    /**
      * Issue a request and return the trimmed plain-text body.
      *
      * @param  array<string, mixed>  $query
