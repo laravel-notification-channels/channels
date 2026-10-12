@@ -1,0 +1,51 @@
+{
+    "name": "laravel-notification-channels/issuebadge",
+    "description": "IssueBadge notification channel for Laravel: issue digital certificates and badges from notifications",
+    "homepage": "https://github.com/laravel-notification-channels/issuebadge",
+    "license": "MIT",
+    "keywords": ["laravel", "notifications", "issuebadge", "certificates", "badges", "credentials"],
+    "authors": [
+        {
+            "name": "IssueBadge",
+            "email": "product@issuebadge.com",
+            "homepage": "https://issuebadge.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/notifications": "~11.0 || ~12.0 || ~13.0",
+        "illuminate/support": "~11.0 || ~12.0 || ~13.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\IssueBadge\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\IssueBadge\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\IssueBadge\\IssueBadgeServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
